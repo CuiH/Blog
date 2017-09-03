@@ -1,15 +1,50 @@
-title: STEP by STEP UP↑↑↑↑
-email: hcui1995@gmail.com
-description: Life is a struggle.
-url: http://cuih.xyz
-twitter_username: ""
-github_username:  CuiH
+# basic
+name:               "Life is a Struggle"
 
+
+# info
+author:
+  facebook:         none
+  twitter:          none
+  github:           CuiH
+  linkedin:         none
+  email:            hcui1995@gmail.com
+
+copyright:
+  year:             2017
+  name:             CuiH
+
+description: Life is a struggle.
+
+url: http://cuih.xyz
+
+
+# navigation
+nav:
+  - name:           "about"
+    url:            "/about"
+  - name:           "archive"
+    url:            "/archive"
+  - name:           "tags"
+    url:            "/tags"
+  - name:           "github"
+    url:            "https://github.com/CuiH"
+
+
+# Sass
+sass:
+  sass_dir:         _sass
+  style:            :compressed
+
+
+# build
 markdown: kramdown
-theme: minima
+
 permalink: /:title
+
 plugins:
   - jekyll-feed
+
 exclude:
   - Makefile
   - Gemfile

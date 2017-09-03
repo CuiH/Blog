@@ -1,4 +1,5 @@
 deploy:
+	rm -r /tmp/_site
 	git checkout master
 	jekyll build
 	git add --all

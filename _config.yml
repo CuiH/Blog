@@ -40,7 +40,7 @@ sass:
 # build
 markdown: kramdown
 
-permalink: /:title
+# permalink: /:title
 
 plugins:
   - jekyll-feed

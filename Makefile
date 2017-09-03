@@ -7,7 +7,7 @@ deploy:
 	git checkout gh-pages
 	rm -r ./*
 	cp -r /tmp/_site/* ./
-	git add -all
+	git add --all
 	git commit -m "deploy blog"
 	git push origin gh-pages
 	git checkout master

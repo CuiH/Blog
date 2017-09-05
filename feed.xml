@@ -1,8 +1,174 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://cuih.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="http://cuih.xyz/" rel="alternate" type="text/html" /><updated>2017-09-03T23:10:15-05:00</updated><id>http://cuih.xyz/</id><title type="html">Life is a Struggle</title><subtitle>Life is a struggle.</subtitle><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;none&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;none&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><entry><title type="html">对 java 内存模型的理解</title><link href="http://cuih.xyz/2017/09/03/%E5%AF%B9-Java-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3.html" rel="alternate" type="text/html" title="对 java 内存模型的理解" /><published>2017-09-03T23:00:00-05:00</published><updated>2017-09-03T23:00:00-05:00</updated><id>http://cuih.xyz/2017/09/03/%E5%AF%B9%20Java%20%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3</id><content type="html" xml:base="http://cuih.xyz/2017/09/03/%E5%AF%B9-Java-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3.html">&lt;h2 id=&quot;什么是jvm&quot;&gt;什么是JVM&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://cuih.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="http://cuih.xyz/" rel="alternate" type="text/html" /><updated>2017-09-04T23:12:13-05:00</updated><id>http://cuih.xyz/</id><title type="html">Life is a Struggle</title><subtitle>Life is a struggle.</subtitle><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;none&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;none&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><entry><title type="html">设计模式之单例模式</title><link href="http://cuih.xyz/2017/09/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.html" rel="alternate" type="text/html" title="设计模式之单例模式" /><published>2017-09-04T23:00:00-05:00</published><updated>2017-09-04T23:00:00-05:00</updated><id>http://cuih.xyz/2017/09/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F</id><content type="html" xml:base="http://cuih.xyz/2017/09/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.html">&lt;h2 id=&quot;定义&quot;&gt;定义&lt;/h2&gt;
+&lt;p&gt;在一些情况下，我们的程序需要保证某个类只有一个实例存在，比如 Java 中的 &lt;code class=&quot;highlighter-rouge&quot;&gt;打印机&lt;/code&gt; 类，&lt;code class=&quot;highlighter-rouge&quot;&gt;线程池&lt;/code&gt; 类。这种设计在设计模式中被称作单例模式，定义如下：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;确保一个类只有一个实例，并提供一个全局访问点。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这听起来似乎很好实现，但在实际应用的时候，还有很多需要考虑的因素。&lt;/p&gt;
+
+&lt;h2 id=&quot;最简单的单例模式&quot;&gt;最简单的单例模式&lt;/h2&gt;
+&lt;p&gt;先来回答一个有趣的问题，Java 的构造方法可以修饰为 &lt;code class=&quot;highlighter-rouge&quot;&gt;private&lt;/code&gt; 吗？&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Test&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;事实上，这是可以编译通过的，那么这样做有什么意义呢？如何实例化这个类？我们知道，私有方法只能在类内调用，既然构造方法是私有的，在没有实例的情况下如何进入这个类的内部呢？&lt;/p&gt;
+
+&lt;p&gt;答案已经显而易见了，我们可以创建一个公有静态方法来调用：&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Test&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这为我们实现简单的单例模式提供了思路，可以通过全局的静态方法控制实例的数量。如果在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Intellij&lt;/code&gt; 中选择创建一个单例模式的类，会得到如下模板：&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SimpleSingleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+	
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;似乎已经完美解决了问题！但是，如果你对 &lt;code class=&quot;highlighter-rouge&quot;&gt;Java类加载机制&lt;/code&gt; 有一定了解，就会知道 static 代码在类加载的时候就会被执行，如果不巧初始化过程十分耗费时间，而这个实例被创建后又始终未使用，将形成浪费。&lt;/p&gt;
+
+&lt;h2 id=&quot;懒汉模式与饿汉模式&quot;&gt;懒汉模式与饿汉模式&lt;/h2&gt;
+&lt;p&gt;前面提到的方法被称作 &lt;code class=&quot;highlighter-rouge&quot;&gt;饿汉模式&lt;/code&gt;，即：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;无论实例何时使用以及是否被使用，总是急切的在类加载时就创建实例。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;与之相对，还有另外一种实现方法：&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;                   &lt;span class=&quot;c1&quot;&gt;// a&lt;/span&gt;
+		    &lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// b&lt;/span&gt;
+
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SimpleSingleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这被称作 &lt;code class=&quot;highlighter-rouge&quot;&gt;懒汉模式&lt;/code&gt;：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;只在第一次请求实例的时候进行创建，之后直接返回已创建的实例。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;线程安全&quot;&gt;线程安全&lt;/h2&gt;
+&lt;p&gt;懒汉模式虽然实现了延迟加载，但却有一个致命的问题：它是线程不安全的。对于上面的代码，如果有如下的调用顺序，将产生两个不同的实例：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;线程1进入 getInstance() 方法，通过 [a] 处的 if 判断，在执行 [b] 处之前，时间片结束。&lt;/li&gt;
+  &lt;li&gt;线程2进入 getInstance() 方法，此时 ourInstance 仍旧为 null，线程2通过 if 判断，执行 [b] 处代码，创建新的 SimpleSigleton 实例，并返回。&lt;/li&gt;
+  &lt;li&gt;线程1执行 [b] 处代码，创建新的 SimpleSingleton 实例，这将覆盖线程2创建的实例，并返回新的实例。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;为了解决这个问题，可以使用 Java 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;同步（加锁）&lt;/code&gt; 机制：&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;被 &lt;code class=&quot;highlighter-rouge&quot;&gt;synchronized&lt;/code&gt; 修饰的方法可以保证在同一时间只有一个线程能访问这个方法，这实现了线程安全，但却带来了 &lt;code class=&quot;highlighter-rouge&quot;&gt;性能&lt;/code&gt; 上的问题：Java 在处理同步方法时需要进行加锁、解锁操作，这将耗费一定资源以及时间。&lt;/p&gt;
+
+&lt;p&gt;事实上，分析这段代码可以发现，只有在第一次创建实例的时候需要同步，之后直接返回已经创建的实例就可以了。如果在实际应用时需要多次访问这个函数，除了第一次访问之外的同步操作都是无意义的。&lt;/p&gt;
+
+&lt;h2 id=&quot;双重检查锁定&quot;&gt;双重检查锁定&lt;/h2&gt;
+&lt;p&gt;为了实现线程安全，同时解决效率问题，有人提出了更复杂的解决方案，即使用双重检查锁定：&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+				&lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+			&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;因为只有创建实例这一条语句需要锁定，改为采用同步代码块而不是同步整个方法，这样只有未被实例化的情况下访问才进行同步操作，提高了性能。&lt;/p&gt;
+
+&lt;p&gt;同时为了避免懒汉模式中遇到的问题，在同步操作后再次检查 ourInstance 是否已被实例化。由于同一时间只有一个线程可以进入同步代码块，这保证了只有一个实例被创建。&lt;/p&gt;
+
+&lt;p&gt;*注意：由于是静态方法，同步块锁定的是整个类。&lt;/p&gt;
+
+&lt;h2 id=&quot;jvm-带来的问题&quot;&gt;JVM 带来的问题&lt;/h2&gt;
+&lt;p&gt;双重检查锁定看似已经很完美了，但很遗憾，实际使用时依然会出现问题。这是因为 JVM 允许编译器对指令进行 &lt;code class=&quot;highlighter-rouge&quot;&gt;重排序&lt;/code&gt;，将无法保证 &lt;code class=&quot;highlighter-rouge&quot;&gt;有序性&lt;/code&gt;。这里涉及到更深入的分析，我不打算在这篇文章继续讨论，因此只给出一个结论：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;在 &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; 操作完成之前，编译器可能提前将等号左端的引用变为 &lt;code class=&quot;highlighter-rouge&quot;&gt;非空&lt;/code&gt;。在多线程环境下，这将返回一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;未完全初始化&lt;/code&gt; 的对象。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这看起来很荒唐，但却是真实存在的。幸运的是，Java 也提供了一种机制来解决这个问题：&lt;code class=&quot;highlighter-rouge&quot;&gt;volatile&lt;/code&gt; 关键字。&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;volatile&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// a&lt;/span&gt;
+
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+			&lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+				&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+					&lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+				&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+			&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SimpleSingleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;注意 [a] 处，我们为 ourInstance 加上了 &lt;code class=&quot;highlighter-rouge&quot;&gt;volatile&lt;/code&gt; 关键字，关于它的具体作用，我（应该）会在另一篇文章讨论，这里只需要知道，volatile &lt;code class=&quot;highlighter-rouge&quot;&gt;禁止 Java 进行指令重排序&lt;/code&gt;，这样，就可以实现一个线程安全的单例模式。&lt;/p&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;none&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;none&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="java" /><category term="design-pattern" /><summary type="html">定义 在一些情况下，我们的程序需要保证某个类只有一个实例存在，比如 Java 中的 打印机 类，线程池 类。这种设计在设计模式中被称作单例模式，定义如下：</summary></entry><entry><title type="html">对 Java 内存模型的理解</title><link href="http://cuih.xyz/2017/09/03/%E5%AF%B9-Java-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3.html" rel="alternate" type="text/html" title="对 Java 内存模型的理解" /><published>2017-09-03T23:00:00-05:00</published><updated>2017-09-03T23:00:00-05:00</updated><id>http://cuih.xyz/2017/09/03/%E5%AF%B9%20Java%20%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3</id><content type="html" xml:base="http://cuih.xyz/2017/09/03/%E5%AF%B9-Java-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3.html">&lt;h2 id=&quot;什么是jvm&quot;&gt;什么是JVM&lt;/h2&gt;
 &lt;p&gt;Java 一个很重要的特性是与平台无关性，而这正是靠 JVM 来实现的。JVM 用有自己的指令集、寄存器等，屏蔽了底层操作系统的相关信息。Java 程序在编译时只需生成 JVM 能读懂的字节码，运行时 JVM 根据不同操作系统生成相应的机器指令执行。&lt;/p&gt;
 
 &lt;h2 id=&quot;jvm的结构&quot;&gt;JVM的结构&lt;/h2&gt;
 &lt;p&gt;JVM 在执行 Java 程序的时候，其内存主要分为如下几个区域：&lt;/p&gt;
+
 &lt;ul&gt;
   &lt;li&gt;方法区 Method Area：存储加载的类信息，以及类中 static 变量等，是 GC 中的持久代区，同时是 &lt;code class=&quot;highlighter-rouge&quot;&gt;线程共享&lt;/code&gt; 的。&lt;/li&gt;
   &lt;li&gt;常量池 Constant Pool：存储类中的 final 常量，类名、方法名等，是编译期就已经确定的。&lt;/li&gt;
@@ -14,6 +180,7 @@
 
 &lt;h2 id=&quot;java-的内存分配&quot;&gt;Java 的内存分配&lt;/h2&gt;
 &lt;p&gt;总的来说，Java 对于基本数据类型以及对象的内存分配的处理是不同的：&lt;/p&gt;
+
 &lt;ul&gt;
   &lt;li&gt;基本数据类型：包括 byte, short, int, long, float, double, boolean, char。当在方法中定义这些变量时，JVM 会在线程栈中为它们直接分配存储空间。当变量超过其作用域时，空间被释放。&lt;/li&gt;
   &lt;li&gt;由 &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; 创建的对象以及数组：在堆中分配存储空间，而在方法中产生的对这些 &lt;code class=&quot;highlighter-rouge&quot;&gt;对象的引用&lt;/code&gt; 存储在栈中。如果一个对象没有任何引用指向它，它所占的空间不会立即被释放，而是等待某个特定的时间由 GC 进行释放。&lt;/li&gt;
@@ -21,6 +188,7 @@
 
 &lt;h2 id=&quot;java-的栈内存堆内存与参数传递&quot;&gt;Java 的栈内存、堆内存与参数传递&lt;/h2&gt;
 &lt;p&gt;不同于 C++，Java 中没有指针这一概念，对象在堆中创建，程序在栈中执行，因此操作的始终是 &lt;code class=&quot;highlighter-rouge&quot;&gt;对象的引用&lt;/code&gt;，比如，下面这段程序：&lt;/p&gt;
+
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
@@ -45,9 +213,11 @@
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;update()&lt;/code&gt; 函数的参数 &lt;code class=&quot;highlighter-rouge&quot;&gt;a2&lt;/code&gt; 接收了对象的引用，运行时 JVM 根据引用的地址在堆中找到这个对象，并对其 &lt;code class=&quot;highlighter-rouge&quot;&gt;value&lt;/code&gt; 成员变量进行修改。由于堆内存是全局共享的，这个修改对 &lt;code class=&quot;highlighter-rouge&quot;&gt;main()&lt;/code&gt; 函数中对象的另一个引用 &lt;code class=&quot;highlighter-rouge&quot;&gt;a1&lt;/code&gt; 立即可见，因此两次输出的结果不同。&lt;/p&gt;
 
 &lt;p&gt;对于上面的例子，如果我们将 A 换为一个基本数据类型，如 int，则结果完全不同。&lt;/p&gt;
+
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Test&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
 	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -67,27 +237,33 @@
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+
 &lt;p&gt;JVM 中的栈相对于堆存取速度更快，所以对于生存期已知、大小已知的基本数据类型，直接在栈中为其分配空间。&lt;/p&gt;
 
-&lt;p&gt;*注意： 如果使用了 java 的包装类 &lt;code class=&quot;highlighter-rouge&quot;&gt;Integer&lt;/code&gt;，或者是基本类型的数组如 &lt;code class=&quot;highlighter-rouge&quot;&gt;int[]&lt;/code&gt;，则结果与第一个例子相同，因此主要的区分方法是：是否使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; 操作符进行创建。&lt;/p&gt;
+&lt;p&gt;*注意： 如果使用了 Java 的包装类 &lt;code class=&quot;highlighter-rouge&quot;&gt;Integer&lt;/code&gt;，或者是基本类型的数组如 &lt;code class=&quot;highlighter-rouge&quot;&gt;int[]&lt;/code&gt;，则结果与第一个例子相同，因此主要的区分方法是：是否使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; 操作符进行创建。&lt;/p&gt;
 
 &lt;h2 id=&quot;特殊的数据类型string&quot;&gt;特殊的数据类型：String&lt;/h2&gt;
 &lt;p&gt;你应该注意到，前面提到的 Java 中八种基本数据类型没有包括 String，但是请看下面的例子：&lt;/p&gt;
+
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// true&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+
 &lt;p&gt;似乎 Stirng 表现出与基本数据类型的一样的特性，这是因为 JVM 对 String 进行了特殊的处理。前面提到的 JVM 内存区域中的 &lt;code class=&quot;highlighter-rouge&quot;&gt;常量池&lt;/code&gt; 中有一部分为 &lt;code class=&quot;highlighter-rouge&quot;&gt;字符串常量池&lt;/code&gt; ，在创建字符串时，JVM 首先在这个池中寻找是否存在同字面的字符串，如果存在，返回这个对象的引用，若不存在，则创建新的字符串常量。&lt;/p&gt;
 
 &lt;p&gt;再来回答一个十分经典的问题：&lt;/p&gt;
+
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+
 &lt;p&gt;这行代码创建了几个对象？答案是两个，首先在字符创常量池中创建 &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;test&quot;&lt;/code&gt;,由于使用了 &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; 操作符，再在堆中创建新的 &lt;code class=&quot;highlighter-rouge&quot;&gt;String&lt;/code&gt; 对象。&lt;/p&gt;
 
 &lt;p&gt;如果你理解了前面的内容，下面语句的结果就显而易见了：&lt;/p&gt;
+
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 
@@ -95,7 +271,8 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;这里引申一句题外话，java 中的 &lt;code class=&quot;highlighter-rouge&quot;&gt;==&lt;/code&gt; 操作符比较的是变量引用的地址，因此对于对象不能直接使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;==&lt;/code&gt; 进行比较。如果只是比较 String 的字面值，可以使用其自带的 &lt;code class=&quot;highlighter-rouge&quot;&gt;equals()&lt;/code&gt; 函数：&lt;/p&gt;
+&lt;p&gt;这里引申一句题外话，Java 中的 &lt;code class=&quot;highlighter-rouge&quot;&gt;==&lt;/code&gt; 操作符比较的是变量引用的地址，因此对于对象不能直接使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;==&lt;/code&gt; 进行比较。如果只是比较 String 的字面值，可以使用其自带的 &lt;code class=&quot;highlighter-rouge&quot;&gt;equals()&lt;/code&gt; 函数：&lt;/p&gt;
+
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 
@@ -103,16 +280,19 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;另外，java 更推荐直接使用字符串常量池创建字符串，而不是通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; 操作符。&lt;/p&gt;
+&lt;p&gt;另外，Java 更推荐直接使用字符串常量池创建字符串，而不是通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; 操作符。&lt;/p&gt;
 
 &lt;p&gt;最后，我们来探讨一下编译器的有趣之处，看下面的例子：&lt;/p&gt;
+
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;aaabbb&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;aaa&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;bbb&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// true&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+
 &lt;p&gt;编译器似乎十分“聪明”，在编译期对我们的语句进行了一些优化。不过，编译器也没有那么“聪明”：&lt;/p&gt;
+
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;aaa&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;bbb&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
@@ -122,4 +302,5 @@
 &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// false&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+
 &lt;p&gt;如果在 &lt;code class=&quot;highlighter-rouge&quot;&gt;+&lt;/code&gt; 操作符的两边存在非常量，即使连接后的字符串存在于常量池中，依旧会创建新的对象。&lt;/p&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;none&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;none&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="java" /><summary type="html">什么是JVM Java 一个很重要的特性是与平台无关性，而这正是靠 JVM 来实现的。JVM 用有自己的指令集、寄存器等，屏蔽了底层操作系统的相关信息。Java 程序在编译时只需生成 JVM 能读懂的字节码，运行时 JVM 根据不同操作系统生成相应的机器指令执行。</summary></entry></feed>

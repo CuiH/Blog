@@ -1,4 +1,5 @@
 deploy:
+	mkdir /tmp/_site
 	rm -r /tmp/_site
 	git checkout master
 	jekyll build

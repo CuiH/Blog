@@ -91,7 +91,7 @@
 </div>
 
 <h2 id="使用栈遍历">使用栈遍历</h2>
-<p>遍历一棵二叉树，沿着一条路径遍历下去后，关键在于如何回到已遍历过的节点继续沿另一条路径遍历，我们可以使用 <code class="highlighter-rouge">栈</code> 这个数据结构来存储访问过的节点。栈的 <code class="highlighter-rouge">后入先出 </code>特性可以帮助我们在便利完一棵子树后回到其父节点。</p>
+<p>遍历一棵二叉树，沿着一条路径遍历下去后，关键在于如何回到已遍历过的节点继续沿另一条路径遍历，我们可以使用 <code class="highlighter-rouge">栈</code> 这个数据结构来存储访问过的节点。栈的 <code class="highlighter-rouge">后入先出</code> 特性可以帮助我们在便利完一棵子树后回到其父节点。</p>
 
 <h3 id="先序遍历">先序遍历</h3>
 <ol>
@@ -151,13 +151,13 @@
 </div>
 
 <h3 id="后序遍历">后序遍历</h3>
-<p>稍微复杂一些，算法的关键在于，要保证父节点在左右子树都被遍历后才输出。常规的做法是，记录下最后一次输出的节点，帮助判断当前节点的左右子树是否都已被遍历。</p>
+<p>稍微复杂一些，算法的关键在于，要保证父节点在左右子树都被遍历后才输出。常规的做法是，记录下最后一次输出的节点，帮助判断当前节点的左右子树是否都已被遍历。下面提供三种思路。</p>
 
 <p>a) 延续之前的思路：</p>
 
-<p>与前面先序、中序的代码类似，只是需要记录上一次输出的节点，并在出栈操作之前判断栈顶节点是否满足输出要求，即左右子树为空，或已被便利过，实现代码如下：</p>
+<p>与前面先序、中序的代码类似，只是需要记录上一次输出的节点，并在出栈操作之前判断栈顶节点是否满足输出要求，即左右子树为空，或已被遍历过，实现代码如下：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">postorderWithStack2</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">postorderWithStack1</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="o">)</span> <span class="o">{</span>
 	<span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
 
 	<span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">&gt;</span> <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
@@ -199,7 +199,9 @@
 
 <p>实现代码如下：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">postorderWithStack1</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">postorderWithStack2</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">root</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+ 
 	<span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
 
 	<span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">&gt;</span> <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
@@ -226,16 +228,162 @@
 </code></pre>
 </div>
 
-<p>c) 使用双栈
-待续。</p>
+<p>c) 使用双栈</p>
 
-<p>##层次遍历
-待续。</p>
+<p>这个算法的思路有些神奇，我们知道后序遍历的顺序是 <code class="highlighter-rouge">左 -&gt; 右 -&gt; 中</code>，那么如果我们先按照 <code class="highlighter-rouge">中 -&gt; 右 -&gt; 左</code> 的顺序遍历，将结果输出到另外一个栈中，最后再按顺序弹出第二个栈的元素，就可以得到原始树的后序遍历结果了。实现代码如下：</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">postorderWithTwoStacks</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">root</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+    
+	<span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">resStack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
+
+	<span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">&gt;</span> <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
+	<span class="n">stack</span><span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="n">root</span><span class="o">);</span>
+
+	<span class="k">while</span> <span class="o">(!</span><span class="n">stack</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+		<span class="n">TreeNode</span> <span class="n">top</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="na">removeLast</span><span class="o">();</span>
+		<span class="n">resStack</span><span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="n">top</span><span class="o">.</span><span class="na">val</span><span class="o">);</span>
+
+		<span class="k">if</span> <span class="o">(</span><span class="n">top</span><span class="o">.</span><span class="na">left</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">stack</span><span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="n">top</span><span class="o">.</span><span class="na">left</span><span class="o">);</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">top</span><span class="o">.</span><span class="na">right</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">stack</span><span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="n">top</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
+	<span class="k">while</span> <span class="o">(!</span><span class="n">resStack</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span>
+		<span class="n">res</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">resStack</span><span class="o">.</span><span class="na">removeLast</span><span class="o">());</span>
+
+	<span class="k">return</span> <span class="n">res</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<h2 id="层次遍历">层次遍历</h2>
+<p>即一层一层遍历树，在某些情况下适用。很显然，使用 <code class="highlighter-rouge">队列</code> 可以较为简单实现，不多介绍，直接给出代码：</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">levelTraversal</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="o">)</span> <span class="o">{</span>
+	<span class="k">if</span> <span class="o">(</span><span class="n">root</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+	<span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
+
+	<span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
+	<span class="n">queue</span><span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="n">root</span><span class="o">);</span>
+
+	<span class="k">while</span> <span class="o">(!</span><span class="n">queue</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+		<span class="n">TreeNode</span> <span class="n">first</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">removeFirst</span><span class="o">();</span>
+		<span class="n">res</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">first</span><span class="o">.</span><span class="na">val</span><span class="o">);</span>
+
+		<span class="k">if</span> <span class="o">(</span><span class="n">first</span><span class="o">.</span><span class="na">left</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">queue</span><span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="n">first</span><span class="o">.</span><span class="na">left</span><span class="o">);</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">first</span><span class="o">.</span><span class="na">right</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">queue</span><span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="n">first</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="k">return</span> <span class="n">res</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre>
+</div>
 
 <h2 id="morris-遍历">Morris 遍历</h2>
-<p>待续。</p>
+<p>前面提到的各种算法，除了递归和双栈外，平均空间复杂度都为 <code class="highlighter-rouge">O(logn)</code>，那么有没有空间复杂度为 <code class="highlighter-rouge">O(1)</code> 的遍历算法呢？答案是有的，这个算法被称作 <code class="highlighter-rouge">Morris Traversal</code>， 下面先给出中序遍历的算法描述：</p>
 
-<h2 id="leetcode-实例">Leetcode 实例</h2>
+<ol>
+  <li>如果当前节点左子树为空，则输出当前节点，并继续遍历右子树</li>
+  <li>如果左子树非空，则在左子树中找出中序遍历下的 <code class="highlighter-rouge">前驱结点</code>，如果该节点的右子树为空，则将当前节点设为其右子树，继续遍历当前节点的左子树；如果该节点的右子树为当前节点，则恢复其为空，输出当前节点，继续遍历当前节点的右子树</li>
+  <li>重复步骤1-2，直至当前节点为空</li>
+</ol>
+
+<p>这里涉及到一个概念，即中序遍历的 <code class="highlighter-rouge">前驱结点</code>：</p>
+
+<blockquote>
+  <p>对于给定节点，其在中序遍历下的输出中的前一个节点被称作前驱结点。</p>
+</blockquote>
+
+<p>一般的寻找方法为，在左子树中一直向右前进，直至右子树为空。</p>
+
+<p>这个算法的巧妙之处在于，利用树中节点的空余空间来帮助我们回到父节点，无需额外的存储空间。当遍历一个节点的左子树时，先将该节点链接到其前驱结点的右子树中，这样当遍历完左子树时（即到达前驱结点），根据算法会最后一个节点的右子树设为当前节点（成功回到父节点）。然后在处理父节点时，发现其前驱结点的右子树为自己，说明该左子树已完成遍历，应输出本身并继续遍历右子树。</p>
+
+<p>对于我们的例子，分步描述如下：</p>
+
+<ol>
+  <li>
+    <p>原始树
+<img src="/assets/images/0907/T-0.png" alt="" /></p>
+  </li>
+  <li>
+    <p>找到前驱结点设置其右子树，并遍历左子树
+<img src="/assets/images/0907/T-1.png" alt="" /></p>
+  </li>
+  <li>
+    <p>同上
+<img src="/assets/images/0907/T-2.png" alt="" /></p>
+  </li>
+  <li>
+    <p>左子树为空，输出
+<img src="/assets/images/0907/T-3.png" alt="" /></p>
+  </li>
+  <li>
+    <p>遍历右子树，回到父节点
+<img src="/assets/images/0907/T-4.png" alt="" /></p>
+  </li>
+  <li>
+    <p>发现前驱结点的右子树为自己，删除该右子树，输出当前节点，遍历右子树
+<img src="/assets/images/0907/T-5.png" alt="" /></p>
+  </li>
+  <li>
+    <p>处理前驱结点，遍历左子树
+<img src="/assets/images/0907/T-6.png" alt="" /></p>
+  </li>
+  <li>
+    <p>左子树为空，输出，遍历右子树，回到父节点
+<img src="/assets/images/0907/T-7.png" alt="" /></p>
+  </li>
+  <li>
+    <p>发现前驱结点的右子树为自己，删除该右子树，输出当前节点，遍历右子树，回到父节点
+<img src="/assets/images/0907/T-8.png" alt="" /></p>
+  </li>
+  <li>
+    <p>发现左子树前驱结点的右子树为自己，删除该右子树，输出当前节点，遍历右子树
+<img src="/assets/images/0907/T-9.png" alt="" /></p>
+  </li>
+  <li>
+    <p>发现左子树为空，输出当前节点，遍历右节点
+<img src="/assets/images/0907/T-10.png" alt="" /></p>
+  </li>
+  <li>
+    <p>同上，完成遍历
+<img src="/assets/images/0907/T-11.png" alt="" /></p>
+  </li>
+</ol>
+
+<p>实现代码如下：</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">morrisInorderTraversal</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="o">)</span> <span class="o">{</span>
+	<span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
+
+	<span class="k">while</span> <span class="o">(</span><span class="n">root</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">left</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">res</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">val</span><span class="o">);</span>
+			<span class="n">root</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="na">right</span><span class="o">;</span>
+		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+			<span class="n">TreeNode</span> <span class="n">predecessor</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="na">left</span><span class="o">;</span>
+			<span class="k">while</span> <span class="o">(</span><span class="n">predecessor</span><span class="o">.</span><span class="na">right</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">predecessor</span><span class="o">.</span><span class="na">right</span> <span class="o">!=</span> <span class="n">root</span><span class="o">)</span>
+				<span class="n">predecessor</span> <span class="o">=</span> <span class="n">predecessor</span><span class="o">.</span><span class="na">right</span><span class="o">;</span>
+
+			<span class="k">if</span> <span class="o">(</span><span class="n">predecessor</span><span class="o">.</span><span class="na">right</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+				<span class="n">predecessor</span><span class="o">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">root</span><span class="o">;</span>
+				<span class="n">root</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="na">left</span><span class="o">;</span>
+			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+				<span class="n">predecessor</span><span class="o">.</span><span class="na">right</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+				<span class="n">res</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">val</span><span class="o">);</span>
+
+				<span class="n">root</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="na">right</span><span class="o">;</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+
+	<span class="k">return</span> <span class="n">res</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre>
+</div>
 
 	
 </div>

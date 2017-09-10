@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://cuih.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="http://cuih.xyz/" rel="alternate" type="text/html" /><updated>2017-09-07T23:04:38-05:00</updated><id>http://cuih.xyz/</id><title type="html">Life is a Struggle</title><subtitle>Life is a struggle.</subtitle><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;none&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;none&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><entry><title type="html">二叉树的遍历</title><link href="http://cuih.xyz/2017/09/07/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86.html" rel="alternate" type="text/html" title="二叉树的遍历" /><published>2017-09-07T00:30:00-05:00</published><updated>2017-09-07T00:30:00-05:00</updated><id>http://cuih.xyz/2017/09/07/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86</id><content type="html" xml:base="http://cuih.xyz/2017/09/07/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86.html">&lt;h2 id=&quot;总览&quot;&gt;总览&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://cuih.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="http://cuih.xyz/" rel="alternate" type="text/html" /><updated>2017-09-09T23:00:50-05:00</updated><id>http://cuih.xyz/</id><title type="html">Life is a Struggle</title><subtitle>Life is a struggle.</subtitle><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;none&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;none&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><entry><title type="html">二叉树的遍历</title><link href="http://cuih.xyz/2017/09/07/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86.html" rel="alternate" type="text/html" title="二叉树的遍历" /><published>2017-09-07T00:30:00-05:00</published><updated>2017-09-07T00:30:00-05:00</updated><id>http://cuih.xyz/2017/09/07/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86</id><content type="html" xml:base="http://cuih.xyz/2017/09/07/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86.html">&lt;h2 id=&quot;总览&quot;&gt;总览&lt;/h2&gt;
 &lt;p&gt;二叉树是一个十分经典的数据结构，可以对其进行前序、中序，以及后续遍历（这里不再介绍这三者的定义）。本文关注遍历二叉树的多种算法，并结合 Leetcode 题目具体分析。其中，树节点的定义如下：&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TreeNode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -813,7 +813,151 @@ For k = 3, you should return: 3-&amp;gt;2-&amp;gt;1-&amp;gt;4-&amp;gt;5&lt;/p&gt
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;注意 [a] 处，我们为 ourInstance 加上了 &lt;code class=&quot;highlighter-rouge&quot;&gt;volatile&lt;/code&gt; 关键字，关于它的具体作用，我（应该）会在另一篇文章讨论，这里只需要知道，volatile &lt;code class=&quot;highlighter-rouge&quot;&gt;禁止 Java 进行指令重排序&lt;/code&gt;，这样，就可以实现一个线程安全的单例模式。&lt;/p&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;none&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;none&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="java" /><category term="design-pattern" /><summary type="html">定义 在一些情况下，我们的程序需要保证某个类只有一个实例存在，比如 Java 中的 打印机 类，线程池 类。这种设计在设计模式中被称作单例模式，定义如下：</summary></entry><entry><title type="html">对 Java 内存模型的理解</title><link href="http://cuih.xyz/2017/09/03/%E5%AF%B9-Java-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3.html" rel="alternate" type="text/html" title="对 Java 内存模型的理解" /><published>2017-09-03T23:00:00-05:00</published><updated>2017-09-03T23:00:00-05:00</updated><id>http://cuih.xyz/2017/09/03/%E5%AF%B9%20Java%20%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3</id><content type="html" xml:base="http://cuih.xyz/2017/09/03/%E5%AF%B9-Java-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3.html">&lt;h2 id=&quot;什么是jvm&quot;&gt;什么是JVM&lt;/h2&gt;
+&lt;p&gt;注意 [a] 处，我们为 ourInstance 加上了 &lt;code class=&quot;highlighter-rouge&quot;&gt;volatile&lt;/code&gt; 关键字，关于它的具体作用，我（应该）会在另一篇文章讨论，这里只需要知道，volatile &lt;code class=&quot;highlighter-rouge&quot;&gt;禁止 Java 进行指令重排序&lt;/code&gt;，这样，就可以实现一个线程安全的单例模式。&lt;/p&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;none&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;none&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="java" /><category term="design-pattern" /><summary type="html">定义 在一些情况下，我们的程序需要保证某个类只有一个实例存在，比如 Java 中的 打印机 类，线程池 类。这种设计在设计模式中被称作单例模式，定义如下：</summary></entry><entry><title type="html">Understanding of the Java Memory Model</title><link href="http://cuih.xyz/2017/09/03/%E5%AF%B9-Java-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3.html" rel="alternate" type="text/html" title="Understanding of the Java Memory Model" /><published>2017-09-03T23:00:00-05:00</published><updated>2017-09-03T23:00:00-05:00</updated><id>http://cuih.xyz/2017/09/03/%E5%AF%B9%20Java%20%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3</id><content type="html" xml:base="http://cuih.xyz/2017/09/03/%E5%AF%B9-Java-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3.html">&lt;h2 id=&quot;what-is-java-virtual-machine-jvm&quot;&gt;What is Java Virtual Machine (JVM)?&lt;/h2&gt;
+&lt;p&gt;One of the most important characteristics of Java is that it is &lt;code class=&quot;highlighter-rouge&quot;&gt;platform-independent&lt;/code&gt;, which is fulfilled by the &lt;code class=&quot;highlighter-rouge&quot;&gt;JVM&lt;/code&gt;. JVM has its own instruction sets and registers, so java codes can ignore the implementation of the underlying operating system, and only need to generate bytecodes that JVM can read. When running, JVM will convert the bytecode to native machine code of the host platform and then execute.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-structure-of-jvm&quot;&gt;The Structure of JVM&lt;/h2&gt;
+&lt;p&gt;The memory of JVM consists mainly of the following areas:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Method Area: storing information of the loaded classes, along with those &lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt; variables. It is the &lt;code class=&quot;highlighter-rouge&quot;&gt;permanent generation&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;garbage collection (GC)&lt;/code&gt;, and is &lt;code class=&quot;highlighter-rouge&quot;&gt;thread-sharing&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Constant Pool: storing &lt;code class=&quot;highlighter-rouge&quot;&gt;final&lt;/code&gt; variables, class names, method names and values that can be determined at compile time.&lt;/li&gt;
+  &lt;li&gt;Program Countre Register: &lt;code class=&quot;highlighter-rouge&quot;&gt;thread-independent&lt;/code&gt;, stroing the memory address of the instrucion that is currently being executed.&lt;/li&gt;
+  &lt;li&gt;Native Method Stack: serving &lt;code class=&quot;highlighter-rouge&quot;&gt;native&lt;/code&gt; methods.&lt;/li&gt;
+  &lt;li&gt;Stack: each thread has its own &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt;, and each method has its own &lt;code class=&quot;highlighter-rouge&quot;&gt;thread frame&lt;/code&gt;, storing &lt;code class=&quot;highlighter-rouge&quot;&gt;variables of basic data types&lt;/code&gt; (such as int, boolean), and &lt;code class=&quot;highlighter-rouge&quot;&gt;references (addresses in heap) to instances of non-basic data typess&lt;/code&gt;, as well as information of the return values. The top of the stack points to the current active stack (method) frame.&lt;/li&gt;
+  &lt;li&gt;Heap: the largest area tha JVM memory controls, ‘thread-sharing’. All memory of objects that are created by &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; operations are allocated here (including instances of objects and arrays). It is the main active region of &lt;code class=&quot;highlighter-rouge&quot;&gt;GC&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;the-memory-allocation-in-java&quot;&gt;The Memory Allocation in Java&lt;/h2&gt;
+&lt;p&gt;In general, Java treats basic data types and objects differently in memory allocation:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Basic Date Types: including byte, short, int, long, float, double, boolean, char. When defining these variables in methods, JVM will directly allocate spaces for them in &lt;code class=&quot;highlighter-rouge&quot;&gt;thread stack&lt;/code&gt;. If a variable is beyond its scope, it space will be released.&lt;/li&gt;
+  &lt;li&gt;Objects created by &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; operations (including arrays): Their spaces will be allocated in &lt;code class=&quot;highlighter-rouge&quot;&gt;heap&lt;/code&gt;,  and a &lt;code class=&quot;highlighter-rouge&quot;&gt;reference to the address&lt;/code&gt; will be created in stack if needed. If an object is not referenced by any variable, its space won’t be realeased immediately, but will be collected by GC at a &lt;code class=&quot;highlighter-rouge&quot;&gt;certain&lt;/code&gt; time (decided by many factors).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;stack-memory-heap-memory-and-parameter-passing&quot;&gt;Stack Memory, Heap Memory and Parameter Passing&lt;/h2&gt;
+&lt;p&gt;Different from C++, there’s no &lt;code class=&quot;highlighter-rouge&quot;&gt;pointers&lt;/code&gt; in Java. Objecets are created in heap, and programs are executed in stack, so we are operating the &lt;code class=&quot;highlighter-rouge&quot;&gt;reference to object&lt;/code&gt; all the time. For example, let’s see the following program:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Test&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;a1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 5&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 8&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;a2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The parameter &lt;code class=&quot;highlighter-rouge&quot;&gt;a2&lt;/code&gt; of method &lt;code class=&quot;highlighter-rouge&quot;&gt;update()&lt;/code&gt; receives references to objects. When running, JVM finds this object in heap according to the address, and then modify its member variable &lt;code class=&quot;highlighter-rouge&quot;&gt;value&lt;/code&gt;. Since the heap is shared, this modification is visible immediately to another reference &lt;code class=&quot;highlighter-rouge&quot;&gt;a1&lt;/code&gt; in method &lt;code class=&quot;highlighter-rouge&quot;&gt;main()&lt;/code&gt;, so the two outputs are different.&lt;/p&gt;
+
+&lt;p&gt;As for the above example, if we change the type A to a basic data type, such as &lt;code class=&quot;highlighter-rouge&quot;&gt;int&lt;/code&gt;, the result will be totally different:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Test&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 5&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 5&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;a2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In JVM, stack can be read and write much faster than heap, so for basic data types, whose life cycle and size are known at compile time, their spaces are allocated directly in stack.&lt;/p&gt;
+
+&lt;p&gt;*Attention: If you use Java’s &lt;code class=&quot;highlighter-rouge&quot;&gt;wrapper class&lt;/code&gt; such as &lt;code class=&quot;highlighter-rouge&quot;&gt;Integer&lt;/code&gt;, or arrays of basic data types such as &lt;code class=&quot;highlighter-rouge&quot;&gt;int[]&lt;/code&gt;, the result will be same as the first example. Therefore, the most useful difference is: whether it uses a &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; operator to create.&lt;/p&gt;
+
+&lt;h2 id=&quot;a-special-data-type-string&quot;&gt;A Special Data Type: String&lt;/h2&gt;
+&lt;p&gt;You should notice that the eight basic data types mentioned above do not include &lt;code class=&quot;highlighter-rouge&quot;&gt;String&lt;/code&gt;, but you don’t need to &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; a String, why? Let’s see an example:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;It seems that String behaves just like basic data types. This is due to the fact that JVM treats String specially. The &lt;code class=&quot;highlighter-rouge&quot;&gt;Constant Pool&lt;/code&gt; in the memory of JVM we mentioned includes a &lt;code class=&quot;highlighter-rouge&quot;&gt;String Constant Pool&lt;/code&gt;, which will be searched first if we create a String. If there’s a String with the same &lt;code class=&quot;highlighter-rouge&quot;&gt;literal value&lt;/code&gt;JVM will return its reference directly; if not, JVM creates a new String constant.&lt;/p&gt;
+
+&lt;p&gt;What about this classical question:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;How many objects are created in the code? The answer is &lt;code class=&quot;highlighter-rouge&quot;&gt;two&lt;/code&gt;. First, a String &lt;code class=&quot;highlighter-rouge&quot;&gt;constant&lt;/code&gt; is created in the String Constant Pool values &lt;code class=&quot;highlighter-rouge&quot;&gt;test&lt;/code&gt;, and then since there’s a &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; operation, JVM creates a new String &lt;code class=&quot;highlighter-rouge&quot;&gt;object&lt;/code&gt; in heap.&lt;/p&gt;
+
+&lt;p&gt;If you have understood all contents above, the results of the following code will be obvious:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Here we digress a little. the &lt;code class=&quot;highlighter-rouge&quot;&gt;==&lt;/code&gt; operator in Java compares the references to objects (that is, the addresses). Therefore, we can’t directly use &lt;code class=&quot;highlighter-rouge&quot;&gt;==&lt;/code&gt; to compare the literal values of two Strings, but we can use method ‘equals()’ instead:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;equals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In addition, Java recommends creating String with String Constant Pool rather than &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; operator.&lt;/p&gt;
+
+&lt;p&gt;Finally, let’s discuss an interesting point of the compiler. Look at this example:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;aaabbb&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;aaa&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;bbb&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The compiler seems to be so &lt;code class=&quot;highlighter-rouge&quot;&gt;smart&lt;/code&gt; that it makes some optimizations at compile time. However, the compiler is not that &lt;code class=&quot;highlighter-rouge&quot;&gt;smart&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;aaa&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;bbb&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;aaabbb&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;if there is non-constant value at either side (or both) of the &lt;code class=&quot;highlighter-rouge&quot;&gt;+&lt;/code&gt; operator, a new String object will always be created, even if the concatenated String exists in the String Constant Pool.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;什么是jvm&quot;&gt;什么是JVM&lt;/h2&gt;
 &lt;p&gt;Java 一个很重要的特性是与平台无关性，而这正是靠 JVM 来实现的。JVM 用有自己的指令集、寄存器等，屏蔽了底层操作系统的相关信息。Java 程序在编译时只需生成 JVM 能读懂的字节码，运行时 JVM 根据不同操作系统生成相应的机器指令执行。&lt;/p&gt;
 
 &lt;h2 id=&quot;jvm的结构&quot;&gt;JVM的结构&lt;/h2&gt;
@@ -953,4 +1097,4 @@ For k = 3, you should return: 3-&amp;gt;2-&amp;gt;1-&amp;gt;4-&amp;gt;5&lt;/p&gt
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;如果在 &lt;code class=&quot;highlighter-rouge&quot;&gt;+&lt;/code&gt; 操作符的两边存在非常量，即使连接后的字符串存在于常量池中，依旧会创建新的对象。&lt;/p&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;none&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;none&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="java" /><summary type="html">什么是JVM Java 一个很重要的特性是与平台无关性，而这正是靠 JVM 来实现的。JVM 用有自己的指令集、寄存器等，屏蔽了底层操作系统的相关信息。Java 程序在编译时只需生成 JVM 能读懂的字节码，运行时 JVM 根据不同操作系统生成相应的机器指令执行。</summary></entry></feed>
+&lt;p&gt;如果在 &lt;code class=&quot;highlighter-rouge&quot;&gt;+&lt;/code&gt; 操作符的两边存在非常量，即使连接后的字符串存在于常量池中，依旧会创建新的对象。&lt;/p&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;none&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;none&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="java" /><summary type="html">What is Java Virtual Machine (JVM)? One of the most important characteristics of Java is that it is platform-independent, which is fulfilled by the JVM. JVM has its own instruction sets and registers, so java codes can ignore the implementation of the underlying operating system, and only need to generate bytecodes that JVM can read. When running, JVM will convert the bytecode to native machine code of the host platform and then execute.</summary></entry></feed>

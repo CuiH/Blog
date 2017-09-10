@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://cuih.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="http://cuih.xyz/" rel="alternate" type="text/html" /><updated>2017-09-09T23:00:50-05:00</updated><id>http://cuih.xyz/</id><title type="html">Life is a Struggle</title><subtitle>Life is a struggle.</subtitle><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;none&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;none&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><entry><title type="html">二叉树的遍历</title><link href="http://cuih.xyz/2017/09/07/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86.html" rel="alternate" type="text/html" title="二叉树的遍历" /><published>2017-09-07T00:30:00-05:00</published><updated>2017-09-07T00:30:00-05:00</updated><id>http://cuih.xyz/2017/09/07/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86</id><content type="html" xml:base="http://cuih.xyz/2017/09/07/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86.html">&lt;h2 id=&quot;总览&quot;&gt;总览&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://cuih.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="http://cuih.xyz/" rel="alternate" type="text/html" /><updated>2017-09-10T00:55:23-05:00</updated><id>http://cuih.xyz/</id><title type="html">Life is a Struggle</title><subtitle>Life is a struggle.</subtitle><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;none&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;none&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><entry><title type="html">二叉树的遍历</title><link href="http://cuih.xyz/2017/09/07/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86.html" rel="alternate" type="text/html" title="二叉树的遍历" /><published>2017-09-07T00:30:00-05:00</published><updated>2017-09-07T00:30:00-05:00</updated><id>http://cuih.xyz/2017/09/07/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86</id><content type="html" xml:base="http://cuih.xyz/2017/09/07/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86.html">&lt;h2 id=&quot;总览&quot;&gt;总览&lt;/h2&gt;
 &lt;p&gt;二叉树是一个十分经典的数据结构，可以对其进行前序、中序，以及后续遍历（这里不再介绍这三者的定义）。本文关注遍历二叉树的多种算法，并结合 Leetcode 题目具体分析。其中，树节点的定义如下：&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TreeNode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -648,7 +648,172 @@ For k = 3, you should return: 3-&amp;gt;2-&amp;gt;1-&amp;gt;4-&amp;gt;5&lt;/p&gt
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;none&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;none&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="algorithm" /><summary type="html">总览 常见的对单链表进行翻转有5种方法，下面将分别介绍。其中，类 Node 的定义如下：</summary></entry><entry><title type="html">设计模式之单例模式</title><link href="http://cuih.xyz/2017/09/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.html" rel="alternate" type="text/html" title="设计模式之单例模式" /><published>2017-09-04T23:00:00-05:00</published><updated>2017-09-04T23:00:00-05:00</updated><id>http://cuih.xyz/2017/09/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F</id><content type="html" xml:base="http://cuih.xyz/2017/09/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.html">&lt;h2 id=&quot;定义&quot;&gt;定义&lt;/h2&gt;
+&lt;/div&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;none&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;none&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="algorithm" /><summary type="html">总览 常见的对单链表进行翻转有5种方法，下面将分别介绍。其中，类 Node 的定义如下：</summary></entry><entry><title type="html">The Singleton Pattern</title><link href="http://cuih.xyz/2017/09/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.html" rel="alternate" type="text/html" title="The Singleton Pattern" /><published>2017-09-04T23:00:00-05:00</published><updated>2017-09-04T23:00:00-05:00</updated><id>http://cuih.xyz/2017/09/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F</id><content type="html" xml:base="http://cuih.xyz/2017/09/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.html">&lt;h2 id=&quot;definition&quot;&gt;Definition&lt;/h2&gt;
+&lt;p&gt;In some cases, our program requires that a certain class should have only one instance, such as the &lt;code class=&quot;highlighter-rouge&quot;&gt;Printer&lt;/code&gt; class and &lt;code class=&quot;highlighter-rouge&quot;&gt;ThreadPool&lt;/code&gt; class in Java. This design pattern is called &lt;code class=&quot;highlighter-rouge&quot;&gt;Singleton Pattern&lt;/code&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;To restrict the instantiation of a class to one object, and provide a global access point.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;the-simplest-singleton-pattern&quot;&gt;The Simplest Singleton Pattern&lt;/h2&gt;
+&lt;p&gt;Let’s answer an interesting question first: Can the &lt;code class=&quot;highlighter-rouge&quot;&gt;constructor&lt;/code&gt; be decorated as&lt;code class=&quot;highlighter-rouge&quot;&gt;private&lt;/code&gt; in Java?&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Test&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In fact, this code can be compiled, but what’s the meaning of this? How can we instantiate this class? We know that private methods can only be invoked inside the class, and since the only constructor is private, how to get into this class without an instance?&lt;/p&gt;
+
+&lt;p&gt;The answer is obvious now: we can create a &lt;code class=&quot;highlighter-rouge&quot;&gt;public static method&lt;/code&gt; to invoke the constructor:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Test&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This exercise gives us a method to implement the simplest sigleton pattern, that is, we can control the instantiation through a global static method and a private constructor. Actually, if we choose to create a class with sigleton pattern in &lt;code class=&quot;highlighter-rouge&quot;&gt;Intellij&lt;/code&gt;, we will get the following template:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SimpleSingleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;It seems that we have perfectly addressed the problem! However, if you are familiar with the &lt;code class=&quot;highlighter-rouge&quot;&gt;class loading mechanism in Java&lt;/code&gt;, you’ll know that &lt;code class=&quot;highlighter-rouge&quot;&gt;class-level static statements&lt;/code&gt; are executed once the class is loaded. If unfortunately, the initialization process is time-consuming, and the instance of this class is never used after creation, this will be very wasteful.&lt;/p&gt;
+
+&lt;h2 id=&quot;eager-loading--lazy-loading&quot;&gt;Eager Loading &amp;amp; Lazy Loading&lt;/h2&gt;
+&lt;p&gt;The method above is called &lt;code class=&quot;highlighter-rouge&quot;&gt;Eager Loading&lt;/code&gt;, that is:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Whenever and whether the instance is used, always eargely create it during class loading.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In contrast to this, we have another implementation:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;                   &lt;span class=&quot;c1&quot;&gt;// a&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// b&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SimpleSingleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This is the &lt;code class=&quot;highlighter-rouge&quot;&gt;Lazy Loading&lt;/code&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Create the instance at the first request, and directly return it when requested again.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;thread-safe-considerations&quot;&gt;Thread-safe Considerations&lt;/h2&gt;
+&lt;p&gt;Althought the lazing loading achieves the delayed loading, it has a fatal problem: it is not thread-safe. If we use the following invokation sequence, two different instances will be created:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Thread #1&lt;/code&gt; enters method &lt;code class=&quot;highlighter-rouge&quot;&gt;getInstance()&lt;/code&gt;, and passes the &lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt; judgement at [a], but its time slice ends before executing &lt;code class=&quot;highlighter-rouge&quot;&gt;[b]&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Thread #2&lt;/code&gt; enters method &lt;code class=&quot;highlighter-rouge&quot;&gt;getInstance()&lt;/code&gt;, when &lt;code class=&quot;highlighter-rouge&quot;&gt;ourInstance&lt;/code&gt; is still &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, so it passes the judgement and executes &lt;code class=&quot;highlighter-rouge&quot;&gt;[b]&lt;/code&gt;. Finally it creates a new &lt;code class=&quot;highlighter-rouge&quot;&gt;SimpleSigleton&lt;/code&gt; instance and returns it.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Thread #1&lt;/code&gt; executes &lt;code class=&quot;highlighter-rouge&quot;&gt;[b]&lt;/code&gt;, and creates a new &lt;code class=&quot;highlighter-rouge&quot;&gt;SimpleSigleton&lt;/code&gt; instance, which overrides the instance created by &lt;code class=&quot;highlighter-rouge&quot;&gt;Thread #2&lt;/code&gt;, and returns the new instance.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;To address this problem, using Java’s &lt;code class=&quot;highlighter-rouge&quot;&gt;synchronization (locking) mechanism&lt;/code&gt; can be a good method:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Synchronized methods&lt;/code&gt; can only be accessed by one thread at one time, which fulfills the thread-safe requirement. However, it brings the &lt;code class=&quot;highlighter-rouge&quot;&gt;performance&lt;/code&gt; issue: Java performs &lt;code class=&quot;highlighter-rouge&quot;&gt;locking&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;unlocking&lt;/code&gt; operations when handling synchronized codes, and they may take some time.&lt;/p&gt;
+
+&lt;p&gt;In fact, after analyzing this code, we will find that synchronization is only indispensable at the first invocation, when the instance is not yet created. If we need to access this method many times, all synchronizations are meaningless except the the first time.&lt;/p&gt;
+
+&lt;h2 id=&quot;double-checked-locking&quot;&gt;Double-checked Locking&lt;/h2&gt;
+&lt;p&gt;To achieve thread-safe, and at the same time address the performance issue, some people suggested a more complicated solution:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Since only the instance creation statement requires to be locked, we use a &lt;code class=&quot;highlighter-rouge&quot;&gt;synchronized block&lt;/code&gt; instead of synchronized method. Also, to avoid the problem we met in lazing loading, &lt;code class=&quot;highlighter-rouge&quot;&gt;ourInstance&lt;/code&gt; is checked a second time inside the synchronization block before we really create a instance. As only one thread can access the synchronized block at one time, only one instance will be created.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-problem-brought-by-the-jvm&quot;&gt;The Problem Brought by the JVM&lt;/h2&gt;
+&lt;p&gt;The double-checked locking seems to be perfect, but regrettably, it will not work in some cases. The problem is that the JVM allows the compiler to &lt;code class=&quot;highlighter-rouge&quot;&gt;reorder instructions&lt;/code&gt;, which cannot guarantee the &lt;code class=&quot;highlighter-rouge&quot;&gt;orderliness (not sure)&lt;/code&gt;. This may involve deeper analysis, and I don’t want to have further discussion concerning this topic in this blog, so I just give a conclusion:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Before the &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; operation finishes, the compiler may change the reference on the left of the &lt;code class=&quot;highlighter-rouge&quot;&gt;=&lt;/code&gt; operator to &lt;code class=&quot;highlighter-rouge&quot;&gt;non-null&lt;/code&gt; in advance. In multi-thread cases, a &lt;code class=&quot;highlighter-rouge&quot;&gt;not fully initialized object&lt;/code&gt; will be returned.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This sounds ridiculous, but it happens. However, luckily Java provides a mechanism to avoid this problem: the keyword &lt;code class=&quot;highlighter-rouge&quot;&gt;volative&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;volatile&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// a&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SimpleSingleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Pay attention to the statement at &lt;code class=&quot;highlighter-rouge&quot;&gt;[a]&lt;/code&gt;, where we add a &lt;code class=&quot;highlighter-rouge&quot;&gt;volatile&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;ourInstance&lt;/code&gt;. As for its specific function, I will discuss in another blog (maybe). What we need to know here is that the keyword &lt;code class=&quot;highlighter-rouge&quot;&gt;volatile&lt;/code&gt; prohibits JVM from doing &lt;code class=&quot;highlighter-rouge&quot;&gt;instructions reordering&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Therefore, finally, we have developed a thread-safe singleton pattern class with high-performance.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;定义&quot;&gt;定义&lt;/h2&gt;
 &lt;p&gt;在一些情况下，我们的程序需要保证某个类只有一个实例存在，比如 Java 中的 &lt;code class=&quot;highlighter-rouge&quot;&gt;打印机&lt;/code&gt; 类，&lt;code class=&quot;highlighter-rouge&quot;&gt;线程池&lt;/code&gt; 类。这种设计在设计模式中被称作单例模式，定义如下：&lt;/p&gt;
 
 &lt;blockquote&gt;
@@ -813,7 +978,7 @@ For k = 3, you should return: 3-&amp;gt;2-&amp;gt;1-&amp;gt;4-&amp;gt;5&lt;/p&gt
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;注意 [a] 处，我们为 ourInstance 加上了 &lt;code class=&quot;highlighter-rouge&quot;&gt;volatile&lt;/code&gt; 关键字，关于它的具体作用，我（应该）会在另一篇文章讨论，这里只需要知道，volatile &lt;code class=&quot;highlighter-rouge&quot;&gt;禁止 Java 进行指令重排序&lt;/code&gt;，这样，就可以实现一个线程安全的单例模式。&lt;/p&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;none&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;none&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="java" /><category term="design-pattern" /><summary type="html">定义 在一些情况下，我们的程序需要保证某个类只有一个实例存在，比如 Java 中的 打印机 类，线程池 类。这种设计在设计模式中被称作单例模式，定义如下：</summary></entry><entry><title type="html">Understanding of the Java Memory Model</title><link href="http://cuih.xyz/2017/09/03/%E5%AF%B9-Java-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3.html" rel="alternate" type="text/html" title="Understanding of the Java Memory Model" /><published>2017-09-03T23:00:00-05:00</published><updated>2017-09-03T23:00:00-05:00</updated><id>http://cuih.xyz/2017/09/03/%E5%AF%B9%20Java%20%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3</id><content type="html" xml:base="http://cuih.xyz/2017/09/03/%E5%AF%B9-Java-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3.html">&lt;h2 id=&quot;what-is-java-virtual-machine-jvm&quot;&gt;What is Java Virtual Machine (JVM)?&lt;/h2&gt;
+&lt;p&gt;注意 [a] 处，我们为 ourInstance 加上了 &lt;code class=&quot;highlighter-rouge&quot;&gt;volatile&lt;/code&gt; 关键字，关于它的具体作用，我（应该）会在另一篇文章讨论，这里只需要知道，volatile &lt;code class=&quot;highlighter-rouge&quot;&gt;禁止 Java 进行指令重排序&lt;/code&gt;，这样，就可以实现一个线程安全的单例模式。&lt;/p&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;none&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;none&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="design-pattern" /><summary type="html">Definition In some cases, our program requires that a certain class should have only one instance, such as the Printer class and ThreadPool class in Java. This design pattern is called Singleton Pattern:</summary></entry><entry><title type="html">Understanding of the Java Memory Model</title><link href="http://cuih.xyz/2017/09/03/%E5%AF%B9-Java-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3.html" rel="alternate" type="text/html" title="Understanding of the Java Memory Model" /><published>2017-09-03T23:00:00-05:00</published><updated>2017-09-03T23:00:00-05:00</updated><id>http://cuih.xyz/2017/09/03/%E5%AF%B9%20Java%20%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3</id><content type="html" xml:base="http://cuih.xyz/2017/09/03/%E5%AF%B9-Java-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%90%86%E8%A7%A3.html">&lt;h2 id=&quot;what-is-java-virtual-machine-jvm&quot;&gt;What is Java Virtual Machine (JVM)?&lt;/h2&gt;
 &lt;p&gt;One of the most important characteristics of Java is that it is &lt;code class=&quot;highlighter-rouge&quot;&gt;platform-independent&lt;/code&gt;, which is fulfilled by the &lt;code class=&quot;highlighter-rouge&quot;&gt;JVM&lt;/code&gt;. JVM has its own instruction sets and registers, so java codes can ignore the implementation of the underlying operating system, and only need to generate bytecodes that JVM can read. When running, JVM will convert the bytecode to native machine code of the host platform and then execute.&lt;/p&gt;
 
 &lt;h2 id=&quot;the-structure-of-jvm&quot;&gt;The Structure of JVM&lt;/h2&gt;

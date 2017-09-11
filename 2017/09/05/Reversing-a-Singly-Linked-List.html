@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>翻转单链表的5种方法</title>
+	<title>Reversing a Singly Linked List</title>
 
 	<!-- CSS -->
 	<link rel="stylesheet" href="/assets/css/main.css" type="text/css">
@@ -23,7 +23,7 @@
 </header>
 
 <div class="post">
-	<div class="post-title">翻转单链表的5种方法</div>
+	<div class="post-title">Reversing a Singly Linked List</div>
 	<span class="post-date">
 		<time>05 Sep 2017</time>
 	</span>
@@ -40,7 +40,316 @@
 		</ul>
 	</div>
 
-	<h2 id="总览">总览</h2>
+	<h2 id="overview">Overview</h2>
+<p>There are five common ways to reverse a singly linked list. I will introduce them one by one. The class <code class="highlighter-rouge">Node</code> is defined as follows:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Node</span> <span class="o">{</span>
+
+    <span class="kt">int</span> <span class="n">val</span><span class="o">;</span>
+    <span class="n">Node</span> <span class="n">next</span><span class="o">;</span>
+    
+    <span class="n">Node</span><span class="o">(</span><span class="kt">int</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="n">v</span><span class="o">;</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<h2 id="with-the-help-of-an-array">With the Help of an Array</h2>
+<p>If we traverse the linked list and store every node inside a <code class="highlighter-rouge">ramdomly accessible</code> data structure, such as an array, we can then traverse the array reversely, constructing a new linked list. Since this is the simplest solution, I’m not gonna talk more about it, so here’s the code:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList1</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
+
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">head</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">arr</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">head</span><span class="o">);</span>
+        <span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="n">Node</span> <span class="n">curr</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">--)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">curr</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">curr</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">curr</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+            <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="n">curr</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+    <span class="k">return</span> <span class="n">arr</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">arr</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>Obviously, the biggest problem of this solution is that it costs too much <code class="highlighter-rouge">space</code>, because we need o construct a data structure with the same length as the original linked list.</p>
+
+<h2 id="continuously-reversing-the-pointer-between-every-two-nodes">Continuously Reversing the Pointer Between Every Two Nodes</h2>
+<p>If we keep reversing every pointer between every two nodes, we’ll finally get a reversed linked list. The algorithm description is:</p>
+
+<ul>
+  <li>Define variables <code class="highlighter-rouge">currHead</code>, <code class="highlighter-rouge">next</code>, pointing to the head of current list, and the next node of current head; define variable <code class="highlighter-rouge">temp</code> for storing temporary nodes.</li>
+  <li>First, set <code class="highlighter-rouge">currHead.next</code> to null.</li>
+  <li>Enter the loop.</li>
+  <li><code class="highlighter-rouge">temp</code> points to the next node of <code class="highlighter-rouge">next</code>.</li>
+  <li>Set <code class="highlighter-rouge">next.next</code> to <code class="highlighter-rouge">currHead</code>.</li>
+  <li>Move forward. <code class="highlighter-rouge">currHead</code> points to next; <code class="highlighter-rouge">next</code> points to <code class="highlighter-rouge">temp</code></li>
+  <li>Loop until <code class="highlighter-rouge">next</code> points to null.</li>
+  <li><code class="highlighter-rouge">currHead</code> is the head of the reversed list.</li>
+</ul>
+
+<p>Perhaps an example can help you understand this algorithm. Say we have a linked list <code class="highlighter-rouge">1 -&gt; 2-&gt; 3 -&gt; 4 -&gt; 5 -&gt; null</code>:</p>
+
+<ol>
+  <li>
+    <p>The original list
+<img src="/assets/images/0905/2-0.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Initialization
+<img src="/assets/images/0905/2-1.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Enter the loop
+<img src="/assets/images/0905/2-2.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Reverse the pointer between the first two nodes
+<img src="/assets/images/0905/2-3.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Move forward
+<img src="/assets/images/0905/2-4.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Begin the second loop
+<img src="/assets/images/0905/2-5.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Loop until <code class="highlighter-rouge">next</code> points to <code class="highlighter-rouge">null</code>
+<img src="/assets/images/0905/2-6.png" alt="" /></p>
+  </li>
+</ol>
+
+<p>The code is as follows:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList2</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
+
+    <span class="n">Node</span> <span class="n">temp</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="n">Node</span> <span class="n">currHead</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+    <span class="n">Node</span> <span class="n">next</span> <span class="o">=</span> <span class="n">currHead</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+
+    <span class="n">currHead</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+    <span class="k">while</span> <span class="o">(</span><span class="n">next</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">next</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+
+        <span class="n">next</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">currHead</span><span class="o">;</span>
+
+        <span class="n">currHead</span> <span class="o">=</span> <span class="n">next</span><span class="o">;</span>
+        <span class="n">next</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="k">return</span> <span class="n">currHead</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<h2 id="continuously-moving-nodes-from-the-original-list-to-the-head-of-the-new-list">Continuously Moving Nodes From the Original List to the Head of the New List</h2>
+<p>This is another easy solution. What we should do is to add every node from the original list to the head of the new list. Also the example of <code class="highlighter-rouge">1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; null</code>:</p>
+
+<ol>
+  <li>
+    <p>Initialization: <code class="highlighter-rouge">newHead</code> points to <code class="highlighter-rouge">null</code>, <code class="highlighter-rouge">head</code> points to the head of the original list
+<img src="/assets/images/0905/3-0.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Enter the loop: <code class="highlighter-rouge">temp</code> points to the next node of <code class="highlighter-rouge">head</code>; set <code class="highlighter-rouge">head.next</code> to <code class="highlighter-rouge">newHead</code>
+<img src="/assets/images/0905/3-1.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Move forward: <code class="highlighter-rouge">newHead</code> points to <code class="highlighter-rouge">head</code>; <code class="highlighter-rouge">head</code> points to <code class="highlighter-rouge">temp</code>
+<img src="/assets/images/0905/3-2.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Begin the next loop
+<img src="/assets/images/0905/3-3.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Loop until <code class="highlighter-rouge">head</code> points to <code class="highlighter-rouge">null</code>. Now <code class="highlighter-rouge">newHead</code> points to the head of the reversed list
+<img src="/assets/images/0905/3-4.png" alt="" /></p>
+  </li>
+</ol>
+
+<p>The code is here:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList3</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
+
+    <span class="n">Node</span> <span class="n">temp</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="n">Node</span> <span class="n">newHead</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+    <span class="k">while</span> <span class="o">(</span><span class="n">head</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+
+        <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newHead</span><span class="o">;</span>
+
+        <span class="n">newHead</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+        <span class="n">head</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="k">return</span> <span class="n">newHead</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<h2 id="continuously-inserting-the-next-node-of-the-head-of-original-list-after-the-head-of-the-new-list">Continuously Inserting the Next Node of the Head of Original List After the Head of the New List</h2>
+<p>We need to construct a <code class="highlighter-rouge">helper node</code> in this case, and link it to the head of the original list. Then we keep inserting the <code class="highlighter-rouge">next node of the original list</code> after the <code class="highlighter-rouge">helper node</code>, until the next node of the original list is <code class="highlighter-rouge">null</code>. Now the <code class="highlighter-rouge">next node of the helper node</code> is the head of the reversed list. The algorithm is like:</p>
+
+<ol>
+  <li>
+    <p>Initialization: Construct the helper node <code class="highlighter-rouge">newHead</code>, and link it to the head of the original list
+<img src="/assets/images/0905/4-0.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Enter the loop: <code class="highlighter-rouge">temp</code> points to the next node of <code class="highlighter-rouge">head</code>
+<img src="/assets/images/0905/4-1.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Insertion: set <code class="highlighter-rouge">head.next</code> to the next node of <code class="highlighter-rouge">temp</code>; set <code class="highlighter-rouge">temp.next</code> to the next node of <code class="highlighter-rouge">newHead</code>; set <code class="highlighter-rouge">newHead.next</code> to <code class="highlighter-rouge">temp</code>. Now we have inserted the next node of <code class="highlighter-rouge">head</code> to the position right after the <code class="highlighter-rouge">newHead</code>
+<img src="/assets/images/0905/4-2.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Begin the next loop, and operate like process #2 and process #3
+<img src="/assets/images/0905/4-3.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Loop until the next node of <code class="highlighter-rouge">head</code> is <code class="highlighter-rouge">null</code>. Now the next node of <code class="highlighter-rouge">newHead</code> is the head of the reversed list
+<img src="/assets/images/0905/4-4.png" alt="" /></p>
+  </li>
+</ol>
+
+<p>The key point of the algorithm is that, <code class="highlighter-rouge">newHead</code> and <code class="highlighter-rouge">head</code> always point to the same nodes, and what do is to move the node after the <code class="highlighter-rouge">head</code> to the next position of <code class="highlighter-rouge">newHead</code>. The code is as follows:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList4</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span><span class="o">|</span><span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
+
+    <span class="n">Node</span> <span class="n">newHead</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+    <span class="n">newHead</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+
+    <span class="n">Node</span> <span class="n">temp</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+    <span class="k">while</span> <span class="o">(</span><span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+
+        <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+        <span class="n">temp</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newHead</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+        <span class="n">newHead</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="k">return</span> <span class="n">newHead</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<h2 id="recursion">Recursion</h2>
+<p>In fact, we can also reverse a linked list with recursion, the advantage of which is short code, but maybe it’s not that simple to understand.</p>
+
+<p>The thinking is:</p>
+
+<ol>
+  <li>As for list <code class="highlighter-rouge">1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; null</code>, we reverse <code class="highlighter-rouge">2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; null</code> first, and then add <code class="highlighter-rouge">1</code> to the tail of the new list.</li>
+  <li>As for list <code class="highlighter-rouge">2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; null</code>, we reverse <code class="highlighter-rouge">3 -&gt; 4 -&gt; 5 -&gt; null</code> first, and then add <code class="highlighter-rouge">2</code> to the tail of the new list.</li>
+  <li>Recur until only one node left, <code class="highlighter-rouge">5</code>, and directly return this node.</li>
+</ol>
+
+<p>We should be aware that the recrusive method finally returns the tail of the reversed list, so to obtain its head, we may need a member variable. The code is as follows:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="n">Node</span> <span class="n">newHead</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList5</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
+
+    <span class="n">reverseRecursively</span><span class="o">(</span><span class="n">head</span><span class="o">);</span>
+
+    <span class="k">return</span> <span class="n">newHead</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="n">Node</span> <span class="nf">reverseRecursively</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">newHead</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+
+        <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="n">Node</span> <span class="n">tail</span>  <span class="o">=</span> <span class="n">reverseRecursively</span><span class="o">(</span><span class="n">head</span><span class="o">.</span><span class="na">next</span><span class="o">);</span>
+    <span class="n">tail</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+    <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+    <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<h2 id="an-example-on-leetcode">An example on Leetcode</h2>
+<p>There are many peoblems regarding linked lists. Here I choose the <code class="highlighter-rouge">#25 Reverse Nodes in k-Group</code>, with the description:</p>
+
+<blockquote>
+  <p>Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.</p>
+
+  <p>k is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes in the end should remain as it is.</p>
+
+  <p>You may not alter the values in the nodes, only nodes itself may be changed.
+Only constant memory is allowed.</p>
+
+  <p>For example,
+Given this linked list: 1-&gt;2-&gt;3-&gt;4-&gt;5
+For k = 2, you should return: 2-&gt;1-&gt;4-&gt;3-&gt;5
+For k = 3, you should return: 3-&gt;2-&gt;1-&gt;4-&gt;5</p>
+</blockquote>
+
+<p>This problem requires the given list to be reversed in groups of k nodes, and if the number of the remaining nodes is less than k, we should just keep the original order. Here I use the fourth method to handle it, that is, continuously inserting the next node of the original list after the head of the new list. The difference is that we need to judge before reversing, to check whether we have enough nodes left, and to record the beginning node of the next group as a stop signal. The code is as follows:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">reverseKGroup</span><span class="o">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
+
+    <span class="n">ListNode</span> <span class="n">newHead</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+    <span class="n">newHead</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+
+    <span class="n">ListNode</span> <span class="n">currHead</span> <span class="o">=</span> <span class="n">newHead</span><span class="o">;</span>    <span class="c1">// the head of curr group &amp; the tail of prev group</span>
+    <span class="n">ListNode</span> <span class="n">nextHead</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>       <span class="c1">// the real head of next group</span>
+    <span class="n">ListNode</span> <span class="n">temp</span><span class="o">;</span>                  <span class="c1">// stores the next node of currHead</span>
+
+    <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>                     <span class="c1">// to find nextHead</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">count</span><span class="o">++</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">nextHead</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="n">newHead</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>   <span class="c1">// no enough nodes left</span>
+
+            <span class="n">nextHead</span> <span class="o">=</span> <span class="n">nextHead</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="n">head</span> <span class="o">=</span> <span class="n">currHead</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>              <span class="c1">// the real head of current group</span>
+
+        <span class="k">while</span> <span class="o">(</span><span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">!=</span> <span class="n">nextHead</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">temp</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+            <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+            <span class="n">temp</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">currHead</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+            <span class="n">currHead</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="n">currHead</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<hr />
+
+<h2 id="总览">总览</h2>
 <p>常见的对单链表进行翻转有5种方法，下面将分别介绍。其中，类 <code class="highlighter-rouge">Node</code> 的定义如下：</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Node</span> <span class="o">{</span>

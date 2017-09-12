@@ -191,6 +191,7 @@ public List<Integer> postorderWithStack2(TreeNode root) {
 ```
 
 c) using two stacks
+
 This method is somewhat magical. We know that the sequence of postorder traversal is `left -> right -> mid`. What if we traverse with `mid -> right -> left` and then reverse the result? We can do this using two stacks, traversing with one stack, and outputing the result to another stack, and finally popping nodes from the second stack one by one to get the postorder traversal:
 
 ``` java
@@ -250,7 +251,7 @@ Such method is called the `Morris Traversal`. Here is the description of the `in
 2. If the `left` child is not `null`, find the inorder `predecessor` in its left subtree. If the `right` child of the predecessor is `null`, make it point to the current node, and then traverse the left child of the current node; if the right child of the predecessor is current node, revert it to `null`, and output current node, and then traverse the right node of the current node
 3. Repeat process #1 and #2, until the currrent node points to `null`
 
-Here we involve a concept, the `inorder predecessor`:
+Here it involves a concept, the `inorder predecessor`:
 
 > Given a node, the node before it in the inorder traversal is its inorder predecessor.
 

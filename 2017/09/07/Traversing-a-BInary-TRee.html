@@ -228,8 +228,9 @@
 </code></pre>
 </div>
 
-<p>c) using two stacks
-This method is somewhat magical. We know that the sequence of postorder traversal is <code class="highlighter-rouge">left -&gt; right -&gt; mid</code>. What if we traverse with <code class="highlighter-rouge">mid -&gt; right -&gt; left</code> and then reverse the result? We can do this using two stacks, traversing with one stack, and outputing the result to another stack, and finally popping nodes from the second stack one by one to get the postorder traversal:</p>
+<p>c) using two stacks</p>
+
+<p>This method is somewhat magical. We know that the sequence of postorder traversal is <code class="highlighter-rouge">left -&gt; right -&gt; mid</code>. What if we traverse with <code class="highlighter-rouge">mid -&gt; right -&gt; left</code> and then reverse the result? We can do this using two stacks, traversing with one stack, and outputing the result to another stack, and finally popping nodes from the second stack one by one to get the postorder traversal:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">postorderWithTwoStacks</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">root</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
@@ -290,7 +291,7 @@ Such method is called the <code class="highlighter-rouge">Morris Traversal</code
   <li>Repeat process #1 and #2, until the currrent node points to <code class="highlighter-rouge">null</code></li>
 </ol>
 
-<p>Here we involve a concept, the <code class="highlighter-rouge">inorder predecessor</code>:</p>
+<p>Here it involves a concept, the <code class="highlighter-rouge">inorder predecessor</code>:</p>
 
 <blockquote>
   <p>Given a node, the node before it in the inorder traversal is its inorder predecessor.</p>

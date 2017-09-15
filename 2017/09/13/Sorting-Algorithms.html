@@ -300,8 +300,159 @@
 <p>与快速排序类似，归并排序的时间复杂度为 <code class="highlighter-rouge">O(nlogn)</code>，但是在合并的过程中，最大需要使用到与原数组等长的辅助数组，所以其空间复杂度为 <code class="highlighter-rouge">O(n)</code>。另外，如果我们在归并的过程中，遇到两个序列的头元素相等的情况时，先将前一个序列的元素放到结果数组中，就可以保证其是 <code class="highlighter-rouge">稳定的</code>。</p>
 
 <h2 id="堆排序">堆排序</h2>
-<p>待续。</p>
+<p><code class="highlighter-rouge">堆排序</code> 使用到了特殊的数据结构——<code class="highlighter-rouge">堆</code>，实现较前面的算法稍为复杂，因此这一部分将先从 <code class="highlighter-rouge">堆</code> 讲起，最后在讨论排序算法。</p>
 
+<h3 id="堆">堆</h3>
+<p>由于本文始终以升序排序为例，这里介绍一下 <code class="highlighter-rouge">最小二叉堆</code>：</p>
+
+<blockquote>
+  <ol>
+    <li>最小二叉堆是一个完全二叉树</li>
+    <li>父节点的值总是小于等于子节点的值</li>
+    <li>子树也是最小二叉堆。</li>
+  </ol>
+</blockquote>
+
+<h3 id="使用数组存储">使用数组存储</h3>
+<p>前面提到了，堆是 <code class="highlighter-rouge">完全二叉树</code>，因此可以使用一些技巧将其存储在数组中，并轻松通过下标访问子节点。如，对于如下二叉堆：</p>
+
+<p><img src="/assets/images/0913/2-0.png" alt="" /></p>
+
+<p>按照层次遍历的顺序放到数组中：</p>
+
+<p><img src="/assets/images/0913/2-1.png" alt="" /></p>
+
+<p>可以发现，对于在数组中序号为 <code class="highlighter-rouge">i</code> 的节点，其左子树的序号为 <code class="highlighter-rouge">2 * i + 1</code>，右子树的序号的 <code class="highlighter-rouge">2 * i + 2</code>，父节点序号为 <code class="highlighter-rouge">(i - 1) / 2</code>。</p>
+
+<h3 id="插入">插入</h3>
+<p>假设对于上图的堆，如果要想其中插入数据，比如 <code class="highlighter-rouge">2</code>。</p>
+
+<ol>
+  <li>
+    <p>先将新元素放到数组的最后
+<img src="/assets/images/0913/2-2.png" alt="" /></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">向上调整</code>，即与父节点比较，如果小于父节点则与父节点交换
+<img src="/assets/images/0913/2-3.png" alt="" /></p>
+  </li>
+  <li>
+    <p>重复步骤2，直至当前节点的值小于父节点的值，或已调整到根节点
+<img src="/assets/images/0913/2-4.png" alt="" /></p>
+  </li>
+</ol>
+
+<p><code class="highlighter-rouge">向上调整</code> 实现代码如下：</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">fixUp</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+	<span class="kt">int</span> <span class="n">currVal</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
+	<span class="kt">int</span> <span class="n">parentIndex</span> <span class="o">=</span> <span class="o">(</span><span class="n">index</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+	<span class="k">while</span> <span class="o">(</span><span class="n">parentIndex</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">index</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">arr</span><span class="o">[</span><span class="n">parentIndex</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">currVal</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">parentIndex</span><span class="o">];</span>
+		<span class="n">index</span> <span class="o">=</span> <span class="n">parentIndex</span><span class="o">;</span>
+		<span class="n">parentIndex</span> <span class="o">=</span> <span class="o">(</span><span class="n">index</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">currVal</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<h3 id="删除">删除</h3>
+<p>由于堆的性质，只能删除堆顶元素，然后将堆的最后一个元素放到堆顶，再向下调整。比如对于之前的例子：</p>
+
+<ol>
+  <li>
+    <p>取出堆顶元素 <code class="highlighter-rouge">1</code>，将最后一个元素 <code class="highlighter-rouge">8</code> 放到堆顶
+<img src="/assets/images/0913/2-5.png" alt="" /></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">向下调整</code>，即与子节点比较，如果有子节点小于它则与最小的子节点交换
+<img src="/assets/images/0913/2-6.png" alt="" /></p>
+  </li>
+  <li>
+    <p>重复步骤2，直至没有子节点的值比当前节点的值小，或已到达叶子节点
+<img src="/assets/images/0913/2-7.png" alt="" /></p>
+  </li>
+</ol>
+
+<p><code class="highlighter-rouge">向下调整</code> 实现代码如下：</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">fixDown</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+	<span class="kt">int</span> <span class="n">currVal</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
+	<span class="kt">int</span> <span class="n">minChildIndex</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+	<span class="k">while</span> <span class="o">(</span><span class="n">minChildIndex</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">minChildIndex</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">end</span> <span class="o">&amp;&amp;</span> <span class="n">arr</span><span class="o">[</span><span class="n">minChildIndex</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">[</span><span class="n">minChildIndex</span><span class="o">])</span> <span class="n">minChildIndex</span><span class="o">++;</span>
+
+		<span class="k">if</span> <span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">minChildIndex</span><span class="o">]</span> <span class="o">&gt;=</span> <span class="n">currVal</span><span class="o">)</span> <span class="k">break</span><span class="o">;</span>
+
+		<span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">minChildIndex</span><span class="o">];</span>
+		<span class="n">index</span> <span class="o">=</span> <span class="n">minChildIndex</span><span class="o">;</span>
+		<span class="n">minChildIndex</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">currVal</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<h3 id="初始化堆">初始化堆</h3>
+<p>对于一个给定的数组，如我们的例子：<code class="highlighter-rouge">5 8 1 5 2 4 7 9 8</code>，将其变成一个堆的过程如下：</p>
+
+<ol>
+  <li>
+    <p>原始数据
+<img src="/assets/images/0913/2-8.png" alt="" /></p>
+  </li>
+  <li>
+    <p>从 <code class="highlighter-rouge">最后一个非叶子节点</code> 开始，向下调整。以最后两个非叶子节点为根的树都已满足最小堆，无需调整
+<img src="/assets/images/0913/2-9.png" alt="" /></p>
+  </li>
+  <li>
+    <p>调整以倒数第三个节点为根的子树，触发一次交换
+<img src="/assets/images/0913/2-10.png" alt="" /></p>
+  </li>
+  <li>
+    <p>调整以根节点为根的子树，触发两次交换
+<img src="/assets/images/0913/2-11.png" alt="" /></p>
+  </li>
+</ol>
+
+<p>实现代码如下：</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">(</span><span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+	<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="o">(</span><span class="n">end</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+		<span class="n">fixDown</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">end</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<h3 id="堆排序-1">堆排序</h3>
+<p>介绍了前面这些，我们终于可以运用堆进行排序了。很简单，只需要将输入数据先 <code class="highlighter-rouge">堆化</code>，再不断取出堆顶元素，将堆中最后一个元素放到堆顶，从堆顶开始执行 <code class="highlighter-rouge">向下调整</code> 即可。实现代码如下：</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">sort</span><span class="o">(</span><span class="kt">int</span> <span class="n">len</span><span class="o">)</span> <span class="o">{</span>
+	<span class="n">init</span><span class="o">(</span><span class="n">len</span><span class="o">);</span>
+
+	<span class="kt">int</span><span class="o">[]</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">len</span><span class="o">];</span>
+	<span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+	<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">len</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">--)</span> <span class="o">{</span>
+		<span class="n">res</span><span class="o">[</span><span class="n">c</span><span class="o">++]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+
+		<span class="n">arr</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span>
+		<span class="n">fixDown</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="k">return</span> <span class="n">res</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<h3 id="分析">分析</h3>
+<p>堆排序使用 <code class="highlighter-rouge">完全二叉树</code> 构建，所以无论是怎样的数据，堆排序的时间复杂度都为 <code class="highlighter-rouge">O(nlogn)</code>，空间复杂度为 <code class="highlighter-rouge">O(1)</code>。另外，由于交换，堆排序是 <code class="highlighter-rouge">不稳定的</code>。</p>
+
+<h2 id="总结">总结</h2>
+<p>排序算法有很多，虽然平时很少有人自己实现排序算法，了解一下常见的排序算法的实现原理总是有好处的。</p>
 
 	
 </div>

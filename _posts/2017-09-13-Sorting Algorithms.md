@@ -246,5 +246,133 @@ public void merge(int[] arr, int s, int m, int e) {
 与快速排序类似，归并排序的时间复杂度为 `O(nlogn)`，但是在合并的过程中，最大需要使用到与原数组等长的辅助数组，所以其空间复杂度为 `O(n)`。另外，如果我们在归并的过程中，遇到两个序列的头元素相等的情况时，先将前一个序列的元素放到结果数组中，就可以保证其是 `稳定的`。
 
 ## 堆排序
-待续。
+`堆排序` 使用到了特殊的数据结构——`堆`，实现较前面的算法稍为复杂，因此这一部分将先从 `堆` 讲起，最后在讨论排序算法。
 
+### 堆
+由于本文始终以升序排序为例，这里介绍一下 `最小二叉堆`：
+
+> 1. 最小二叉堆是一个完全二叉树
+> 2. 父节点的值总是小于等于子节点的值
+> 3. 子树也是最小二叉堆。
+
+### 使用数组存储
+前面提到了，堆是 `完全二叉树`，因此可以使用一些技巧将其存储在数组中，并轻松通过下标访问子节点。如，对于如下二叉堆：
+
+![](/assets/images/0913/2-0.png)
+
+按照层次遍历的顺序放到数组中：
+
+![](/assets/images/0913/2-1.png)
+
+可以发现，对于在数组中序号为 `i` 的节点，其左子树的序号为 `2 * i + 1`，右子树的序号的 `2 * i + 2`，父节点序号为 `(i - 1) / 2`。
+
+### 插入
+假设对于上图的堆，如果要想其中插入数据，比如 `2`。
+
+1. 先将新元素放到数组的最后
+![](/assets/images/0913/2-2.png)
+
+2. `向上调整`，即与父节点比较，如果小于父节点则与父节点交换
+![](/assets/images/0913/2-3.png)
+
+3. 重复步骤2，直至当前节点的值小于父节点的值，或已调整到根节点
+![](/assets/images/0913/2-4.png)
+
+`向上调整` 实现代码如下：
+
+``` java
+private void fixUp(int index) {
+	int currVal = arr[index];
+	int parentIndex = (index - 1) / 2;
+	while (parentIndex >= 0 && index != 0 && arr[parentIndex] > currVal) {
+		arr[index] = arr[parentIndex];
+		index = parentIndex;
+		parentIndex = (index - 1) / 2;
+	}
+
+	arr[index] = currVal;
+}
+```
+
+### 删除
+由于堆的性质，只能删除堆顶元素，然后将堆的最后一个元素放到堆顶，再向下调整。比如对于之前的例子：
+
+1. 取出堆顶元素 `1`，将最后一个元素 `8` 放到堆顶
+![](/assets/images/0913/2-5.png)
+
+2. `向下调整`，即与子节点比较，如果有子节点小于它则与最小的子节点交换
+![](/assets/images/0913/2-6.png)
+
+3. 重复步骤2，直至没有子节点的值比当前节点的值小，或已到达叶子节点
+![](/assets/images/0913/2-7.png)
+
+`向下调整` 实现代码如下：
+
+``` java
+private void fixDown(int index, int end) {
+	int currVal = arr[index];
+	int minChildIndex = 2 * index + 1;
+	while (minChildIndex <= end) {
+		if (minChildIndex + 1 <= end && arr[minChildIndex + 1] < arr[minChildIndex]) minChildIndex++;
+
+		if (arr[minChildIndex] >= currVal) break;
+
+		arr[index] = arr[minChildIndex];
+		index = minChildIndex;
+		minChildIndex = 2 * index + 1;
+	}
+
+	arr[index] = currVal;
+}
+```
+
+### 初始化堆
+对于一个给定的数组，如我们的例子：`5 8 1 5 2 4 7 9 8`，将其变成一个堆的过程如下：
+
+1. 原始数据
+![](/assets/images/0913/2-8.png)
+
+2. 从 `最后一个非叶子节点` 开始，向下调整。以最后两个非叶子节点为根的树都已满足最小堆，无需调整
+![](/assets/images/0913/2-9.png)
+
+3. 调整以倒数第三个节点为根的子树，触发一次交换
+![](/assets/images/0913/2-10.png)
+
+4. 调整以根节点为根的子树，触发两次交换
+![](/assets/images/0913/2-11.png)
+
+实现代码如下：
+
+``` java
+private void init(int end) {
+	for (int i = (end - 1) / 2; i >= 0; i++)
+		fixDown(i, end);
+}
+```
+
+### 堆排序
+介绍了前面这些，我们终于可以运用堆进行排序了。很简单，只需要将输入数据先 `堆化`，再不断取出堆顶元素，将堆中最后一个元素放到堆顶，从堆顶开始执行 `向下调整` 即可。实现代码如下：
+
+``` java
+public int[] sort(int len) {
+	init(len);
+
+	int[] res = new int[len];
+	int c = 0;
+
+	for (int i = len; i > 0; i--) {
+		res[c++] = arr[0];
+
+		arr[0] = arr[i - 1];
+		fixDown(0, i);
+	}
+
+	return res;
+}
+```
+
+### 分析
+堆排序使用 `完全二叉树` 构建，所以无论是怎样的数据，堆排序的时间复杂度都为 `O(nlogn)`，空间复杂度为 `O(1)`。另外，由于交换，堆排序是 `不稳定的`。
+
+## 总结
+排序算法有很多，虽然平时很少有人自己实现排序算法，了解一下常见的排序算法的实现原理总是有好处的。

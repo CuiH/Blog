@@ -241,9 +241,10 @@ There are many peoblems regarding linked lists. Here I choose the `#25 Reverse N
 > You may not alter the values in the nodes, only nodes itself may be changed.
 > Only constant memory is allowed.
 >
-> For example,
-> Given this linked list: 1->2->3->4->5
+> For example, given this linked list: 1->2->3->4->5
+>
 > For k = 2, you should return: 2->1->4->3->5
+>
 > For k = 3, you should return: 3->2->1->4->5
 
 This problem requires the given list to be reversed in groups of k nodes, and if the number of the remaining nodes is less than k, we should just keep the original order. Here I use the fourth method to handle it, that is, continuously inserting the next node of the original list after the head of the new list. The difference is that we need to judge before reversing, to check whether we have enough nodes left, and to record the beginning node of the next group as a stop signal. The code is as follows:

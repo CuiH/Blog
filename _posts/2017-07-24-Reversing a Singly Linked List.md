@@ -1,9 +1,9 @@
 ---
-layout: post
-title:  "Reversing a Singly Linked List"
-date:   2017-09-05 23:30:00 -0500
-tags:   algorithm
-description: Summing up five ways to reverse a singly linked list, and analyzing related problems on Leetcode.
+layout:      post
+title:       "Reversing a Singly Linked List"
+date:        2017-07-24 23:30:00 -0500
+tags:        algorithm
+description: "Summing up five ways to reverse a singly linked list, and analyzing related problems on Leetcode."
 ---
 
 ## Overview

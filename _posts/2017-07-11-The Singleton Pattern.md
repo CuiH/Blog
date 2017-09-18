@@ -1,9 +1,9 @@
 ---
 layout:      post
 title:       "The Singleton Pattern"
-date:        2017-09-04 23:00:00 -0500
+date:        2017-07-11 23:00:00 -0500
 tags:        design-pattern
-description: Different methods of creating a singleton pattern class, and how to create a thread-safe one with high performance.
+description: "Different methods of creating a singleton pattern class, and how to create a thread-safe one with high performance."
 ---
 
 ## Definition

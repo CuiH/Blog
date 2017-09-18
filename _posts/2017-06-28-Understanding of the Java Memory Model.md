@@ -1,9 +1,9 @@
 ---
 layout:      post
 title:       "Understanding of the Java Memory Model"
-date:        2017-09-03 23:00:00 -0500
+date:        2017-06-28 23:00:00 -0500
 tags:        java
-description: The stack memory and heap memory in JVM.
+description: "The stack memory and heap memory in JVM."
 ---
 
 ## What is Java Virtual Machine (JVM)?

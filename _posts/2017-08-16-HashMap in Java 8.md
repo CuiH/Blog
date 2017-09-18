@@ -13,7 +13,9 @@ Today when I was viewing the Java source code, I found that the implementation o
 Say we have a large amount of data pairs, such as a phone book:
 
 > Hao Cui: 1234567890
+>
 > Yang Pan: 9876543210
+>
 > Mo Tang: 233332333
 
 With what data structure can we get the fastest `access speed`?

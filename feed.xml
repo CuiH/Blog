@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://cuih.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="http://cuih.xyz/" rel="alternate" type="text/html" /><updated>2017-09-17T21:16:04-05:00</updated><id>http://cuih.xyz/</id><title type="html">Life is a Struggle</title><subtitle>Life is a struggle.</subtitle><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;none&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;none&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><entry><title type="html">Sorting Algorithms</title><link href="http://cuih.xyz/2017/09/05/Sorting-Algorithms.html" rel="alternate" type="text/html" title="Sorting Algorithms" /><published>2017-09-05T23:00:00-05:00</published><updated>2017-09-05T23:00:00-05:00</updated><id>http://cuih.xyz/2017/09/05/Sorting%20Algorithms</id><content type="html" xml:base="http://cuih.xyz/2017/09/05/Sorting-Algorithms.html">&lt;h2 id=&quot;总览&quot;&gt;总览&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://cuih.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="http://cuih.xyz/" rel="alternate" type="text/html" /><updated>2017-09-17T21:18:28-05:00</updated><id>http://cuih.xyz/</id><title type="html">Life is a Struggle</title><subtitle>Life is a struggle.</subtitle><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;none&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;none&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><entry><title type="html">Sorting Algorithms</title><link href="http://cuih.xyz/2017/09/05/Sorting-Algorithms.html" rel="alternate" type="text/html" title="Sorting Algorithms" /><published>2017-09-05T23:00:00-05:00</published><updated>2017-09-05T23:00:00-05:00</updated><id>http://cuih.xyz/2017/09/05/Sorting%20Algorithms</id><content type="html" xml:base="http://cuih.xyz/2017/09/05/Sorting-Algorithms.html">&lt;h2 id=&quot;总览&quot;&gt;总览&lt;/h2&gt;
 &lt;p&gt;在处理数据时，排序算法经常被使用。虽然大部分语言都有相关库方便我们调用，了解这些算法的具体实现机制有助于加深我们对算法的理解，以及更好的使用这些算法。&lt;/p&gt;
 
 &lt;p&gt;如无特殊声明，本文的排序算法输出均为 &lt;code class=&quot;highlighter-rouge&quot;&gt;升序&lt;/code&gt;，使用的数据为：&lt;/p&gt;
@@ -417,9 +417,11 @@
 &lt;p&gt;Say we have a large amount of data pairs, such as a phone book:&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Hao Cui: 1234567890
-Yang Pan: 9876543210
-Mo Tang: 233332333&lt;/p&gt;
+  &lt;p&gt;Hao Cui: 1234567890&lt;/p&gt;
+
+  &lt;p&gt;Yang Pan: 9876543210&lt;/p&gt;
+
+  &lt;p&gt;Mo Tang: 233332333&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;With what data structure can we get the fastest &lt;code class=&quot;highlighter-rouge&quot;&gt;access speed&lt;/code&gt;?&lt;/p&gt;

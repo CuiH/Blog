@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$('.slider').glide({
-		autoplay: false,
+		autoplay: 4000,
 		arrowsWrapperClass: 'slider-arrows',
 		arrowRightText: '',
 		arrowLeftText: ''

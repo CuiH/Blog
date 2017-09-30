@@ -61,7 +61,7 @@
 
 <p>If you understand the principle of this algorithm, you’ll know why it is called <code class="highlighter-rouge">Bubble Sort</code>: after every round, the bigger elements <code class="highlighter-rouge">sink down</code> to the end of the array, and smaller ones <code class="highlighter-rouge">bubble up</code> to the front, until all elements are at their right positions. The code is as follows:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">bubbleSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">bubbleSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
         <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
             <span class="k">if</span> <span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">])</span> <span class="o">{</span>
@@ -74,8 +74,7 @@
 
     <span class="k">return</span> <span class="n">arr</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The reason why it is regarded as a entry-level algorithm is that it is very simple, and at the same time, this algorithm is not efficient at all. Obviously, due to the <code class="highlighter-rouge">double loop</code>, the average time complexity of Bubble Sort is <code class="highlighter-rouge">O(n ^ 2)</code>. When the data grows larger, the speed of this algorithm is unacceptable. However, on the other hand, this algorithm has two advantages: it can be finished in the original array, so the space complexity is <code class="highlighter-rouge">O(1)</code>, and it is a <code class="highlighter-rouge">stable</code> algorithm, which means:</p>
 
@@ -86,7 +85,7 @@
 <h2 id="select-sort">Select Sort</h2>
 <p>Also a entry-level sorting algorithm. The thinking is simple: each round find the smallest element in the unsorted sequence, and swap it with the first element in the sequence, and narrow down the sequence until only one element remains. The code is as follows:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">selectSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">selectSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
     <span class="kt">int</span> <span class="n">currMinIndex</span><span class="o">;</span>
     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
         <span class="n">currMinIndex</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
@@ -101,15 +100,14 @@
 
     <span class="k">return</span> <span class="n">arr</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Similar to the Bubble Sort, the time complexity of <code class="highlighter-rouge">Select Sort</code> is <code class="highlighter-rouge">O(n ^ 2)</code>, and the spacve complexity is <code class="highlighter-rouge">O(1)</code>, but it is <code class="highlighter-rouge">unstable</code>, because each swap will possibly change the order of the equal elements.</p>
 
 <h2 id="insert-sort">Insert Sort</h2>
 <p>As the name suggests, we maintain a sorted sequence, and insert every element from the unsorted sequence to its right position in the sorted sequence. We can do this in-place: when handling the element indexed <code class="highlighter-rouge">i</code>, the first <code class="highlighter-rouge">i - 1</code> elements are sorted, so after inserting the <code class="highlighter-rouge">i</code>th element, move each element behind it by one place. The code is as follows:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">insertSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">insertSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
         <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span><span class="o">--)</span> <span class="o">{</span>
             <span class="k">if</span> <span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">])</span> <span class="k">break</span><span class="o">;</span>
@@ -122,15 +120,14 @@
 
     <span class="k">return</span> <span class="n">arr</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The time complexity of <code class="highlighter-rouge">Insert Sort</code> is still <code class="highlighter-rouge">O(n ^ 2)</code>, and the space complexity also remains <code class="highlighter-rouge">O(1)</code>.</p>
 
 <h2 id="bucket-sort">Bucket Sort</h2>
 <p>This algorithm is somewhat magical, because its time complexity is <code class="highlighter-rouge">O(n)</code>! Let’s see the implementation first:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">bucketSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">bucketSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
     <span class="kt">int</span><span class="o">[]</span> <span class="n">bucket</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">10</span><span class="o">];</span>
     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="nl">num:</span> <span class="n">arr</span><span class="o">)</span>
         <span class="n">bucket</span><span class="o">[</span><span class="n">num</span><span class="o">]++;</span>
@@ -142,8 +139,7 @@
 
     <span class="k">return</span> <span class="n">arr</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>In fact, it’s fairly simple. It just calculates the frequency of every element in the original array with an extra array, and traverse the auxiliary to get the sorting result.</p>
 
@@ -193,7 +189,7 @@
 
 <p>The code is as follows:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">quickSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">start</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">quickSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">start</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">start</span> <span class="o">&gt;=</span> <span class="n">end</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
 
     <span class="kt">int</span> <span class="n">base</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">start</span><span class="o">];</span>
@@ -213,8 +209,7 @@
     <span class="n">quickSort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">start</span><span class="o">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
     <span class="n">quickSort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">end</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>As for a array of length <code class="highlighter-rouge">n</code>, suppost every time the base element selected by the Quick Sort divides the array to two parts of equal lengh, then:</p>
 
@@ -225,7 +220,7 @@
 <h2 id="merge-sort">Merge Sort</h2>
 <p>First, if we have two sorted array, how to merge them into one sorted array? I velieve many people know the answer: keep comparing the first elements of the two array, and each time extract the smaller one to the result array, until one of the array is empty. Finally append the array that is not empty to the end of the result array:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">merge</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr1</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">arr2</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">merge</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr1</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">arr2</span><span class="o">)</span> <span class="o">{</span>
     <span class="kt">int</span><span class="o">[]</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">arr1</span><span class="o">.</span><span class="na">length</span> <span class="o">+</span> <span class="n">arr2</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
 
     <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
@@ -245,8 +240,7 @@
 
     <span class="k">return</span> <span class="n">res</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Based on this code, with <code class="highlighter-rouge">"Divide and Conquer"</code>, we can realize the <code class="highlighter-rouge">Merge Sort</code>:</p>
 
@@ -258,7 +252,7 @@
 
 <p>Improve the previous code a little bit, and we have the implementation:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">mergeSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">start</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">mergeSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">start</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">start</span> <span class="o">&gt;=</span> <span class="n">end</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
 
     <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="o">(</span><span class="n">start</span> <span class="o">+</span> <span class="n">end</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
@@ -290,8 +284,7 @@
     <span class="k">for</span> <span class="o">(</span><span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">res</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">c</span><span class="o">++)</span>
         <span class="n">arr</span><span class="o">[</span><span class="n">s</span> <span class="o">+</span> <span class="n">c</span><span class="o">]</span> <span class="o">=</span> <span class="n">res</span><span class="o">[</span><span class="n">c</span><span class="o">];</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Similar to the Quick Sort, the time complexity of Merge Sort is <code class="highlighter-rouge">O(nlongn)</code>, but in the process of merging, we need at most an auxiliary array with the same lengh as the original array, so the space complexity is <code class="highlighter-rouge">O(n)</code>. Besides, if every time we meet the situation that the head elements of the two array are equal, we guarantee the element from the first array is selected, Merge Sort can be <code class="highlighter-rouge">stable</code>.</p>
 
@@ -338,7 +331,7 @@
 
 <p>The code for <code class="highlighter-rouge">"adjust upward"</code>:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">fixUp</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">fixUp</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
     <span class="kt">int</span> <span class="n">currVal</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
     <span class="kt">int</span> <span class="n">parentIndex</span> <span class="o">=</span> <span class="o">(</span><span class="n">index</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
     <span class="k">while</span> <span class="o">(</span><span class="n">parentIndex</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">index</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">arr</span><span class="o">[</span><span class="n">parentIndex</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">currVal</span><span class="o">)</span> <span class="o">{</span>
@@ -349,8 +342,7 @@
 
     <span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">currVal</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="deletion">Deletion</h3>
 <p>Becuase of the characteristic of the heap, deletion can only be done to the top element. After deletion, we move the last element of the heap to the top, and <code class="highlighter-rouge">"adjust downward"</code>. Again the previous example:</p>
@@ -372,7 +364,7 @@
 
 <p>The code for <code class="highlighter-rouge">"adjust downward"</code>:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">fixDown</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">fixDown</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
     <span class="kt">int</span> <span class="n">currVal</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
     <span class="kt">int</span> <span class="n">minChildIndex</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
     <span class="k">while</span> <span class="o">(</span><span class="n">minChildIndex</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
@@ -387,8 +379,7 @@
 
     <span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">currVal</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="initialization">Initialization</h3>
 <p>For a given array, say our example, <code class="highlighter-rouge">5 8 1 5 2 4 7 9 8</code>, the processes to transform it to a heap is as follows:</p>
@@ -414,17 +405,16 @@
 
 <p>The code is as follows:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">(</span><span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">(</span><span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="o">(</span><span class="n">end</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
         <span class="n">fixDown</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">end</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="heap-sort-1">Heap Sort</h3>
 <p>After introducing all above, we can finally sort with Heap Sort. Simply, we just <code class="highlighter-rouge">heapify</code> (initialize) the array, and keep extracting the top element and move the last element to the top, and then <code class="highlighter-rouge">adjust downward</code> form the top. The code is as follows:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">sort</span><span class="o">(</span><span class="kt">int</span> <span class="n">len</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">sort</span><span class="o">(</span><span class="kt">int</span> <span class="n">len</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">init</span><span class="o">(</span><span class="n">len</span><span class="o">);</span>
 
     <span class="kt">int</span><span class="o">[]</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">len</span><span class="o">];</span>
@@ -439,8 +429,7 @@
 
     <span class="k">return</span> <span class="n">res</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="analysis">Analysis</h3>
 <p>Heap Sort utilizes <code class="highlighter-rouge">complete binary tree</code>, so no matter what type of data we have, the time complexity of Heap Sort is <code class="highlighter-rouge">O(nlongn)</code>, and the space complexity is <code class="highlighter-rouge">O(1)</code>. Besides, due to the swap, Heap sort is <code class="highlighter-rouge">unstable</code>.</p>
@@ -471,7 +460,7 @@
 
 <p>如果理解了这个算法，就能明白它为什么被称作 <code class="highlighter-rouge">冒泡排序</code>，因为每一轮较大的元素 <code class="highlighter-rouge">沉底</code>，小元素 <code class="highlighter-rouge">上浮到</code> 靠前的位置，直到所有元素都处在合适的位置。实现代码如下：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">bubbleSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">bubbleSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
 	<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
 		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
 			<span class="k">if</span> <span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">])</span> <span class="o">{</span>
@@ -484,8 +473,7 @@
 
 	<span class="k">return</span> <span class="n">arr</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>之所以被称作入门级算法，就是因为它的实现非常简单，但同时，这个算法的效率确是十分低的。很明显，由于使用双重循环，冒泡排序的平均时间复杂度为 <code class="highlighter-rouge">O(n ^ 2)</code>，在数组较大的情况下速度是无法接受的。不过另一方面，冒泡排序也有一个优点是它可以在原数组内完成，不需要额外的存储空间，空间复杂度为 <code class="highlighter-rouge">O(1)</code>。另外，冒泡排序是 <code class="highlighter-rouge">稳定的</code> 排序算法，即</p>
 
@@ -496,7 +484,7 @@
 <h2 id="选择排序">选择排序</h2>
 <p>也算是一个入门级的排序算法。思路十分简单，每一轮找出待排序序列中最小的元素，并将其与该序列中第一个元素交换，直至待排序序列只剩下一个元素。实现代码如下：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">selectSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">selectSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
 	<span class="kt">int</span> <span class="n">currMinIndex</span><span class="o">;</span>
 	<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
 		<span class="n">currMinIndex</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
@@ -511,15 +499,14 @@
 
 	<span class="k">return</span> <span class="n">arr</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>与冒泡排序类似，选择排序的时间复杂度为 <code class="highlighter-rouge">O(n ^ 2)</code>，空间复杂度为 <code class="highlighter-rouge">O(1)</code>，但是选择排序是 <code class="highlighter-rouge">不稳定的</code>，因为每次交换的时候会导致相同元素在数组中的次序变化。</p>
 
 <h2 id="插入排序">插入排序</h2>
 <p>顾名思义，维护一个已排序好的序列，依次将数组中的元素插入到该序列中的合适位置。我们可以直接在原数组中操作，在处理下标为 <code class="highlighter-rouge">i</code> 的元素时，数组中的前 <code class="highlighter-rouge">i - 1</code> 个元素已排序好，将下标 <code class="highlighter-rouge">i</code> 的元素放置到合适位置后，依次后移其之后的元素，以实现插入。实现代码如下：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">insertSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">insertSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
 	<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
 		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span><span class="o">--)</span> <span class="o">{</span>
 			<span class="k">if</span> <span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">])</span> <span class="k">break</span><span class="o">;</span>
@@ -532,15 +519,14 @@
 
 	<span class="k">return</span> <span class="n">arr</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>这个算法的时间复杂度是 <code class="highlighter-rouge">O(n ^ 2)</code>，空间复杂度为 <code class="highlighter-rouge">O(1)</code>，并且是 <code class="highlighter-rouge">稳定的</code>。</p>
 
 <h2 id="桶排序">桶排序</h2>
 <p>这里要介绍一个有些神奇的算法，因为它的时间复杂度可以达到惊人的 <code class="highlighter-rouge">O(n)</code>！我们先来看它的实现：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">bucketSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">bucketSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
 	<span class="kt">int</span><span class="o">[]</span> <span class="n">bucket</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">10</span><span class="o">];</span>
 	<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="nl">num:</span> <span class="n">arr</span><span class="o">)</span>
 		<span class="n">bucket</span><span class="o">[</span><span class="n">num</span><span class="o">]++;</span>
@@ -552,8 +538,7 @@
 
 	<span class="k">return</span> <span class="n">arr</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>实际上，这个算法很简单，使用额外的数组统计原数组中每个元素出现的次数，然后遍历这个统计数组得到排序结果。</p>
 
@@ -607,7 +592,7 @@
 
 <p>实现代码如下：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">quickSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">start</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">quickSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">start</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
 	<span class="k">if</span> <span class="o">(</span><span class="n">start</span> <span class="o">&gt;=</span> <span class="n">end</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
 
 	<span class="kt">int</span> <span class="n">base</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">start</span><span class="o">];</span>
@@ -627,8 +612,7 @@
 	<span class="n">quickSort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">start</span><span class="o">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
 	<span class="n">quickSort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">end</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>对于长度为 <code class="highlighter-rouge">n</code> 的数组，假设快速排序每次选取的基准数将数组分为长度相等的两部分，那么：</p>
 
@@ -639,7 +623,7 @@
 <h2 id="归并排序">归并排序</h2>
 <p>首先，对于两个有序的数组，如何将他们和合并成一个有序数组？我相信这个问题很多人都知道如何解决，只需不断比较两个数组的第一个元素，将较小的取出依次放到结果数组中，直至其中一个数组为空，最后将不为空的数组的剩余元素逐个添加到结果数组中。代码如下：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">merge</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr1</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">arr2</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">merge</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr1</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">arr2</span><span class="o">)</span> <span class="o">{</span>
 	<span class="kt">int</span><span class="o">[]</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">arr1</span><span class="o">.</span><span class="na">length</span> <span class="o">+</span> <span class="n">arr2</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
 
 	<span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
@@ -659,8 +643,7 @@
 
 	<span class="k">return</span> <span class="n">res</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>在这个代码的基础上，利用 <code class="highlighter-rouge">分治 + 递归</code>，我们就可以实现 <code class="highlighter-rouge">归并排序</code>：</p>
 
@@ -672,7 +655,7 @@
 
 <p>对先前的合并算法稍加改进，实现如下：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">mergeSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">start</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">mergeSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">start</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
 	<span class="k">if</span> <span class="o">(</span><span class="n">start</span> <span class="o">&gt;=</span> <span class="n">end</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
 
 	<span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="o">(</span><span class="n">start</span> <span class="o">+</span> <span class="n">end</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
@@ -704,8 +687,7 @@
 	<span class="k">for</span> <span class="o">(</span><span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">res</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">c</span><span class="o">++)</span>
 		<span class="n">arr</span><span class="o">[</span><span class="n">s</span> <span class="o">+</span> <span class="n">c</span><span class="o">]</span> <span class="o">=</span> <span class="n">res</span><span class="o">[</span><span class="n">c</span><span class="o">];</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>与快速排序类似，归并排序的时间复杂度为 <code class="highlighter-rouge">O(nlogn)</code>，但是在合并的过程中，最大需要使用到与原数组等长的辅助数组，所以其空间复杂度为 <code class="highlighter-rouge">O(n)</code>。另外，如果我们在归并的过程中，遇到两个序列的头元素相等的情况时，先将前一个序列的元素放到结果数组中，就可以保证其是 <code class="highlighter-rouge">稳定的</code>。</p>
 
@@ -754,7 +736,7 @@
 
 <p><code class="highlighter-rouge">向上调整</code> 实现代码如下：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">fixUp</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">fixUp</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
 	<span class="kt">int</span> <span class="n">currVal</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
 	<span class="kt">int</span> <span class="n">parentIndex</span> <span class="o">=</span> <span class="o">(</span><span class="n">index</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
 	<span class="k">while</span> <span class="o">(</span><span class="n">parentIndex</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">index</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">arr</span><span class="o">[</span><span class="n">parentIndex</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">currVal</span><span class="o">)</span> <span class="o">{</span>
@@ -765,8 +747,7 @@
 
 	<span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">currVal</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="删除">删除</h3>
 <p>由于堆的性质，只能删除堆顶元素，然后将堆的最后一个元素放到堆顶，再向下调整。比如对于之前的例子：</p>
@@ -788,7 +769,7 @@
 
 <p><code class="highlighter-rouge">向下调整</code> 实现代码如下：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">fixDown</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">fixDown</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
 	<span class="kt">int</span> <span class="n">currVal</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
 	<span class="kt">int</span> <span class="n">minChildIndex</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
 	<span class="k">while</span> <span class="o">(</span><span class="n">minChildIndex</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
@@ -803,8 +784,7 @@
 
 	<span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">currVal</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="初始化堆">初始化堆</h3>
 <p>对于一个给定的数组，如我们的例子：<code class="highlighter-rouge">5 8 1 5 2 4 7 9 8</code>，将其变成一个堆的过程如下：</p>
@@ -830,17 +810,16 @@
 
 <p>实现代码如下：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">(</span><span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">(</span><span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
 	<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="o">(</span><span class="n">end</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
 		<span class="n">fixDown</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">end</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="堆排序-1">堆排序</h3>
 <p>介绍了前面这些，我们终于可以运用堆进行排序了。很简单，只需要将输入数据先 <code class="highlighter-rouge">堆化</code>，再不断取出堆顶元素，将堆中最后一个元素放到堆顶，从堆顶开始执行 <code class="highlighter-rouge">向下调整</code> 即可。实现代码如下：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">sort</span><span class="o">(</span><span class="kt">int</span> <span class="n">len</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">sort</span><span class="o">(</span><span class="kt">int</span> <span class="n">len</span><span class="o">)</span> <span class="o">{</span>
 	<span class="n">init</span><span class="o">(</span><span class="n">len</span><span class="o">);</span>
 
 	<span class="kt">int</span><span class="o">[]</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">len</span><span class="o">];</span>
@@ -855,8 +834,7 @@
 
 	<span class="k">return</span> <span class="n">res</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="分析">分析</h3>
 <p>堆排序使用 <code class="highlighter-rouge">完全二叉树</code> 构建，所以无论是怎样的数据，堆排序的时间复杂度都为 <code class="highlighter-rouge">O(nlogn)</code>，空间复杂度为 <code class="highlighter-rouge">O(1)</code>。另外，由于交换，堆排序是 <code class="highlighter-rouge">不稳定的</code>。</p>

@@ -46,11 +46,10 @@
 <h2 id="hash">Hash</h2>
 <p>Say we have a large amount of data pairs, such as a phone book:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Hao Cui: 1234567890
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hao Cui: 1234567890
 Yang Pan: 9876543210
 Mo Tang: 233332333
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>With what data structure can we get the fastest <code class="highlighter-rouge">access speed</code>?</p>
 
@@ -89,7 +88,7 @@ Mo Tang: 233332333
 
 <p>You should realize that, we can override these two methods to implement our own concept of <code class="highlighter-rouge">equality</code>. For example, for class <code class="highlighter-rouge">Person</code>:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
 
     <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
     
@@ -102,12 +101,11 @@ Mo Tang: 233332333
     <span class="o">}</span>
 
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>we define: <code class="highlighter-rouge">Two people</code> can be reagarded identical if their <code class="highlighter-rouge">ssd</code>s are the same. So we override <code class="highlighter-rouge">hashCode()</code> and <code class="highlighter-rouge">equals()</code>:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@Override</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
 <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">ssd</span><span class="o">.</span><span class="na">hashCode</span><span class="o">();</span>
 <span class="o">}</span>
@@ -116,12 +114,11 @@ Mo Tang: 233332333
 <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">ssd</span><span class="o">.</span><span class="na">equals</span><span class="o">(((</span><span class="n">Person</span><span class="o">)</span> <span class="n">obj</span><span class="o">).</span><span class="na">ssd</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Now <code class="highlighter-rouge">two people</code> with the same ssd is seen as <code class="highlighter-rouge">one</code>:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Map</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">contact</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Map</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">contact</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
 
 <span class="n">Person</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">"Hao"</span><span class="o">,</span> <span class="s">"2333"</span><span class="o">);</span>
 <span class="n">Person</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">"Cui"</span><span class="o">,</span> <span class="s">"2333"</span><span class="o">);</span>
@@ -130,8 +127,7 @@ Mo Tang: 233332333
 <span class="n">contact</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">p2</span><span class="o">,</span> <span class="s">"2333332333"</span><span class="o">);</span>
 
 <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">contact</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>     <span class="c1">// 1</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="hashmap-in-java">HashMap in Java</h2>
 <p>The implementation of HashMap in Java is similar to <code class="highlighter-rouge">the combination of static hash and extendable hash</code>. Before JDK 1.8, HashMap was stored by <code class="highlighter-rouge">array + linked list</code>, Keys were mapped to indices of an array, and a doubly linked list was used to implement every bucket. When searching, JDK first found the bucket by hash value, and then traversed the list to get the target data item.</p>
@@ -145,13 +141,12 @@ Mo Tang: 233332333
 <h3 id="important-members">Important members</h3>
 <p>Some important members in class HashMap:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">transient</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="n">table</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">transient</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="n">table</span><span class="o">;</span>
 <span class="kd">transient</span> <span class="kt">int</span> <span class="n">size</span><span class="o">;</span>
 <span class="kt">int</span> <span class="n">threshold</span><span class="o">;</span>
 <span class="kd">final</span> <span class="kt">float</span> <span class="n">loadFactor</span><span class="o">;</span>
 <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">TREEIFY_THRESHOLD</span> <span class="o">=</span> <span class="mi">8</span><span class="o">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>*Attention: the keyword <code class="highlighter-rouge">transient</code> is for Java <code class="highlighter-rouge">serialization</code>, which indicates that these fields are ignored in serializaiton.</p>
 
@@ -166,12 +161,11 @@ Mo Tang: 233332333
 <p>We should mention that the number of buckets in HashMap is always <code class="highlighter-rouge">a powerof 2</code>. We will discuss the convience brought by this later.</p>
 
 <h3 id="method-hash">Method hash()</h3>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="nf">hash</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="nf">hash</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
     <span class="kt">int</span> <span class="n">h</span><span class="o">;</span>
     <span class="k">return</span> <span class="o">(</span><span class="n">key</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="o">(</span><span class="n">h</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="na">hashCode</span><span class="o">())</span> <span class="o">^</span> <span class="o">(</span><span class="n">h</span> <span class="o">&gt;&gt;&gt;</span> <span class="mi">16</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>A classical way to do hash is to calculate <code class="highlighter-rouge">key % number of buckets</code> and the result is the index of the bucket. When the input data is even, the distrubution of data among buckets is also even. The design of <code class="highlighter-rouge">hashCode()</code> in class <code class="highlighter-rouge">Object</code> ensures the evenness to some extent (we will not go further on this topic), so we can make use of it.</p>
 
@@ -179,16 +173,15 @@ Mo Tang: 233332333
 
 <p>You may notice that there is no <code class="highlighter-rouge">mod operation</code> in this function, but before JDK 1.8, here existed such a function:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">static</span> <span class="kt">int</span> <span class="nf">indexFor</span><span class="o">(</span><span class="kt">int</span> <span class="n">h</span><span class="o">,</span> <span class="kt">int</span> <span class="n">length</span><span class="o">)</span> <span class="o">{</span>  
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">static</span> <span class="kt">int</span> <span class="nf">indexFor</span><span class="o">(</span><span class="kt">int</span> <span class="n">h</span><span class="o">,</span> <span class="kt">int</span> <span class="n">length</span><span class="o">)</span> <span class="o">{</span>  
     <span class="k">return</span> <span class="n">h</span> <span class="o">&amp;</span> <span class="o">(</span><span class="n">length</span><span class="o">-</span><span class="mi">1</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>We know that the efficiency of mod operation is low, while <code class="highlighter-rouge">bitwise operation</code> is efficient. Due to the size of buckets, which is alway <code class="highlighter-rouge">a power of 2</code>, we can simply do an <code class="highlighter-rouge">bitwise AND</code> operation between the input and <code class="highlighter-rouge">the number of buckets minus one</code>. The result is the same as a mod operation, but the speed is faster. In JDK 1.8, this function is deleted, and instead the line of code will be executed whenever an index is needed.</p>
 
 <h2 id="method-put">Method put()</h2>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">V</span> <span class="nf">put</span><span class="o">(</span><span class="n">K</span> <span class="n">key</span><span class="o">,</span> <span class="n">V</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">V</span> <span class="nf">put</span><span class="o">(</span><span class="n">K</span> <span class="n">key</span><span class="o">,</span> <span class="n">V</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">return</span> <span class="nf">putVal</span><span class="o">(</span><span class="n">hash</span><span class="o">(</span><span class="n">key</span><span class="o">),</span> <span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
 <span class="o">}</span>
 
@@ -234,37 +227,32 @@ Mo Tang: 233332333
     <span class="n">afterNodeInsertion</span><span class="o">(</span><span class="n">evict</span><span class="o">);</span>
     <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>It looks a little bit complicate, with so many <code class="highlighter-rouge">if</code> statements, but it’s not difficult at all. Let’s start from the first <code class="highlighter-rouge">if </code> in <code class="highlighter-rouge">putVal()</code>.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">((</span><span class="n">tab</span> <span class="o">=</span> <span class="n">table</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="o">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">tab</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
-</code></pre>
-</div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">((</span><span class="n">tab</span> <span class="o">=</span> <span class="n">table</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="o">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">tab</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
+</code></pre></div></div>
 
 <p>This line is simple. Just create a new array when it is <code class="highlighter-rouge">null</code>.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">((</span><span class="n">p</span> <span class="o">=</span> <span class="n">tab</span><span class="o">[</span><span class="n">i</span> <span class="o">=</span> <span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">hash</span><span class="o">])</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
-</code></pre>
-</div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">((</span><span class="n">p</span> <span class="o">=</span> <span class="n">tab</span><span class="o">[</span><span class="n">i</span> <span class="o">=</span> <span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">hash</span><span class="o">])</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+</code></pre></div></div>
 
 <p>As we mentioned before, to calculate the index according to the hash value and find the target bucket. If the bucket is <code class="highlighter-rouge">null</code>, create a new Node; otherwise:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">hash</span> <span class="o">==</span> <span class="n">hash</span> <span class="o">&amp;&amp;</span> 
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">hash</span> <span class="o">==</span> <span class="n">hash</span> <span class="o">&amp;&amp;</span> 
     <span class="o">((</span><span class="n">k</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">key</span><span class="o">)</span> <span class="o">==</span> <span class="n">key</span> <span class="o">||</span> <span class="o">(</span><span class="n">key</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">key</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">k</span><span class="o">))))</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>If the value of first Node of the bucket is the same as the input, update the Node.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">p</span> <span class="k">instanceof</span> <span class="n">TreeNode</span><span class="o">)</span>
-</code></pre>
-</div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">p</span> <span class="k">instanceof</span> <span class="n">TreeNode</span><span class="o">)</span>
+</code></pre></div></div>
 
 <p>If this bucket uses a red-black-tree, do tree searching and inserting (will not be discussed here); otherwise:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">binCount</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="o">;</span> <span class="o">++</span><span class="n">binCount</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">binCount</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="o">;</span> <span class="o">++</span><span class="n">binCount</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">((</span><span class="n">e</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">next</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">p</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newNode</span><span class="o">(</span><span class="n">hash</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">binCount</span> <span class="o">&gt;=</span> <span class="n">TREEIFY_THRESHOLD</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="c1">// -1 for 1st</span>
@@ -276,44 +264,40 @@ Mo Tang: 233332333
         <span class="k">break</span><span class="o">;</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">e</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Traverse the linked list. If the key does not exist in this bucket, create a new Node at the end of the bucket, and judge whether the new size reaches the <code class="highlighter-rouge">Treeify Threshold</code>. If so, transform it to a tree. If the key is found in this bucket, update the value.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">e</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// existing mapping for key</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">e</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// existing mapping for key</span>
     <span class="n">V</span> <span class="n">oldValue</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">value</span><span class="o">;</span>
     <span class="k">if</span> <span class="o">(!</span><span class="n">onlyIfAbsent</span> <span class="o">||</span> <span class="n">oldValue</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
         <span class="n">e</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
     <span class="n">afterNodeAccess</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
     <span class="k">return</span> <span class="n">oldValue</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>If it is an updation, return the original value.</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="o">++</span><span class="n">modCount</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">++</span><span class="n">modCount</span><span class="o">;</span>
 <span class="k">if</span> <span class="o">(++</span><span class="n">size</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="o">)</span>
     <span class="n">resize</span><span class="o">();</span>
 <span class="n">afterNodeInsertion</span><span class="o">(</span><span class="n">evict</span><span class="o">);</span>
 <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Finally, if the new size of the map exceeds the <code class="highlighter-rouge">threshold</code>, expand the array.</p>
 
 <p>Please pay attention to these two invocations:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">afterNodeAccess</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">afterNodeAccess</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
 <span class="n">afterNodeInsertion</span><span class="o">(</span><span class="n">evict</span><span class="o">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>They are not used in HashMap, but will be implemented in <code class="highlighter-rouge">LinkedHashMap</code></p>
 
 <h3 id="method-resize">Method resize()</h3>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">final</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="nf">resize</span><span class="o">()</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="nf">resize</span><span class="o">()</span> <span class="o">{</span>
     <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="n">oldTab</span> <span class="o">=</span> <span class="n">table</span><span class="o">;</span>
     <span class="kt">int</span> <span class="n">oldCap</span> <span class="o">=</span> <span class="o">(</span><span class="n">oldTab</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="n">oldTab</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
     <span class="kt">int</span> <span class="n">oldThr</span> <span class="o">=</span> <span class="n">threshold</span><span class="o">;</span>
@@ -386,33 +370,30 @@ Mo Tang: 233332333
     <span class="o">}</span>
     <span class="k">return</span> <span class="n">newTab</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>There code is even longer, but it’s still easy to understand. The first few rows are calculating the new threshold, and if it exceeds the max acceptable capacity of the array:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">oldCap</span> <span class="o">&gt;=</span> <span class="n">MAXIMUM_CAPACITY</span><span class="o">)</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">oldCap</span> <span class="o">&gt;=</span> <span class="n">MAXIMUM_CAPACITY</span><span class="o">)</span>
     <span class="c1">// ...</span>
 <span class="k">else</span> <span class="nf">if</span> <span class="o">((</span><span class="n">newCap</span> <span class="o">=</span> <span class="n">oldCap</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">MAXIMUM_CAPACITY</span> <span class="o">&amp;&amp;</span>
     <span class="n">oldCap</span> <span class="o">&gt;=</span> <span class="n">DEFAULT_INITIAL_CAPACITY</span><span class="o">)</span>
     <span class="c1">// ...</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The array will not be expanded any more; otherwise the new size is two times of the original size.</p>
 
 <p>The key process is to traverse every bucket in the original array and expand:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
     <span class="n">newTab</span><span class="o">[</span><span class="n">e</span><span class="o">.</span><span class="na">hash</span> <span class="o">&amp;</span> <span class="o">(</span><span class="n">newCap</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)]</span> <span class="o">=</span> <span class="n">e</span><span class="o">;</span>
 <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">e</span> <span class="k">instanceof</span> <span class="n">TreeNode</span><span class="o">)</span>
     <span class="o">((</span><span class="n">TreeNode</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;)</span><span class="n">e</span><span class="o">).</span><span class="na">split</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">newTab</span><span class="o">,</span> <span class="n">j</span><span class="o">,</span> <span class="n">oldCap</span><span class="o">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>If there is only one Node in a bucket, find its new index and copy; if this bucket uses a red-black tree, do related operations (will not be discussed here).</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">loHead</span> <span class="o">=</span> <span class="kc">null</span><span class="o">,</span> <span class="n">loTail</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">loHead</span> <span class="o">=</span> <span class="kc">null</span><span class="o">,</span> <span class="n">loTail</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
 <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">hiHead</span> <span class="o">=</span> <span class="kc">null</span><span class="o">,</span> <span class="n">hiTail</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
 <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">next</span><span class="o">;</span>
 <span class="k">do</span> <span class="o">{</span>
@@ -432,8 +413,7 @@ Mo Tang: 233332333
         <span class="n">hiTail</span> <span class="o">=</span> <span class="n">e</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span> <span class="k">while</span> <span class="o">((</span><span class="n">e</span> <span class="o">=</span> <span class="n">next</span><span class="o">)</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>After the split, data in the original bucket will be transfered to two differnt buckets. Here four variables are used to store the head and tail of the two lists, to ensure the order of the Nodes in the new list is the same as the previous one.</p>
 
@@ -447,7 +427,7 @@ Mo Tang: 233332333
 
 <p>After spliting the list, one of them will be linked to a new bucket:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">loTail</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">loTail</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">loTail</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
     <span class="n">newTab</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">loHead</span><span class="o">;</span>
 <span class="o">}</span>
@@ -455,8 +435,7 @@ Mo Tang: 233332333
     <span class="n">hiTail</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
     <span class="n">newTab</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">oldCap</span><span class="o">]</span> <span class="o">=</span> <span class="n">hiHead</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Since the size of the array is two times as the original one, the new index can be determined by <code class="highlighter-rouge">old position + oldCap</code>:</p>
 
@@ -467,7 +446,7 @@ Mo Tang: 233332333
 <h3 id="method-get">Method get()</h3>
 <p>After all the analysis above, the implementation of <code class="highlighter-rouge">get()</code> can be easy to understand, so I will not introduce it, and only give the source code:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">V</span> <span class="nf">get</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">V</span> <span class="nf">get</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">e</span><span class="o">;</span>
     <span class="k">return</span> <span class="o">(</span><span class="n">e</span> <span class="o">=</span> <span class="n">getNode</span><span class="o">(</span><span class="n">hash</span><span class="o">(</span><span class="n">key</span><span class="o">),</span> <span class="n">key</span><span class="o">))</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="kc">null</span> <span class="o">:</span> <span class="n">e</span><span class="o">.</span><span class="na">value</span><span class="o">;</span>
 <span class="o">}</span>
@@ -491,8 +470,7 @@ Mo Tang: 233332333
     <span class="o">}</span>
     <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="summary">Summary</h2>
 <p>Hash is a very important function, which is widely used in the field of computerWe always use <code class="highlighter-rouge">HashMap</code>, but if we can know the underlying principles of its implementation, we will make better use of it. Besides, reading the source code is a interesting process.</p>
@@ -504,11 +482,10 @@ Mo Tang: 233332333
 <h2 id="hash-介绍">Hash 介绍</h2>
 <p>假设我们有一组十分庞大的数据对，如一个电话本：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Hao Cui: 1234567890
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hao Cui: 1234567890
 Yang Pan: 9876543210
 Mo Tang: 233332333
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>如何存储才能得到最快的 <code class="highlighter-rouge">存取速度</code> 呢？</p>
 
@@ -547,7 +524,7 @@ Mo Tang: 233332333
 
 <p>你应该意识到，我们可以重写这两个函数来实现我们自己的 <code class="highlighter-rouge">相等</code> 概念。比如，对于一个 Person 类：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
 
 	<span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
 	
@@ -560,12 +537,11 @@ Mo Tang: 233332333
 	<span class="o">}</span>
 
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>假如我们定义：如果 <code class="highlighter-rouge">两个人</code> 的 <code class="highlighter-rouge">ssd</code> 相等那么他们被看作是同一个人。因此我们可以重写 hashcode() 与 equals() 方法：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@Override</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
 <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
 	<span class="k">return</span> <span class="n">ssd</span><span class="o">.</span><span class="na">hashCode</span><span class="o">();</span>
 <span class="o">}</span>
@@ -574,12 +550,11 @@ Mo Tang: 233332333
 <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
 	<span class="k">return</span> <span class="n">ssd</span><span class="o">.</span><span class="na">equals</span><span class="o">(((</span><span class="n">Person</span><span class="o">)</span> <span class="n">obj</span><span class="o">).</span><span class="na">ssd</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>这样两个相同 <code class="highlighter-rouge">ssd</code> 的 Person 对象将被视作同一个人：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Map</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">contact</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Map</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">contact</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
 
 <span class="n">Person</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">"Hao"</span><span class="o">,</span> <span class="s">"2333"</span><span class="o">);</span>
 <span class="n">Person</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">"Cui"</span><span class="o">,</span> <span class="s">"2333"</span><span class="o">);</span>
@@ -588,8 +563,7 @@ Mo Tang: 233332333
 <span class="n">contact</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">p2</span><span class="o">,</span> <span class="s">"2333332333"</span><span class="o">);</span>
 
 <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">contact</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>     <span class="c1">// 1</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="java-中的-hashmap">Java 中的 HashMap</h2>
 <h3 id="总览">总览</h3>
@@ -604,13 +578,12 @@ Mo Tang: 233332333
 <h3 id="关键成员">关键成员</h3>
 <p>类 HashMap 中一些关键成员变量如下：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">transient</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="n">table</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">transient</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="n">table</span><span class="o">;</span>
 <span class="kd">transient</span> <span class="kt">int</span> <span class="n">size</span><span class="o">;</span>
 <span class="kt">int</span> <span class="n">threshold</span><span class="o">;</span>
 <span class="kd">final</span> <span class="kt">float</span> <span class="n">loadFactor</span><span class="o">;</span>
 <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">TREEIFY_THRESHOLD</span> <span class="o">=</span> <span class="mi">8</span><span class="o">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>*注意：这里的关键字 <code class="highlighter-rouge">transient</code> 用于 Java 对象的序列化，表示在序列化过程中忽略这些字段。</p>
 
@@ -625,12 +598,11 @@ Mo Tang: 233332333
 <p>需要提到的是，HashMap 中桶的数量始终为 <code class="highlighter-rouge">2的n次方</code>，这主要是为了后面的取模操作以及扩容的方便性考虑。</p>
 
 <h3 id="hash-方法">hash() 方法</h3>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="nf">hash</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="nf">hash</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
     <span class="kt">int</span> <span class="n">h</span><span class="o">;</span>
     <span class="k">return</span> <span class="o">(</span><span class="n">key</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="o">(</span><span class="n">h</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="na">hashCode</span><span class="o">())</span> <span class="o">^</span> <span class="o">(</span><span class="n">h</span> <span class="o">&gt;&gt;&gt;</span> <span class="mi">16</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>一个经典的 hash 做法是，将输入 <code class="highlighter-rouge">对桶的数量取模</code>，可以直接获得相应桶的下标，同时当输入数据均匀时，数据在桶内的分步也是均匀的。Object 类中已经定义了 hashCode() 方法，在一定程度上可以保证结果分布均匀（这里不展开讨论），因此直接调用它作为输入。</p>
 
@@ -638,17 +610,16 @@ Mo Tang: 233332333
 
 <p>你可能已经注意到，这个函数里并没有进行取模操作。在 JDK 1.8 以前，存在这样一个方法：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">static</span> <span class="kt">int</span> <span class="nf">indexFor</span><span class="o">(</span><span class="kt">int</span> <span class="n">h</span><span class="o">,</span> <span class="kt">int</span> <span class="n">length</span><span class="o">)</span> <span class="o">{</span>  
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">static</span> <span class="kt">int</span> <span class="nf">indexFor</span><span class="o">(</span><span class="kt">int</span> <span class="n">h</span><span class="o">,</span> <span class="kt">int</span> <span class="n">length</span><span class="o">)</span> <span class="o">{</span>  
     <span class="k">return</span> <span class="n">h</span> <span class="o">&amp;</span> <span class="o">(</span><span class="n">length</span><span class="o">-</span><span class="mi">1</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>我们知道，取模操作效率较低，而按位运算效率高。由于桶的数目始终是2的倍数，这里直接将输入数据与 <code class="highlighter-rouge">桶的数量减一</code> 进行按位与操作一样可以获得取模的结果，但效率更高。JDK 1.8中 没有定义这个方法，改为直接在需要获取下标的时候执行这行代码。</p>
 
 <h3 id="put-方法">put() 方法</h3>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">V</span> <span class="nf">put</span><span class="o">(</span><span class="n">K</span> <span class="n">key</span><span class="o">,</span> <span class="n">V</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">V</span> <span class="nf">put</span><span class="o">(</span><span class="n">K</span> <span class="n">key</span><span class="o">,</span> <span class="n">V</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">return</span> <span class="nf">putVal</span><span class="o">(</span><span class="n">hash</span><span class="o">(</span><span class="n">key</span><span class="o">),</span> <span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
 <span class="o">}</span>
 
@@ -694,37 +665,32 @@ Mo Tang: 233332333
     <span class="n">afterNodeInsertion</span><span class="o">(</span><span class="n">evict</span><span class="o">);</span>
     <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>代码看起来有些复杂，有很多条件语句，但其实并不难懂。让我们从 putVal() 的第一个 <code class="highlighter-rouge">if</code> 语句开始分析。</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">((</span><span class="n">tab</span> <span class="o">=</span> <span class="n">table</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="o">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">tab</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
-</code></pre>
-</div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">((</span><span class="n">tab</span> <span class="o">=</span> <span class="n">table</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="o">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">tab</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
+</code></pre></div></div>
 
 <p>这句很简单，当数组为空的时候新建一个数组。</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">((</span><span class="n">p</span> <span class="o">=</span> <span class="n">tab</span><span class="o">[</span><span class="n">i</span> <span class="o">=</span> <span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">hash</span><span class="o">])</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
-</code></pre>
-</div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">((</span><span class="n">p</span> <span class="o">=</span> <span class="n">tab</span><span class="o">[</span><span class="n">i</span> <span class="o">=</span> <span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">hash</span><span class="o">])</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+</code></pre></div></div>
 
 <p>前面提到的，根据 hash 确定数组下标，找到目标桶。如果该桶为空，直接新建一个 <code class="highlighter-rouge">Node</code>；否则：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">hash</span> <span class="o">==</span> <span class="n">hash</span> <span class="o">&amp;&amp;</span> 
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">hash</span> <span class="o">==</span> <span class="n">hash</span> <span class="o">&amp;&amp;</span> 
     <span class="o">((</span><span class="n">k</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">key</span><span class="o">)</span> <span class="o">==</span> <span class="n">key</span> <span class="o">||</span> <span class="o">(</span><span class="n">key</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">key</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">k</span><span class="o">))))</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>如果该桶的第一个节点的 key 值与要插入的 key 值相同，直接更新其 value 值；</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">p</span> <span class="k">instanceof</span> <span class="n">TreeNode</span><span class="o">)</span>
-</code></pre>
-</div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">p</span> <span class="k">instanceof</span> <span class="n">TreeNode</span><span class="o">)</span>
+</code></pre></div></div>
 
 <p>如果该桶使用红黑树存储，进行树搜索、插入（不展开讨论）；否则：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">binCount</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="o">;</span> <span class="o">++</span><span class="n">binCount</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">binCount</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="o">;</span> <span class="o">++</span><span class="n">binCount</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">((</span><span class="n">e</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">next</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">p</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newNode</span><span class="o">(</span><span class="n">hash</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">binCount</span> <span class="o">&gt;=</span> <span class="n">TREEIFY_THRESHOLD</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="c1">// -1 for 1st</span>
@@ -736,44 +702,40 @@ Mo Tang: 233332333
         <span class="k">break</span><span class="o">;</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">e</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>遍历线性链表，如果该 key 不存在于这个桶，在链表最后添加一个节点，并判断添加后桶内节点数是否达到 <code class="highlighter-rouge">建树阀值</code>，进行相关建树操作；如果在桶中找到了该 key 值，直接更新其 value 值。</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">e</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// existing mapping for key</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">e</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// existing mapping for key</span>
     <span class="n">V</span> <span class="n">oldValue</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">value</span><span class="o">;</span>
     <span class="k">if</span> <span class="o">(!</span><span class="n">onlyIfAbsent</span> <span class="o">||</span> <span class="n">oldValue</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
         <span class="n">e</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
     <span class="n">afterNodeAccess</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
     <span class="k">return</span> <span class="n">oldValue</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>如果是更新操作，返回原值。</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="o">++</span><span class="n">modCount</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">++</span><span class="n">modCount</span><span class="o">;</span>
 <span class="k">if</span> <span class="o">(++</span><span class="n">size</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="o">)</span>
     <span class="n">resize</span><span class="o">();</span>
 <span class="n">afterNodeInsertion</span><span class="o">(</span><span class="n">evict</span><span class="o">);</span>
 <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>最后，如果新的数组大小超过阀值，扩充数组。</p>
 
 <p>注意，其中有两个调用：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">afterNodeAccess</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">afterNodeAccess</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
 <span class="n">afterNodeInsertion</span><span class="o">(</span><span class="n">evict</span><span class="o">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>在 HashMap 中不使用，函数体为空，主要用于 LinkedHashMap。</p>
 
 <h3 id="resize">resize()</h3>
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">final</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="nf">resize</span><span class="o">()</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="nf">resize</span><span class="o">()</span> <span class="o">{</span>
     <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="n">oldTab</span> <span class="o">=</span> <span class="n">table</span><span class="o">;</span>
     <span class="kt">int</span> <span class="n">oldCap</span> <span class="o">=</span> <span class="o">(</span><span class="n">oldTab</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="n">oldTab</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
     <span class="kt">int</span> <span class="n">oldThr</span> <span class="o">=</span> <span class="n">threshold</span><span class="o">;</span>
@@ -846,33 +808,30 @@ Mo Tang: 233332333
     <span class="o">}</span>
     <span class="k">return</span> <span class="n">newTab</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>代码更长了，一眼看过去有写头晕，但其实也不难理解。前面几行主要是在确定新的阀值，如果这个值超过了最大数组长度：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">oldCap</span> <span class="o">&gt;=</span> <span class="n">MAXIMUM_CAPACITY</span><span class="o">)</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">oldCap</span> <span class="o">&gt;=</span> <span class="n">MAXIMUM_CAPACITY</span><span class="o">)</span>
     <span class="c1">// ...</span>
 <span class="k">else</span> <span class="nf">if</span> <span class="o">((</span><span class="n">newCap</span> <span class="o">=</span> <span class="n">oldCap</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">MAXIMUM_CAPACITY</span> <span class="o">&amp;&amp;</span>
     <span class="n">oldCap</span> <span class="o">&gt;=</span> <span class="n">DEFAULT_INITIAL_CAPACITY</span><span class="o">)</span>
     <span class="c1">// ...</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>如果已经超过了最大数组容量，不再扩充；否则扩充为原来的两倍容量。</p>
 
 <p>下面几行代码都是在计算阀值，不再介绍。关键在于下面遍历原数组中每个桶并进行扩充的过程：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
     <span class="n">newTab</span><span class="o">[</span><span class="n">e</span><span class="o">.</span><span class="na">hash</span> <span class="o">&amp;</span> <span class="o">(</span><span class="n">newCap</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)]</span> <span class="o">=</span> <span class="n">e</span><span class="o">;</span>
 <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">e</span> <span class="k">instanceof</span> <span class="n">TreeNode</span><span class="o">)</span>
     <span class="o">((</span><span class="n">TreeNode</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;)</span><span class="n">e</span><span class="o">).</span><span class="na">split</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">newTab</span><span class="o">,</span> <span class="n">j</span><span class="o">,</span> <span class="n">oldCap</span><span class="o">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>如果桶中只有一个节点，找到其在新数组中的下标并复制；如果是存储的是红黑树，进行相关操作（不展开讨论）；</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">loHead</span> <span class="o">=</span> <span class="kc">null</span><span class="o">,</span> <span class="n">loTail</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">loHead</span> <span class="o">=</span> <span class="kc">null</span><span class="o">,</span> <span class="n">loTail</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
 <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">hiHead</span> <span class="o">=</span> <span class="kc">null</span><span class="o">,</span> <span class="n">hiTail</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
 <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">next</span><span class="o">;</span>
 <span class="k">do</span> <span class="o">{</span>
@@ -892,8 +851,7 @@ Mo Tang: 233332333
         <span class="n">hiTail</span> <span class="o">=</span> <span class="n">e</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span> <span class="k">while</span> <span class="o">((</span><span class="n">e</span> <span class="o">=</span> <span class="n">next</span><span class="o">)</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>原桶分裂后会分别存储到两个桶中，这里使用4个变量分别保存分别后链表的头尾，以保证新的链表维持节点在原链表的顺序。</p>
 
@@ -907,7 +865,7 @@ Mo Tang: 233332333
 
 <p>分成两个链表之后，将链接到新的数组中：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">loTail</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">loTail</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">loTail</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
     <span class="n">newTab</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">loHead</span><span class="o">;</span>
 <span class="o">}</span>
@@ -915,8 +873,7 @@ Mo Tang: 233332333
     <span class="n">hiTail</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
     <span class="n">newTab</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">oldCap</span><span class="o">]</span> <span class="o">=</span> <span class="n">hiHead</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>由于数组大小变成原来的两倍，可以直接确定分裂出去的链表的下标为 <code class="highlighter-rouge">原位置 + oldCap</code>:</p>
 
@@ -927,7 +884,7 @@ Mo Tang: 233332333
 <h3 id="get">get()</h3>
 <p>get() 方法的实现就比较简单，本文不打算过多介绍，直接贴出源码：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">V</span> <span class="nf">get</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">V</span> <span class="nf">get</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">e</span><span class="o">;</span>
     <span class="k">return</span> <span class="o">(</span><span class="n">e</span> <span class="o">=</span> <span class="n">getNode</span><span class="o">(</span><span class="n">hash</span><span class="o">(</span><span class="n">key</span><span class="o">),</span> <span class="n">key</span><span class="o">))</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="kc">null</span> <span class="o">:</span> <span class="n">e</span><span class="o">.</span><span class="na">value</span><span class="o">;</span>
 <span class="o">}</span>
@@ -951,8 +908,7 @@ Mo Tang: 233332333
     <span class="o">}</span>
     <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="总结">总结</h2>
 <p>Hash 是个十分重要的函数，在计算机领域应用十分广泛。平时总是使用 Java 中的 Hash Map，如果能知道它的底层实现原理，将有助于我们更好地使用它。除此之外，阅读源码的过程可以学习大神们优雅的实现方式，也是个很有趣的过程。</p>

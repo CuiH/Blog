@@ -43,7 +43,7 @@
 	<h2 id="overview">Overview</h2>
 <p>There are five common ways to reverse a singly linked list. I will introduce them one by one. The class <code class="highlighter-rouge">Node</code> is defined as follows:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Node</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Node</span> <span class="o">{</span>
 
     <span class="kt">int</span> <span class="n">val</span><span class="o">;</span>
     <span class="n">Node</span> <span class="n">next</span><span class="o">;</span>
@@ -53,13 +53,12 @@
     <span class="o">}</span>
 
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="with-the-help-of-an-array">With the Help of an Array</h2>
 <p>If we traverse the linked list and store every node inside a <code class="highlighter-rouge">ramdomly accessible</code> data structure, such as an array, we can then traverse the array reversely, constructing a new linked list. Since this is the simplest solution, I’m not gonna talk more about it, so here’s the code:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList1</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList1</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
 
     <span class="n">List</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
@@ -82,8 +81,7 @@
 
     <span class="k">return</span> <span class="n">arr</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">arr</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Obviously, the biggest problem of this solution is that it costs too much <code class="highlighter-rouge">space</code>, because we need o construct a data structure with the same length as the original linked list.</p>
 
@@ -136,7 +134,7 @@
 
 <p>The code is as follows:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList2</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList2</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
 
     <span class="n">Node</span> <span class="n">temp</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
@@ -156,8 +154,7 @@
 
     <span class="k">return</span> <span class="n">currHead</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="continuously-moving-nodes-from-the-original-list-to-the-head-of-the-new-list">Continuously Moving Nodes From the Original List to the Head of the New List</h2>
 <p>This is another easy solution. What we should do is to add every node from the original list to the head of the new list. Also the example of <code class="highlighter-rouge">1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; null</code>:</p>
@@ -187,7 +184,7 @@
 
 <p>The code is here:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList3</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList3</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
 
     <span class="n">Node</span> <span class="n">temp</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
@@ -204,8 +201,7 @@
 
     <span class="k">return</span> <span class="n">newHead</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="continuously-inserting-the-next-node-of-the-head-of-original-list-after-the-head-of-the-new-list">Continuously Inserting the Next Node of the Head of Original List After the Head of the New List</h2>
 <p>We need to construct a <code class="highlighter-rouge">helper node</code> in this case, and link it to the head of the original list. Then we keep inserting the <code class="highlighter-rouge">next node of the original list</code> after the <code class="highlighter-rouge">helper node</code>, until the next node of the original list is <code class="highlighter-rouge">null</code>. Now the <code class="highlighter-rouge">next node of the helper node</code> is the head of the reversed list. The algorithm is like:</p>
@@ -235,7 +231,7 @@
 
 <p>The key point of the algorithm is that, <code class="highlighter-rouge">newHead</code> and <code class="highlighter-rouge">head</code> always point to the same nodes, and what do is to move the node after the <code class="highlighter-rouge">head</code> to the next position of <code class="highlighter-rouge">newHead</code>. The code is as follows:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList4</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList4</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span><span class="o">|</span><span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
 
     <span class="n">Node</span> <span class="n">newHead</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
@@ -253,8 +249,7 @@
 
     <span class="k">return</span> <span class="n">newHead</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="recursion">Recursion</h2>
 <p>In fact, we can also reverse a linked list with recursion, the advantage of which is short code, but maybe it’s not that simple to understand.</p>
@@ -269,7 +264,7 @@
 
 <p>We should be aware that the recrusive method finally returns the tail of the reversed list, so to obtain its head, we may need a member variable. The code is as follows:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="n">Node</span> <span class="n">newHead</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="n">Node</span> <span class="n">newHead</span><span class="o">;</span>
 
 <span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList5</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
@@ -292,8 +287,7 @@
 
     <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="an-example-on-leetcode">An example on Leetcode</h2>
 <p>There are many peoblems regarding linked lists. Here I choose the <code class="highlighter-rouge">#25 Reverse Nodes in k-Group</code>, with the description:</p>
@@ -315,7 +309,7 @@ Only constant memory is allowed.</p>
 
 <p>This problem requires the given list to be reversed in groups of k nodes, and if the number of the remaining nodes is less than k, we should just keep the original order. Here I use the fourth method to handle it, that is, continuously inserting the next node of the original list after the head of the new list. The difference is that we need to judge before reversing, to check whether we have enough nodes left, and to record the beginning node of the next group as a stop signal. The code is as follows:</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">reverseKGroup</span><span class="o">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">reverseKGroup</span><span class="o">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
 
     <span class="n">ListNode</span> <span class="n">newHead</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
@@ -345,15 +339,14 @@ Only constant memory is allowed.</p>
         <span class="n">currHead</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <hr />
 
 <h2 id="总览">总览</h2>
 <p>常见的对单链表进行翻转有5种方法，下面将分别介绍。其中，类 <code class="highlighter-rouge">Node</code> 的定义如下：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Node</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Node</span> <span class="o">{</span>
 
 	<span class="kt">int</span> <span class="n">val</span><span class="o">;</span>
 	<span class="n">Node</span> <span class="n">next</span><span class="o">;</span>
@@ -363,13 +356,12 @@ Only constant memory is allowed.</p>
 	<span class="o">}</span>
 
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="使用数组存储">使用数组存储</h2>
 <p>遍历单链表，并将其存储在可 <code class="highlighter-rouge">随机访问</code> 的数据结构（如数组）中，随后反向遍历该数据结构，构建新的链表。由于最简单，不多做介绍，直接给出代码：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList1</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList1</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
 	<span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
 
 	<span class="n">List</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
@@ -392,8 +384,7 @@ Only constant memory is allowed.</p>
 
 	<span class="k">return</span> <span class="n">arr</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">arr</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>很明显，这个代码最大的问题就是空间代价太大，需要建立一个与链表等长的数据结构。</p>
 
@@ -446,7 +437,7 @@ Only constant memory is allowed.</p>
 
 <p>代码如下：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList2</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList2</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
 	<span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
 
 	<span class="n">Node</span> <span class="n">temp</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
@@ -466,8 +457,7 @@ Only constant memory is allowed.</p>
 
 	<span class="k">return</span> <span class="n">currHead</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="不断将原链表的节点放到新链表的头部">不断将原链表的节点放到新链表的头部</h2>
 <p>这种方法思路和实现都不难，只需将原链表的节点逐一添加到新链表的头部即可。还是 <code class="highlighter-rouge">1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; null</code> 的例子，翻转过程的描述和示例一起展示如下：</p>
@@ -497,7 +487,7 @@ Only constant memory is allowed.</p>
 
 <p>实现代码如下：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList3</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList3</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
 	<span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
 
 	<span class="n">Node</span> <span class="n">temp</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
@@ -514,8 +504,7 @@ Only constant memory is allowed.</p>
 
 	<span class="k">return</span> <span class="n">newHead</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="不断将原链表头的下一个节点插入新链表头之后">不断将原链表头的下一个节点插入新链表头之后</h2>
 <p>使用这个方法需要构造一个辅助节点，链接到原链表头之前，随后不断将原链表头的 <code class="highlighter-rouge">下一个节点</code> 插入到辅助节点之后，直至原链表头的下一个节点为 <code class="highlighter-rouge">null</code>，此时辅助节点的下一个节点即为翻转后链表的头。算法描述及示例如下：</p>
@@ -545,7 +534,7 @@ Only constant memory is allowed.</p>
 
 <p>这个算法的关键在于，<code class="highlighter-rouge">newHead</code> 和 <code class="highlighter-rouge">head</code> 所指向的节点是不变的，只是不断将 <code class="highlighter-rouge">head</code> 节点之后的节点移到 <code class="highlighter-rouge">newHead</code> 节点之后。实现代码如下：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList4</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList4</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
 	<span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span><span class="o">|</span><span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
 
 	<span class="n">Node</span> <span class="n">newHead</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
@@ -563,8 +552,7 @@ Only constant memory is allowed.</p>
 
 	<span class="k">return</span> <span class="n">newHead</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="递归实现">递归实现</h2>
 <p>事实上也可以用递归来实现链表的翻转，优势是代码短，但可能没有那么容易理解。</p>
@@ -581,7 +569,7 @@ Only constant memory is allowed.</p>
 
 <p>代码如下：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="n">Node</span> <span class="n">newHead</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="n">Node</span> <span class="n">newHead</span><span class="o">;</span>
 
 <span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList5</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
 	<span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
@@ -604,8 +592,7 @@ Only constant memory is allowed.</p>
 
 	<span class="k">return</span> <span class="n">head</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="leetcode-上的例子">Leetcode 上的例子</h2>
 <p>Leetcode 上有很多关于链表的题目，这里选取 <code class="highlighter-rouge">#25 Reverse Nodes in k-Group</code>，题目描述如下：</p>
@@ -626,7 +613,7 @@ For k = 3, you should return: 3-&gt;2-&gt;1-&gt;4-&gt;5</p>
 
 <p>题目要求将链表每 k 个一组进行翻转，如果剩余不足 k 个则剩余部分维持原样。这里使用前面提到的第四种方法（不断将原链表头的下一个节点插入新链表头之后），只是需要在翻转前先判断剩余节点数，以及记录下下一组的起始节点作为停止条件。代码如下：</p>
 
-<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">reverseKGroup</span><span class="o">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">reverseKGroup</span><span class="o">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
 	<span class="k">if</span> <span class="o">(</span><span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
 
 	<span class="n">ListNode</span> <span class="n">newHead</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
@@ -656,8 +643,7 @@ For k = 3, you should return: 3-&gt;2-&gt;1-&gt;4-&gt;5</p>
 		<span class="n">currHead</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
 	<span class="o">}</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 	
 </div>

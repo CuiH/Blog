@@ -9,7 +9,6 @@ deploy:
 	rm -r ./*
 	cp -r ~/tmp/_site/* ./
 	cp ~/tmp/CNAME/Blog/CNAME ./
-	rm README.md
 	git add --all
 	git commit -m "deploy blog"
 	git push origin gh-pages

@@ -139,7 +139,7 @@ Generally, we choose the first element of the interval as the base element. Here
 6. Fill the base element to the position that `i` (or `j`) points to
 ![](/assets/images/0913/1-6.png)
 
-*Attention: in process #3, it must start from the `rightmost`.
+!Attention: in process #3, it must start from the `rightmost`.
 
 The code is as follows:
 
@@ -328,7 +328,7 @@ private void fixDown(int index, int end) {
 For a given array, say our example, `5 8 1 5 2 4 7 9 8`, the processes to transform it to a heap is as follows:
 
 1. The initial data
-![](/assets/images/0913/2-8.png
+![](/assets/images/0913/2-8.png)
 
 2. Start from `the last node that is not leaf`, adjust downward. Since the last two not-leaf node are currently minimum heaps, they are not to be adjusted
 ![](/assets/images/0913/2-9.png)

@@ -7,7 +7,7 @@ description: "Summing up five ways to reverse a singly linked list, and analyzin
 ---
 
 ## Overview
-There are five common ways to reverse a singly linked list. I will introduce them one by one. The class `Node` is defined as follows:
+There are four common ways to reverse a singly linked list. I will introduce them one by one. The class `Node` is defined as follows:
 
 ```java
 public class Node {
@@ -52,66 +52,6 @@ public Node reverseSinglyLinkedList1(Node head) {
 ```
 
 Obviously, the biggest problem of this solution is that it costs too much `space`, because we need o construct a data structure with the same length as the original linked list.
-
-## Continuously Reversing the Pointer Between Every Two Nodes
-If we keep reversing every pointer between every two nodes, we'll finally get a reversed linked list. The algorithm description is:
-
-* Define variables `currHead`, `next`, pointing to the head of current list, and the next node of current head; define variable `temp` for storing temporary nodes.
-* First, set `currHead.next` to null.
-* Enter the loop.
-* `temp` points to the next node of `next`.
-* Set `next.next` to `currHead`.
-* Move forward. `currHead` points to next; `next` points to `temp`
-* Loop until `next` points to null.
-* `currHead` is the head of the reversed list.
-
-Perhaps an example can help you understand this algorithm. Say we have a linked list `1 -> 2-> 3 -> 4 -> 5 -> null`:
-
-1. The original list
-![](/assets/images/0905/2-0.png)
-
-2. Initialization
-![](/assets/images/0905/2-1.png)
-
-3. Enter the loop
-![](/assets/images/0905/2-2.png)
-
-4. Reverse the pointer between the first two nodes
-![](/assets/images/0905/2-3.png)
-
-5. Move forward
-![](/assets/images/0905/2-4.png)
-
-6. Begin the second loop
-![](/assets/images/0905/2-5.png)
-
-7. Loop until `next` points to `null`
-![](/assets/images/0905/2-6.png)
-
-The code is as follows:
-
-```java
-public Node reverseSinglyLinkedList2(Node head) {
-    if (head == null || head.next == null) return head;
-
-    Node temp = null;
-    Node currHead = head;
-    Node next = currHead.next;
-
-    currHead.next = null;
-
-    while (next != null) {
-        temp = next.next;
-
-        next.next = currHead;
-
-        currHead = next;
-        next = temp;
-    }
-
-    return currHead;
-}
-```
 
 ## Continuously Moving Nodes From the Original List to the Head of the New List
 This is another easy solution. What we should do is to add every node from the original list to the head of the new list. Also the example of `1 -> 2 -> 3 -> 4 -> 5 -> null`:

@@ -41,7 +41,7 @@
 	</div>
 
 	<h2 id="overview">Overview</h2>
-<p>There are five common ways to reverse a singly linked list. I will introduce them one by one. The class <code class="highlighter-rouge">Node</code> is defined as follows:</p>
+<p>There are four common ways to reverse a singly linked list. I will introduce them one by one. The class <code class="highlighter-rouge">Node</code> is defined as follows:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Node</span> <span class="o">{</span>
 
@@ -84,77 +84,6 @@
 </code></pre></div></div>
 
 <p>Obviously, the biggest problem of this solution is that it costs too much <code class="highlighter-rouge">space</code>, because we need o construct a data structure with the same length as the original linked list.</p>
-
-<h2 id="continuously-reversing-the-pointer-between-every-two-nodes">Continuously Reversing the Pointer Between Every Two Nodes</h2>
-<p>If we keep reversing every pointer between every two nodes, we’ll finally get a reversed linked list. The algorithm description is:</p>
-
-<ul>
-  <li>Define variables <code class="highlighter-rouge">currHead</code>, <code class="highlighter-rouge">next</code>, pointing to the head of current list, and the next node of current head; define variable <code class="highlighter-rouge">temp</code> for storing temporary nodes.</li>
-  <li>First, set <code class="highlighter-rouge">currHead.next</code> to null.</li>
-  <li>Enter the loop.</li>
-  <li><code class="highlighter-rouge">temp</code> points to the next node of <code class="highlighter-rouge">next</code>.</li>
-  <li>Set <code class="highlighter-rouge">next.next</code> to <code class="highlighter-rouge">currHead</code>.</li>
-  <li>Move forward. <code class="highlighter-rouge">currHead</code> points to next; <code class="highlighter-rouge">next</code> points to <code class="highlighter-rouge">temp</code></li>
-  <li>Loop until <code class="highlighter-rouge">next</code> points to null.</li>
-  <li><code class="highlighter-rouge">currHead</code> is the head of the reversed list.</li>
-</ul>
-
-<p>Perhaps an example can help you understand this algorithm. Say we have a linked list <code class="highlighter-rouge">1 -&gt; 2-&gt; 3 -&gt; 4 -&gt; 5 -&gt; null</code>:</p>
-
-<ol>
-  <li>
-    <p>The original list
-<img src="/assets/images/0905/2-0.png" alt="" /></p>
-  </li>
-  <li>
-    <p>Initialization
-<img src="/assets/images/0905/2-1.png" alt="" /></p>
-  </li>
-  <li>
-    <p>Enter the loop
-<img src="/assets/images/0905/2-2.png" alt="" /></p>
-  </li>
-  <li>
-    <p>Reverse the pointer between the first two nodes
-<img src="/assets/images/0905/2-3.png" alt="" /></p>
-  </li>
-  <li>
-    <p>Move forward
-<img src="/assets/images/0905/2-4.png" alt="" /></p>
-  </li>
-  <li>
-    <p>Begin the second loop
-<img src="/assets/images/0905/2-5.png" alt="" /></p>
-  </li>
-  <li>
-    <p>Loop until <code class="highlighter-rouge">next</code> points to <code class="highlighter-rouge">null</code>
-<img src="/assets/images/0905/2-6.png" alt="" /></p>
-  </li>
-</ol>
-
-<p>The code is as follows:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList2</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
-
-    <span class="n">Node</span> <span class="n">temp</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="n">Node</span> <span class="n">currHead</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
-    <span class="n">Node</span> <span class="n">next</span> <span class="o">=</span> <span class="n">currHead</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-
-    <span class="n">currHead</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-
-    <span class="k">while</span> <span class="o">(</span><span class="n">next</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">temp</span> <span class="o">=</span> <span class="n">next</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-
-        <span class="n">next</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">currHead</span><span class="o">;</span>
-
-        <span class="n">currHead</span> <span class="o">=</span> <span class="n">next</span><span class="o">;</span>
-        <span class="n">next</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="k">return</span> <span class="n">currHead</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
 
 <h2 id="continuously-moving-nodes-from-the-original-list-to-the-head-of-the-new-list">Continuously Moving Nodes From the Original List to the Head of the New List</h2>
 <p>This is another easy solution. What we should do is to add every node from the original list to the head of the new list. Also the example of <code class="highlighter-rouge">1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; null</code>:</p>

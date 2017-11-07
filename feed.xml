@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.0">Jekyll</generator><link href="http://cuih.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="http://cuih.xyz/" rel="alternate" type="text/html" /><updated>2017-10-09T23:35:57-05:00</updated><id>http://cuih.xyz/</id><title type="html">Life is a Struggle</title><subtitle>Life is a struggle.</subtitle><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><entry><title type="html">DP and Knapsack Problem</title><link href="http://cuih.xyz/2017/10/09/DP-and-Knapsack-Problem.html" rel="alternate" type="text/html" title="DP and Knapsack Problem" /><published>2017-10-09T23:30:00-05:00</published><updated>2017-10-09T23:30:00-05:00</updated><id>http://cuih.xyz/2017/10/09/DP%20and%20Knapsack%20Problem</id><content type="html" xml:base="http://cuih.xyz/2017/10/09/DP-and-Knapsack-Problem.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.0">Jekyll</generator><link href="http://cuih.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="http://cuih.xyz/" rel="alternate" type="text/html" /><updated>2017-11-06T22:16:13-06:00</updated><id>http://cuih.xyz/</id><title type="html">Life is a Struggle</title><subtitle>Life is a struggle.</subtitle><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><entry><title type="html">DP and Knapsack Problem</title><link href="http://cuih.xyz/2017/10/09/DP-and-Knapsack-Problem.html" rel="alternate" type="text/html" title="DP and Knapsack Problem" /><published>2017-10-09T23:30:00-05:00</published><updated>2017-10-09T23:30:00-05:00</updated><id>http://cuih.xyz/2017/10/09/DP%20and%20Knapsack%20Problem</id><content type="html" xml:base="http://cuih.xyz/2017/10/09/DP-and-Knapsack-Problem.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;DP stands for &lt;code class=&quot;highlighter-rouge&quot;&gt;dynamic programming&lt;/code&gt;, which is very common in sloving problems. Many people tend to think that it is difficult, but actually, if you understand the principles, it can be easy to use. In this blog, I will give a brief introduction to DP and analyze with maybe the most typical DP problem, the &lt;code class=&quot;highlighter-rouge&quot;&gt;knapsack problem&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;an-example&quot;&gt;An example&lt;/h2&gt;
@@ -1336,7 +1336,7 @@ Such method is called the &lt;code class=&quot;highlighter-rouge&quot;&gt;Morris
     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="algorithm" /><summary type="html">Overview The binary tree is a very classical data structure, and we have various ways to perform preorder, inorder and postorder traversal on it. The class TreeNode used in this blog is defined as follows:</summary></entry><entry><title type="html">Reversing a Singly Linked List</title><link href="http://cuih.xyz/2017/07/24/Reversing-a-Singly-Linked-List.html" rel="alternate" type="text/html" title="Reversing a Singly Linked List" /><published>2017-07-24T23:30:00-05:00</published><updated>2017-07-24T23:30:00-05:00</updated><id>http://cuih.xyz/2017/07/24/Reversing%20a%20Singly%20Linked%20List</id><content type="html" xml:base="http://cuih.xyz/2017/07/24/Reversing-a-Singly-Linked-List.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;There are five common ways to reverse a singly linked list. I will introduce them one by one. The class &lt;code class=&quot;highlighter-rouge&quot;&gt;Node&lt;/code&gt; is defined as follows:&lt;/p&gt;
+&lt;p&gt;There are four common ways to reverse a singly linked list. I will introduce them one by one. The class &lt;code class=&quot;highlighter-rouge&quot;&gt;Node&lt;/code&gt; is defined as follows:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
@@ -1379,77 +1379,6 @@ Such method is called the &lt;code class=&quot;highlighter-rouge&quot;&gt;Morris
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Obviously, the biggest problem of this solution is that it costs too much &lt;code class=&quot;highlighter-rouge&quot;&gt;space&lt;/code&gt;, because we need o construct a data structure with the same length as the original linked list.&lt;/p&gt;
-
-&lt;h2 id=&quot;continuously-reversing-the-pointer-between-every-two-nodes&quot;&gt;Continuously Reversing the Pointer Between Every Two Nodes&lt;/h2&gt;
-&lt;p&gt;If we keep reversing every pointer between every two nodes, we’ll finally get a reversed linked list. The algorithm description is:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Define variables &lt;code class=&quot;highlighter-rouge&quot;&gt;currHead&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;next&lt;/code&gt;, pointing to the head of current list, and the next node of current head; define variable &lt;code class=&quot;highlighter-rouge&quot;&gt;temp&lt;/code&gt; for storing temporary nodes.&lt;/li&gt;
-  &lt;li&gt;First, set &lt;code class=&quot;highlighter-rouge&quot;&gt;currHead.next&lt;/code&gt; to null.&lt;/li&gt;
-  &lt;li&gt;Enter the loop.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;temp&lt;/code&gt; points to the next node of &lt;code class=&quot;highlighter-rouge&quot;&gt;next&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Set &lt;code class=&quot;highlighter-rouge&quot;&gt;next.next&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;currHead&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Move forward. &lt;code class=&quot;highlighter-rouge&quot;&gt;currHead&lt;/code&gt; points to next; &lt;code class=&quot;highlighter-rouge&quot;&gt;next&lt;/code&gt; points to &lt;code class=&quot;highlighter-rouge&quot;&gt;temp&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Loop until &lt;code class=&quot;highlighter-rouge&quot;&gt;next&lt;/code&gt; points to null.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;currHead&lt;/code&gt; is the head of the reversed list.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Perhaps an example can help you understand this algorithm. Say we have a linked list &lt;code class=&quot;highlighter-rouge&quot;&gt;1 -&amp;gt; 2-&amp;gt; 3 -&amp;gt; 4 -&amp;gt; 5 -&amp;gt; null&lt;/code&gt;:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;The original list
-&lt;img src=&quot;/assets/images/0905/2-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Initialization
-&lt;img src=&quot;/assets/images/0905/2-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Enter the loop
-&lt;img src=&quot;/assets/images/0905/2-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Reverse the pointer between the first two nodes
-&lt;img src=&quot;/assets/images/0905/2-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Move forward
-&lt;img src=&quot;/assets/images/0905/2-4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Begin the second loop
-&lt;img src=&quot;/assets/images/0905/2-5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Loop until &lt;code class=&quot;highlighter-rouge&quot;&gt;next&lt;/code&gt; points to &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;
-&lt;img src=&quot;/assets/images/0905/2-6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;The code is as follows:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;reverseSinglyLinkedList2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;currHead&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;currHead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;currHead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-        &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;currHead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-        &lt;span class=&quot;n&quot;&gt;currHead&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;currHead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;continuously-moving-nodes-from-the-original-list-to-the-head-of-the-new-list&quot;&gt;Continuously Moving Nodes From the Original List to the Head of the New List&lt;/h2&gt;
 &lt;p&gt;This is another easy solution. What we should do is to add every node from the original list to the head of the new list. Also the example of &lt;code class=&quot;highlighter-rouge&quot;&gt;1 -&amp;gt; 2 -&amp;gt; 3 -&amp;gt; 4 -&amp;gt; 5 -&amp;gt; null&lt;/code&gt;:&lt;/p&gt;
@@ -1634,7 +1563,7 @@ Only constant memory is allowed.&lt;/p&gt;
         &lt;span class=&quot;n&quot;&gt;currHead&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="algorithm" /><summary type="html">Overview There are five common ways to reverse a singly linked list. I will introduce them one by one. The class Node is defined as follows:</summary></entry><entry><title type="html">The Singleton Pattern</title><link href="http://cuih.xyz/2017/07/11/The-Singleton-Pattern.html" rel="alternate" type="text/html" title="The Singleton Pattern" /><published>2017-07-11T23:00:00-05:00</published><updated>2017-07-11T23:00:00-05:00</updated><id>http://cuih.xyz/2017/07/11/The%20Singleton%20Pattern</id><content type="html" xml:base="http://cuih.xyz/2017/07/11/The-Singleton-Pattern.html">&lt;h2 id=&quot;definition&quot;&gt;Definition&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="algorithm" /><summary type="html">Overview There are four common ways to reverse a singly linked list. I will introduce them one by one. The class Node is defined as follows:</summary></entry><entry><title type="html">The Singleton Pattern</title><link href="http://cuih.xyz/2017/07/11/The-Singleton-Pattern.html" rel="alternate" type="text/html" title="The Singleton Pattern" /><published>2017-07-11T23:00:00-05:00</published><updated>2017-07-11T23:00:00-05:00</updated><id>http://cuih.xyz/2017/07/11/The%20Singleton%20Pattern</id><content type="html" xml:base="http://cuih.xyz/2017/07/11/The-Singleton-Pattern.html">&lt;h2 id=&quot;definition&quot;&gt;Definition&lt;/h2&gt;
 &lt;p&gt;In some cases, our program requires that a certain class should have only one instance, such as the &lt;code class=&quot;highlighter-rouge&quot;&gt;Printer&lt;/code&gt; class and &lt;code class=&quot;highlighter-rouge&quot;&gt;ThreadPool&lt;/code&gt; class in Java. This design pattern is called &lt;code class=&quot;highlighter-rouge&quot;&gt;Singleton Pattern&lt;/code&gt;:&lt;/p&gt;
 
 &lt;blockquote&gt;

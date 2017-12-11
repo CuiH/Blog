@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>The Singleton Pattern</title>
+	<title>The Singleton Design Pattern</title>
 
 	<!-- CSS -->
 	<link rel="stylesheet" href="/assets/css/main.css" type="text/css">
@@ -23,7 +23,7 @@
 </header>
 
 <div class="post">
-	<div class="post-title">The Singleton Pattern</div>
+	<div class="post-title">The Singleton Design Pattern</div>
 	<span class="post-date">
 		<time>11 Jul 2017</time>
 	</span>
@@ -41,14 +41,14 @@
 	</div>
 
 	<h2 id="definition">Definition</h2>
-<p>In some cases, our program requires that a certain class should have only one instance, such as the <code class="highlighter-rouge">Printer</code> class and <code class="highlighter-rouge">ThreadPool</code> class in Java. This design pattern is called <code class="highlighter-rouge">Singleton Pattern</code>:</p>
+<p>In some cases, we want a certain class to have only one instance, such as the <code class="highlighter-rouge">Printer</code> class and the <code class="highlighter-rouge">ThreadPool</code> class in Java. This design pattern is called the <code class="highlighter-rouge">Singleton Pattern</code>:</p>
 
 <blockquote>
   <p>To restrict the instantiation of a class to one object, and provide a global access point.</p>
 </blockquote>
 
-<h2 id="the-simplest-singleton-pattern">The Simplest Singleton Pattern</h2>
-<p>Let’s answer an interesting question first: Can the <code class="highlighter-rouge">constructor</code> be decorated as<code class="highlighter-rouge">private</code> in Java?</p>
+<h2 id="the-simplest-singleton-pattern">The simplest singleton pattern</h2>
+<p>Let’s answer an interesting question first: can a <code class="highlighter-rouge">constructor</code> be decorated as <code class="highlighter-rouge">private</code> in Java?</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test</span> <span class="o">{</span>
 
@@ -57,9 +57,9 @@
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>In fact, this code can be compiled, but what’s the meaning of this? How can we instantiate this class? We know that private methods can only be invoked inside the class, and since the only constructor is private, how to get into this class without an instance?</p>
+<p>In fact, this code can be compiled, but what’s the meaning of this? How to instantiate this class? We know that private methods can only be invoked inside the class, and since the only constructor is private, how to get into this class without an instance?</p>
 
-<p>The answer is obvious now: we can create a <code class="highlighter-rouge">public static method</code> to invoke the constructor:</p>
+<p>The answer is obvious: we can create a <code class="highlighter-rouge">public static</code> method to invoke the constructor:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test</span> <span class="o">{</span>
 
@@ -74,7 +74,7 @@
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>This exercise gives us a method to implement the simplest sigleton pattern, that is, we can control the instantiation through a global static method and a private constructor. Actually, if we choose to create a class with sigleton pattern in <code class="highlighter-rouge">Intellij</code>, we will get the following template:</p>
+<p>This example gives us one way to implement the simplest sigleton pattern, that we can control the instantiation with a pulbic static method and a private constructor. Actually, if we choose to create a class with sigleton pattern in <code class="highlighter-rouge">Intellij</code>, we will get the following template:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleSingleton</span> <span class="o">{</span>
     
@@ -89,10 +89,10 @@
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>It seems that we have perfectly addressed the problem! However, if you are familiar with the <code class="highlighter-rouge">class loading mechanism in Java</code>, you’ll know that <code class="highlighter-rouge">class-level static statements</code> are executed once the class is loaded. If unfortunately, the initialization process is time-consuming, and the instance of this class is never used after creation, this will be very wasteful.</p>
+<p>It seems that we have perfectly addressed the problem! However, if you are familiar with the <code class="highlighter-rouge">class loading mechanism</code> in Java, you’ll know that <code class="highlighter-rouge">class-level static statements</code> are executed once the class is loaded. If, unfortunately, the initialization process is time-consuming, and the instance of this class is never used after creation, this will be very wasteful.</p>
 
-<h2 id="eager-loading--lazy-loading">Eager Loading &amp; Lazy Loading</h2>
-<p>The method above is called <code class="highlighter-rouge">Eager Loading</code>, that is:</p>
+<h2 id="eager-loading--lazy-loading">Eager loading &amp; Lazy loading</h2>
+<p>The method above is called the <code class="highlighter-rouge">Eager Loading</code>:</p>
 
 <blockquote>
   <p>Whenever and whether the instance is used, always eargely create it during class loading.</p>
@@ -119,16 +119,16 @@
 <p>This is the <code class="highlighter-rouge">Lazy Loading</code>:</p>
 
 <blockquote>
-  <p>Create the instance at the first request, and directly return it when requested again.</p>
+  <p>Create the instance at the first request, and directly return it when being requested again.</p>
 </blockquote>
 
-<h2 id="thread-safe-considerations">Thread-safe Considerations</h2>
-<p>Althought the lazing loading achieves the delayed loading, it has a fatal problem: it is not thread-safe. If we use the following invokation sequence, two different instances will be created:</p>
+<h2 id="thread-safe-considerations">Thread-safe considerations</h2>
+<p>Although the lazing loading looks good, it has a fatal problem: it is not thread-safe. If we have the following invocation sequence, two different instances will be created:</p>
 
 <ol>
   <li><code class="highlighter-rouge">Thread #1</code> enters method <code class="highlighter-rouge">getInstance()</code>, and passes the <code class="highlighter-rouge">if</code> judgement at [a], but its time slice ends before executing <code class="highlighter-rouge">[b]</code>.</li>
-  <li><code class="highlighter-rouge">Thread #2</code> enters method <code class="highlighter-rouge">getInstance()</code>, when <code class="highlighter-rouge">ourInstance</code> is still <code class="highlighter-rouge">null</code>, so it passes the judgement and executes <code class="highlighter-rouge">[b]</code>. Finally it creates a new <code class="highlighter-rouge">SimpleSigleton</code> instance and returns it.</li>
-  <li><code class="highlighter-rouge">Thread #1</code> executes <code class="highlighter-rouge">[b]</code>, and creates a new <code class="highlighter-rouge">SimpleSigleton</code> instance, which overrides the instance created by <code class="highlighter-rouge">Thread #2</code>, and returns the new instance.</li>
+  <li><code class="highlighter-rouge">Thread #2</code> enters method <code class="highlighter-rouge">getInstance()</code>, when <code class="highlighter-rouge">ourInstance</code> is still <code class="highlighter-rouge">null</code>, so it passes the judgement and executes <code class="highlighter-rouge">[b]</code>. Finally a new <code class="highlighter-rouge">SimpleSigleton</code> instance is created and returned.</li>
+  <li><code class="highlighter-rouge">Thread #1</code> executes <code class="highlighter-rouge">[b]</code>, and creates a new <code class="highlighter-rouge">SimpleSigleton</code> instance, which overrides the instance created by <code class="highlighter-rouge">Thread #2</code>. This new instance is returned.</li>
 </ol>
 
 <p>To address this problem, using Java’s <code class="highlighter-rouge">synchronization (locking) mechanism</code> can be a good method:</p>
@@ -140,12 +140,12 @@
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">Synchronized methods</code> can only be accessed by one thread at one time, which fulfills the thread-safe requirement. However, it brings the <code class="highlighter-rouge">performance</code> issue: Java performs <code class="highlighter-rouge">locking</code> and <code class="highlighter-rouge">unlocking</code> operations when handling synchronized codes, and they may take some time.</p>
+<p><code class="highlighter-rouge">Synchronized</code> methods can only be accessed by one thread at the same time, which fulfills the thread-safe requirement. However, it brings the <code class="highlighter-rouge">performance</code> issue: Java performs <code class="highlighter-rouge">locking</code> and <code class="highlighter-rouge">unlocking</code> operations when handling synchronized codes, and they may take some time.</p>
 
-<p>In fact, after analyzing this code, we will find that synchronization is only indispensable at the first invocation, when the instance is not yet created. If we need to access this method many times, all synchronizations are meaningless except the the first time.</p>
+<p>In fact, after analyzing this code, we will find that synchronization is only necessary at the first invocation, when the instance is not yet created. If we need to access this method many times, all synchronizations are meaningless except the the first one.</p>
 
-<h2 id="double-checked-locking">Double-checked Locking</h2>
-<p>To achieve thread-safe, and at the same time address the performance issue, some people suggested a more complicated solution:</p>
+<h2 id="double-checked-locking">Double-checked locking</h2>
+<p>To achieve thread-safe, and in the meantime address the performance issue, some people suggested a more complicated solution:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">synchronized</span>  <span class="n">SimpleSingleton</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">ourInstance</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
@@ -160,16 +160,16 @@
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Since only the instance creation statement requires to be locked, we use a <code class="highlighter-rouge">synchronized block</code> instead of synchronized method. Also, to avoid the problem we met in lazing loading, <code class="highlighter-rouge">ourInstance</code> is checked a second time inside the synchronization block before we really create a instance. As only one thread can access the synchronized block at one time, only one instance will be created.</p>
+<p>Since only the instance creation statement needs to be locked, we use a <code class="highlighter-rouge">synchronized block</code> instead of synchronized method. Also, to avoid the problem we met in lazing loading, <code class="highlighter-rouge">ourInstance</code> is checked a second time inside the synchronized block before we really create a instance. As only one thread can access the synchronized block at the same time, only one instance will be created.</p>
 
-<h2 id="the-problem-brought-by-the-jvm">The Problem Brought by the JVM</h2>
-<p>The double-checked locking seems to be perfect, but regrettably, it will not work in some cases. The problem is that the JVM allows the compiler to <code class="highlighter-rouge">reorder instructions</code>, which cannot guarantee the <code class="highlighter-rouge">orderliness (not sure)</code>. This may involve deeper analysis, and I don’t want to have further discussion concerning this topic in this blog, so I just give a conclusion:</p>
+<h2 id="the-problem-brought-by-the-jvm">The problem brought by the JVM</h2>
+<p>The double-checked locking seems to be perfect, but regrettably, it will not work in some cases. The problem is that the JVM allows the compiler to <code class="highlighter-rouge">reorder instructions</code>, which cannot guarantee the <code class="highlighter-rouge">orderliness</code>. This may involve deeper analysis, and I don’t want to discuss further in this blog, so I just give the conclusion:</p>
 
 <blockquote>
-  <p>Before the <code class="highlighter-rouge">new</code> operation finishes, the compiler may change the reference on the left of the <code class="highlighter-rouge">=</code> operator to <code class="highlighter-rouge">non-null</code> in advance. In multi-thread cases, a <code class="highlighter-rouge">not fully initialized object</code> will be returned.</p>
+  <p>Before the <code class="highlighter-rouge">new</code> operation finishes, the compiler may change the reference on the left of the <code class="highlighter-rouge">=</code> operator to <code class="highlighter-rouge">not-null</code> in advance. In multi-thread cases, a <code class="highlighter-rouge">not fully initialized object</code> will be returned.</p>
 </blockquote>
 
-<p>This sounds ridiculous, but it happens. However, luckily Java provides a mechanism to avoid this problem: the keyword <code class="highlighter-rouge">volative</code>:</p>
+<p>This sounds ridiculous, but it happens. Luckily, Java provides a mechanism to avoid this problem: the keyword <code class="highlighter-rouge">volative</code>:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleSingleton</span> <span class="o">{</span>
 
@@ -192,9 +192,9 @@
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Pay attention to the statement at <code class="highlighter-rouge">[a]</code>, where we add a <code class="highlighter-rouge">volatile</code> to <code class="highlighter-rouge">ourInstance</code>. As for its specific function, I will discuss in another blog (maybe). What we need to know here is that the keyword <code class="highlighter-rouge">volatile</code> prohibits JVM from doing <code class="highlighter-rouge">instructions reordering</code>.</p>
+<p>Note that at <code class="highlighter-rouge">[a]</code>, a <code class="highlighter-rouge">volatile</code> keyword is added to <code class="highlighter-rouge">ourInstance</code>. What we need to know here is that <code class="highlighter-rouge">volatile</code> prevents JVM from <code class="highlighter-rouge">reordering instructions</code>.</p>
 
-<p>Therefore, finally, we have developed a thread-safe singleton pattern class with high-performance.</p>
+<p>Finally, we have developed a thread-safe singleton pattern class with high-performance.</p>
 
 	
 </div>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.0">Jekyll</generator><link href="http://cuih.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="http://cuih.xyz/" rel="alternate" type="text/html" /><updated>2017-11-06T22:17:47-06:00</updated><id>http://cuih.xyz/</id><title type="html">Life is a Struggle</title><subtitle>Life is a struggle.</subtitle><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><entry><title type="html">DP and Knapsack Problem</title><link href="http://cuih.xyz/2017/10/09/DP-and-Knapsack-Problem.html" rel="alternate" type="text/html" title="DP and Knapsack Problem" /><published>2017-10-09T23:30:00-05:00</published><updated>2017-10-09T23:30:00-05:00</updated><id>http://cuih.xyz/2017/10/09/DP%20and%20Knapsack%20Problem</id><content type="html" xml:base="http://cuih.xyz/2017/10/09/DP-and-Knapsack-Problem.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.0">Jekyll</generator><link href="http://cuih.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="http://cuih.xyz/" rel="alternate" type="text/html" /><updated>2017-12-11T16:06:42-06:00</updated><id>http://cuih.xyz/</id><title type="html">Life is a Struggle</title><subtitle>Life is a struggle.</subtitle><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><entry><title type="html">DP and Knapsack Problem</title><link href="http://cuih.xyz/2017/10/09/DP-and-Knapsack-Problem.html" rel="alternate" type="text/html" title="DP and Knapsack Problem" /><published>2017-10-09T23:30:00-05:00</published><updated>2017-10-09T23:30:00-05:00</updated><id>http://cuih.xyz/2017/10/09/DP%20and%20Knapsack%20Problem</id><content type="html" xml:base="http://cuih.xyz/2017/10/09/DP-and-Knapsack-Problem.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;DP stands for &lt;code class=&quot;highlighter-rouge&quot;&gt;dynamic programming&lt;/code&gt;, which is very common in sloving problems. Many people tend to think that it is difficult, but actually, if you understand the principles, it can be easy to use. In this blog, I will give a brief introduction to DP and analyze with maybe the most typical DP problem, the &lt;code class=&quot;highlighter-rouge&quot;&gt;knapsack problem&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;an-example&quot;&gt;An example&lt;/h2&gt;
@@ -568,10 +568,10 @@ Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3
 
 &lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
 &lt;p&gt;There are many sorting algorithms. Although few people implement them personally, have a understanding of their principles is always benefical.&lt;/p&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="algorithm" /><summary type="html">Overview When processing data, sorting algorithms are always used. Although most languages have related libraries that can be easily invoked, understanding the principles of such algorithms can help us make better use of them.</summary></entry><entry><title type="html">HashMap in Java 8</title><link href="http://cuih.xyz/2017/08/16/HashMap-in-Java-8.html" rel="alternate" type="text/html" title="HashMap in Java 8" /><published>2017-08-16T21:00:00-05:00</published><updated>2017-08-16T21:00:00-05:00</updated><id>http://cuih.xyz/2017/08/16/HashMap%20in%20Java%208</id><content type="html" xml:base="http://cuih.xyz/2017/08/16/HashMap-in-Java-8.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;Today when I was viewing the Java source code, I found that the implementation of &lt;code class=&quot;highlighter-rouge&quot;&gt;HashMap&lt;/code&gt; is somewhat different from my memory. Then I referred to some materials and figured out that It was optimized in &lt;code class=&quot;highlighter-rouge&quot;&gt;JDK 1.8&lt;/code&gt;, adding some new data structures to improve the performance, but the overall design idea is still the same. First, we start with &lt;code class=&quot;highlighter-rouge&quot;&gt;hash&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;In &lt;code class=&quot;highlighter-rouge&quot;&gt;JDK 1.8&lt;/code&gt;, the &lt;code class=&quot;highlighter-rouge&quot;&gt;HashMap&lt;/code&gt; was optimized and implemented differently from the previous version. Some new data structures are added to improve the performance, but the overall design idea is still the same.&lt;/p&gt;
 
 &lt;h2 id=&quot;hash&quot;&gt;Hash&lt;/h2&gt;
-&lt;p&gt;Say we have a large amount of data pairs, such as a phone book:&lt;/p&gt;
+&lt;p&gt;First, we start with &lt;code class=&quot;highlighter-rouge&quot;&gt;hash&lt;/code&gt;. Say we have a large amount of data pairs, such as a phone book:&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Hao Cui: 1234567890
 Yang Pan: 9876543210
@@ -580,24 +580,24 @@ Mo Tang: 233332333
 
 &lt;p&gt;With what data structure can we get the fastest &lt;code class=&quot;highlighter-rouge&quot;&gt;access speed&lt;/code&gt;?&lt;/p&gt;
 
-&lt;p&gt;The simplest thought is to store sequentially, and for instance, using a &lt;code class=&quot;highlighter-rouge&quot;&gt;linked list&lt;/code&gt;. What we do is to maintain the head and tail node, so the time complexity of read is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(1)&lt;/code&gt;. However, if we want to get a phone number by name, a head-to-tail traverse is not avoidable, which has a time complexity of &lt;code class=&quot;highlighter-rouge&quot;&gt;O(n)&lt;/code&gt;. When the data grows larger, this can be extremely inefficient.&lt;/p&gt;
+&lt;p&gt;The simplest thought is to store sequentially. For instance, use a &lt;code class=&quot;highlighter-rouge&quot;&gt;linked list&lt;/code&gt;. What we do is to maintain the head and tail node, so the time complexity of read is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(1)&lt;/code&gt;. However, if we want to get a phone number by name, a head-to-tail traverse is not avoidable, which has a time complexity of &lt;code class=&quot;highlighter-rouge&quot;&gt;O(n)&lt;/code&gt;. When the data grows larger, this can be extremely inefficient.&lt;/p&gt;
 
-&lt;p&gt;A improvement is to use a &lt;code class=&quot;highlighter-rouge&quot;&gt;search tree&lt;/code&gt; instead. Now the access time is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(logn)&lt;/code&gt;, which sounds gread, but can we do even better?&lt;/p&gt;
+&lt;p&gt;A improvement is to use a &lt;code class=&quot;highlighter-rouge&quot;&gt;search tree&lt;/code&gt; instead. Now the access time is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(logn)&lt;/code&gt;, which sounds great, but can it be even better?&lt;/p&gt;
 
-&lt;p&gt;As we know, we can access any item in an array by index within &lt;code class=&quot;highlighter-rouge&quot;&gt;O(1)&lt;/code&gt; time, so naturally we try to store data pairs into an array, but since the key of our data is &lt;code class=&quot;highlighter-rouge&quot;&gt;string&lt;/code&gt;, how to map it to a &lt;code class=&quot;highlighter-rouge&quot;&gt;index&lt;/code&gt;? That’s where hash works.&lt;/p&gt;
+&lt;p&gt;As we know, we can access any item from an array by index within &lt;code class=&quot;highlighter-rouge&quot;&gt;O(1)&lt;/code&gt; time, so we may try to store data pairs in an array, but since the key of our data is &lt;code class=&quot;highlighter-rouge&quot;&gt;string&lt;/code&gt;, how to map it to a &lt;code class=&quot;highlighter-rouge&quot;&gt;index&lt;/code&gt;? That’s where hash works.&lt;/p&gt;
 
-&lt;p&gt;The essence of hash is a &lt;code class=&quot;highlighter-rouge&quot;&gt;mapping function&lt;/code&gt;, compressing inputs into fixed-length outputs, which is popular in crytology. In our cases, we &lt;code class=&quot;highlighter-rouge&quot;&gt;hash&lt;/code&gt; keys to indices of an array, so we can accessing values with constant time complexity.&lt;/p&gt;
+&lt;p&gt;The essence of hash is a &lt;code class=&quot;highlighter-rouge&quot;&gt;mapping function&lt;/code&gt;, compressing inputs into fixed-length outputs, which is popular in cryptology. In our case, we &lt;code class=&quot;highlighter-rouge&quot;&gt;hash&lt;/code&gt; keys to array indices, so we can access values within constant time.&lt;/p&gt;
 
-&lt;h2 id=&quot;the-implementation-of-hash&quot;&gt;The Implementation of Hash&lt;/h2&gt;
-&lt;p&gt;There are three typical implementations of hash, including &lt;code class=&quot;highlighter-rouge&quot;&gt;static hash&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;extendable hash&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;liner hash&lt;/code&gt;. To have a better understanding of HashMap, we use examples in &lt;code class=&quot;highlighter-rouge&quot;&gt;DBMS&lt;/code&gt; to introduce the first two.&lt;/p&gt;
+&lt;h2 id=&quot;the-implementation-of-hash&quot;&gt;The implementation of hash&lt;/h2&gt;
+&lt;p&gt;There are three typical implementations of hash, including &lt;code class=&quot;highlighter-rouge&quot;&gt;static hash&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;extendable hash&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;linear hash&lt;/code&gt;. To have a better understanding of HashMap, I will use examples in &lt;code class=&quot;highlighter-rouge&quot;&gt;DBMS&lt;/code&gt; to introduce the first two.&lt;/p&gt;
 
-&lt;h3 id=&quot;static-hash&quot;&gt;Static Hash&lt;/h3&gt;
+&lt;h3 id=&quot;static-hash&quot;&gt;Static hash&lt;/h3&gt;
 &lt;p&gt;This is the simplest hash. Suppose we have N buckets, and for any input, we use hash function &lt;code class=&quot;highlighter-rouge&quot;&gt;h&lt;/code&gt; to calculate its index, and then insert it to that bucket. If that bucket is full, we use &lt;code class=&quot;highlighter-rouge&quot;&gt;overflow chains&lt;/code&gt;:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/0910/0-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;extendable-hash&quot;&gt;Extendable Hash&lt;/h3&gt;
-&lt;p&gt;Searching in a overflow chain has linear time complexity. To avoid this, we can duplicate the number of buckets before a chain is created, and redistribute all data items. However, the cost is high to access all data, so extendable hash maintains a &lt;code class=&quot;highlighter-rouge&quot;&gt;catagory&lt;/code&gt; of all bucktes. When inserting data to a full bucket, the original bucket splits, and the catagory duplicates (Here is only a simple example, not including the concepts of &lt;code class=&quot;highlighter-rouge&quot;&gt;global depth&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;local depth&lt;/code&gt;. If you are interested please refer to related articles):&lt;/p&gt;
+&lt;h3 id=&quot;extendable-hash&quot;&gt;Extendable hash&lt;/h3&gt;
+&lt;p&gt;Searching in a overflow chain has linear time complexity. To avoid this, we can duplicate the number of buckets before a chain is created, and redistribute all data items. However, the cost is high to access all data, so extendable hash maintains a &lt;code class=&quot;highlighter-rouge&quot;&gt;category&lt;/code&gt; of all bucktes. When inserting data to a full bucket, the original bucket splits, and the category duplicates (this is only a simple example, not including the concepts of &lt;code class=&quot;highlighter-rouge&quot;&gt;global depth&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;local depth&lt;/code&gt;):&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
@@ -605,15 +605,15 @@ Mo Tang: 233332333
 &lt;img src=&quot;/assets/images/0910/1-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Insert &lt;code class=&quot;highlighter-rouge&quot;&gt;9&lt;/code&gt;. The catagory will be duplicated.
+    &lt;p&gt;Insert &lt;code class=&quot;highlighter-rouge&quot;&gt;9&lt;/code&gt;. The category will be duplicated.
 &lt;img src=&quot;/assets/images/0910/1-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h2 id=&quot;hashcode-and-equals&quot;&gt;hashCode() and equals()&lt;/h2&gt;
-&lt;p&gt;By here, everyone should know that if the hash values of two data items are the same, their real values can be different. As we know, there are two methods, &lt;code class=&quot;highlighter-rouge&quot;&gt;hashCode()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;equals()&lt;/code&gt;, defined in class &lt;code class=&quot;highlighter-rouge&quot;&gt;Object&lt;/code&gt;. In fact, HashMap use them to judge whether a key exists in the map, and which &lt;code class=&quot;highlighter-rouge&quot;&gt;bucket&lt;/code&gt; should it be put into: Java invokes &lt;code class=&quot;highlighter-rouge&quot;&gt;hashCode()&lt;/code&gt; first to get the hash value of an object, and then find the target bucket, invoking &lt;code class=&quot;highlighter-rouge&quot;&gt;equals()&lt;/code&gt; of every data item inside the bucket to find the real data item.&lt;/p&gt;
+&lt;p&gt;By here, everyone should know that if the hash values of two data items are the same, their actual values can be different. As we know, there are two methods, &lt;code class=&quot;highlighter-rouge&quot;&gt;hashCode()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;equals()&lt;/code&gt;, defined in class &lt;code class=&quot;highlighter-rouge&quot;&gt;Object&lt;/code&gt;. HashMap use them to judge whether a key exists in the map, and which &lt;code class=&quot;highlighter-rouge&quot;&gt;bucket&lt;/code&gt; should it be put into: when searching for a value, Java invokes &lt;code class=&quot;highlighter-rouge&quot;&gt;hashCode()&lt;/code&gt; first to get the hash value of the key, and then finds the target bucket, invoking &lt;code class=&quot;highlighter-rouge&quot;&gt;equals()&lt;/code&gt; of every data item inside the bucket to find the target data item.&lt;/p&gt;
 
-&lt;p&gt;You should realize that, we can override these two methods to implement our own concept of &lt;code class=&quot;highlighter-rouge&quot;&gt;equality&lt;/code&gt;. For example, for class &lt;code class=&quot;highlighter-rouge&quot;&gt;Person&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;Note that we can override these two methods to implement our own concept of &lt;code class=&quot;highlighter-rouge&quot;&gt;equality&lt;/code&gt;. For example, for class &lt;code class=&quot;highlighter-rouge&quot;&gt;Person&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Person&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
@@ -630,7 +630,7 @@ Mo Tang: 233332333
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;we define: &lt;code class=&quot;highlighter-rouge&quot;&gt;Two people&lt;/code&gt; can be reagarded identical if their &lt;code class=&quot;highlighter-rouge&quot;&gt;ssd&lt;/code&gt;s are the same. So we override &lt;code class=&quot;highlighter-rouge&quot;&gt;hashCode()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;equals()&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;We define: &lt;code class=&quot;highlighter-rouge&quot;&gt;two people&lt;/code&gt; can be reagarded as identical if their &lt;code class=&quot;highlighter-rouge&quot;&gt;ssd&lt;/code&gt;s are the same. So we override the &lt;code class=&quot;highlighter-rouge&quot;&gt;hashCode()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;equals()&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hashCode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -659,11 +659,11 @@ Mo Tang: 233332333
 &lt;h2 id=&quot;hashmap-in-java&quot;&gt;HashMap in Java&lt;/h2&gt;
 &lt;p&gt;The implementation of HashMap in Java is similar to &lt;code class=&quot;highlighter-rouge&quot;&gt;the combination of static hash and extendable hash&lt;/code&gt;. Before JDK 1.8, HashMap was stored by &lt;code class=&quot;highlighter-rouge&quot;&gt;array + linked list&lt;/code&gt;, Keys were mapped to indices of an array, and a doubly linked list was used to implement every bucket. When searching, JDK first found the bucket by hash value, and then traversed the list to get the target data item.&lt;/p&gt;
 
-&lt;p&gt;The results of a hash function may collide, which means two different data items could be mapped to the same bucket. It is easy to conclude that if we don;t take &lt;code class=&quot;highlighter-rouge&quot;&gt;data skews&lt;/code&gt; into consideration, for a certain amount of data, the probability of collisions depends on the performance of the hash function as well as the number of buckets. Java has done well in the &lt;code class=&quot;highlighter-rouge&quot;&gt;degree of hash&lt;/code&gt;, so how to possiby avoid collisions without wasting spaces? The answer is to use &lt;code class=&quot;highlighter-rouge&quot;&gt;dynamic exdentable data structure&lt;/code&gt;. The initial number of buckets is small, but as we add more data items, the array will be extended after reaching a threshold.&lt;/p&gt;
+&lt;p&gt;The results of a hash function may collide, which means two different data items could be mapped to the same bucket. It is easy to conclude that if we don’t take &lt;code class=&quot;highlighter-rouge&quot;&gt;data skews&lt;/code&gt; into consideration, for a certain amount of data, the probability of collision depends on the performance of the hash function as well as the number of buckets. Java has done well in the &lt;code class=&quot;highlighter-rouge&quot;&gt;degree of hash&lt;/code&gt;, so how to possibly avoid collisions without wasting spaces? The answer is to use a &lt;code class=&quot;highlighter-rouge&quot;&gt;dynamic exdentable data structure&lt;/code&gt;. The initial number of buckets is small, but as we add more data items, the array will be extended after reaching a threshold.&lt;/p&gt;
 
-&lt;p&gt;In JDK 1.8, an important optimization is, if there are too many data items inside a bucket, it (that exact bucket) will use a &lt;code class=&quot;highlighter-rouge&quot;&gt;red-black tree&lt;/code&gt; instead, to improve the access speed. In this blog, we focus on hash, so the red-black tree will not be discussed.&lt;/p&gt;
+&lt;p&gt;In JDK 1.8, an important optimization is, if there are too many data items inside a bucket, that bucket will change its structure to a &lt;code class=&quot;highlighter-rouge&quot;&gt;red-black tree&lt;/code&gt; to improve the access speed. In this blog, we focus on hash, so the red-black tree will not be discussed.&lt;/p&gt;
 
-&lt;p&gt;Therefore, the HashMap in Java 8 is implemented by &lt;code class=&quot;highlighter-rouge&quot;&gt;array + linkedlist + red-black tree&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To sum up, the HashMap in Java 8 is implemented by &lt;code class=&quot;highlighter-rouge&quot;&gt;array + linkedlist + red-black tree&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;important-members&quot;&gt;Important members&lt;/h3&gt;
 &lt;p&gt;Some important members in class HashMap:&lt;/p&gt;
@@ -675,7 +675,7 @@ Mo Tang: 233332333
 &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TREEIFY_THRESHOLD&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;*Attention: the keyword &lt;code class=&quot;highlighter-rouge&quot;&gt;transient&lt;/code&gt; is for Java &lt;code class=&quot;highlighter-rouge&quot;&gt;serialization&lt;/code&gt;, which indicates that these fields are ignored in serializaiton.&lt;/p&gt;
+&lt;p&gt;*Attention: the keyword &lt;code class=&quot;highlighter-rouge&quot;&gt;transient&lt;/code&gt; is for Java &lt;code class=&quot;highlighter-rouge&quot;&gt;serialization&lt;/code&gt;, which indicates that these fields will be ignored in serializaiton.&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;table&lt;/code&gt; is the array that stores buckets. Every bucket is a linked list (or a red-black tree). &lt;code class=&quot;highlighter-rouge&quot;&gt;Node&lt;/code&gt; simply implements the interface &lt;code class=&quot;highlighter-rouge&quot;&gt;Map.Entry&lt;/code&gt;, storing key-value maps.&lt;/p&gt;
 
@@ -683,9 +683,9 @@ Mo Tang: 233332333
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;threshold&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;loadFactor&lt;/code&gt; are used together. &lt;code class=&quot;highlighter-rouge&quot;&gt;threshold = table.length * loadFactor&lt;/code&gt;. When the number of items in the map reaches this threshold, the array will be extended.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;TREEIFY_THRESHOLD&lt;/code&gt; is for red-black tree. When the number of items inside a bucket reaches it, the data structure of this bucket will change to red-black tree.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;TREEIFY_THRESHOLD&lt;/code&gt; is for red-black tree. When the number of items inside a bucket reaches this threshold, the data structure of this bucket will change to red-black tree.&lt;/p&gt;
 
-&lt;p&gt;We should mention that the number of buckets in HashMap is always &lt;code class=&quot;highlighter-rouge&quot;&gt;a powerof 2&lt;/code&gt;. We will discuss the convience brought by this later.&lt;/p&gt;
+&lt;p&gt;Note that the number of buckets in HashMap is always &lt;code class=&quot;highlighter-rouge&quot;&gt;a power of 2&lt;/code&gt;. You will see the convenience brought by this later.&lt;/p&gt;
 
 &lt;h3 id=&quot;method-hash&quot;&gt;Method hash()&lt;/h3&gt;
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hash&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -694,9 +694,9 @@ Mo Tang: 233332333
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;A classical way to do hash is to calculate &lt;code class=&quot;highlighter-rouge&quot;&gt;key % number of buckets&lt;/code&gt; and the result is the index of the bucket. When the input data is even, the distrubution of data among buckets is also even. The design of &lt;code class=&quot;highlighter-rouge&quot;&gt;hashCode()&lt;/code&gt; in class &lt;code class=&quot;highlighter-rouge&quot;&gt;Object&lt;/code&gt; ensures the evenness to some extent (we will not go further on this topic), so we can make use of it.&lt;/p&gt;
+&lt;p&gt;A classical way of hash is to calculate &lt;code class=&quot;highlighter-rouge&quot;&gt;key % number of buckets&lt;/code&gt; and the result is the index of the bucket. When the input data is even, the distrubution of data among buckets is also even. The design of &lt;code class=&quot;highlighter-rouge&quot;&gt;hashCode()&lt;/code&gt; in class &lt;code class=&quot;highlighter-rouge&quot;&gt;Object&lt;/code&gt; ensures the evenness to some extent (we will not go further on this topic), so HashMap makes use of it.&lt;/p&gt;
 
-&lt;p&gt;An interesting point is that, &lt;code class=&quot;highlighter-rouge&quot;&gt;hash()&lt;/code&gt; first do an &lt;code class=&quot;highlighter-rouge&quot;&gt;xor&lt;/code&gt; operation between the higher-16 bits and lower-16 bits of the input. According to the comments, this is to always take the higher bits into consideration. Due to the mod operation, if the size of the array is small, higher bits will never participant in the calculation. To achieve a evener data distribution, it just move the impact of the higher bits downwards, so they are also considered when the array size is small.&lt;/p&gt;
+&lt;p&gt;An interesting point is that, &lt;code class=&quot;highlighter-rouge&quot;&gt;hash()&lt;/code&gt; first do an &lt;code class=&quot;highlighter-rouge&quot;&gt;xor&lt;/code&gt; operation on the higher-16 bits and lower-16 bits of the input. According to the comments, this is to always take the higher bits into consideration. Due to the mod operation, if the size of the array is small, higher bits will never participant in the calculation. To achieve a evener data distribution, it just move the impact of the higher bits downwards, so they are also considered when the array size is small.&lt;/p&gt;
 
 &lt;p&gt;You may notice that there is no &lt;code class=&quot;highlighter-rouge&quot;&gt;mod operation&lt;/code&gt; in this function, but before JDK 1.8, here existed such a function:&lt;/p&gt;
 
@@ -705,7 +705,7 @@ Mo Tang: 233332333
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;We know that the efficiency of mod operation is low, while &lt;code class=&quot;highlighter-rouge&quot;&gt;bitwise operation&lt;/code&gt; is efficient. Due to the size of buckets, which is alway &lt;code class=&quot;highlighter-rouge&quot;&gt;a power of 2&lt;/code&gt;, we can simply do an &lt;code class=&quot;highlighter-rouge&quot;&gt;bitwise AND&lt;/code&gt; operation between the input and &lt;code class=&quot;highlighter-rouge&quot;&gt;the number of buckets minus one&lt;/code&gt;. The result is the same as a mod operation, but the speed is faster. In JDK 1.8, this function is deleted, and instead the line of code will be executed whenever an index is needed.&lt;/p&gt;
+&lt;p&gt;We know that the efficiency of mod operation is low, while &lt;code class=&quot;highlighter-rouge&quot;&gt;bitwise operation&lt;/code&gt; is much more efficient. Due to the size of buckets, which is alway &lt;code class=&quot;highlighter-rouge&quot;&gt;a power of 2&lt;/code&gt;, we can simply do a &lt;code class=&quot;highlighter-rouge&quot;&gt;bitwise AND&lt;/code&gt; operation between the input and &lt;code class=&quot;highlighter-rouge&quot;&gt;the number of buckets minus one&lt;/code&gt;. The result is the same as a mod operation, but it runs faster. In JDK 1.8, this function is deleted, and instead this line of code will be executed whenever an index is needed.&lt;/p&gt;
 
 &lt;h2 id=&quot;method-put&quot;&gt;Method put()&lt;/h2&gt;
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;V&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;K&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;V&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -756,7 +756,7 @@ Mo Tang: 233332333
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;It looks a little bit complicate, with so many &lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt; statements, but it’s not difficult at all. Let’s start from the first &lt;code class=&quot;highlighter-rouge&quot;&gt;if &lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;putVal()&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;It seems to be a little bit complicate. There are so many &lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt; statements, but it’s not difficult at all. Let’s start from the first &lt;code class=&quot;highlighter-rouge&quot;&gt;if &lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;putVal()&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tab&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tab&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -766,18 +766,18 @@ Mo Tang: 233332333
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tab&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hash&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;As we mentioned before, to calculate the index according to the hash value and find the target bucket. If the bucket is &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, create a new Node; otherwise:&lt;/p&gt;
+&lt;p&gt;As I mentioned before, to calculate the index according to the hash value and find the target bucket. If the bucket is &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, create a new Node; otherwise:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;hash&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hash&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; 
     &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;equals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;If the value of first Node of the bucket is the same as the input, update the Node.&lt;/p&gt;
+&lt;p&gt;If the value of first Node in the bucket is the same as the input, update that Node.&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TreeNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;If this bucket uses a red-black-tree, do tree searching and inserting (will not be discussed here); otherwise:&lt;/p&gt;
+&lt;p&gt;If this bucket is a red-black-tree, do tree searching and inserting (will not be discussed here); otherwise:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;binCount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;binCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -793,7 +793,7 @@ Mo Tang: 233332333
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Traverse the linked list. If the key does not exist in this bucket, create a new Node at the end of the bucket, and judge whether the new size reaches the &lt;code class=&quot;highlighter-rouge&quot;&gt;Treeify Threshold&lt;/code&gt;. If so, transform it to a tree. If the key is found in this bucket, update the value.&lt;/p&gt;
+&lt;p&gt;Traverse the linked list. If the key does not exist in this bucket, create a new Node at the end of the list, and judge whether the new size reaches the &lt;code class=&quot;highlighter-rouge&quot;&gt;Treeify Threshold&lt;/code&gt;. If so, transform this bucket to a tree. If the key is found in this bucket, update the value.&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// existing mapping for key&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;V&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;oldValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -804,7 +804,7 @@ Mo Tang: 233332333
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;If it is an updation, return the original value.&lt;/p&gt;
+&lt;p&gt;If it is an update, return the original value.&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;modCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;threshold&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
@@ -815,13 +815,13 @@ Mo Tang: 233332333
 
 &lt;p&gt;Finally, if the new size of the map exceeds the &lt;code class=&quot;highlighter-rouge&quot;&gt;threshold&lt;/code&gt;, expand the array.&lt;/p&gt;
 
-&lt;p&gt;Please pay attention to these two invocations:&lt;/p&gt;
+&lt;p&gt;Pay attention to these two invocations:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;afterNodeAccess&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;afterNodeInsertion&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;evict&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;They are not used in HashMap, but will be implemented in &lt;code class=&quot;highlighter-rouge&quot;&gt;LinkedHashMap&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;They are not used in HashMap, but will be implemented in &lt;code class=&quot;highlighter-rouge&quot;&gt;LinkedHashMap&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;method-resize&quot;&gt;Method resize()&lt;/h3&gt;
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;V&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;[]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;resize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -918,7 +918,7 @@ Mo Tang: 233332333
     &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TreeNode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;V&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newTab&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;oldCap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;If there is only one Node in a bucket, find its new index and copy; if this bucket uses a red-black tree, do related operations (will not be discussed here).&lt;/p&gt;
+&lt;p&gt;If there is only one Node inside a bucket, find its new index and copy; if this bucket uses a red-black tree, do related operations (will not be discussed here).&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;V&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;loHead&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;loTail&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;V&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hiHead&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hiTail&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -942,13 +942,13 @@ Mo Tang: 233332333
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;After the split, data in the original bucket will be transfered to two differnt buckets. Here four variables are used to store the head and tail of the two lists, to ensure the order of the Nodes in the new list is the same as the previous one.&lt;/p&gt;
+&lt;p&gt;After the split, data in the original bucket will be splited into two different buckets. Here four variables are used to store the head and tail of the two lists, which ensure that the order of Nodes in the new list is the same as previous.&lt;/p&gt;
 
-&lt;p&gt;When judging which bucket a Node belongs to, the code adopts a trick. As we mentioned before, we can calculate the index by &lt;code class=&quot;highlighter-rouge&quot;&gt;hash % size of the array&lt;/code&gt;. Since the size is always &lt;code class=&quot;highlighter-rouge&quot;&gt;a power of two&lt;/code&gt;, the &lt;code class=&quot;highlighter-rouge&quot;&gt;last n bits&lt;/code&gt; of the hash value decides its index. For example, say we have two Nodes a, b:&lt;/p&gt;
+&lt;p&gt;When judging which bucket a Node belongs to, there’s a trick. As we mentioned before, we can calculate the index by &lt;code class=&quot;highlighter-rouge&quot;&gt;hash % size of the array&lt;/code&gt;. Since the size is always &lt;code class=&quot;highlighter-rouge&quot;&gt;a power of two&lt;/code&gt;, the &lt;code class=&quot;highlighter-rouge&quot;&gt;last n bits&lt;/code&gt; of the hash value decide its index. For example, say we have two Nodes a, b:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/0910/2-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Now the size of the expanded array is &lt;code class=&quot;highlighter-rouge&quot;&gt;2 ^ (n +1)&lt;/code&gt;. The last &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt; bits of all nodes in this array are the same, so the &lt;code class=&quot;highlighter-rouge&quot;&gt;n + 1&lt;/code&gt;th Node counting from the back will decide its new index, whether to move to another bucket, or remain in the same one. Therefore, we can directly do an bitwise AND operation on the hash value and the the original size of the array, that is, &lt;code class=&quot;highlighter-rouge&quot;&gt;2 ^ n&lt;/code&gt;. If the result is not &lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt;, we know that this Node should be moved to a new bucket.&lt;/p&gt;
+&lt;p&gt;Now the size of the expanded array is &lt;code class=&quot;highlighter-rouge&quot;&gt;2 ^ (n +1)&lt;/code&gt;. The last &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt; bits of all nodes in this array are the same, so the &lt;code class=&quot;highlighter-rouge&quot;&gt;n + 1&lt;/code&gt;th Node counting from the back will decide its new index, whether to move to another bucket, or remain in the previous one. Therefore, we can simply do an bitwise AND operation on the hash value and the the original size of the array, that is, &lt;code class=&quot;highlighter-rouge&quot;&gt;2 ^ n&lt;/code&gt;. If the result is not &lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt;, we know that this Node should be moved to a new bucket.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/0910/2-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -964,14 +964,14 @@ Mo Tang: 233332333
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Since the size of the array is two times as the original one, the new index can be determined by &lt;code class=&quot;highlighter-rouge&quot;&gt;old position + oldCap&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;Since the size of the array is two times as the original one, the new index can be decided by &lt;code class=&quot;highlighter-rouge&quot;&gt;old position + oldCap&lt;/code&gt;:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/0910/2-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;In JDK 1.7, the index for every node will be recalculated after expansion. JDK 1.8 made some optimizations to increase the efficiency.&lt;/p&gt;
 
 &lt;h3 id=&quot;method-get&quot;&gt;Method get()&lt;/h3&gt;
-&lt;p&gt;After all the analysis above, the implementation of &lt;code class=&quot;highlighter-rouge&quot;&gt;get()&lt;/code&gt; can be easy to understand, so I will not introduce it, and only give the source code:&lt;/p&gt;
+&lt;p&gt;After all the analysis above, the implementation of &lt;code class=&quot;highlighter-rouge&quot;&gt;get()&lt;/code&gt; can be easy to understand, so I will not introduce it. Here’s the source code:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;V&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;V&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -1000,8 +1000,8 @@ Mo Tang: 233332333
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
-&lt;p&gt;Hash is a very important function, which is widely used in the field of computerWe always use &lt;code class=&quot;highlighter-rouge&quot;&gt;HashMap&lt;/code&gt;, but if we can know the underlying principles of its implementation, we will make better use of it. Besides, reading the source code is a interesting process.&lt;/p&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="java" /><summary type="html">Overview Today when I was viewing the Java source code, I found that the implementation of HashMap is somewhat different from my memory. Then I referred to some materials and figured out that It was optimized in JDK 1.8, adding some new data structures to improve the performance, but the overall design idea is still the same. First, we start with hash.</summary></entry><entry><title type="html">Traversing a Binary Tree</title><link href="http://cuih.xyz/2017/08/05/Traversing-a-BInary-TRee.html" rel="alternate" type="text/html" title="Traversing a Binary Tree" /><published>2017-08-05T00:30:00-05:00</published><updated>2017-08-05T00:30:00-05:00</updated><id>http://cuih.xyz/2017/08/05/Traversing%20a%20BInary%20TRee</id><content type="html" xml:base="http://cuih.xyz/2017/08/05/Traversing-a-BInary-TRee.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;binary tree&lt;/code&gt; is a very classical data structure, and we have various ways to perform preorder, inorder and postorder traversal on it. The class &lt;code class=&quot;highlighter-rouge&quot;&gt;TreeNode&lt;/code&gt; used in this blog is defined as follows:&lt;/p&gt;
+&lt;p&gt;Hash is a very important function, which is widely applied in the field of Computer Science. We always use &lt;code class=&quot;highlighter-rouge&quot;&gt;HashMap&lt;/code&gt;, but if we understand the underlying principles of its implementation, we can make better use of it. Besides, reading the source code is always an interesting process.&lt;/p&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="java" /><summary type="html">Overview In JDK 1.8, the HashMap was optimized and implemented differently from the previous version. Some new data structures are added to improve the performance, but the overall design idea is still the same.</summary></entry><entry><title type="html">Binary Tree Traversals</title><link href="http://cuih.xyz/2017/08/05/Binary-Tree-Traversals.html" rel="alternate" type="text/html" title="Binary Tree Traversals" /><published>2017-08-05T00:30:00-05:00</published><updated>2017-08-05T00:30:00-05:00</updated><id>http://cuih.xyz/2017/08/05/Binary%20Tree%20Traversals</id><content type="html" xml:base="http://cuih.xyz/2017/08/05/Binary-Tree-Traversals.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;binary tree&lt;/code&gt; is a very classical data structure, and we have various ways to perform preorder, inorder and postorder traversals on it. The class &lt;code class=&quot;highlighter-rouge&quot;&gt;TreeNode&lt;/code&gt; used in this blog is defined as follows:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TreeNode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;val&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -1012,11 +1012,11 @@ Mo Tang: 233332333
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;If there’s no special statement, we use this tree in our examples:&lt;/p&gt;
+&lt;p&gt;If there’s no special statement, we’ll use this tree in our examples:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/0907/0-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;traversing-recursively&quot;&gt;Traversing Recursively&lt;/h2&gt;
+&lt;h2 id=&quot;recursive-travesals&quot;&gt;Recursive travesals&lt;/h2&gt;
 &lt;p&gt;This may be the simplest algorithm of traversing, so I just post the code here:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;preorderWithRecursion&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TreeNode&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -1048,14 +1048,14 @@ Mo Tang: 233332333
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;using-a-stack&quot;&gt;Using a Stack&lt;/h2&gt;
-&lt;p&gt;The key point of traversing a binary tree is how to go back to the parent and traverse another child after we have traversed one child. Here we can use a &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt; to record visited nodes, and its &lt;code class=&quot;highlighter-rouge&quot;&gt;fitst-in-first-out&lt;/code&gt; feature will perfectly help us go back to the parent after the traversal of a subtree.&lt;/p&gt;
+&lt;h2 id=&quot;traversing-with-a-stack&quot;&gt;Traversing with a stack&lt;/h2&gt;
+&lt;p&gt;The key point of traversing a binary tree is how to go back to the parent node and traverse another child after we have traversed one child. Here we can use a &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt; to record visited nodes, and its &lt;code class=&quot;highlighter-rouge&quot;&gt;fitst-in-first-out&lt;/code&gt; feature will perfectly help us go back to the parent after the traversing a subtree.&lt;/p&gt;
 
-&lt;h3 id=&quot;preorder-traversal&quot;&gt;Preorder Traversal&lt;/h3&gt;
+&lt;h3 id=&quot;preorder-traversal&quot;&gt;Preorder traversal&lt;/h3&gt;
 &lt;ol&gt;
-  &lt;li&gt;As for the current node, traverse along the &lt;code class=&quot;highlighter-rouge&quot;&gt;left child&lt;/code&gt;, and keep outputing and pushing to the stack, until current node points to &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Pop the top node of the stack, whose &lt;code class=&quot;highlighter-rouge&quot;&gt;right child&lt;/code&gt; will become the current node&lt;/li&gt;
-  &lt;li&gt;Repeat process #1 and #2, until current node points to &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt; and the stack is empty&lt;/li&gt;
+  &lt;li&gt;As for the current node, traverse along the &lt;code class=&quot;highlighter-rouge&quot;&gt;left child&lt;/code&gt;, and keep outputing and pushing to the stack, until current node points to &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Pop the top node from the stack, and its &lt;code class=&quot;highlighter-rouge&quot;&gt;right child&lt;/code&gt; will become the current node.&lt;/li&gt;
+  &lt;li&gt;Repeat process #1 and #2, until current node points to &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt; and the stack is empty.&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;The code is as follows:&lt;/p&gt;
@@ -1081,8 +1081,8 @@ Mo Tang: 233332333
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;inorder-traversal&quot;&gt;Inorder Traversal&lt;/h3&gt;
-&lt;p&gt;The thinking is similar to the preorder one, but this time we output at the time of popping (from stack). No need to describe the algorithm and here’s the code:&lt;/p&gt;
+&lt;h3 id=&quot;inorder-traversal&quot;&gt;Inorder traversal&lt;/h3&gt;
+&lt;p&gt;The thinking is similar to the preorder one, but this time we output at the time of popping (from stack). Here’s the code:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;inorderWithStack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TreeNode&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LinkedList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;();&lt;/span&gt;
@@ -1106,10 +1106,10 @@ Mo Tang: 233332333
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;postorder-traversal&quot;&gt;Postorder Traversal&lt;/h3&gt;
-&lt;p&gt;This could be a little more complicate. The point is, we should ensure that the parent node is not outputed until all of his children are traversed. A common method is to remember the last node we have outputed, which can act as a indicator for us to judge whether both the left child and the right child have been traversed at a given node. Here I provide three ideas.&lt;/p&gt;
+&lt;h3 id=&quot;postorder-traversal&quot;&gt;Postorder traversal&lt;/h3&gt;
+&lt;p&gt;This could be a little bit complicate. The point is, we should ensure that the parent node is not outputed until all of his children are traversed. A common method is to remember the last outputed node. Here are three possible ideas.&lt;/p&gt;
 
-&lt;p&gt;a) just like the previous solution:&lt;/p&gt;
+&lt;p&gt;a) Just like the previous solution:&lt;/p&gt;
 
 &lt;p&gt;Similar to the preorder and inorder traversal code above. The difference is we record the last outputed node, and before popping the stack, we check whether both children of the top node in the stack have been traversed (or, is &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;), by comparing them with the recorded node:&lt;/p&gt;
 
@@ -1144,12 +1144,12 @@ Mo Tang: 233332333
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;b) another method:&lt;/p&gt;
+&lt;p&gt;b) Another method:&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;The root is the current node, and push it to the stack&lt;/li&gt;
-  &lt;li&gt;Get the top node of the stack. If its children are all &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, or have been traversed (that is, one of them is the last outputed node), pop it and outout it; otherwise push its &lt;code class=&quot;highlighter-rouge&quot;&gt;right&lt;/code&gt; child into the stack (if is not &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;), and then its &lt;code class=&quot;highlighter-rouge&quot;&gt;left&lt;/code&gt; node (if is not &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;)&lt;/li&gt;
-  &lt;li&gt;Repeat process #2, until the stack becomes empty&lt;/li&gt;
+  &lt;li&gt;Push the current node (root) into the stack.&lt;/li&gt;
+  &lt;li&gt;Get the top node of the stack. If its children are all &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, or have been traversed (that is, one of them is the last outputed node), pop it and outout it; otherwise push its &lt;code class=&quot;highlighter-rouge&quot;&gt;right&lt;/code&gt; child into the stack (if it is not &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;), and then its &lt;code class=&quot;highlighter-rouge&quot;&gt;left&lt;/code&gt; node (if it is not &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;).&lt;/li&gt;
+  &lt;li&gt;Repeat process #2, until the stack becomes empty.&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;The code is as follows:&lt;/p&gt;
@@ -1182,9 +1182,9 @@ Mo Tang: 233332333
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;c) using two stacks&lt;/p&gt;
+&lt;p&gt;c) Using two stacks&lt;/p&gt;
 
-&lt;p&gt;This method is somewhat magical. We know that the sequence of postorder traversal is &lt;code class=&quot;highlighter-rouge&quot;&gt;left -&amp;gt; right -&amp;gt; mid&lt;/code&gt;. What if we traverse with &lt;code class=&quot;highlighter-rouge&quot;&gt;mid -&amp;gt; right -&amp;gt; left&lt;/code&gt; and then reverse the result? We can do this using two stacks, traversing with one stack, and outputing the result to another stack, and finally popping nodes from the second stack one by one to get the postorder traversal:&lt;/p&gt;
+&lt;p&gt;This method is somewhat interesting. We know that the sequence of postorder traversal is &lt;code class=&quot;highlighter-rouge&quot;&gt;left -&amp;gt; right -&amp;gt; mid&lt;/code&gt;. What if we traverse by &lt;code class=&quot;highlighter-rouge&quot;&gt;mid -&amp;gt; right -&amp;gt; left&lt;/code&gt; and then reverse the result? We can do this with two stacks, traversing with one stack, and outputing the result to another stack, and finally popping nodes from the second stack one by one to get the postorder traversal:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;postorderWithTwoStacks&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TreeNode&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;();&lt;/span&gt;
@@ -1211,7 +1211,7 @@ Mo Tang: 233332333
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;level-traversal&quot;&gt;Level Traversal&lt;/h2&gt;
-&lt;p&gt;In some cases, we may need to traverse a binary tree level by level. Obviously, using &lt;code class=&quot;highlighter-rouge&quot;&gt;queue&lt;/code&gt; is a good choice. Since it’s simple, only the code:&lt;/p&gt;
+&lt;p&gt;In some cases, we want to traverse a binary tree level by level. Obviously, using &lt;code class=&quot;highlighter-rouge&quot;&gt;queue&lt;/code&gt; is a good choice. It’s simple so I only post the code here:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;levelTraversal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TreeNode&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;();&lt;/span&gt;
@@ -1234,74 +1234,74 @@ Mo Tang: 233332333
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;morris-traversal&quot;&gt;Morris Traversal&lt;/h2&gt;
-&lt;p&gt;The average space complexity of all of the algorithms above, except the recursive ones and the two-stack solution, is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(logn)&lt;/code&gt;. Is there any binary tree traversal algorithm with &lt;code class=&quot;highlighter-rouge&quot;&gt;O(1)&lt;/code&gt; space complexity? The answer is “yes”.
+&lt;p&gt;The average space complexity of all of the algorithms above, except the recursive ones and the two-stack solution, is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(logn)&lt;/code&gt;. Is there any binary tree traversal algorithm that consumes only &lt;code class=&quot;highlighter-rouge&quot;&gt;O(1)&lt;/code&gt; space? The answer is “yes”.
 Such method is called the &lt;code class=&quot;highlighter-rouge&quot;&gt;Morris Traversal&lt;/code&gt;. Here is the description of the &lt;code class=&quot;highlighter-rouge&quot;&gt;inorder&lt;/code&gt; one：&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;If the &lt;code class=&quot;highlighter-rouge&quot;&gt;left&lt;/code&gt; child of current node is &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, output it, and then traverse its &lt;code class=&quot;highlighter-rouge&quot;&gt;right&lt;/code&gt; child&lt;/li&gt;
-  &lt;li&gt;If the &lt;code class=&quot;highlighter-rouge&quot;&gt;left&lt;/code&gt; child is not &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, find the inorder &lt;code class=&quot;highlighter-rouge&quot;&gt;predecessor&lt;/code&gt; in its left subtree. If the &lt;code class=&quot;highlighter-rouge&quot;&gt;right&lt;/code&gt; child of the predecessor is &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, make it point to the current node, and then traverse the left child of the current node; if the right child of the predecessor is current node, revert it to &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, and output current node, and then traverse the right node of the current node&lt;/li&gt;
-  &lt;li&gt;Repeat process #1 and #2, until the currrent node points to &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;If the &lt;code class=&quot;highlighter-rouge&quot;&gt;left&lt;/code&gt; child of current node is &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, output it, and then traverse its &lt;code class=&quot;highlighter-rouge&quot;&gt;right&lt;/code&gt; child.&lt;/li&gt;
+  &lt;li&gt;If the &lt;code class=&quot;highlighter-rouge&quot;&gt;left&lt;/code&gt; child is not &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, find the inorder &lt;code class=&quot;highlighter-rouge&quot;&gt;predecessor&lt;/code&gt; in its left subtree. If the &lt;code class=&quot;highlighter-rouge&quot;&gt;right&lt;/code&gt; child of the predecessor is &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, point it to the current node, and then traverse the left child of the current node; if the right child of the predecessor is current node, revert it to &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, and output current node, and then traverse the right node of the current node.&lt;/li&gt;
+  &lt;li&gt;Repeat process #1 and #2, until the currrent node points to &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;Here it involves a concept, the &lt;code class=&quot;highlighter-rouge&quot;&gt;inorder predecessor&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;Here it involves a concept, called the &lt;code class=&quot;highlighter-rouge&quot;&gt;inorder predecessor&lt;/code&gt;:&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Given a node, the node before it in the inorder traversal is its inorder predecessor.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;The common way to find it is to continuously traverse &lt;code class=&quot;highlighter-rouge&quot;&gt;right&lt;/code&gt; in the &lt;code class=&quot;highlighter-rouge&quot;&gt;left&lt;/code&gt; subtree of a node, until the right child is &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The common way to find it is to continuously go &lt;code class=&quot;highlighter-rouge&quot;&gt;right&lt;/code&gt; in the &lt;code class=&quot;highlighter-rouge&quot;&gt;left&lt;/code&gt; subtree of a node, until the right child is &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;The ingenuity of this algorithm is that, we utilize the empty space &lt;code class=&quot;highlighter-rouge&quot;&gt;inside&lt;/code&gt; the tree to help us go back to the parent node, without any extra sapce. When we traverse the left subtree of a node, we first save current node to the right child of the predecessor of it. After we finish the traversal of the left subtree (and arrive at the predecessor), according to the algorithm we will go to the right child of the last node (because its left child is &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;) and thus successfully come back to the parent! Then, at the parent node, we find the right child of its predecessor is &lt;code class=&quot;highlighter-rouge&quot;&gt;itselt&lt;/code&gt;, which means the left subtree has been traversed, so we move to the right subtree.&lt;/p&gt;
+&lt;p&gt;The ingenuity of this algorithm is that we utilize the empty space &lt;code class=&quot;highlighter-rouge&quot;&gt;inside&lt;/code&gt; the tree to help us go back to the parent node, without any extra space. When we traverse the left subtree of a node, we first save current node in the right child of its predecessor. After we finish the traversal of the left subtree (and arrive at the predecessor), according to the algorithm we will go to the right child of the last node (because its left child is &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;) and thus successfully come back to the parent! Then, at the parent node, we find the right child of its predecessor is &lt;code class=&quot;highlighter-rouge&quot;&gt;itselt&lt;/code&gt;, which means the left subtree has been traversed, so we move to the right subtree.&lt;/p&gt;
 
 &lt;p&gt;As for our example, a detailed description is:&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;The original tree
+    &lt;p&gt;The original tree.
 &lt;img src=&quot;/assets/images/0907/T-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Find the predecessor and change its right child, and then traverse the left subtree of current node
+    &lt;p&gt;Find the predecessor and change its right child, and then traverse the left subtree of current node.
 &lt;img src=&quot;/assets/images/0907/T-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;The same as above
+    &lt;p&gt;The same as above.
 &lt;img src=&quot;/assets/images/0907/T-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;The left child is &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, so output current node
+    &lt;p&gt;The left child is &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, so output current node.
 &lt;img src=&quot;/assets/images/0907/T-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Traverse the right subtree, and come back to the parent
+    &lt;p&gt;Traverse the right subtree, and come back to the parent.
 &lt;img src=&quot;/assets/images/0907/T-4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;The right child of the predecessor is self, so revert it and output current node. Traverse the right subtree
+    &lt;p&gt;The right child of the predecessor is self, so revert it and output current node. Traverse the right subtree.
 &lt;img src=&quot;/assets/images/0907/T-5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Handle the predecessor, and traverse the left subtree
+    &lt;p&gt;Handle the predecessor, and traverse the left subtree.
 &lt;img src=&quot;/assets/images/0907/T-6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;The left child is null, so output current node. Traverse the right subtree, and come back to the parent
+    &lt;p&gt;The left child is null, so output current node. Traverse the right subtree, and come back to the parent.
 &lt;img src=&quot;/assets/images/0907/T-7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;The right child of the predecessor is self, so revert it and output current node. Traverse the right subtree and come back to the parent
+    &lt;p&gt;The right child of the predecessor is self, so revert it and output current node. Traverse the right subtree and come back to the parent.
 &lt;img src=&quot;/assets/images/0907/T-8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;The right child of the predecessor is self, so revert it and output current node. Traverse the right subtree
+    &lt;p&gt;The right child of the predecessor is self, so revert it and output current node. Traverse the right subtree.
 &lt;img src=&quot;/assets/images/0907/T-9.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;The left child is &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, so output current node, and traverse the right subtree
+    &lt;p&gt;The left child is &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, so output current node, and traverse the right subtree.
 &lt;img src=&quot;/assets/images/0907/T-10.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;The same as above. Finsh the traversal
+    &lt;p&gt;The same as above. Finsh the traversal.
 &lt;img src=&quot;/assets/images/0907/T-11.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
@@ -1335,7 +1335,7 @@ Such method is called the &lt;code class=&quot;highlighter-rouge&quot;&gt;Morris
 
     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="algorithm" /><summary type="html">Overview The binary tree is a very classical data structure, and we have various ways to perform preorder, inorder and postorder traversal on it. The class TreeNode used in this blog is defined as follows:</summary></entry><entry><title type="html">Reversing a Singly Linked List</title><link href="http://cuih.xyz/2017/07/24/Reversing-a-Singly-Linked-List.html" rel="alternate" type="text/html" title="Reversing a Singly Linked List" /><published>2017-07-24T23:30:00-05:00</published><updated>2017-07-24T23:30:00-05:00</updated><id>http://cuih.xyz/2017/07/24/Reversing%20a%20Singly%20Linked%20List</id><content type="html" xml:base="http://cuih.xyz/2017/07/24/Reversing-a-Singly-Linked-List.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="algorithm" /><summary type="html">Overview The binary tree is a very classical data structure, and we have various ways to perform preorder, inorder and postorder traversals on it. The class TreeNode used in this blog is defined as follows:</summary></entry><entry><title type="html">Reverse a Singly Linked List</title><link href="http://cuih.xyz/2017/07/24/Reverse-a-Singly-Linked-List.html" rel="alternate" type="text/html" title="Reverse a Singly Linked List" /><published>2017-07-24T23:30:00-05:00</published><updated>2017-07-24T23:30:00-05:00</updated><id>http://cuih.xyz/2017/07/24/Reverse%20a%20Singly%20Linked%20List</id><content type="html" xml:base="http://cuih.xyz/2017/07/24/Reverse-a-Singly-Linked-List.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;There are four common ways to reverse a singly linked list. I will introduce them one by one. The class &lt;code class=&quot;highlighter-rouge&quot;&gt;Node&lt;/code&gt; is defined as follows:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -1350,8 +1350,8 @@ Such method is called the &lt;code class=&quot;highlighter-rouge&quot;&gt;Morris
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;with-the-help-of-an-array&quot;&gt;With the Help of an Array&lt;/h2&gt;
-&lt;p&gt;If we traverse the linked list and store every node inside a &lt;code class=&quot;highlighter-rouge&quot;&gt;ramdomly accessible&lt;/code&gt; data structure, such as an array, we can then traverse the array reversely, constructing a new linked list. Since this is the simplest solution, I’m not gonna talk more about it, so here’s the code:&lt;/p&gt;
+&lt;h2 id=&quot;with-the-help-of-an-array&quot;&gt;With the help of an array&lt;/h2&gt;
+&lt;p&gt;If we traverse the linked list and store every node in a &lt;code class=&quot;highlighter-rouge&quot;&gt;ramdomly accessible&lt;/code&gt; data structure, such as an &lt;code class=&quot;highlighter-rouge&quot;&gt;array&lt;/code&gt;, we can then traverse the array reversely and construct the reversed linked list. Here’s the code:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;reverseSinglyLinkedList1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -1378,30 +1378,30 @@ Such method is called the &lt;code class=&quot;highlighter-rouge&quot;&gt;Morris
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Obviously, the biggest problem of this solution is that it costs too much &lt;code class=&quot;highlighter-rouge&quot;&gt;space&lt;/code&gt;, because we need o construct a data structure with the same length as the original linked list.&lt;/p&gt;
+&lt;p&gt;Obviously, the biggest problem of this solution is that it consumes too much &lt;code class=&quot;highlighter-rouge&quot;&gt;space&lt;/code&gt;, because we need to construct a data structure with the same length as the original linked list.&lt;/p&gt;
 
-&lt;h2 id=&quot;continuously-moving-nodes-from-the-original-list-to-the-head-of-the-new-list&quot;&gt;Continuously Moving Nodes From the Original List to the Head of the New List&lt;/h2&gt;
-&lt;p&gt;This is another easy solution. What we should do is to add every node from the original list to the head of the new list. Also the example of &lt;code class=&quot;highlighter-rouge&quot;&gt;1 -&amp;gt; 2 -&amp;gt; 3 -&amp;gt; 4 -&amp;gt; 5 -&amp;gt; null&lt;/code&gt;:&lt;/p&gt;
+&lt;h2 id=&quot;continuously-moving-nodes-from-the-original-list-to-the-head-of-the-new-list&quot;&gt;Continuously moving nodes from the original list to the head of the new list&lt;/h2&gt;
+&lt;p&gt;This is another easy solution. What we should do is to move every node from the original list to the head of the new list. Let’s see the example of &lt;code class=&quot;highlighter-rouge&quot;&gt;1 -&amp;gt; 2 -&amp;gt; 3 -&amp;gt; 4 -&amp;gt; 5 -&amp;gt; null&lt;/code&gt;:&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;Initialization: &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt; points to &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; points to the head of the original list
+    &lt;p&gt;Initialization: &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt; points to &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; points to the head of the original list.
 &lt;img src=&quot;/assets/images/0905/3-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Enter the loop: &lt;code class=&quot;highlighter-rouge&quot;&gt;temp&lt;/code&gt; points to the next node of &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt;; set &lt;code class=&quot;highlighter-rouge&quot;&gt;head.next&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt;
+    &lt;p&gt;Enter the loop: &lt;code class=&quot;highlighter-rouge&quot;&gt;temp&lt;/code&gt; points to the next node of &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt;; set &lt;code class=&quot;highlighter-rouge&quot;&gt;head.next&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt;.
 &lt;img src=&quot;/assets/images/0905/3-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Move forward: &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt; points to &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt;; &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; points to &lt;code class=&quot;highlighter-rouge&quot;&gt;temp&lt;/code&gt;
+    &lt;p&gt;Move forward: &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt; points to &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt;; &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; points to &lt;code class=&quot;highlighter-rouge&quot;&gt;temp&lt;/code&gt;.
 &lt;img src=&quot;/assets/images/0905/3-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Begin the next loop
+    &lt;p&gt;Begin the next loop.
 &lt;img src=&quot;/assets/images/0905/3-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Loop until &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; points to &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;. Now &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt; points to the head of the reversed list
+    &lt;p&gt;Loop until &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; points to &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;. Now &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt; points to the head of the reversed list.
 &lt;img src=&quot;/assets/images/0905/3-4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
@@ -1427,33 +1427,33 @@ Such method is called the &lt;code class=&quot;highlighter-rouge&quot;&gt;Morris
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;continuously-inserting-the-next-node-of-the-head-of-original-list-after-the-head-of-the-new-list&quot;&gt;Continuously Inserting the Next Node of the Head of Original List After the Head of the New List&lt;/h2&gt;
+&lt;h2 id=&quot;continuously-inserting-the-next-node-of-the-head-of-the-original-list-after-the-head-of-the-new-list&quot;&gt;Continuously inserting the next node of the head of the original list after the head of the new list&lt;/h2&gt;
 &lt;p&gt;We need to construct a &lt;code class=&quot;highlighter-rouge&quot;&gt;helper node&lt;/code&gt; in this case, and link it to the head of the original list. Then we keep inserting the &lt;code class=&quot;highlighter-rouge&quot;&gt;next node of the original list&lt;/code&gt; after the &lt;code class=&quot;highlighter-rouge&quot;&gt;helper node&lt;/code&gt;, until the next node of the original list is &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;. Now the &lt;code class=&quot;highlighter-rouge&quot;&gt;next node of the helper node&lt;/code&gt; is the head of the reversed list. The algorithm is like:&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;Initialization: Construct the helper node &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt;, and link it to the head of the original list
+    &lt;p&gt;Initialization: construct the helper node &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt;, and link it to the head of the original list.
 &lt;img src=&quot;/assets/images/0905/4-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Enter the loop: &lt;code class=&quot;highlighter-rouge&quot;&gt;temp&lt;/code&gt; points to the next node of &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt;
+    &lt;p&gt;Enter the loop: &lt;code class=&quot;highlighter-rouge&quot;&gt;temp&lt;/code&gt; points to the next node of &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt;.
 &lt;img src=&quot;/assets/images/0905/4-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Insertion: set &lt;code class=&quot;highlighter-rouge&quot;&gt;head.next&lt;/code&gt; to the next node of &lt;code class=&quot;highlighter-rouge&quot;&gt;temp&lt;/code&gt;; set &lt;code class=&quot;highlighter-rouge&quot;&gt;temp.next&lt;/code&gt; to the next node of &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt;; set &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead.next&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;temp&lt;/code&gt;. Now we have inserted the next node of &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; to the position right after the &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt;
+    &lt;p&gt;Insertion: set &lt;code class=&quot;highlighter-rouge&quot;&gt;head.next&lt;/code&gt; to the next node of &lt;code class=&quot;highlighter-rouge&quot;&gt;temp&lt;/code&gt;; set &lt;code class=&quot;highlighter-rouge&quot;&gt;temp.next&lt;/code&gt; to the next node of &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt;; set &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead.next&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;temp&lt;/code&gt;. Now we have inserted the next node of &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; to the position right after the &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt;.
 &lt;img src=&quot;/assets/images/0905/4-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Begin the next loop, and operate like process #2 and process #3
+    &lt;p&gt;Begin the next loop, and handle like process #2 and process #3.
 &lt;img src=&quot;/assets/images/0905/4-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Loop until the next node of &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; is &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;. Now the next node of &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt; is the head of the reversed list
+    &lt;p&gt;Loop until the next node of &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; is &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;. Now the next node of &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt; is the head of the reversed list.
 &lt;img src=&quot;/assets/images/0905/4-4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;The key point of the algorithm is that, &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; always point to the same nodes, and what do is to move the node after the &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; to the next position of &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt;. The code is as follows:&lt;/p&gt;
+&lt;p&gt;The key point of this algorithm is: &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; always point to the same node, and move the node after the &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; to the next position of &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt;. The code is as follows:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;reverseSinglyLinkedList4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -1476,17 +1476,17 @@ Such method is called the &lt;code class=&quot;highlighter-rouge&quot;&gt;Morris
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;recursion&quot;&gt;Recursion&lt;/h2&gt;
-&lt;p&gt;In fact, we can also reverse a linked list with recursion, the advantage of which is short code, but maybe it’s not that simple to understand.&lt;/p&gt;
+&lt;p&gt;We can also reverse a linked list with recursion, the advantage of which is the short code, but maybe it’s not that simple to understand.&lt;/p&gt;
 
 &lt;p&gt;The thinking is:&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;As for list &lt;code class=&quot;highlighter-rouge&quot;&gt;1 -&amp;gt; 2 -&amp;gt; 3 -&amp;gt; 4 -&amp;gt; 5 -&amp;gt; null&lt;/code&gt;, we reverse &lt;code class=&quot;highlighter-rouge&quot;&gt;2 -&amp;gt; 3 -&amp;gt; 4 -&amp;gt; 5 -&amp;gt; null&lt;/code&gt; first, and then add &lt;code class=&quot;highlighter-rouge&quot;&gt;1&lt;/code&gt; to the tail of the new list.&lt;/li&gt;
-  &lt;li&gt;As for list &lt;code class=&quot;highlighter-rouge&quot;&gt;2 -&amp;gt; 3 -&amp;gt; 4 -&amp;gt; 5 -&amp;gt; null&lt;/code&gt;, we reverse &lt;code class=&quot;highlighter-rouge&quot;&gt;3 -&amp;gt; 4 -&amp;gt; 5 -&amp;gt; null&lt;/code&gt; first, and then add &lt;code class=&quot;highlighter-rouge&quot;&gt;2&lt;/code&gt; to the tail of the new list.&lt;/li&gt;
-  &lt;li&gt;Recur until only one node left, &lt;code class=&quot;highlighter-rouge&quot;&gt;5&lt;/code&gt;, and directly return this node.&lt;/li&gt;
+  &lt;li&gt;As for list &lt;code class=&quot;highlighter-rouge&quot;&gt;1 -&amp;gt; 2 -&amp;gt; 3 -&amp;gt; 4 -&amp;gt; 5 -&amp;gt; null&lt;/code&gt;, we reverse &lt;code class=&quot;highlighter-rouge&quot;&gt;2 -&amp;gt; 3 -&amp;gt; 4 -&amp;gt; 5 -&amp;gt; null&lt;/code&gt; first, and then add &lt;code class=&quot;highlighter-rouge&quot;&gt;1&lt;/code&gt; to the tail of the reversed list.&lt;/li&gt;
+  &lt;li&gt;As for list &lt;code class=&quot;highlighter-rouge&quot;&gt;2 -&amp;gt; 3 -&amp;gt; 4 -&amp;gt; 5 -&amp;gt; null&lt;/code&gt;, we reverse &lt;code class=&quot;highlighter-rouge&quot;&gt;3 -&amp;gt; 4 -&amp;gt; 5 -&amp;gt; null&lt;/code&gt; first, and then add &lt;code class=&quot;highlighter-rouge&quot;&gt;2&lt;/code&gt; to the tail of the reversed list.&lt;/li&gt;
+  &lt;li&gt;Recur until only one node left, &lt;code class=&quot;highlighter-rouge&quot;&gt;5&lt;/code&gt;, and return this node directly.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;We should be aware that the recrusive method finally returns the tail of the reversed list, so to obtain its head, we may need a member variable. The code is as follows:&lt;/p&gt;
+&lt;p&gt;We should be aware that the recrusive method finally returns the tail of the reversed list. To obtain its head, we may need a member variable. The code is as follows:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newHead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
@@ -1563,15 +1563,15 @@ Only constant memory is allowed.&lt;/p&gt;
         &lt;span class=&quot;n&quot;&gt;currHead&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="algorithm" /><summary type="html">Overview There are four common ways to reverse a singly linked list. I will introduce them one by one. The class Node is defined as follows:</summary></entry><entry><title type="html">The Singleton Pattern</title><link href="http://cuih.xyz/2017/07/11/The-Singleton-Pattern.html" rel="alternate" type="text/html" title="The Singleton Pattern" /><published>2017-07-11T23:00:00-05:00</published><updated>2017-07-11T23:00:00-05:00</updated><id>http://cuih.xyz/2017/07/11/The%20Singleton%20Pattern</id><content type="html" xml:base="http://cuih.xyz/2017/07/11/The-Singleton-Pattern.html">&lt;h2 id=&quot;definition&quot;&gt;Definition&lt;/h2&gt;
-&lt;p&gt;In some cases, our program requires that a certain class should have only one instance, such as the &lt;code class=&quot;highlighter-rouge&quot;&gt;Printer&lt;/code&gt; class and &lt;code class=&quot;highlighter-rouge&quot;&gt;ThreadPool&lt;/code&gt; class in Java. This design pattern is called &lt;code class=&quot;highlighter-rouge&quot;&gt;Singleton Pattern&lt;/code&gt;:&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="algorithm" /><summary type="html">Overview There are four common ways to reverse a singly linked list. I will introduce them one by one. The class Node is defined as follows:</summary></entry><entry><title type="html">The Singleton Design Pattern</title><link href="http://cuih.xyz/2017/07/11/The-Singleton-Design-Pattern.html" rel="alternate" type="text/html" title="The Singleton Design Pattern" /><published>2017-07-11T23:00:00-05:00</published><updated>2017-07-11T23:00:00-05:00</updated><id>http://cuih.xyz/2017/07/11/The%20Singleton%20Design%20Pattern</id><content type="html" xml:base="http://cuih.xyz/2017/07/11/The-Singleton-Design-Pattern.html">&lt;h2 id=&quot;definition&quot;&gt;Definition&lt;/h2&gt;
+&lt;p&gt;In some cases, we want a certain class to have only one instance, such as the &lt;code class=&quot;highlighter-rouge&quot;&gt;Printer&lt;/code&gt; class and the &lt;code class=&quot;highlighter-rouge&quot;&gt;ThreadPool&lt;/code&gt; class in Java. This design pattern is called the &lt;code class=&quot;highlighter-rouge&quot;&gt;Singleton Pattern&lt;/code&gt;:&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;To restrict the instantiation of a class to one object, and provide a global access point.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&quot;the-simplest-singleton-pattern&quot;&gt;The Simplest Singleton Pattern&lt;/h2&gt;
-&lt;p&gt;Let’s answer an interesting question first: Can the &lt;code class=&quot;highlighter-rouge&quot;&gt;constructor&lt;/code&gt; be decorated as&lt;code class=&quot;highlighter-rouge&quot;&gt;private&lt;/code&gt; in Java?&lt;/p&gt;
+&lt;h2 id=&quot;the-simplest-singleton-pattern&quot;&gt;The simplest singleton pattern&lt;/h2&gt;
+&lt;p&gt;Let’s answer an interesting question first: can a &lt;code class=&quot;highlighter-rouge&quot;&gt;constructor&lt;/code&gt; be decorated as &lt;code class=&quot;highlighter-rouge&quot;&gt;private&lt;/code&gt; in Java?&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Test&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
@@ -1580,9 +1580,9 @@ Only constant memory is allowed.&lt;/p&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;In fact, this code can be compiled, but what’s the meaning of this? How can we instantiate this class? We know that private methods can only be invoked inside the class, and since the only constructor is private, how to get into this class without an instance?&lt;/p&gt;
+&lt;p&gt;In fact, this code can be compiled, but what’s the meaning of this? How to instantiate this class? We know that private methods can only be invoked inside the class, and since the only constructor is private, how to get into this class without an instance?&lt;/p&gt;
 
-&lt;p&gt;The answer is obvious now: we can create a &lt;code class=&quot;highlighter-rouge&quot;&gt;public static method&lt;/code&gt; to invoke the constructor:&lt;/p&gt;
+&lt;p&gt;The answer is obvious: we can create a &lt;code class=&quot;highlighter-rouge&quot;&gt;public static&lt;/code&gt; method to invoke the constructor:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Test&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
@@ -1597,7 +1597,7 @@ Only constant memory is allowed.&lt;/p&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This exercise gives us a method to implement the simplest sigleton pattern, that is, we can control the instantiation through a global static method and a private constructor. Actually, if we choose to create a class with sigleton pattern in &lt;code class=&quot;highlighter-rouge&quot;&gt;Intellij&lt;/code&gt;, we will get the following template:&lt;/p&gt;
+&lt;p&gt;This example gives us one way to implement the simplest sigleton pattern, that we can control the instantiation with a pulbic static method and a private constructor. Actually, if we choose to create a class with sigleton pattern in &lt;code class=&quot;highlighter-rouge&quot;&gt;Intellij&lt;/code&gt;, we will get the following template:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     
@@ -1612,10 +1612,10 @@ Only constant memory is allowed.&lt;/p&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;It seems that we have perfectly addressed the problem! However, if you are familiar with the &lt;code class=&quot;highlighter-rouge&quot;&gt;class loading mechanism in Java&lt;/code&gt;, you’ll know that &lt;code class=&quot;highlighter-rouge&quot;&gt;class-level static statements&lt;/code&gt; are executed once the class is loaded. If unfortunately, the initialization process is time-consuming, and the instance of this class is never used after creation, this will be very wasteful.&lt;/p&gt;
+&lt;p&gt;It seems that we have perfectly addressed the problem! However, if you are familiar with the &lt;code class=&quot;highlighter-rouge&quot;&gt;class loading mechanism&lt;/code&gt; in Java, you’ll know that &lt;code class=&quot;highlighter-rouge&quot;&gt;class-level static statements&lt;/code&gt; are executed once the class is loaded. If, unfortunately, the initialization process is time-consuming, and the instance of this class is never used after creation, this will be very wasteful.&lt;/p&gt;
 
-&lt;h2 id=&quot;eager-loading--lazy-loading&quot;&gt;Eager Loading &amp;amp; Lazy Loading&lt;/h2&gt;
-&lt;p&gt;The method above is called &lt;code class=&quot;highlighter-rouge&quot;&gt;Eager Loading&lt;/code&gt;, that is:&lt;/p&gt;
+&lt;h2 id=&quot;eager-loading--lazy-loading&quot;&gt;Eager loading &amp;amp; Lazy loading&lt;/h2&gt;
+&lt;p&gt;The method above is called the &lt;code class=&quot;highlighter-rouge&quot;&gt;Eager Loading&lt;/code&gt;:&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Whenever and whether the instance is used, always eargely create it during class loading.&lt;/p&gt;
@@ -1642,16 +1642,16 @@ Only constant memory is allowed.&lt;/p&gt;
 &lt;p&gt;This is the &lt;code class=&quot;highlighter-rouge&quot;&gt;Lazy Loading&lt;/code&gt;:&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Create the instance at the first request, and directly return it when requested again.&lt;/p&gt;
+  &lt;p&gt;Create the instance at the first request, and directly return it when being requested again.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&quot;thread-safe-considerations&quot;&gt;Thread-safe Considerations&lt;/h2&gt;
-&lt;p&gt;Althought the lazing loading achieves the delayed loading, it has a fatal problem: it is not thread-safe. If we use the following invokation sequence, two different instances will be created:&lt;/p&gt;
+&lt;h2 id=&quot;thread-safe-considerations&quot;&gt;Thread-safe considerations&lt;/h2&gt;
+&lt;p&gt;Although the lazing loading looks good, it has a fatal problem: it is not thread-safe. If we have the following invocation sequence, two different instances will be created:&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Thread #1&lt;/code&gt; enters method &lt;code class=&quot;highlighter-rouge&quot;&gt;getInstance()&lt;/code&gt;, and passes the &lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt; judgement at [a], but its time slice ends before executing &lt;code class=&quot;highlighter-rouge&quot;&gt;[b]&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Thread #2&lt;/code&gt; enters method &lt;code class=&quot;highlighter-rouge&quot;&gt;getInstance()&lt;/code&gt;, when &lt;code class=&quot;highlighter-rouge&quot;&gt;ourInstance&lt;/code&gt; is still &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, so it passes the judgement and executes &lt;code class=&quot;highlighter-rouge&quot;&gt;[b]&lt;/code&gt;. Finally it creates a new &lt;code class=&quot;highlighter-rouge&quot;&gt;SimpleSigleton&lt;/code&gt; instance and returns it.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Thread #1&lt;/code&gt; executes &lt;code class=&quot;highlighter-rouge&quot;&gt;[b]&lt;/code&gt;, and creates a new &lt;code class=&quot;highlighter-rouge&quot;&gt;SimpleSigleton&lt;/code&gt; instance, which overrides the instance created by &lt;code class=&quot;highlighter-rouge&quot;&gt;Thread #2&lt;/code&gt;, and returns the new instance.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Thread #2&lt;/code&gt; enters method &lt;code class=&quot;highlighter-rouge&quot;&gt;getInstance()&lt;/code&gt;, when &lt;code class=&quot;highlighter-rouge&quot;&gt;ourInstance&lt;/code&gt; is still &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, so it passes the judgement and executes &lt;code class=&quot;highlighter-rouge&quot;&gt;[b]&lt;/code&gt;. Finally a new &lt;code class=&quot;highlighter-rouge&quot;&gt;SimpleSigleton&lt;/code&gt; instance is created and returned.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Thread #1&lt;/code&gt; executes &lt;code class=&quot;highlighter-rouge&quot;&gt;[b]&lt;/code&gt;, and creates a new &lt;code class=&quot;highlighter-rouge&quot;&gt;SimpleSigleton&lt;/code&gt; instance, which overrides the instance created by &lt;code class=&quot;highlighter-rouge&quot;&gt;Thread #2&lt;/code&gt;. This new instance is returned.&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;To address this problem, using Java’s &lt;code class=&quot;highlighter-rouge&quot;&gt;synchronization (locking) mechanism&lt;/code&gt; can be a good method:&lt;/p&gt;
@@ -1663,12 +1663,12 @@ Only constant memory is allowed.&lt;/p&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Synchronized methods&lt;/code&gt; can only be accessed by one thread at one time, which fulfills the thread-safe requirement. However, it brings the &lt;code class=&quot;highlighter-rouge&quot;&gt;performance&lt;/code&gt; issue: Java performs &lt;code class=&quot;highlighter-rouge&quot;&gt;locking&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;unlocking&lt;/code&gt; operations when handling synchronized codes, and they may take some time.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Synchronized&lt;/code&gt; methods can only be accessed by one thread at the same time, which fulfills the thread-safe requirement. However, it brings the &lt;code class=&quot;highlighter-rouge&quot;&gt;performance&lt;/code&gt; issue: Java performs &lt;code class=&quot;highlighter-rouge&quot;&gt;locking&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;unlocking&lt;/code&gt; operations when handling synchronized codes, and they may take some time.&lt;/p&gt;
 
-&lt;p&gt;In fact, after analyzing this code, we will find that synchronization is only indispensable at the first invocation, when the instance is not yet created. If we need to access this method many times, all synchronizations are meaningless except the the first time.&lt;/p&gt;
+&lt;p&gt;In fact, after analyzing this code, we will find that synchronization is only necessary at the first invocation, when the instance is not yet created. If we need to access this method many times, all synchronizations are meaningless except the the first one.&lt;/p&gt;
 
-&lt;h2 id=&quot;double-checked-locking&quot;&gt;Double-checked Locking&lt;/h2&gt;
-&lt;p&gt;To achieve thread-safe, and at the same time address the performance issue, some people suggested a more complicated solution:&lt;/p&gt;
+&lt;h2 id=&quot;double-checked-locking&quot;&gt;Double-checked locking&lt;/h2&gt;
+&lt;p&gt;To achieve thread-safe, and in the meantime address the performance issue, some people suggested a more complicated solution:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ourInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -1683,16 +1683,16 @@ Only constant memory is allowed.&lt;/p&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Since only the instance creation statement requires to be locked, we use a &lt;code class=&quot;highlighter-rouge&quot;&gt;synchronized block&lt;/code&gt; instead of synchronized method. Also, to avoid the problem we met in lazing loading, &lt;code class=&quot;highlighter-rouge&quot;&gt;ourInstance&lt;/code&gt; is checked a second time inside the synchronization block before we really create a instance. As only one thread can access the synchronized block at one time, only one instance will be created.&lt;/p&gt;
+&lt;p&gt;Since only the instance creation statement needs to be locked, we use a &lt;code class=&quot;highlighter-rouge&quot;&gt;synchronized block&lt;/code&gt; instead of synchronized method. Also, to avoid the problem we met in lazing loading, &lt;code class=&quot;highlighter-rouge&quot;&gt;ourInstance&lt;/code&gt; is checked a second time inside the synchronized block before we really create a instance. As only one thread can access the synchronized block at the same time, only one instance will be created.&lt;/p&gt;
 
-&lt;h2 id=&quot;the-problem-brought-by-the-jvm&quot;&gt;The Problem Brought by the JVM&lt;/h2&gt;
-&lt;p&gt;The double-checked locking seems to be perfect, but regrettably, it will not work in some cases. The problem is that the JVM allows the compiler to &lt;code class=&quot;highlighter-rouge&quot;&gt;reorder instructions&lt;/code&gt;, which cannot guarantee the &lt;code class=&quot;highlighter-rouge&quot;&gt;orderliness (not sure)&lt;/code&gt;. This may involve deeper analysis, and I don’t want to have further discussion concerning this topic in this blog, so I just give a conclusion:&lt;/p&gt;
+&lt;h2 id=&quot;the-problem-brought-by-the-jvm&quot;&gt;The problem brought by the JVM&lt;/h2&gt;
+&lt;p&gt;The double-checked locking seems to be perfect, but regrettably, it will not work in some cases. The problem is that the JVM allows the compiler to &lt;code class=&quot;highlighter-rouge&quot;&gt;reorder instructions&lt;/code&gt;, which cannot guarantee the &lt;code class=&quot;highlighter-rouge&quot;&gt;orderliness&lt;/code&gt;. This may involve deeper analysis, and I don’t want to discuss further in this blog, so I just give the conclusion:&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Before the &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; operation finishes, the compiler may change the reference on the left of the &lt;code class=&quot;highlighter-rouge&quot;&gt;=&lt;/code&gt; operator to &lt;code class=&quot;highlighter-rouge&quot;&gt;non-null&lt;/code&gt; in advance. In multi-thread cases, a &lt;code class=&quot;highlighter-rouge&quot;&gt;not fully initialized object&lt;/code&gt; will be returned.&lt;/p&gt;
+  &lt;p&gt;Before the &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; operation finishes, the compiler may change the reference on the left of the &lt;code class=&quot;highlighter-rouge&quot;&gt;=&lt;/code&gt; operator to &lt;code class=&quot;highlighter-rouge&quot;&gt;not-null&lt;/code&gt; in advance. In multi-thread cases, a &lt;code class=&quot;highlighter-rouge&quot;&gt;not fully initialized object&lt;/code&gt; will be returned.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;This sounds ridiculous, but it happens. However, luckily Java provides a mechanism to avoid this problem: the keyword &lt;code class=&quot;highlighter-rouge&quot;&gt;volative&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;This sounds ridiculous, but it happens. Luckily, Java provides a mechanism to avoid this problem: the keyword &lt;code class=&quot;highlighter-rouge&quot;&gt;volative&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SimpleSingleton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
@@ -1715,33 +1715,33 @@ Only constant memory is allowed.&lt;/p&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Pay attention to the statement at &lt;code class=&quot;highlighter-rouge&quot;&gt;[a]&lt;/code&gt;, where we add a &lt;code class=&quot;highlighter-rouge&quot;&gt;volatile&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;ourInstance&lt;/code&gt;. As for its specific function, I will discuss in another blog (maybe). What we need to know here is that the keyword &lt;code class=&quot;highlighter-rouge&quot;&gt;volatile&lt;/code&gt; prohibits JVM from doing &lt;code class=&quot;highlighter-rouge&quot;&gt;instructions reordering&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Note that at &lt;code class=&quot;highlighter-rouge&quot;&gt;[a]&lt;/code&gt;, a &lt;code class=&quot;highlighter-rouge&quot;&gt;volatile&lt;/code&gt; keyword is added to &lt;code class=&quot;highlighter-rouge&quot;&gt;ourInstance&lt;/code&gt;. What we need to know here is that &lt;code class=&quot;highlighter-rouge&quot;&gt;volatile&lt;/code&gt; prevents JVM from &lt;code class=&quot;highlighter-rouge&quot;&gt;reordering instructions&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Therefore, finally, we have developed a thread-safe singleton pattern class with high-performance.&lt;/p&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="design-pattern" /><summary type="html">Definition In some cases, our program requires that a certain class should have only one instance, such as the Printer class and ThreadPool class in Java. This design pattern is called Singleton Pattern:</summary></entry><entry><title type="html">Understanding of the Java Memory Model</title><link href="http://cuih.xyz/2017/06/28/Understanding-of-the-Java-Memory-Model.html" rel="alternate" type="text/html" title="Understanding of the Java Memory Model" /><published>2017-06-28T23:00:00-05:00</published><updated>2017-06-28T23:00:00-05:00</updated><id>http://cuih.xyz/2017/06/28/Understanding%20of%20the%20Java%20Memory%20Model</id><content type="html" xml:base="http://cuih.xyz/2017/06/28/Understanding-of-the-Java-Memory-Model.html">&lt;h2 id=&quot;what-is-java-virtual-machine-jvm&quot;&gt;What is Java Virtual Machine (JVM)?&lt;/h2&gt;
-&lt;p&gt;One of the most important characteristics of Java is that it is &lt;code class=&quot;highlighter-rouge&quot;&gt;platform-independent&lt;/code&gt;, which is fulfilled by the &lt;code class=&quot;highlighter-rouge&quot;&gt;JVM&lt;/code&gt;. JVM has its own instruction sets and registers, so java codes can ignore the implementation of the underlying operating system, and only need to generate bytecodes that JVM can read. When running, JVM will convert the bytecode to native machine code of the host platform and then execute.&lt;/p&gt;
+&lt;p&gt;Finally, we have developed a thread-safe singleton pattern class with high-performance.&lt;/p&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="design-pattern" /><summary type="html">Definition In some cases, we want a certain class to have only one instance, such as the Printer class and the ThreadPool class in Java. This design pattern is called the Singleton Pattern:</summary></entry><entry><title type="html">Java Memory Model</title><link href="http://cuih.xyz/2017/06/28/Java-Memory-Model.html" rel="alternate" type="text/html" title="Java Memory Model" /><published>2017-06-28T23:00:00-05:00</published><updated>2017-06-28T23:00:00-05:00</updated><id>http://cuih.xyz/2017/06/28/Java%20Memory%20Model</id><content type="html" xml:base="http://cuih.xyz/2017/06/28/Java-Memory-Model.html">&lt;h2 id=&quot;what-is-java-virtual-machine-jvm&quot;&gt;What is Java Virtual Machine (JVM)?&lt;/h2&gt;
+&lt;p&gt;One of the most important characteristics of Java is that it is &lt;code class=&quot;highlighter-rouge&quot;&gt;platform-independent&lt;/code&gt;, which is fulfilled by the &lt;code class=&quot;highlighter-rouge&quot;&gt;JVM&lt;/code&gt;. JVM has its own instruction sets and registers, so java codes can ignore the implementation of the underlying operating system, and only need to generate bytecodes that JVM can read. When running, JVM will first convert the bytecode to native machine code of the host platform and then execute.&lt;/p&gt;
 
-&lt;h2 id=&quot;the-structure-of-jvm&quot;&gt;The Structure of JVM&lt;/h2&gt;
+&lt;h2 id=&quot;the-structure-of-jvm&quot;&gt;The structure of JVM&lt;/h2&gt;
 &lt;p&gt;The memory of JVM consists mainly of the following areas:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Method Area: storing information of the loaded classes, along with those &lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt; variables. It is the &lt;code class=&quot;highlighter-rouge&quot;&gt;permanent generation&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;garbage collection (GC)&lt;/code&gt;, and is &lt;code class=&quot;highlighter-rouge&quot;&gt;thread-sharing&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Constant Pool: storing &lt;code class=&quot;highlighter-rouge&quot;&gt;final&lt;/code&gt; variables, class names, method names and values that can be determined at compile time.&lt;/li&gt;
-  &lt;li&gt;Program Countre Register: &lt;code class=&quot;highlighter-rouge&quot;&gt;thread-independent&lt;/code&gt;, stroing the memory address of the instrucion that is currently being executed.&lt;/li&gt;
-  &lt;li&gt;Native Method Stack: serving &lt;code class=&quot;highlighter-rouge&quot;&gt;native&lt;/code&gt; methods.&lt;/li&gt;
+  &lt;li&gt;Method area: storing information of the loaded classes, along with those &lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt; variables. It is the &lt;code class=&quot;highlighter-rouge&quot;&gt;permanent generation&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;garbage collection (GC)&lt;/code&gt;, and is &lt;code class=&quot;highlighter-rouge&quot;&gt;thread-sharing&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Constant pool: storing &lt;code class=&quot;highlighter-rouge&quot;&gt;final&lt;/code&gt; variables, class names, method names and values that can be determined at compile time.&lt;/li&gt;
+  &lt;li&gt;Program counter register: &lt;code class=&quot;highlighter-rouge&quot;&gt;thread-independent&lt;/code&gt;, stroing the memory address of the instrucion that is currently being executed.&lt;/li&gt;
+  &lt;li&gt;Native method stack: serving &lt;code class=&quot;highlighter-rouge&quot;&gt;native&lt;/code&gt; methods.&lt;/li&gt;
   &lt;li&gt;Stack: each thread has its own &lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt;, and each method has its own &lt;code class=&quot;highlighter-rouge&quot;&gt;thread frame&lt;/code&gt;, storing &lt;code class=&quot;highlighter-rouge&quot;&gt;variables of basic data types&lt;/code&gt; (such as int, boolean), and &lt;code class=&quot;highlighter-rouge&quot;&gt;references (addresses in heap) to instances of non-basic data typess&lt;/code&gt;, as well as information of the return values. The top of the stack points to the current active stack (method) frame.&lt;/li&gt;
-  &lt;li&gt;Heap: the largest area tha JVM memory controls, ‘thread-sharing’. All memory of objects that are created by &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; operations are allocated here (including instances of objects and arrays). It is the main active region of &lt;code class=&quot;highlighter-rouge&quot;&gt;GC&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Heap: the largest area that JVM memory controls, ‘thread-sharing’. All memory of objects that are created by &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; operations are allocated here (including instances of objects and arrays). It is the main active area of &lt;code class=&quot;highlighter-rouge&quot;&gt;GC&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;the-memory-allocation-in-java&quot;&gt;The Memory Allocation in Java&lt;/h2&gt;
+&lt;h2 id=&quot;the-memory-allocation-in-java&quot;&gt;The memory allocation in Java&lt;/h2&gt;
 &lt;p&gt;In general, Java treats basic data types and objects differently in memory allocation:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Basic Date Types: including byte, short, int, long, float, double, boolean, char. When defining these variables in methods, JVM will directly allocate spaces for them in &lt;code class=&quot;highlighter-rouge&quot;&gt;thread stack&lt;/code&gt;. If a variable is beyond its scope, it space will be released.&lt;/li&gt;
+  &lt;li&gt;Basic data types: including byte, short, int, long, float, double, boolean, char. When declaring these variables in methods, JVM will directly allocate spaces for them in &lt;code class=&quot;highlighter-rouge&quot;&gt;thread stack&lt;/code&gt;. If a variable is beyond its scope, it space will be released.&lt;/li&gt;
   &lt;li&gt;Objects created by &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; operations (including arrays): Their spaces will be allocated in &lt;code class=&quot;highlighter-rouge&quot;&gt;heap&lt;/code&gt;,  and a &lt;code class=&quot;highlighter-rouge&quot;&gt;reference to the address&lt;/code&gt; will be created in stack if needed. If an object is not referenced by any variable, its space won’t be realeased immediately, but will be collected by GC at a &lt;code class=&quot;highlighter-rouge&quot;&gt;certain&lt;/code&gt; time (decided by many factors).&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;stack-memory-heap-memory-and-parameter-passing&quot;&gt;Stack Memory, Heap Memory and Parameter Passing&lt;/h2&gt;
-&lt;p&gt;Different from C++, there’s no &lt;code class=&quot;highlighter-rouge&quot;&gt;pointers&lt;/code&gt; in Java. Objecets are created in heap, and programs are executed in stack, so we are operating the &lt;code class=&quot;highlighter-rouge&quot;&gt;reference to object&lt;/code&gt; all the time. For example, let’s see the following program:&lt;/p&gt;
+&lt;h2 id=&quot;stack-memory-heap-memory-and-parameter-passing&quot;&gt;Stack memory, heap memory and parameter passing&lt;/h2&gt;
+&lt;p&gt;Different from C++, there’s no &lt;code class=&quot;highlighter-rouge&quot;&gt;pointer&lt;/code&gt; in Java. Objecets are created in heap, while programs are executed in stack, so we are operating the &lt;code class=&quot;highlighter-rouge&quot;&gt;reference to object&lt;/code&gt; all the time. For example, let’s see the following code:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -1767,9 +1767,9 @@ Only constant memory is allowed.&lt;/p&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The parameter &lt;code class=&quot;highlighter-rouge&quot;&gt;a2&lt;/code&gt; of method &lt;code class=&quot;highlighter-rouge&quot;&gt;update()&lt;/code&gt; receives references to objects. When running, JVM finds this object in heap according to the address, and then modify its member variable &lt;code class=&quot;highlighter-rouge&quot;&gt;value&lt;/code&gt;. Since the heap is shared, this modification is visible immediately to another reference &lt;code class=&quot;highlighter-rouge&quot;&gt;a1&lt;/code&gt; in method &lt;code class=&quot;highlighter-rouge&quot;&gt;main()&lt;/code&gt;, so the two outputs are different.&lt;/p&gt;
+&lt;p&gt;The parameter &lt;code class=&quot;highlighter-rouge&quot;&gt;a2&lt;/code&gt; in method &lt;code class=&quot;highlighter-rouge&quot;&gt;update()&lt;/code&gt; receives a reference. When executing, JVM finds this object in heap by the address, and then modifies its member variable &lt;code class=&quot;highlighter-rouge&quot;&gt;value&lt;/code&gt;. Since the heap is shared, this modification is visible immediately to another reference &lt;code class=&quot;highlighter-rouge&quot;&gt;a1&lt;/code&gt; in method &lt;code class=&quot;highlighter-rouge&quot;&gt;main()&lt;/code&gt;, so the two outputs are different.&lt;/p&gt;
 
-&lt;p&gt;As for the above example, if we change the type A to a basic data type, such as &lt;code class=&quot;highlighter-rouge&quot;&gt;int&lt;/code&gt;, the result will be totally different:&lt;/p&gt;
+&lt;p&gt;However, if we change the type &lt;code class=&quot;highlighter-rouge&quot;&gt;A&lt;/code&gt; to a basic data type, such as &lt;code class=&quot;highlighter-rouge&quot;&gt;int&lt;/code&gt;, the result will be different:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Test&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
@@ -1790,11 +1790,11 @@ Only constant memory is allowed.&lt;/p&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;In JVM, stack can be read and write much faster than heap, so for basic data types, whose life cycle and size are known at compile time, their spaces are allocated directly in stack.&lt;/p&gt;
+&lt;p&gt;In JVM, stack can be read or written much faster than heap, so for basic data types, whose life cycle and size are known at compile time, their spaces are allocated directly in stack.&lt;/p&gt;
 
-&lt;p&gt;*Attention: If you use Java’s &lt;code class=&quot;highlighter-rouge&quot;&gt;wrapper class&lt;/code&gt; such as &lt;code class=&quot;highlighter-rouge&quot;&gt;Integer&lt;/code&gt;, or arrays of basic data types such as &lt;code class=&quot;highlighter-rouge&quot;&gt;int[]&lt;/code&gt;, the result will be same as the first example. Therefore, the most useful difference is: whether it uses a &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; operator to create.&lt;/p&gt;
+&lt;p&gt;*Attention: If you use Java’s &lt;code class=&quot;highlighter-rouge&quot;&gt;wrapper class&lt;/code&gt; such as &lt;code class=&quot;highlighter-rouge&quot;&gt;Integer&lt;/code&gt;, or arrays of basic data types such as &lt;code class=&quot;highlighter-rouge&quot;&gt;int[]&lt;/code&gt;, the result will be the same as the first example. You may find the main difference is: whether it is created by a &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; operation.&lt;/p&gt;
 
-&lt;h2 id=&quot;a-special-data-type-string&quot;&gt;A Special Data Type: String&lt;/h2&gt;
+&lt;h2 id=&quot;a-special-data-type-string&quot;&gt;A special data type: String&lt;/h2&gt;
 &lt;p&gt;You should notice that the eight basic data types mentioned above do not include &lt;code class=&quot;highlighter-rouge&quot;&gt;String&lt;/code&gt;, but you don’t need to &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; a String, why? Let’s see an example:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -1803,16 +1803,16 @@ Only constant memory is allowed.&lt;/p&gt;
 &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// true&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;It seems that String behaves just like basic data types. This is due to the fact that JVM treats String specially. The &lt;code class=&quot;highlighter-rouge&quot;&gt;Constant Pool&lt;/code&gt; in the memory of JVM we mentioned includes a &lt;code class=&quot;highlighter-rouge&quot;&gt;String Constant Pool&lt;/code&gt;, which will be searched first if we create a String. If there’s a String with the same &lt;code class=&quot;highlighter-rouge&quot;&gt;literal value&lt;/code&gt;JVM will return its reference directly; if not, JVM creates a new String constant.&lt;/p&gt;
+&lt;p&gt;It seems that String behaves just like basic data types. This is due to the fact that JVM treats String specially. The &lt;code class=&quot;highlighter-rouge&quot;&gt;constant pool&lt;/code&gt; in the JVM memory includes a &lt;code class=&quot;highlighter-rouge&quot;&gt;string constant pool&lt;/code&gt;, which will be searched first if we create a String. If there’s a String with the same &lt;code class=&quot;highlighter-rouge&quot;&gt;literal value&lt;/code&gt;, JVM will return its reference directly; otherwise, JVM creates a new String constant.&lt;/p&gt;
 
 &lt;p&gt;What about this classical question:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;How many objects are created in the code? The answer is &lt;code class=&quot;highlighter-rouge&quot;&gt;two&lt;/code&gt;. First, a String &lt;code class=&quot;highlighter-rouge&quot;&gt;constant&lt;/code&gt; is created in the String Constant Pool values &lt;code class=&quot;highlighter-rouge&quot;&gt;test&lt;/code&gt;, and then since there’s a &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; operation, JVM creates a new String &lt;code class=&quot;highlighter-rouge&quot;&gt;object&lt;/code&gt; in heap.&lt;/p&gt;
+&lt;p&gt;How many objects are created in this code? The answer is &lt;code class=&quot;highlighter-rouge&quot;&gt;two&lt;/code&gt;. First, a String &lt;code class=&quot;highlighter-rouge&quot;&gt;constant&lt;/code&gt; is created in the &lt;code class=&quot;highlighter-rouge&quot;&gt;string constant pool&lt;/code&gt; values &lt;code class=&quot;highlighter-rouge&quot;&gt;test&lt;/code&gt;, and since there’s a &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; operation, JVM creates a new String &lt;code class=&quot;highlighter-rouge&quot;&gt;object&lt;/code&gt; in heap.&lt;/p&gt;
 
-&lt;p&gt;If you have understood all contents above, the results of the following code will be obvious:&lt;/p&gt;
+&lt;p&gt;If you understand all contents above, the result of the following code will be obvious:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
@@ -1820,7 +1820,7 @@ Only constant memory is allowed.&lt;/p&gt;
 &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// false&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Here we digress a little. the &lt;code class=&quot;highlighter-rouge&quot;&gt;==&lt;/code&gt; operator in Java compares the references to objects (that is, the addresses). Therefore, we can’t directly use &lt;code class=&quot;highlighter-rouge&quot;&gt;==&lt;/code&gt; to compare the literal values of two Strings, but we can use method ‘equals()’ instead:&lt;/p&gt;
+&lt;p&gt;Here we digress a little. The &lt;code class=&quot;highlighter-rouge&quot;&gt;==&lt;/code&gt; operator in Java compares the references to objects (that is, the addresses). Therefore, we can’t use &lt;code class=&quot;highlighter-rouge&quot;&gt;==&lt;/code&gt; to compare the literal values of two Strings, but we can use method ‘equals()’ instead:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
@@ -1828,9 +1828,9 @@ Only constant memory is allowed.&lt;/p&gt;
 &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;equals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// true&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;In addition, Java recommends creating String with String Constant Pool rather than &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; operator.&lt;/p&gt;
+&lt;p&gt;In addition, Java recommends creating String with string constant pool rather than &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; operator.&lt;/p&gt;
 
-&lt;p&gt;Finally, let’s discuss an interesting point of the compiler. Look at this example:&lt;/p&gt;
+&lt;p&gt;Finally, let’s see an interesting feature of the compiler. Look at this example:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;aaabbb&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;aaa&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;bbb&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -1849,4 +1849,4 @@ Only constant memory is allowed.&lt;/p&gt;
 &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// false&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;if there is non-constant value at either side (or both) of the &lt;code class=&quot;highlighter-rouge&quot;&gt;+&lt;/code&gt; operator, a new String object will always be created, even if the concatenated String exists in the String Constant Pool.&lt;/p&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="java" /><summary type="html">What is Java Virtual Machine (JVM)? One of the most important characteristics of Java is that it is platform-independent, which is fulfilled by the JVM. JVM has its own instruction sets and registers, so java codes can ignore the implementation of the underlying operating system, and only need to generate bytecodes that JVM can read. When running, JVM will convert the bytecode to native machine code of the host platform and then execute.</summary></entry></feed>
+&lt;p&gt;If there is non-constant value at either side (or both) of the &lt;code class=&quot;highlighter-rouge&quot;&gt;+&lt;/code&gt; operator, a new String object will always be created, even if the concatenated String exists in the string constant pool.&lt;/p&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="java" /><summary type="html">What is Java Virtual Machine (JVM)? One of the most important characteristics of Java is that it is platform-independent, which is fulfilled by the JVM. JVM has its own instruction sets and registers, so java codes can ignore the implementation of the underlying operating system, and only need to generate bytecodes that JVM can read. When running, JVM will first convert the bytecode to native machine code of the host platform and then execute.</summary></entry></feed>

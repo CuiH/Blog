@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Understanding of the Java Memory Model</title>
+	<title>Java Memory Model</title>
 
 	<!-- CSS -->
 	<link rel="stylesheet" href="/assets/css/main.css" type="text/css">
@@ -23,7 +23,7 @@
 </header>
 
 <div class="post">
-	<div class="post-title">Understanding of the Java Memory Model</div>
+	<div class="post-title">Java Memory Model</div>
 	<span class="post-date">
 		<time>28 Jun 2017</time>
 	</span>
@@ -41,30 +41,30 @@
 	</div>
 
 	<h2 id="what-is-java-virtual-machine-jvm">What is Java Virtual Machine (JVM)?</h2>
-<p>One of the most important characteristics of Java is that it is <code class="highlighter-rouge">platform-independent</code>, which is fulfilled by the <code class="highlighter-rouge">JVM</code>. JVM has its own instruction sets and registers, so java codes can ignore the implementation of the underlying operating system, and only need to generate bytecodes that JVM can read. When running, JVM will convert the bytecode to native machine code of the host platform and then execute.</p>
+<p>One of the most important characteristics of Java is that it is <code class="highlighter-rouge">platform-independent</code>, which is fulfilled by the <code class="highlighter-rouge">JVM</code>. JVM has its own instruction sets and registers, so java codes can ignore the implementation of the underlying operating system, and only need to generate bytecodes that JVM can read. When running, JVM will first convert the bytecode to native machine code of the host platform and then execute.</p>
 
-<h2 id="the-structure-of-jvm">The Structure of JVM</h2>
+<h2 id="the-structure-of-jvm">The structure of JVM</h2>
 <p>The memory of JVM consists mainly of the following areas:</p>
 
 <ul>
-  <li>Method Area: storing information of the loaded classes, along with those <code class="highlighter-rouge">static</code> variables. It is the <code class="highlighter-rouge">permanent generation</code> in <code class="highlighter-rouge">garbage collection (GC)</code>, and is <code class="highlighter-rouge">thread-sharing</code>.</li>
-  <li>Constant Pool: storing <code class="highlighter-rouge">final</code> variables, class names, method names and values that can be determined at compile time.</li>
-  <li>Program Countre Register: <code class="highlighter-rouge">thread-independent</code>, stroing the memory address of the instrucion that is currently being executed.</li>
-  <li>Native Method Stack: serving <code class="highlighter-rouge">native</code> methods.</li>
+  <li>Method area: storing information of the loaded classes, along with those <code class="highlighter-rouge">static</code> variables. It is the <code class="highlighter-rouge">permanent generation</code> in <code class="highlighter-rouge">garbage collection (GC)</code>, and is <code class="highlighter-rouge">thread-sharing</code>.</li>
+  <li>Constant pool: storing <code class="highlighter-rouge">final</code> variables, class names, method names and values that can be determined at compile time.</li>
+  <li>Program counter register: <code class="highlighter-rouge">thread-independent</code>, stroing the memory address of the instrucion that is currently being executed.</li>
+  <li>Native method stack: serving <code class="highlighter-rouge">native</code> methods.</li>
   <li>Stack: each thread has its own <code class="highlighter-rouge">stack</code>, and each method has its own <code class="highlighter-rouge">thread frame</code>, storing <code class="highlighter-rouge">variables of basic data types</code> (such as int, boolean), and <code class="highlighter-rouge">references (addresses in heap) to instances of non-basic data typess</code>, as well as information of the return values. The top of the stack points to the current active stack (method) frame.</li>
-  <li>Heap: the largest area tha JVM memory controls, ‘thread-sharing’. All memory of objects that are created by <code class="highlighter-rouge">new</code> operations are allocated here (including instances of objects and arrays). It is the main active region of <code class="highlighter-rouge">GC</code>.</li>
+  <li>Heap: the largest area that JVM memory controls, ‘thread-sharing’. All memory of objects that are created by <code class="highlighter-rouge">new</code> operations are allocated here (including instances of objects and arrays). It is the main active area of <code class="highlighter-rouge">GC</code>.</li>
 </ul>
 
-<h2 id="the-memory-allocation-in-java">The Memory Allocation in Java</h2>
+<h2 id="the-memory-allocation-in-java">The memory allocation in Java</h2>
 <p>In general, Java treats basic data types and objects differently in memory allocation:</p>
 
 <ul>
-  <li>Basic Date Types: including byte, short, int, long, float, double, boolean, char. When defining these variables in methods, JVM will directly allocate spaces for them in <code class="highlighter-rouge">thread stack</code>. If a variable is beyond its scope, it space will be released.</li>
+  <li>Basic data types: including byte, short, int, long, float, double, boolean, char. When declaring these variables in methods, JVM will directly allocate spaces for them in <code class="highlighter-rouge">thread stack</code>. If a variable is beyond its scope, it space will be released.</li>
   <li>Objects created by <code class="highlighter-rouge">new</code> operations (including arrays): Their spaces will be allocated in <code class="highlighter-rouge">heap</code>,  and a <code class="highlighter-rouge">reference to the address</code> will be created in stack if needed. If an object is not referenced by any variable, its space won’t be realeased immediately, but will be collected by GC at a <code class="highlighter-rouge">certain</code> time (decided by many factors).</li>
 </ul>
 
-<h2 id="stack-memory-heap-memory-and-parameter-passing">Stack Memory, Heap Memory and Parameter Passing</h2>
-<p>Different from C++, there’s no <code class="highlighter-rouge">pointers</code> in Java. Objecets are created in heap, and programs are executed in stack, so we are operating the <code class="highlighter-rouge">reference to object</code> all the time. For example, let’s see the following program:</p>
+<h2 id="stack-memory-heap-memory-and-parameter-passing">Stack memory, heap memory and parameter passing</h2>
+<p>Different from C++, there’s no <code class="highlighter-rouge">pointer</code> in Java. Objecets are created in heap, while programs are executed in stack, so we are operating the <code class="highlighter-rouge">reference to object</code> all the time. For example, let’s see the following code:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">A</span> <span class="o">{</span>
     <span class="kt">int</span> <span class="n">value</span><span class="o">;</span>
@@ -90,9 +90,9 @@
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The parameter <code class="highlighter-rouge">a2</code> of method <code class="highlighter-rouge">update()</code> receives references to objects. When running, JVM finds this object in heap according to the address, and then modify its member variable <code class="highlighter-rouge">value</code>. Since the heap is shared, this modification is visible immediately to another reference <code class="highlighter-rouge">a1</code> in method <code class="highlighter-rouge">main()</code>, so the two outputs are different.</p>
+<p>The parameter <code class="highlighter-rouge">a2</code> in method <code class="highlighter-rouge">update()</code> receives a reference. When executing, JVM finds this object in heap by the address, and then modifies its member variable <code class="highlighter-rouge">value</code>. Since the heap is shared, this modification is visible immediately to another reference <code class="highlighter-rouge">a1</code> in method <code class="highlighter-rouge">main()</code>, so the two outputs are different.</p>
 
-<p>As for the above example, if we change the type A to a basic data type, such as <code class="highlighter-rouge">int</code>, the result will be totally different:</p>
+<p>However, if we change the type <code class="highlighter-rouge">A</code> to a basic data type, such as <code class="highlighter-rouge">int</code>, the result will be different:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test</span> <span class="o">{</span>
 
@@ -113,11 +113,11 @@
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>In JVM, stack can be read and write much faster than heap, so for basic data types, whose life cycle and size are known at compile time, their spaces are allocated directly in stack.</p>
+<p>In JVM, stack can be read or written much faster than heap, so for basic data types, whose life cycle and size are known at compile time, their spaces are allocated directly in stack.</p>
 
-<p>*Attention: If you use Java’s <code class="highlighter-rouge">wrapper class</code> such as <code class="highlighter-rouge">Integer</code>, or arrays of basic data types such as <code class="highlighter-rouge">int[]</code>, the result will be same as the first example. Therefore, the most useful difference is: whether it uses a <code class="highlighter-rouge">new</code> operator to create.</p>
+<p>*Attention: If you use Java’s <code class="highlighter-rouge">wrapper class</code> such as <code class="highlighter-rouge">Integer</code>, or arrays of basic data types such as <code class="highlighter-rouge">int[]</code>, the result will be the same as the first example. You may find the main difference is: whether it is created by a <code class="highlighter-rouge">new</code> operation.</p>
 
-<h2 id="a-special-data-type-string">A Special Data Type: String</h2>
+<h2 id="a-special-data-type-string">A special data type: String</h2>
 <p>You should notice that the eight basic data types mentioned above do not include <code class="highlighter-rouge">String</code>, but you don’t need to <code class="highlighter-rouge">new</code> a String, why? Let’s see an example:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">String</span> <span class="n">a</span> <span class="o">=</span> <span class="s">"test"</span><span class="o">;</span>
@@ -126,16 +126,16 @@
 <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">);</span>   <span class="c1">// true</span>
 </code></pre></div></div>
 
-<p>It seems that String behaves just like basic data types. This is due to the fact that JVM treats String specially. The <code class="highlighter-rouge">Constant Pool</code> in the memory of JVM we mentioned includes a <code class="highlighter-rouge">String Constant Pool</code>, which will be searched first if we create a String. If there’s a String with the same <code class="highlighter-rouge">literal value</code>JVM will return its reference directly; if not, JVM creates a new String constant.</p>
+<p>It seems that String behaves just like basic data types. This is due to the fact that JVM treats String specially. The <code class="highlighter-rouge">constant pool</code> in the JVM memory includes a <code class="highlighter-rouge">string constant pool</code>, which will be searched first if we create a String. If there’s a String with the same <code class="highlighter-rouge">literal value</code>, JVM will return its reference directly; otherwise, JVM creates a new String constant.</p>
 
 <p>What about this classical question:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">String</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="s">"test"</span><span class="o">);</span>
 </code></pre></div></div>
 
-<p>How many objects are created in the code? The answer is <code class="highlighter-rouge">two</code>. First, a String <code class="highlighter-rouge">constant</code> is created in the String Constant Pool values <code class="highlighter-rouge">test</code>, and then since there’s a <code class="highlighter-rouge">new</code> operation, JVM creates a new String <code class="highlighter-rouge">object</code> in heap.</p>
+<p>How many objects are created in this code? The answer is <code class="highlighter-rouge">two</code>. First, a String <code class="highlighter-rouge">constant</code> is created in the <code class="highlighter-rouge">string constant pool</code> values <code class="highlighter-rouge">test</code>, and since there’s a <code class="highlighter-rouge">new</code> operation, JVM creates a new String <code class="highlighter-rouge">object</code> in heap.</p>
 
-<p>If you have understood all contents above, the results of the following code will be obvious:</p>
+<p>If you understand all contents above, the result of the following code will be obvious:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">String</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="s">"test"</span><span class="o">);</span>
 <span class="n">String</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="s">"test"</span><span class="o">);</span>
@@ -143,7 +143,7 @@
 <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">);</span>   <span class="c1">// false</span>
 </code></pre></div></div>
 
-<p>Here we digress a little. the <code class="highlighter-rouge">==</code> operator in Java compares the references to objects (that is, the addresses). Therefore, we can’t directly use <code class="highlighter-rouge">==</code> to compare the literal values of two Strings, but we can use method ‘equals()’ instead:</p>
+<p>Here we digress a little. The <code class="highlighter-rouge">==</code> operator in Java compares the references to objects (that is, the addresses). Therefore, we can’t use <code class="highlighter-rouge">==</code> to compare the literal values of two Strings, but we can use method ‘equals()’ instead:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">String</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="s">"test"</span><span class="o">);</span>
 <span class="n">String</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="s">"test"</span><span class="o">);</span>
@@ -151,9 +151,9 @@
 <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">b</span><span class="o">));</span>   <span class="c1">// true</span>
 </code></pre></div></div>
 
-<p>In addition, Java recommends creating String with String Constant Pool rather than <code class="highlighter-rouge">new</code> operator.</p>
+<p>In addition, Java recommends creating String with string constant pool rather than <code class="highlighter-rouge">new</code> operator.</p>
 
-<p>Finally, let’s discuss an interesting point of the compiler. Look at this example:</p>
+<p>Finally, let’s see an interesting feature of the compiler. Look at this example:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">String</span> <span class="n">a</span> <span class="o">=</span> <span class="s">"aaabbb"</span><span class="o">;</span>
 <span class="n">String</span> <span class="n">b</span> <span class="o">=</span> <span class="s">"aaa"</span> <span class="o">+</span> <span class="s">"bbb"</span><span class="o">;</span>
@@ -172,7 +172,7 @@
 <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">m</span> <span class="o">==</span> <span class="n">n</span><span class="o">);</span>   <span class="c1">// false</span>
 </code></pre></div></div>
 
-<p>if there is non-constant value at either side (or both) of the <code class="highlighter-rouge">+</code> operator, a new String object will always be created, even if the concatenated String exists in the String Constant Pool.</p>
+<p>If there is non-constant value at either side (or both) of the <code class="highlighter-rouge">+</code> operator, a new String object will always be created, even if the concatenated String exists in the string constant pool.</p>
 
 	
 </div>

@@ -41,10 +41,10 @@
 	</div>
 
 	<h2 id="overview">Overview</h2>
-<p>Today when I was viewing the Java source code, I found that the implementation of <code class="highlighter-rouge">HashMap</code> is somewhat different from my memory. Then I referred to some materials and figured out that It was optimized in <code class="highlighter-rouge">JDK 1.8</code>, adding some new data structures to improve the performance, but the overall design idea is still the same. First, we start with <code class="highlighter-rouge">hash</code>.</p>
+<p>In <code class="highlighter-rouge">JDK 1.8</code>, the <code class="highlighter-rouge">HashMap</code> was optimized and implemented differently from the previous version. Some new data structures are added to improve the performance, but the overall design idea is still the same.</p>
 
 <h2 id="hash">Hash</h2>
-<p>Say we have a large amount of data pairs, such as a phone book:</p>
+<p>First, we start with <code class="highlighter-rouge">hash</code>. Say we have a large amount of data pairs, such as a phone book:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hao Cui: 1234567890
 Yang Pan: 9876543210
@@ -53,24 +53,24 @@ Mo Tang: 233332333
 
 <p>With what data structure can we get the fastest <code class="highlighter-rouge">access speed</code>?</p>
 
-<p>The simplest thought is to store sequentially, and for instance, using a <code class="highlighter-rouge">linked list</code>. What we do is to maintain the head and tail node, so the time complexity of read is <code class="highlighter-rouge">O(1)</code>. However, if we want to get a phone number by name, a head-to-tail traverse is not avoidable, which has a time complexity of <code class="highlighter-rouge">O(n)</code>. When the data grows larger, this can be extremely inefficient.</p>
+<p>The simplest thought is to store sequentially. For instance, use a <code class="highlighter-rouge">linked list</code>. What we do is to maintain the head and tail node, so the time complexity of read is <code class="highlighter-rouge">O(1)</code>. However, if we want to get a phone number by name, a head-to-tail traverse is not avoidable, which has a time complexity of <code class="highlighter-rouge">O(n)</code>. When the data grows larger, this can be extremely inefficient.</p>
 
-<p>A improvement is to use a <code class="highlighter-rouge">search tree</code> instead. Now the access time is <code class="highlighter-rouge">O(logn)</code>, which sounds gread, but can we do even better?</p>
+<p>A improvement is to use a <code class="highlighter-rouge">search tree</code> instead. Now the access time is <code class="highlighter-rouge">O(logn)</code>, which sounds great, but can it be even better?</p>
 
-<p>As we know, we can access any item in an array by index within <code class="highlighter-rouge">O(1)</code> time, so naturally we try to store data pairs into an array, but since the key of our data is <code class="highlighter-rouge">string</code>, how to map it to a <code class="highlighter-rouge">index</code>? That’s where hash works.</p>
+<p>As we know, we can access any item from an array by index within <code class="highlighter-rouge">O(1)</code> time, so we may try to store data pairs in an array, but since the key of our data is <code class="highlighter-rouge">string</code>, how to map it to a <code class="highlighter-rouge">index</code>? That’s where hash works.</p>
 
-<p>The essence of hash is a <code class="highlighter-rouge">mapping function</code>, compressing inputs into fixed-length outputs, which is popular in crytology. In our cases, we <code class="highlighter-rouge">hash</code> keys to indices of an array, so we can accessing values with constant time complexity.</p>
+<p>The essence of hash is a <code class="highlighter-rouge">mapping function</code>, compressing inputs into fixed-length outputs, which is popular in cryptology. In our case, we <code class="highlighter-rouge">hash</code> keys to array indices, so we can access values within constant time.</p>
 
-<h2 id="the-implementation-of-hash">The Implementation of Hash</h2>
-<p>There are three typical implementations of hash, including <code class="highlighter-rouge">static hash</code>, <code class="highlighter-rouge">extendable hash</code> and <code class="highlighter-rouge">liner hash</code>. To have a better understanding of HashMap, we use examples in <code class="highlighter-rouge">DBMS</code> to introduce the first two.</p>
+<h2 id="the-implementation-of-hash">The implementation of hash</h2>
+<p>There are three typical implementations of hash, including <code class="highlighter-rouge">static hash</code>, <code class="highlighter-rouge">extendable hash</code> and <code class="highlighter-rouge">linear hash</code>. To have a better understanding of HashMap, I will use examples in <code class="highlighter-rouge">DBMS</code> to introduce the first two.</p>
 
-<h3 id="static-hash">Static Hash</h3>
+<h3 id="static-hash">Static hash</h3>
 <p>This is the simplest hash. Suppose we have N buckets, and for any input, we use hash function <code class="highlighter-rouge">h</code> to calculate its index, and then insert it to that bucket. If that bucket is full, we use <code class="highlighter-rouge">overflow chains</code>:</p>
 
 <p><img src="/assets/images/0910/0-0.png" alt="" /></p>
 
-<h3 id="extendable-hash">Extendable Hash</h3>
-<p>Searching in a overflow chain has linear time complexity. To avoid this, we can duplicate the number of buckets before a chain is created, and redistribute all data items. However, the cost is high to access all data, so extendable hash maintains a <code class="highlighter-rouge">catagory</code> of all bucktes. When inserting data to a full bucket, the original bucket splits, and the catagory duplicates (Here is only a simple example, not including the concepts of <code class="highlighter-rouge">global depth</code> and <code class="highlighter-rouge">local depth</code>. If you are interested please refer to related articles):</p>
+<h3 id="extendable-hash">Extendable hash</h3>
+<p>Searching in a overflow chain has linear time complexity. To avoid this, we can duplicate the number of buckets before a chain is created, and redistribute all data items. However, the cost is high to access all data, so extendable hash maintains a <code class="highlighter-rouge">category</code> of all bucktes. When inserting data to a full bucket, the original bucket splits, and the category duplicates (this is only a simple example, not including the concepts of <code class="highlighter-rouge">global depth</code> and <code class="highlighter-rouge">local depth</code>):</p>
 
 <ol>
   <li>
@@ -78,15 +78,15 @@ Mo Tang: 233332333
 <img src="/assets/images/0910/1-0.png" alt="" /></p>
   </li>
   <li>
-    <p>Insert <code class="highlighter-rouge">9</code>. The catagory will be duplicated.
+    <p>Insert <code class="highlighter-rouge">9</code>. The category will be duplicated.
 <img src="/assets/images/0910/1-1.png" alt="" /></p>
   </li>
 </ol>
 
 <h2 id="hashcode-and-equals">hashCode() and equals()</h2>
-<p>By here, everyone should know that if the hash values of two data items are the same, their real values can be different. As we know, there are two methods, <code class="highlighter-rouge">hashCode()</code> and <code class="highlighter-rouge">equals()</code>, defined in class <code class="highlighter-rouge">Object</code>. In fact, HashMap use them to judge whether a key exists in the map, and which <code class="highlighter-rouge">bucket</code> should it be put into: Java invokes <code class="highlighter-rouge">hashCode()</code> first to get the hash value of an object, and then find the target bucket, invoking <code class="highlighter-rouge">equals()</code> of every data item inside the bucket to find the real data item.</p>
+<p>By here, everyone should know that if the hash values of two data items are the same, their actual values can be different. As we know, there are two methods, <code class="highlighter-rouge">hashCode()</code> and <code class="highlighter-rouge">equals()</code>, defined in class <code class="highlighter-rouge">Object</code>. HashMap use them to judge whether a key exists in the map, and which <code class="highlighter-rouge">bucket</code> should it be put into: when searching for a value, Java invokes <code class="highlighter-rouge">hashCode()</code> first to get the hash value of the key, and then finds the target bucket, invoking <code class="highlighter-rouge">equals()</code> of every data item inside the bucket to find the target data item.</p>
 
-<p>You should realize that, we can override these two methods to implement our own concept of <code class="highlighter-rouge">equality</code>. For example, for class <code class="highlighter-rouge">Person</code>:</p>
+<p>Note that we can override these two methods to implement our own concept of <code class="highlighter-rouge">equality</code>. For example, for class <code class="highlighter-rouge">Person</code>:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
 
@@ -103,7 +103,7 @@ Mo Tang: 233332333
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>we define: <code class="highlighter-rouge">Two people</code> can be reagarded identical if their <code class="highlighter-rouge">ssd</code>s are the same. So we override <code class="highlighter-rouge">hashCode()</code> and <code class="highlighter-rouge">equals()</code>:</p>
+<p>We define: <code class="highlighter-rouge">two people</code> can be reagarded as identical if their <code class="highlighter-rouge">ssd</code>s are the same. So we override the <code class="highlighter-rouge">hashCode()</code> and <code class="highlighter-rouge">equals()</code>:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
 <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
@@ -132,11 +132,11 @@ Mo Tang: 233332333
 <h2 id="hashmap-in-java">HashMap in Java</h2>
 <p>The implementation of HashMap in Java is similar to <code class="highlighter-rouge">the combination of static hash and extendable hash</code>. Before JDK 1.8, HashMap was stored by <code class="highlighter-rouge">array + linked list</code>, Keys were mapped to indices of an array, and a doubly linked list was used to implement every bucket. When searching, JDK first found the bucket by hash value, and then traversed the list to get the target data item.</p>
 
-<p>The results of a hash function may collide, which means two different data items could be mapped to the same bucket. It is easy to conclude that if we don;t take <code class="highlighter-rouge">data skews</code> into consideration, for a certain amount of data, the probability of collisions depends on the performance of the hash function as well as the number of buckets. Java has done well in the <code class="highlighter-rouge">degree of hash</code>, so how to possiby avoid collisions without wasting spaces? The answer is to use <code class="highlighter-rouge">dynamic exdentable data structure</code>. The initial number of buckets is small, but as we add more data items, the array will be extended after reaching a threshold.</p>
+<p>The results of a hash function may collide, which means two different data items could be mapped to the same bucket. It is easy to conclude that if we don’t take <code class="highlighter-rouge">data skews</code> into consideration, for a certain amount of data, the probability of collision depends on the performance of the hash function as well as the number of buckets. Java has done well in the <code class="highlighter-rouge">degree of hash</code>, so how to possibly avoid collisions without wasting spaces? The answer is to use a <code class="highlighter-rouge">dynamic exdentable data structure</code>. The initial number of buckets is small, but as we add more data items, the array will be extended after reaching a threshold.</p>
 
-<p>In JDK 1.8, an important optimization is, if there are too many data items inside a bucket, it (that exact bucket) will use a <code class="highlighter-rouge">red-black tree</code> instead, to improve the access speed. In this blog, we focus on hash, so the red-black tree will not be discussed.</p>
+<p>In JDK 1.8, an important optimization is, if there are too many data items inside a bucket, that bucket will change its structure to a <code class="highlighter-rouge">red-black tree</code> to improve the access speed. In this blog, we focus on hash, so the red-black tree will not be discussed.</p>
 
-<p>Therefore, the HashMap in Java 8 is implemented by <code class="highlighter-rouge">array + linkedlist + red-black tree</code>.</p>
+<p>To sum up, the HashMap in Java 8 is implemented by <code class="highlighter-rouge">array + linkedlist + red-black tree</code>.</p>
 
 <h3 id="important-members">Important members</h3>
 <p>Some important members in class HashMap:</p>
@@ -148,7 +148,7 @@ Mo Tang: 233332333
 <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">TREEIFY_THRESHOLD</span> <span class="o">=</span> <span class="mi">8</span><span class="o">;</span>
 </code></pre></div></div>
 
-<p>*Attention: the keyword <code class="highlighter-rouge">transient</code> is for Java <code class="highlighter-rouge">serialization</code>, which indicates that these fields are ignored in serializaiton.</p>
+<p>*Attention: the keyword <code class="highlighter-rouge">transient</code> is for Java <code class="highlighter-rouge">serialization</code>, which indicates that these fields will be ignored in serializaiton.</p>
 
 <p><code class="highlighter-rouge">table</code> is the array that stores buckets. Every bucket is a linked list (or a red-black tree). <code class="highlighter-rouge">Node</code> simply implements the interface <code class="highlighter-rouge">Map.Entry</code>, storing key-value maps.</p>
 
@@ -156,9 +156,9 @@ Mo Tang: 233332333
 
 <p><code class="highlighter-rouge">threshold</code> and <code class="highlighter-rouge">loadFactor</code> are used together. <code class="highlighter-rouge">threshold = table.length * loadFactor</code>. When the number of items in the map reaches this threshold, the array will be extended.</p>
 
-<p><code class="highlighter-rouge">TREEIFY_THRESHOLD</code> is for red-black tree. When the number of items inside a bucket reaches it, the data structure of this bucket will change to red-black tree.</p>
+<p><code class="highlighter-rouge">TREEIFY_THRESHOLD</code> is for red-black tree. When the number of items inside a bucket reaches this threshold, the data structure of this bucket will change to red-black tree.</p>
 
-<p>We should mention that the number of buckets in HashMap is always <code class="highlighter-rouge">a powerof 2</code>. We will discuss the convience brought by this later.</p>
+<p>Note that the number of buckets in HashMap is always <code class="highlighter-rouge">a power of 2</code>. You will see the convenience brought by this later.</p>
 
 <h3 id="method-hash">Method hash()</h3>
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="nf">hash</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
@@ -167,9 +167,9 @@ Mo Tang: 233332333
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>A classical way to do hash is to calculate <code class="highlighter-rouge">key % number of buckets</code> and the result is the index of the bucket. When the input data is even, the distrubution of data among buckets is also even. The design of <code class="highlighter-rouge">hashCode()</code> in class <code class="highlighter-rouge">Object</code> ensures the evenness to some extent (we will not go further on this topic), so we can make use of it.</p>
+<p>A classical way of hash is to calculate <code class="highlighter-rouge">key % number of buckets</code> and the result is the index of the bucket. When the input data is even, the distrubution of data among buckets is also even. The design of <code class="highlighter-rouge">hashCode()</code> in class <code class="highlighter-rouge">Object</code> ensures the evenness to some extent (we will not go further on this topic), so HashMap makes use of it.</p>
 
-<p>An interesting point is that, <code class="highlighter-rouge">hash()</code> first do an <code class="highlighter-rouge">xor</code> operation between the higher-16 bits and lower-16 bits of the input. According to the comments, this is to always take the higher bits into consideration. Due to the mod operation, if the size of the array is small, higher bits will never participant in the calculation. To achieve a evener data distribution, it just move the impact of the higher bits downwards, so they are also considered when the array size is small.</p>
+<p>An interesting point is that, <code class="highlighter-rouge">hash()</code> first do an <code class="highlighter-rouge">xor</code> operation on the higher-16 bits and lower-16 bits of the input. According to the comments, this is to always take the higher bits into consideration. Due to the mod operation, if the size of the array is small, higher bits will never participant in the calculation. To achieve a evener data distribution, it just move the impact of the higher bits downwards, so they are also considered when the array size is small.</p>
 
 <p>You may notice that there is no <code class="highlighter-rouge">mod operation</code> in this function, but before JDK 1.8, here existed such a function:</p>
 
@@ -178,7 +178,7 @@ Mo Tang: 233332333
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>We know that the efficiency of mod operation is low, while <code class="highlighter-rouge">bitwise operation</code> is efficient. Due to the size of buckets, which is alway <code class="highlighter-rouge">a power of 2</code>, we can simply do an <code class="highlighter-rouge">bitwise AND</code> operation between the input and <code class="highlighter-rouge">the number of buckets minus one</code>. The result is the same as a mod operation, but the speed is faster. In JDK 1.8, this function is deleted, and instead the line of code will be executed whenever an index is needed.</p>
+<p>We know that the efficiency of mod operation is low, while <code class="highlighter-rouge">bitwise operation</code> is much more efficient. Due to the size of buckets, which is alway <code class="highlighter-rouge">a power of 2</code>, we can simply do a <code class="highlighter-rouge">bitwise AND</code> operation between the input and <code class="highlighter-rouge">the number of buckets minus one</code>. The result is the same as a mod operation, but it runs faster. In JDK 1.8, this function is deleted, and instead this line of code will be executed whenever an index is needed.</p>
 
 <h2 id="method-put">Method put()</h2>
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">V</span> <span class="nf">put</span><span class="o">(</span><span class="n">K</span> <span class="n">key</span><span class="o">,</span> <span class="n">V</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
@@ -229,7 +229,7 @@ Mo Tang: 233332333
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>It looks a little bit complicate, with so many <code class="highlighter-rouge">if</code> statements, but it’s not difficult at all. Let’s start from the first <code class="highlighter-rouge">if </code> in <code class="highlighter-rouge">putVal()</code>.</p>
+<p>It seems to be a little bit complicate. There are so many <code class="highlighter-rouge">if</code> statements, but it’s not difficult at all. Let’s start from the first <code class="highlighter-rouge">if </code> in <code class="highlighter-rouge">putVal()</code>.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">((</span><span class="n">tab</span> <span class="o">=</span> <span class="n">table</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="o">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">tab</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
 </code></pre></div></div>
@@ -239,18 +239,18 @@ Mo Tang: 233332333
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">((</span><span class="n">p</span> <span class="o">=</span> <span class="n">tab</span><span class="o">[</span><span class="n">i</span> <span class="o">=</span> <span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">hash</span><span class="o">])</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
 </code></pre></div></div>
 
-<p>As we mentioned before, to calculate the index according to the hash value and find the target bucket. If the bucket is <code class="highlighter-rouge">null</code>, create a new Node; otherwise:</p>
+<p>As I mentioned before, to calculate the index according to the hash value and find the target bucket. If the bucket is <code class="highlighter-rouge">null</code>, create a new Node; otherwise:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">hash</span> <span class="o">==</span> <span class="n">hash</span> <span class="o">&amp;&amp;</span> 
     <span class="o">((</span><span class="n">k</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">key</span><span class="o">)</span> <span class="o">==</span> <span class="n">key</span> <span class="o">||</span> <span class="o">(</span><span class="n">key</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">key</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">k</span><span class="o">))))</span>
 </code></pre></div></div>
 
-<p>If the value of first Node of the bucket is the same as the input, update the Node.</p>
+<p>If the value of first Node in the bucket is the same as the input, update that Node.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">p</span> <span class="k">instanceof</span> <span class="n">TreeNode</span><span class="o">)</span>
 </code></pre></div></div>
 
-<p>If this bucket uses a red-black-tree, do tree searching and inserting (will not be discussed here); otherwise:</p>
+<p>If this bucket is a red-black-tree, do tree searching and inserting (will not be discussed here); otherwise:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">binCount</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="o">;</span> <span class="o">++</span><span class="n">binCount</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">((</span><span class="n">e</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">next</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
@@ -266,7 +266,7 @@ Mo Tang: 233332333
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Traverse the linked list. If the key does not exist in this bucket, create a new Node at the end of the bucket, and judge whether the new size reaches the <code class="highlighter-rouge">Treeify Threshold</code>. If so, transform it to a tree. If the key is found in this bucket, update the value.</p>
+<p>Traverse the linked list. If the key does not exist in this bucket, create a new Node at the end of the list, and judge whether the new size reaches the <code class="highlighter-rouge">Treeify Threshold</code>. If so, transform this bucket to a tree. If the key is found in this bucket, update the value.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">e</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// existing mapping for key</span>
     <span class="n">V</span> <span class="n">oldValue</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">value</span><span class="o">;</span>
@@ -277,7 +277,7 @@ Mo Tang: 233332333
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>If it is an updation, return the original value.</p>
+<p>If it is an update, return the original value.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">++</span><span class="n">modCount</span><span class="o">;</span>
 <span class="k">if</span> <span class="o">(++</span><span class="n">size</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="o">)</span>
@@ -288,13 +288,13 @@ Mo Tang: 233332333
 
 <p>Finally, if the new size of the map exceeds the <code class="highlighter-rouge">threshold</code>, expand the array.</p>
 
-<p>Please pay attention to these two invocations:</p>
+<p>Pay attention to these two invocations:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">afterNodeAccess</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
 <span class="n">afterNodeInsertion</span><span class="o">(</span><span class="n">evict</span><span class="o">);</span>
 </code></pre></div></div>
 
-<p>They are not used in HashMap, but will be implemented in <code class="highlighter-rouge">LinkedHashMap</code></p>
+<p>They are not used in HashMap, but will be implemented in <code class="highlighter-rouge">LinkedHashMap</code>.</p>
 
 <h3 id="method-resize">Method resize()</h3>
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="nf">resize</span><span class="o">()</span> <span class="o">{</span>
@@ -391,7 +391,7 @@ Mo Tang: 233332333
     <span class="o">((</span><span class="n">TreeNode</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;)</span><span class="n">e</span><span class="o">).</span><span class="na">split</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">newTab</span><span class="o">,</span> <span class="n">j</span><span class="o">,</span> <span class="n">oldCap</span><span class="o">);</span>
 </code></pre></div></div>
 
-<p>If there is only one Node in a bucket, find its new index and copy; if this bucket uses a red-black tree, do related operations (will not be discussed here).</p>
+<p>If there is only one Node inside a bucket, find its new index and copy; if this bucket uses a red-black tree, do related operations (will not be discussed here).</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">loHead</span> <span class="o">=</span> <span class="kc">null</span><span class="o">,</span> <span class="n">loTail</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
 <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">hiHead</span> <span class="o">=</span> <span class="kc">null</span><span class="o">,</span> <span class="n">hiTail</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
@@ -415,13 +415,13 @@ Mo Tang: 233332333
 <span class="o">}</span> <span class="k">while</span> <span class="o">((</span><span class="n">e</span> <span class="o">=</span> <span class="n">next</span><span class="o">)</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">);</span>
 </code></pre></div></div>
 
-<p>After the split, data in the original bucket will be transfered to two differnt buckets. Here four variables are used to store the head and tail of the two lists, to ensure the order of the Nodes in the new list is the same as the previous one.</p>
+<p>After the split, data in the original bucket will be splited into two different buckets. Here four variables are used to store the head and tail of the two lists, which ensure that the order of Nodes in the new list is the same as previous.</p>
 
-<p>When judging which bucket a Node belongs to, the code adopts a trick. As we mentioned before, we can calculate the index by <code class="highlighter-rouge">hash % size of the array</code>. Since the size is always <code class="highlighter-rouge">a power of two</code>, the <code class="highlighter-rouge">last n bits</code> of the hash value decides its index. For example, say we have two Nodes a, b:</p>
+<p>When judging which bucket a Node belongs to, there’s a trick. As we mentioned before, we can calculate the index by <code class="highlighter-rouge">hash % size of the array</code>. Since the size is always <code class="highlighter-rouge">a power of two</code>, the <code class="highlighter-rouge">last n bits</code> of the hash value decide its index. For example, say we have two Nodes a, b:</p>
 
 <p><img src="/assets/images/0910/2-1.png" alt="" /></p>
 
-<p>Now the size of the expanded array is <code class="highlighter-rouge">2 ^ (n +1)</code>. The last <code class="highlighter-rouge">n</code> bits of all nodes in this array are the same, so the <code class="highlighter-rouge">n + 1</code>th Node counting from the back will decide its new index, whether to move to another bucket, or remain in the same one. Therefore, we can directly do an bitwise AND operation on the hash value and the the original size of the array, that is, <code class="highlighter-rouge">2 ^ n</code>. If the result is not <code class="highlighter-rouge">0</code>, we know that this Node should be moved to a new bucket.</p>
+<p>Now the size of the expanded array is <code class="highlighter-rouge">2 ^ (n +1)</code>. The last <code class="highlighter-rouge">n</code> bits of all nodes in this array are the same, so the <code class="highlighter-rouge">n + 1</code>th Node counting from the back will decide its new index, whether to move to another bucket, or remain in the previous one. Therefore, we can simply do an bitwise AND operation on the hash value and the the original size of the array, that is, <code class="highlighter-rouge">2 ^ n</code>. If the result is not <code class="highlighter-rouge">0</code>, we know that this Node should be moved to a new bucket.</p>
 
 <p><img src="/assets/images/0910/2-2.png" alt="" /></p>
 
@@ -437,14 +437,14 @@ Mo Tang: 233332333
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Since the size of the array is two times as the original one, the new index can be determined by <code class="highlighter-rouge">old position + oldCap</code>:</p>
+<p>Since the size of the array is two times as the original one, the new index can be decided by <code class="highlighter-rouge">old position + oldCap</code>:</p>
 
 <p><img src="/assets/images/0910/2-3.png" alt="" /></p>
 
 <p>In JDK 1.7, the index for every node will be recalculated after expansion. JDK 1.8 made some optimizations to increase the efficiency.</p>
 
 <h3 id="method-get">Method get()</h3>
-<p>After all the analysis above, the implementation of <code class="highlighter-rouge">get()</code> can be easy to understand, so I will not introduce it, and only give the source code:</p>
+<p>After all the analysis above, the implementation of <code class="highlighter-rouge">get()</code> can be easy to understand, so I will not introduce it. Here’s the source code:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">V</span> <span class="nf">get</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">e</span><span class="o">;</span>
@@ -473,7 +473,7 @@ Mo Tang: 233332333
 </code></pre></div></div>
 
 <h2 id="summary">Summary</h2>
-<p>Hash is a very important function, which is widely used in the field of computerWe always use <code class="highlighter-rouge">HashMap</code>, but if we can know the underlying principles of its implementation, we will make better use of it. Besides, reading the source code is a interesting process.</p>
+<p>Hash is a very important function, which is widely applied in the field of Computer Science. We always use <code class="highlighter-rouge">HashMap</code>, but if we understand the underlying principles of its implementation, we can make better use of it. Besides, reading the source code is always an interesting process.</p>
 
 	
 </div>

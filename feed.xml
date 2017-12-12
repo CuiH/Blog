@@ -1,24 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.0">Jekyll</generator><link href="http://cuih.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="http://cuih.xyz/" rel="alternate" type="text/html" /><updated>2017-12-11T16:06:42-06:00</updated><id>http://cuih.xyz/</id><title type="html">Life is a Struggle</title><subtitle>Life is a struggle.</subtitle><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><entry><title type="html">DP and Knapsack Problem</title><link href="http://cuih.xyz/2017/10/09/DP-and-Knapsack-Problem.html" rel="alternate" type="text/html" title="DP and Knapsack Problem" /><published>2017-10-09T23:30:00-05:00</published><updated>2017-10-09T23:30:00-05:00</updated><id>http://cuih.xyz/2017/10/09/DP%20and%20Knapsack%20Problem</id><content type="html" xml:base="http://cuih.xyz/2017/10/09/DP-and-Knapsack-Problem.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;DP stands for &lt;code class=&quot;highlighter-rouge&quot;&gt;dynamic programming&lt;/code&gt;, which is very common in sloving problems. Many people tend to think that it is difficult, but actually, if you understand the principles, it can be easy to use. In this blog, I will give a brief introduction to DP and analyze with maybe the most typical DP problem, the &lt;code class=&quot;highlighter-rouge&quot;&gt;knapsack problem&lt;/code&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.0">Jekyll</generator><link href="http://cuih.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="http://cuih.xyz/" rel="alternate" type="text/html" /><updated>2017-12-11T23:10:31-06:00</updated><id>http://cuih.xyz/</id><title type="html">Life is a Struggle</title><subtitle>Life is a struggle.</subtitle><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><entry><title type="html">Dynamic Programming and Knapsack Problems</title><link href="http://cuih.xyz/2017/10/09/Dynamic-Programming-and-Knapsack-Problems.html" rel="alternate" type="text/html" title="Dynamic Programming and Knapsack Problems" /><published>2017-10-09T23:30:00-05:00</published><updated>2017-10-09T23:30:00-05:00</updated><id>http://cuih.xyz/2017/10/09/Dynamic%20Programming%20and%20Knapsack%20Problems</id><content type="html" xml:base="http://cuih.xyz/2017/10/09/Dynamic-Programming-and-Knapsack-Problems.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Dynamic Programming (DP)&lt;/code&gt; is very common in sloving problems. Many people tend to think that it is difficult, but actually, if you understand the principles, it can be easy to use. In this blog, I will give a brief introduction to DP and analyze with maybe the most typical DP problem, the &lt;code class=&quot;highlighter-rouge&quot;&gt;knapsack problem (s)&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;an-example&quot;&gt;An example&lt;/h2&gt;
-&lt;p&gt;Let’s see a problem on leetcode first, &lt;code class=&quot;highlighter-rouge&quot;&gt;#322 Coin Change&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;Let’s see a problem on Leetcode first, &lt;code class=&quot;highlighter-rouge&quot;&gt;#322 Coin Change&lt;/code&gt;:&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;You are given coins of different denominations and a total amount of money amount. Write a function to compute the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.&lt;/p&gt;
 
-  &lt;p&gt;Example:
-coins = [1, 2, 5], amount = 11
-return 3 (11 = 5 + 5 + 1)&lt;/p&gt;
+  &lt;p&gt;Example:&lt;/p&gt;
 
-  &lt;p&gt;Note:
-You may assume that you have an infinite number of each kind of coin.&lt;/p&gt;
+  &lt;p&gt;coins = [1, 2, 5], amount = 11&lt;/p&gt;
+
+  &lt;p&gt;return 3 (11 = 5 + 5 + 1)&lt;/p&gt;
+
+  &lt;p&gt;Note:&lt;/p&gt;
+
+  &lt;p&gt;You may assume that you have an infinite number of each kind of coin.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;At the first sight, a brute-force solution is quite straight-forward, that is, try every possible combinations and find the optimal one. So why don’t we start from that?&lt;/p&gt;
+&lt;p&gt;At the first sight, a brute-force solution is quite straight-forward, that is, try every possible combinations and find the optimal one. So why don’t we start with that?&lt;/p&gt;
 
-&lt;h3 id=&quot;the-easiest-recursion-solution&quot;&gt;The Easiest Recursion Solution&lt;/h3&gt;
-&lt;p&gt;It sounds good to use a recursion to handle this problem, and the code is rather simple:&lt;/p&gt;
+&lt;h3 id=&quot;the-easiest-recursive-solution&quot;&gt;The easiest recursive solution&lt;/h3&gt;
+&lt;p&gt;It sounds good to handle this problem with recursion, and the code is rather simple:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;coinChangeWithRecursion&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;coins&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -35,10 +38,10 @@ You may assume that you have an infinite number of each kind of coin.&lt;/p&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;However, obviously, the result is TLE, because the code will do many duplicate works. For example, if we have coins &lt;code class=&quot;highlighter-rouge&quot;&gt;[1, 2, 3]&lt;/code&gt;, and the target amount is &lt;code class=&quot;highlighter-rouge&quot;&gt;20&lt;/code&gt;. When we reach current amount of &lt;code class=&quot;highlighter-rouge&quot;&gt;1 + 2 + 2 (= 5)&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;2 + 3 (= 5)&lt;/code&gt;, the rest of the code will do the same job, that try to find the minimum coins to make up &lt;code class=&quot;highlighter-rouge&quot;&gt;(20 - 5 =) 15&lt;/code&gt;. As the target amount becomes larger, there will be exponentially more duplicate calculations. So, how to improve?&lt;/p&gt;
+&lt;p&gt;However, obviously, this may cause a TLE, because the code does many duplicate works. For example, if we have coins &lt;code class=&quot;highlighter-rouge&quot;&gt;[1, 2, 3]&lt;/code&gt;, and the target amount is &lt;code class=&quot;highlighter-rouge&quot;&gt;20&lt;/code&gt;. When we reach amount &lt;code class=&quot;highlighter-rouge&quot;&gt;1 + 2 + 2 (= 5)&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;2 + 3 (= 5)&lt;/code&gt;, the rest of the code will do the same job, that try to find the minimum coins to make up &lt;code class=&quot;highlighter-rouge&quot;&gt;(20 - 5 =) 15&lt;/code&gt;. As the target amount becomes larger, there will be exponentially more duplicate calculations. So, how to improve?&lt;/p&gt;
 
-&lt;h3 id=&quot;recursion-with-memorization&quot;&gt;Recursion With Memorization&lt;/h3&gt;
-&lt;p&gt;As we have analyzed the drawback of the recurssive solution, an intuitive improvement is to memorize every minCount(amount) we have already calculated, and return it when needed:&lt;/p&gt;
+&lt;h3 id=&quot;recursion-with-memorization&quot;&gt;Recursion with memorization&lt;/h3&gt;
+&lt;p&gt;As we have analyzed the drawback of the recursive solution, an intuitive improvement is to memorize every minCount (amount) we have already calculated:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HashMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;();&lt;/span&gt;
 
@@ -67,14 +70,12 @@ You may assume that you have an infinite number of each kind of coin.&lt;/p&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This solution can pass the online judge, but we still need to call the method to check whether we have memorized a result, which may cause a stackoverflow problem if the &lt;code class=&quot;highlighter-rouge&quot;&gt;amount&lt;/code&gt; is extremely large. What about using an array?&lt;/p&gt;
+&lt;p&gt;This solution can pass the online judge, but we still need to invoke this method many times. Can we get the result with only one invocation? Maybe we can use an array.&lt;/p&gt;
 
-&lt;h3 id=&quot;a-better-solution--dp&quot;&gt;A Better Solution – DP&lt;/h3&gt;
+&lt;h3 id=&quot;a-better-solution--dp&quot;&gt;A better solution – DP&lt;/h3&gt;
+&lt;p&gt;Since we’ll always calculate from big &lt;code class=&quot;highlighter-rouge&quot;&gt;amount&lt;/code&gt; to small &lt;code class=&quot;highlighter-rouge&quot;&gt;amount&lt;/code&gt;, why don’t we start from small &lt;code class=&quot;highlighter-rouge&quot;&gt;amount&lt;/code&gt; and remember the results, so big &lt;code class=&quot;highlighter-rouge&quot;&gt;amount&lt;/code&gt; can directly make use of them:&lt;/p&gt;
 
-&lt;p&gt;Since we’ll always calculate from big &lt;code class=&quot;highlighter-rouge&quot;&gt;amount&lt;/code&gt; to small &lt;code class=&quot;highlighter-rouge&quot;&gt;amount&lt;/code&gt;, why don’t we start from small &lt;code class=&quot;highlighter-rouge&quot;&gt;amount&lt;/code&gt; and remember the results, and thus big &lt;code class=&quot;highlighter-rouge&quot;&gt;amount&lt;/code&gt; can directly use them to calculate its own result:&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;coinChangeWithDP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;coins&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;coinChangeWithDP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;coins&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
     
     &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -90,18 +91,18 @@ You may assume that you have an infinite number of each kind of coin.&lt;/p&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This is what we call &lt;code class=&quot;highlighter-rouge&quot;&gt;DP&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This is the so-called &lt;code class=&quot;highlighter-rouge&quot;&gt;DP&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2 id=&quot;the-simplest-knapsack-problem&quot;&gt;The Simplest Knapsack Problem&lt;/h2&gt;
-&lt;p&gt;Now that we have learnt what &lt;code class=&quot;highlighter-rouge&quot;&gt;DP&lt;/code&gt; is, we can move to perhaps the most typical DP problem, the &lt;code class=&quot;highlighter-rouge&quot;&gt;knapsack problem&lt;/code&gt;. Actually, there are many variations of this problem, so we will begin with the simplest one, the &lt;code class=&quot;highlighter-rouge&quot;&gt;0/1 knapsack problem&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;the-simplest-knapsack-problem&quot;&gt;The simplest knapsack problem&lt;/h2&gt;
+&lt;p&gt;Now that we have learnt what &lt;code class=&quot;highlighter-rouge&quot;&gt;DP&lt;/code&gt; is, we can move to perhaps the most typical DP problem, the &lt;code class=&quot;highlighter-rouge&quot;&gt;knapsack problem&lt;/code&gt;. Actually, there are many variations, so we will begin with the simplest one, the &lt;code class=&quot;highlighter-rouge&quot;&gt;0/1 knapsack problem&lt;/code&gt;.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Suppose there are many objects with different weights and values, and you have a knapsack of limited capacity, how to fill in the knapsack to achieve the highest total value?&lt;/p&gt;
+  &lt;p&gt;Suppose there are many objects with different weights and values, and you have a knapsack of limited capacity, how to fill in the knapsack to achieve the greatest total value?&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;It is called the &lt;code class=&quot;highlighter-rouge&quot;&gt;0/1 knapsack&lt;/code&gt; because for each item, you can either pick it or not. If you are sensitive, you’ll realize that this problem is just like the previous &lt;code class=&quot;highlighter-rouge&quot;&gt;coin change&lt;/code&gt; problem! The only difference is that we want to find the maximum total value rather than the minimum coin count.&lt;/p&gt;
+&lt;p&gt;It is called the &lt;code class=&quot;highlighter-rouge&quot;&gt;0/1 knapsack&lt;/code&gt; because for each item, you can either pick it up or not. You may realize that this problem is just like the previous &lt;code class=&quot;highlighter-rouge&quot;&gt;coin change&lt;/code&gt; problem! The only difference is we want to find the maximum total value rather than the minimum coin count.&lt;/p&gt;
 
-&lt;p&gt;For a DP problem, the most important task is to find the &lt;code class=&quot;highlighter-rouge&quot;&gt;state transition equation&lt;/code&gt;. Following the principle in the coin problem, we start from small problems, and use an array to remember calculated results, i.e., &lt;code class=&quot;highlighter-rouge&quot;&gt;dp[n][c]&lt;/code&gt;, where &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt; is the number of items, and &lt;code class=&quot;highlighter-rouge&quot;&gt;c&lt;/code&gt; is the capacity of the knapsack. For each state, we can find the maximum value by trying all two possibiities, that is, to &lt;code class=&quot;highlighter-rouge&quot;&gt;include&lt;/code&gt; that item or &lt;code class=&quot;highlighter-rouge&quot;&gt;not&lt;/code&gt;. The equation is:&lt;/p&gt;
+&lt;p&gt;For a DP problem, the most important task is to find the &lt;code class=&quot;highlighter-rouge&quot;&gt;state transition equation&lt;/code&gt;. Following the principle in the coin problem, we start from small problems, and use an array to remember the calculated results, i.e., &lt;code class=&quot;highlighter-rouge&quot;&gt;dp[n][c]&lt;/code&gt;, where &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt; is the number of items, and &lt;code class=&quot;highlighter-rouge&quot;&gt;c&lt;/code&gt; is the capacity of the knapsack. For each state, we calculate the maximum value by trying all two possibilities – to &lt;code class=&quot;highlighter-rouge&quot;&gt;include&lt;/code&gt; that item or &lt;code class=&quot;highlighter-rouge&quot;&gt;not&lt;/code&gt;. The equation is:&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dp[i][j] = max(dp[i - 1][j - weight[i]] + value[i], dp[i - 1][j])
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -113,28 +114,28 @@ You may assume that you have an infinite number of each kind of coin.&lt;/p&gt;
         dp[i][j] = max(dp[i - 1][j - weight[i]] + value[i], dp[i - 1][j])
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Attention that &lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt; starts from &lt;code class=&quot;highlighter-rouge&quot;&gt;weight[i]&lt;/code&gt; since an item won’t be considered if its weight is greater than the capacity of the knapsack.&lt;/p&gt;
+&lt;p&gt;Note that &lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt; starts from &lt;code class=&quot;highlighter-rouge&quot;&gt;weight[i]&lt;/code&gt; since an item won’t be considered if its weight is greater than the capacity of the knapsack.&lt;/p&gt;
 
 &lt;p&gt;The final result is in &lt;code class=&quot;highlighter-rouge&quot;&gt;dp[n][c]&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;This code can still be optimized. You may find the first dimension of the array is somewhat redundant because we only use the previous &lt;code class=&quot;highlighter-rouge&quot;&gt;one&lt;/code&gt; round results. Therefore, we can adopt a &lt;code class=&quot;highlighter-rouge&quot;&gt;rolling array&lt;/code&gt; to save space.&lt;/p&gt;
 
-&lt;p&gt;Actually, the only reason why we use a two-dimension array is to avoid putting in one item multiple times, but if we start from the &lt;code class=&quot;highlighter-rouge&quot;&gt;back&lt;/code&gt;, one dimension is enougth, since we only use the results of smaller capacities (j - weight[i]):&lt;/p&gt;
+&lt;p&gt;In fact, the only reason why we use a two-dimension array is to avoid picking up the same item multiple times, but if we start from the &lt;code class=&quot;highlighter-rouge&quot;&gt;back&lt;/code&gt;, one dimension is enougth, since we only use the results of smaller capacities (j - weight[i]):&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;for i = [0 ... n)
     for j = [capacity ... weight[i]]
         dp[j] = max(dp[j - weight[i]] + value[i], dp[j])
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;the-complete-knapsack-problem&quot;&gt;The Complete Knapsack Problem&lt;/h2&gt;
-&lt;p&gt;It is similar to the 0/1 knapsack, but this time, we can use an item multiple times. It’s simple! As we have just discussed, to avoid counting one item more than once, we start from the back, so for a &lt;code class=&quot;highlighter-rouge&quot;&gt;complete knapsack&lt;/code&gt;, we just simply start from the beginning:&lt;/p&gt;
+&lt;h2 id=&quot;the-complete-knapsack-problem&quot;&gt;The complete knapsack problem&lt;/h2&gt;
+&lt;p&gt;It is similar to the 0/1 knapsack, but this time, we can use an item multiple times. It’s simple! As I mentioned above, we start from the back to avoid counting one item more than once, so for a &lt;code class=&quot;highlighter-rouge&quot;&gt;complete knapsack&lt;/code&gt;, we just simply start from the beginning:&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;for i = [0 ... n)
     for j = [weight[i] ... capacity]
         dp[j] = max(dp[j - weight[i]] + value[i], dp[j])
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;the-multidimensional-knapsack-problem&quot;&gt;The Multidimensional Knapsack Problem&lt;/h2&gt;
+&lt;h2 id=&quot;the-multidimensional-knapsack-problem&quot;&gt;The multidimensional knapsack problem&lt;/h2&gt;
 &lt;p&gt;There is an example on LeetCode, &lt;code class=&quot;highlighter-rouge&quot;&gt;#474 Ones and Zeroes&lt;/code&gt;:&lt;/p&gt;
 
 &lt;blockquote&gt;
@@ -144,13 +145,16 @@ You may assume that you have an infinite number of each kind of coin.&lt;/p&gt;
 
   &lt;p&gt;Now your task is to find the maximum number of strings that you can form with given m 0s and n 1s. Each 0 and 1 can be used at most once.&lt;/p&gt;
 
-  &lt;p&gt;Example:
-Input: Array = {“10”, “0001”, “111001”, “1”, “0”}, m = 5, n = 3
-Output: 4
-Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3 1s, which are “10,”0001”,”1”,”0”&lt;/p&gt;
+  &lt;p&gt;Example:&lt;/p&gt;
+
+  &lt;p&gt;Input: Array = {“10”, “0001”, “111001”, “1”, “0”}, m = 5, n = 3&lt;/p&gt;
+
+  &lt;p&gt;Output: 4&lt;/p&gt;
+
+  &lt;p&gt;Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3 1s, which are “10,”0001”,”1”,”0”&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;The major difference is that now the &lt;code class=&quot;highlighter-rouge&quot;&gt;knapsack&lt;/code&gt; has two restrictions, i.e., &lt;code class=&quot;highlighter-rouge&quot;&gt;1&lt;/code&gt;s and &lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt;s, but the principle never changes. Similar to the rolling array 0/1 knapsack solution, we use a two-dimension array to remember the states, and try to include every string, from the back to front (to avoid using one string more than once):&lt;/p&gt;
+&lt;p&gt;The main difference is that now the &lt;code class=&quot;highlighter-rouge&quot;&gt;knapsack&lt;/code&gt; has two restrictions, i.e., &lt;code class=&quot;highlighter-rouge&quot;&gt;1&lt;/code&gt;s and &lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt;s, but the principle never changes. Similar to the rolling array 0/1 knapsack solution, we use a two-dimension array to remember the states, and try to include every string, from the back to front (to avoid using one string more than once):&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;findMaxForm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;strs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[][]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
@@ -172,26 +176,26 @@ Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
-&lt;p&gt;The DP is a very powerful tool, but to know whether a problem can be solved with DP, and how to derive the state transition equation, it requires many exercises.&lt;/p&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="algorithm" /><summary type="html">Overview DP stands for dynamic programming, which is very common in sloving problems. Many people tend to think that it is difficult, but actually, if you understand the principles, it can be easy to use. In this blog, I will give a brief introduction to DP and analyze with maybe the most typical DP problem, the knapsack problem.</summary></entry><entry><title type="html">Sorting Algorithms</title><link href="http://cuih.xyz/2017/09/05/Sorting-Algorithms.html" rel="alternate" type="text/html" title="Sorting Algorithms" /><published>2017-09-05T23:00:00-05:00</published><updated>2017-09-05T23:00:00-05:00</updated><id>http://cuih.xyz/2017/09/05/Sorting%20Algorithms</id><content type="html" xml:base="http://cuih.xyz/2017/09/05/Sorting-Algorithms.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;When processing data, sorting algorithms are always used. Although most languages have related libraries that can be easily invoked, understanding the principles of such algorithms can help us make better use of them.&lt;/p&gt;
+&lt;p&gt;DP is a very powerful tool, but to know whether a problem can be solved with DP, and how to derive the state transition equation, you need to do many exercises.&lt;/p&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="algorithm" /><summary type="html">Overview Dynamic Programming (DP) is very common in sloving problems. Many people tend to think that it is difficult, but actually, if you understand the principles, it can be easy to use. In this blog, I will give a brief introduction to DP and analyze with maybe the most typical DP problem, the knapsack problem (s).</summary></entry><entry><title type="html">Sorting Algorithms</title><link href="http://cuih.xyz/2017/09/05/Sorting-Algorithms.html" rel="alternate" type="text/html" title="Sorting Algorithms" /><published>2017-09-05T23:00:00-05:00</published><updated>2017-09-05T23:00:00-05:00</updated><id>http://cuih.xyz/2017/09/05/Sorting%20Algorithms</id><content type="html" xml:base="http://cuih.xyz/2017/09/05/Sorting-Algorithms.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;When processing data, sorting algorithms are always used. Although most languages encapsulate those algorithms as libraries that can be easily invoked, understanding the principles of such algorithms can help us make better use of them.&lt;/p&gt;
 
-&lt;p&gt;If there’s no special statement, we sort data in ascending order in this blog, and the data set is:&lt;/p&gt;
+&lt;p&gt;If there’s no special statement, in this blog we sort data in ascending order, and the initial data set is:&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;5 8 1 5 2 4 7 9 8&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&quot;bubble-sort&quot;&gt;Bubble Sort&lt;/h2&gt;
-&lt;p&gt;This is usually the first sorting algorithm for a new comer to algorithms:&lt;/p&gt;
+&lt;h2 id=&quot;bubble-sort&quot;&gt;Bubble sort&lt;/h2&gt;
+&lt;p&gt;This is usually the first sorting algorithm for new programmers:&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;In each round, keep comparing every two neighbouring elements, and if the first one is greater, &lt;code class=&quot;highlighter-rouge&quot;&gt;swap&lt;/code&gt; the two elements.&lt;/li&gt;
   &lt;li&gt;After one round, the last element in the array is the greatest one among the unsorted sequence.&lt;/li&gt;
-  &lt;li&gt;Narrow down the unsorted sequence to exclude the last element (because it is at the right location).&lt;/li&gt;
+  &lt;li&gt;Narrow down the unsorted sequence to exclude the last element (because it is at the right position).&lt;/li&gt;
   &lt;li&gt;Repeat process #1 to #3, until there’s only one element in the unsorted sequence.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;If you understand the principle of this algorithm, you’ll know why it is called &lt;code class=&quot;highlighter-rouge&quot;&gt;Bubble Sort&lt;/code&gt;: after every round, the bigger elements &lt;code class=&quot;highlighter-rouge&quot;&gt;sink down&lt;/code&gt; to the end of the array, and smaller ones &lt;code class=&quot;highlighter-rouge&quot;&gt;bubble up&lt;/code&gt; to the front, until all elements are at their right positions. The code is as follows:&lt;/p&gt;
+&lt;p&gt;If you understand the principle of this algorithm, you’ll know why it is called the &lt;code class=&quot;highlighter-rouge&quot;&gt;Bubble Sort&lt;/code&gt;: after each round, the bigger elements &lt;code class=&quot;highlighter-rouge&quot;&gt;sink down&lt;/code&gt; to the end of the array, and smaller ones &lt;code class=&quot;highlighter-rouge&quot;&gt;bubble up&lt;/code&gt; to the front, until all elements are at their right positions. The code is as follows:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bubbleSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -208,14 +212,14 @@ Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The reason why it is regarded as a entry-level algorithm is that it is very simple, and at the same time, this algorithm is not efficient at all. Obviously, due to the &lt;code class=&quot;highlighter-rouge&quot;&gt;double loop&lt;/code&gt;, the average time complexity of Bubble Sort is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(n ^ 2)&lt;/code&gt;. When the data grows larger, the speed of this algorithm is unacceptable. However, on the other hand, this algorithm has two advantages: it can be finished in the original array, so the space complexity is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(1)&lt;/code&gt;, and it is a &lt;code class=&quot;highlighter-rouge&quot;&gt;stable&lt;/code&gt; algorithm, which means:&lt;/p&gt;
+&lt;p&gt;The reason why it is regarded as an entry-level algorithm is that it is very simple, and at the same time, this algorithm is not efficient. Obviously, due to the &lt;code class=&quot;highlighter-rouge&quot;&gt;double loop&lt;/code&gt;, the average time complexity of Bubble Sort is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(n ^ 2)&lt;/code&gt;. If the data set is extremely large, the speed of this algorithm is unacceptable. However, on the other hand, this algorithm has two advantages: it can be done within the original array, so the space complexity is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(1)&lt;/code&gt;, and it is a &lt;code class=&quot;highlighter-rouge&quot;&gt;stable&lt;/code&gt; algorithm, which means:&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;The order of the equal elements in the original array remains the same after the sort.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&quot;select-sort&quot;&gt;Select Sort&lt;/h2&gt;
-&lt;p&gt;Also a entry-level sorting algorithm. The thinking is simple: each round find the smallest element in the unsorted sequence, and swap it with the first element in the sequence, and narrow down the sequence until only one element remains. The code is as follows:&lt;/p&gt;
+&lt;h2 id=&quot;select-sort&quot;&gt;Select sort&lt;/h2&gt;
+&lt;p&gt;Also a entry-level sorting algorithm. The thinking is simple: each round find the smallest element in the unsorted sequence, and swap it with the first element in the sequence, and narrow down the unsorted sequence until only one element remains. The code is as follows:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;selectSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;currMinIndex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -234,9 +238,9 @@ Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Similar to the Bubble Sort, the time complexity of &lt;code class=&quot;highlighter-rouge&quot;&gt;Select Sort&lt;/code&gt; is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(n ^ 2)&lt;/code&gt;, and the spacve complexity is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(1)&lt;/code&gt;, but it is &lt;code class=&quot;highlighter-rouge&quot;&gt;unstable&lt;/code&gt;, because each swap will possibly change the order of the equal elements.&lt;/p&gt;
+&lt;p&gt;Similar to the Bubble Sort, the time complexity of &lt;code class=&quot;highlighter-rouge&quot;&gt;Select Sort&lt;/code&gt; is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(n ^ 2)&lt;/code&gt;, and the space complexity is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(1)&lt;/code&gt;, but it is &lt;code class=&quot;highlighter-rouge&quot;&gt;unstable&lt;/code&gt;, because each swap will possibly change the order of equal elements.&lt;/p&gt;
 
-&lt;h2 id=&quot;insert-sort&quot;&gt;Insert Sort&lt;/h2&gt;
+&lt;h2 id=&quot;insert-sort&quot;&gt;Insert sort&lt;/h2&gt;
 &lt;p&gt;As the name suggests, we maintain a sorted sequence, and insert every element from the unsorted sequence to its right position in the sorted sequence. We can do this in-place: when handling the element indexed &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt;, the first &lt;code class=&quot;highlighter-rouge&quot;&gt;i - 1&lt;/code&gt; elements are sorted, so after inserting the &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt;th element, move each element behind it by one place. The code is as follows:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;insertSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -256,7 +260,7 @@ Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3
 
 &lt;p&gt;The time complexity of &lt;code class=&quot;highlighter-rouge&quot;&gt;Insert Sort&lt;/code&gt; is still &lt;code class=&quot;highlighter-rouge&quot;&gt;O(n ^ 2)&lt;/code&gt;, and the space complexity also remains &lt;code class=&quot;highlighter-rouge&quot;&gt;O(1)&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2 id=&quot;bucket-sort&quot;&gt;Bucket Sort&lt;/h2&gt;
+&lt;h2 id=&quot;bucket-sort&quot;&gt;Bucket sort&lt;/h2&gt;
 &lt;p&gt;This algorithm is somewhat magical, because its time complexity is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(n)&lt;/code&gt;! Let’s see the implementation first:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bucketSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -273,19 +277,19 @@ Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;In fact, it’s fairly simple. It just calculates the frequency of every element in the original array with an extra array, and traverse the auxiliary to get the sorting result.&lt;/p&gt;
+&lt;p&gt;In fact, it’s fairly simple. It just calculates the frequency of every element in the original array and save the results in another array, and then traverse the extra array to get the sorted sequence.&lt;/p&gt;
 
-&lt;p&gt;You may realize that though this algorithm has a low time complexity, its space complexity is high, which is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(K)&lt;/code&gt;. &lt;code class=&quot;highlighter-rouge&quot;&gt;K&lt;/code&gt; is greatest element in the original array. Therefore, this is a typical &lt;code class=&quot;highlighter-rouge&quot;&gt;space-for-time&lt;/code&gt; algorithm. If the distribution of data is even, it can be very efficient; but for messy data, the space consumption of this algorithm is horrible. In brief, &lt;code class=&quot;highlighter-rouge&quot;&gt;Bucket Sort&lt;/code&gt; can only be applied to some certain occations.&lt;/p&gt;
+&lt;p&gt;You may realize that though this algorithm has a low time complexity, its space complexity is high, which is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(K)&lt;/code&gt;. &lt;code class=&quot;highlighter-rouge&quot;&gt;K&lt;/code&gt; is greatest element in the original array. Therefore, this is a typical &lt;code class=&quot;highlighter-rouge&quot;&gt;space-for-time&lt;/code&gt; algorithm. If the distribution of data is even, it can be very efficient; but for messy data, the space consumption of this algorithm is horrible. In brief, &lt;code class=&quot;highlighter-rouge&quot;&gt;Bucket Sort&lt;/code&gt; can only be applied to some special cases.&lt;/p&gt;
 
-&lt;h2 id=&quot;quick-sort&quot;&gt;Quick Sort&lt;/h2&gt;
-&lt;p&gt;If &lt;code class=&quot;highlighter-rouge&quot;&gt;Bubble Sort&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Select Sort&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Insert Sort&lt;/code&gt; belong to the same level, we are getting to another level, starting with &lt;code class=&quot;highlighter-rouge&quot;&gt;Quick Sort&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;quick-sort&quot;&gt;Quick sort&lt;/h2&gt;
+&lt;p&gt;If &lt;code class=&quot;highlighter-rouge&quot;&gt;Bubble Sort&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Select Sort&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Insert Sort&lt;/code&gt; belong to the same level, we are moving to another level, starting with &lt;code class=&quot;highlighter-rouge&quot;&gt;Quick Sort&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;The key point of Quick Sort is &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Divide and Conquer&quot;&lt;/code&gt;, that is, divide big problem into small ones, and when all small problems are handled, the big one is therefore handled. Let’s see the description of the algorithm:&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;Select one element from the array as &lt;code class=&quot;highlighter-rouge&quot;&gt;base element&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Put all elements that are smaller than the base element to its left, and all bigger ones on the right&lt;/li&gt;
-  &lt;li&gt;Repeat process #1 to #3 until there is only one element in the interval&lt;/li&gt;
+  &lt;li&gt;Select one element from the array as &lt;code class=&quot;highlighter-rouge&quot;&gt;base element&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Move all elements that are smaller than the base element to its left, and all bigger ones on the right.&lt;/li&gt;
+  &lt;li&gt;Repeat process #1 to #3 until there is only one element in the interval.&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;Generally, we choose the first element of the interval as the base element. Here’s an example:&lt;/p&gt;
@@ -300,24 +304,24 @@ Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3
 &lt;img src=&quot;/assets/images/0913/1-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Move &lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt; to the left, to find the &lt;code class=&quot;highlighter-rouge&quot;&gt;first&lt;/code&gt; element that is &lt;code class=&quot;highlighter-rouge&quot;&gt;smaller&lt;/code&gt; than the base element. Extract it and fill it to the location that &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt; points to
+    &lt;p&gt;Move &lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt; to the left, to find the &lt;code class=&quot;highlighter-rouge&quot;&gt;first&lt;/code&gt; element that is &lt;code class=&quot;highlighter-rouge&quot;&gt;smaller&lt;/code&gt; than the base element. Extract it and fill it to the location that &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt; points to.
 &lt;img src=&quot;/assets/images/0913/1-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Move &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt; to the right, to find the &lt;code class=&quot;highlighter-rouge&quot;&gt;first&lt;/code&gt; element that is &lt;code class=&quot;highlighter-rouge&quot;&gt;bigger&lt;/code&gt; than the base element. Extract it and fill it to the location that &lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt; points to
+    &lt;p&gt;Move &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt; to the right, to find the &lt;code class=&quot;highlighter-rouge&quot;&gt;first&lt;/code&gt; element that is &lt;code class=&quot;highlighter-rouge&quot;&gt;bigger&lt;/code&gt; than the base element. Extract it and fill it to the location that &lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt; points to.
 &lt;img src=&quot;/assets/images/0913/1-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Repeat process #3 to #4, until &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt; meets &lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt;
+    &lt;p&gt;Repeat process #3 to #4, until &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt; meets &lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt;.
 &lt;img src=&quot;/assets/images/0913/1-4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Fill the base element to the position that &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt; (or &lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt;) points to
+    &lt;p&gt;Put the base element at the position that &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt; (or &lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt;) points to.
 &lt;img src=&quot;/assets/images/0913/1-6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;!Attention: in process #3, it must start from the &lt;code class=&quot;highlighter-rouge&quot;&gt;rightmost&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;*Attention: in process #3, it must start from the &lt;code class=&quot;highlighter-rouge&quot;&gt;rightmost&lt;/code&gt; element.&lt;/p&gt;
 
 &lt;p&gt;The code is as follows:&lt;/p&gt;
 
@@ -343,14 +347,14 @@ Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;As for a array of length &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt;, suppost every time the base element selected by the Quick Sort divides the array to two parts of equal lengh, then:&lt;/p&gt;
+&lt;p&gt;As for an array with length &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt;, suppose every time the base element divides the array into two parts of equal length, then:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/0913/1-l.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;All &lt;code class=&quot;highlighter-rouge&quot;&gt;logn&lt;/code&gt; rounds is needed, and each round the whole array will be accessed, so the average time complexity is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(nlogn)&lt;/code&gt;. Since the sorting is done in-place, and no extra space is used, the spae complexity is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(1)&lt;/code&gt;. In addition, obviously, due to the swap, Quick Sort is &lt;code class=&quot;highlighter-rouge&quot;&gt;unstable&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;All &lt;code class=&quot;highlighter-rouge&quot;&gt;logn&lt;/code&gt; rounds are needed, and each round the whole array will be accessed, so the average time complexity is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(nlogn)&lt;/code&gt;. Since the sorting is done in-place, and no extra space is used, the space complexity is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(1)&lt;/code&gt;. In addition, obviously, due to the swap, Quick Sort is &lt;code class=&quot;highlighter-rouge&quot;&gt;unstable&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;merge-sort&quot;&gt;Merge Sort&lt;/h2&gt;
-&lt;p&gt;First, if we have two sorted array, how to merge them into one sorted array? I velieve many people know the answer: keep comparing the first elements of the two array, and each time extract the smaller one to the result array, until one of the array is empty. Finally append the array that is not empty to the end of the result array:&lt;/p&gt;
+&lt;p&gt;First, if we have two sorted array, how to merge them into one sorted array? I believe you know the answer: keep comparing the first elements of the two array, and each time extract the smaller one to the result array, until one of the array becomes empty. Finally append the not-empty array to the end of the result array:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arr1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
@@ -377,12 +381,12 @@ Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3
 &lt;p&gt;Based on this code, with &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Divide and Conquer&quot;&lt;/code&gt;, we can realize the &lt;code class=&quot;highlighter-rouge&quot;&gt;Merge Sort&lt;/code&gt;:&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;Divide the array to two parts, and do Merge Sort on them respectively&lt;/li&gt;
-  &lt;li&gt;Merge the two sorted result array&lt;/li&gt;
-  &lt;li&gt;Repeat process #1 to #3, until there’s only one element in the interval&lt;/li&gt;
+  &lt;li&gt;Divide the array into two parts, and do Merge Sort on them respectively.&lt;/li&gt;
+  &lt;li&gt;Merge the two sorted result array.&lt;/li&gt;
+  &lt;li&gt;Repeat process #1 to #3, until there’s only one element in the interval.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;Improve the previous code a little bit, and we have the implementation:&lt;/p&gt;
+&lt;p&gt;Improve the above code a little bit, and we have the implementation:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;mergeSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -418,41 +422,41 @@ Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Similar to the Quick Sort, the time complexity of Merge Sort is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(nlongn)&lt;/code&gt;, but in the process of merging, we need at most an auxiliary array with the same lengh as the original array, so the space complexity is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(n)&lt;/code&gt;. Besides, if every time we meet the situation that the head elements of the two array are equal, we guarantee the element from the first array is selected, Merge Sort can be &lt;code class=&quot;highlighter-rouge&quot;&gt;stable&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Similar to the Quick Sort, the time complexity of Merge Sort is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(nlongn)&lt;/code&gt;, but in the process of merging, we need at most one auxiliary array with the same lengh as the original array, so the space complexity is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(n)&lt;/code&gt;. Besides, if we guarantee that every time the head elements of the two array are equal, element from the first array is selected, Merge Sort can be &lt;code class=&quot;highlighter-rouge&quot;&gt;stable&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2 id=&quot;heap-sort&quot;&gt;Heap Sort&lt;/h2&gt;
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Heap Sort&lt;/code&gt; uses a special data structure – &lt;code class=&quot;highlighter-rouge&quot;&gt;heap&lt;/code&gt;, and its implementation is somewhat more complicate than the previous algorithms. We will begin with &lt;code class=&quot;highlighter-rouge&quot;&gt;Heap&lt;/code&gt; and then come to the actual algorithm.&lt;/p&gt;
+&lt;h2 id=&quot;heap-sort&quot;&gt;Heap sort&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Heap Sort&lt;/code&gt; uses a special data structure – &lt;code class=&quot;highlighter-rouge&quot;&gt;heap&lt;/code&gt;, and its implementation is somewhat more complicate than the previous algorithms. Let’s begin with &lt;code class=&quot;highlighter-rouge&quot;&gt;Heap&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;heap&quot;&gt;Heap&lt;/h3&gt;
 &lt;p&gt;Since we are sorting in ascending order, I will introduce the &lt;code class=&quot;highlighter-rouge&quot;&gt;Minimum Heap&lt;/code&gt;:&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;A minimum heap is a &lt;code class=&quot;highlighter-rouge&quot;&gt;complete binary tree&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;The parent node is always smaller than (or equal to) its children&lt;/li&gt;
-  &lt;li&gt;Children are also minimum heap&lt;/li&gt;
+  &lt;li&gt;A minimum heap is a &lt;code class=&quot;highlighter-rouge&quot;&gt;complete binary tree&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;The parent node is always smaller than (or equal to) its children.&lt;/li&gt;
+  &lt;li&gt;Children are also minimum heaps.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&quot;storing-in-an-array&quot;&gt;Storing in an Array&lt;/h3&gt;
-&lt;p&gt;As we mentioned above, heap is a &lt;code class=&quot;highlighter-rouge&quot;&gt;complete binary tree&lt;/code&gt;, so we can use some tricks to store it in an array, and easily access nodes by index. For example, if we have the following heap:&lt;/p&gt;
+&lt;h3 id=&quot;storing-in-an-array&quot;&gt;Storing in an array&lt;/h3&gt;
+&lt;p&gt;As I mentioned above, heap is a &lt;code class=&quot;highlighter-rouge&quot;&gt;complete binary tree&lt;/code&gt;, so we can use some tricks to store a heap in an array, and easily access nodes by indices. For example, if we have the following heap:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/0913/2-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Put every node into an array according to its level-traversing order:&lt;/p&gt;
+&lt;p&gt;Put every node into an array according to its &lt;code class=&quot;highlighter-rouge&quot;&gt;level-traversal&lt;/code&gt; order:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/0913/2-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;You will find that, for every node indexed &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt;, the index of its left child is &lt;code class=&quot;highlighter-rouge&quot;&gt;2 * i + 1&lt;/code&gt;, the index of the right child is &lt;code class=&quot;highlighter-rouge&quot;&gt;2 * i + 2&lt;/code&gt;, and the index of its parent is &lt;code class=&quot;highlighter-rouge&quot;&gt;(i - 1) / 2&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;You will find that for every node indexed &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt;, the index of its left child is &lt;code class=&quot;highlighter-rouge&quot;&gt;2 * i + 1&lt;/code&gt;, the index of the right child is &lt;code class=&quot;highlighter-rouge&quot;&gt;2 * i + 2&lt;/code&gt;, and the index of its parent is &lt;code class=&quot;highlighter-rouge&quot;&gt;(i - 1) / 2&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;insertion&quot;&gt;Insertion&lt;/h3&gt;
 &lt;p&gt;As for the heap above, if we want to insert &lt;code class=&quot;highlighter-rouge&quot;&gt;2&lt;/code&gt; into it:&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;Put the new element to the end of the array
+    &lt;p&gt;Put the new element at the end of the array.
 &lt;img src=&quot;/assets/images/0913/2-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Adjust upward&quot;&lt;/code&gt;, that is, compare it with the parent node. If it is smaller than its parent, swap them
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Adjust upward&quot;&lt;/code&gt;, that is, compare it with the parent node. If it is smaller than its parent, swap them.
 &lt;img src=&quot;/assets/images/0913/2-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
@@ -477,19 +481,19 @@ Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;deletion&quot;&gt;Deletion&lt;/h3&gt;
-&lt;p&gt;Becuase of the characteristic of the heap, deletion can only be done to the top element. After deletion, we move the last element of the heap to the top, and &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;adjust downward&quot;&lt;/code&gt;. Again the previous example:&lt;/p&gt;
+&lt;p&gt;Becuase of the characteristics of the heap, deletion can only be done on the top element. After a deletion, we move the last element of the heap to the top, and &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;adjust downward&quot;&lt;/code&gt;. Again the previous example:&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;Extract the top element &lt;code class=&quot;highlighter-rouge&quot;&gt;1&lt;/code&gt;, and move the last element &lt;code class=&quot;highlighter-rouge&quot;&gt;8&lt;/code&gt; to the top
+    &lt;p&gt;Extract the top element &lt;code class=&quot;highlighter-rouge&quot;&gt;1&lt;/code&gt;, and move the last element &lt;code class=&quot;highlighter-rouge&quot;&gt;8&lt;/code&gt; to the top.
 &lt;img src=&quot;/assets/images/0913/2-5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Adjust downward&quot;&lt;/code&gt;, that is, compare it with all children. If either children is smaller than it, swap them
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Adjust downward&quot;&lt;/code&gt;, that is, compare it with all children. If either children is smaller than it, swap them.
 &lt;img src=&quot;/assets/images/0913/2-6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Repeat process #2, until no child is smaller than current node, or it reaches the leaf
+    &lt;p&gt;Repeat process #2, until no child is smaller than current node, or it reaches a leaf.
 &lt;img src=&quot;/assets/images/0913/2-7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
@@ -514,23 +518,23 @@ Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;initialization&quot;&gt;Initialization&lt;/h3&gt;
-&lt;p&gt;For a given array, say our example, &lt;code class=&quot;highlighter-rouge&quot;&gt;5 8 1 5 2 4 7 9 8&lt;/code&gt;, the processes to transform it to a heap is as follows:&lt;/p&gt;
+&lt;p&gt;For a given array, say our example, &lt;code class=&quot;highlighter-rouge&quot;&gt;5 8 1 5 2 4 7 9 8&lt;/code&gt;, the processes to transform it into a heap is as follows:&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;The initial data
+    &lt;p&gt;The initial data.
 &lt;img src=&quot;/assets/images/0913/2-8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Start from &lt;code class=&quot;highlighter-rouge&quot;&gt;the last node that is not leaf&lt;/code&gt;, adjust downward. Since the last two not-leaf node are currently minimum heaps, they are not to be adjusted
+    &lt;p&gt;Start from &lt;code class=&quot;highlighter-rouge&quot;&gt;the last node other than the leaves&lt;/code&gt;, adjust downward. Since the last two not-leaf nodes are currently minimum heaps, they will not be adjusted.
 &lt;img src=&quot;/assets/images/0913/2-9.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Adjust the subtree rooted by the last but two node, and it triggers one swap
+    &lt;p&gt;Adjust the subtree rooted by the last but two node, and it triggers one swap.
 &lt;img src=&quot;/assets/images/0913/2-10.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Adjust the subtree rooted by the root (the whole tree), and it triggers two swaps
+    &lt;p&gt;Adjust the subtree rooted by the root (the whole tree), and it triggers two swaps.
 &lt;img src=&quot;/assets/images/0913/2-11.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
@@ -543,8 +547,8 @@ Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;heap-sort-1&quot;&gt;Heap Sort&lt;/h3&gt;
-&lt;p&gt;After introducing all above, we can finally sort with Heap Sort. Simply, we just &lt;code class=&quot;highlighter-rouge&quot;&gt;heapify&lt;/code&gt; (initialize) the array, and keep extracting the top element and move the last element to the top, and then &lt;code class=&quot;highlighter-rouge&quot;&gt;adjust downward&lt;/code&gt; form the top. The code is as follows:&lt;/p&gt;
+&lt;h3 id=&quot;heap-sort-1&quot;&gt;Heap sort&lt;/h3&gt;
+&lt;p&gt;After introducing the heap, we can finally come to the Heap Sort. Simply, we just &lt;code class=&quot;highlighter-rouge&quot;&gt;heapify&lt;/code&gt; (initialize) the array, and keep extracting the top element, moving the last element to the top, and &lt;code class=&quot;highlighter-rouge&quot;&gt;adjusting downward&lt;/code&gt; from the top. The code is as follows:&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
@@ -564,10 +568,10 @@ Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;analysis&quot;&gt;Analysis&lt;/h3&gt;
-&lt;p&gt;Heap Sort utilizes &lt;code class=&quot;highlighter-rouge&quot;&gt;complete binary tree&lt;/code&gt;, so no matter what type of data we have, the time complexity of Heap Sort is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(nlongn)&lt;/code&gt;, and the space complexity is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(1)&lt;/code&gt;. Besides, due to the swap, Heap sort is &lt;code class=&quot;highlighter-rouge&quot;&gt;unstable&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Heap Sort utilizes &lt;code class=&quot;highlighter-rouge&quot;&gt;complete binary tree&lt;/code&gt;, so no matter what type of data we have, the time complexity of Heap Sort is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(nlogn)&lt;/code&gt;, and the space complexity is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(1)&lt;/code&gt;. Besides, due to the swap, Heap sort is &lt;code class=&quot;highlighter-rouge&quot;&gt;unstable&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
-&lt;p&gt;There are many sorting algorithms. Although few people implement them personally, have a understanding of their principles is always benefical.&lt;/p&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="algorithm" /><summary type="html">Overview When processing data, sorting algorithms are always used. Although most languages have related libraries that can be easily invoked, understanding the principles of such algorithms can help us make better use of them.</summary></entry><entry><title type="html">HashMap in Java 8</title><link href="http://cuih.xyz/2017/08/16/HashMap-in-Java-8.html" rel="alternate" type="text/html" title="HashMap in Java 8" /><published>2017-08-16T21:00:00-05:00</published><updated>2017-08-16T21:00:00-05:00</updated><id>http://cuih.xyz/2017/08/16/HashMap%20in%20Java%208</id><content type="html" xml:base="http://cuih.xyz/2017/08/16/HashMap-in-Java-8.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;There are so many sorting algorithms. Although we seldom have the chance to implement them personally, having a understanding of the their principles is always benefical.&lt;/p&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="algorithm" /><summary type="html">Overview When processing data, sorting algorithms are always used. Although most languages encapsulate those algorithms as libraries that can be easily invoked, understanding the principles of such algorithms can help us make better use of them.</summary></entry><entry><title type="html">HashMap in Java 8</title><link href="http://cuih.xyz/2017/08/16/HashMap-in-Java-8.html" rel="alternate" type="text/html" title="HashMap in Java 8" /><published>2017-08-16T21:00:00-05:00</published><updated>2017-08-16T21:00:00-05:00</updated><id>http://cuih.xyz/2017/08/16/HashMap%20in%20Java%208</id><content type="html" xml:base="http://cuih.xyz/2017/08/16/HashMap-in-Java-8.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;In &lt;code class=&quot;highlighter-rouge&quot;&gt;JDK 1.8&lt;/code&gt;, the &lt;code class=&quot;highlighter-rouge&quot;&gt;HashMap&lt;/code&gt; was optimized and implemented differently from the previous version. Some new data structures are added to improve the performance, but the overall design idea is still the same.&lt;/p&gt;
 
 &lt;h2 id=&quot;hash&quot;&gt;Hash&lt;/h2&gt;

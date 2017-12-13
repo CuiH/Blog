@@ -1,4 +1,92 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.0">Jekyll</generator><link href="http://cuih.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="http://cuih.xyz/" rel="alternate" type="text/html" /><updated>2017-12-11T23:10:31-06:00</updated><id>http://cuih.xyz/</id><title type="html">Life is a Struggle</title><subtitle>Life is a struggle.</subtitle><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><entry><title type="html">Dynamic Programming and Knapsack Problems</title><link href="http://cuih.xyz/2017/10/09/Dynamic-Programming-and-Knapsack-Problems.html" rel="alternate" type="text/html" title="Dynamic Programming and Knapsack Problems" /><published>2017-10-09T23:30:00-05:00</published><updated>2017-10-09T23:30:00-05:00</updated><id>http://cuih.xyz/2017/10/09/Dynamic%20Programming%20and%20Knapsack%20Problems</id><content type="html" xml:base="http://cuih.xyz/2017/10/09/Dynamic-Programming-and-Knapsack-Problems.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.0">Jekyll</generator><link href="http://cuih.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="http://cuih.xyz/" rel="alternate" type="text/html" /><updated>2017-12-13T01:01:39-06:00</updated><id>http://cuih.xyz/</id><title type="html">Life is a Struggle</title><subtitle>Life is a struggle.</subtitle><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><entry><title type="html">SSL/TLS and Secure Transmission</title><link href="http://cuih.xyz/2017/11/12/HTTPS-and-Secure-Data-Transfer.html" rel="alternate" type="text/html" title="SSL/TLS and Secure Transmission" /><published>2017-11-12T21:14:22-06:00</published><updated>2017-11-12T21:14:22-06:00</updated><id>http://cuih.xyz/2017/11/12/HTTPS%20and%20Secure%20Data%20Transfer</id><content type="html" xml:base="http://cuih.xyz/2017/11/12/HTTPS-and-Secure-Data-Transfer.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;If you are familiar with the Internet, you’ll know that the underlying &lt;code class=&quot;highlighter-rouge&quot;&gt;TCP/IP&lt;/code&gt; protocol stack is not a secure one. We need to do something on top of it to ensure secure transmission, and &lt;code class=&quot;highlighter-rouge&quot;&gt;SSL/TLS&lt;/code&gt; is a common but powerful solution.&lt;/p&gt;
+
+&lt;h2 id=&quot;encryption-and-pki&quot;&gt;Encryption and PKI&lt;/h2&gt;
+&lt;p&gt;Before we really get into the implementation, I’d like to introduce some basic knowledge.&lt;/p&gt;
+
+&lt;p&gt;Secure transmission is always about encryption. There are two different encryption methods, the &lt;code class=&quot;highlighter-rouge&quot;&gt;symmetric encryption&lt;/code&gt; and the &lt;code class=&quot;highlighter-rouge&quot;&gt;asymmetric encryption&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;symmetric-encryption&quot;&gt;Symmetric encryption&lt;/h3&gt;
+&lt;p&gt;A symmetric encryption uses exactly &lt;code class=&quot;highlighter-rouge&quot;&gt;one&lt;/code&gt; key to encrypt and decrypt the message, so this key should be always kept secret.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/1212/1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;asymmetric-encryption&quot;&gt;Asymmetric encryption&lt;/h3&gt;
+&lt;p&gt;In contrast to the symmetric encryption, an asymmetric encryption has &lt;code class=&quot;highlighter-rouge&quot;&gt;two&lt;/code&gt; different keys. Messages are encrypted by one key and decrypted with another. In most cases, one of the keys is released to the public, called the &lt;code class=&quot;highlighter-rouge&quot;&gt;public key&lt;/code&gt;, while the other one is the &lt;code class=&quot;highlighter-rouge&quot;&gt;secret key&lt;/code&gt;. Such a system is known as the &lt;code class=&quot;highlighter-rouge&quot;&gt;public-key cryptography&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/1212/2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;public-key-infrastructure&quot;&gt;Public key infrastructure&lt;/h3&gt;
+&lt;p&gt;Based on asymmetric encryption, we can build a &lt;code class=&quot;highlighter-rouge&quot;&gt;public key infrastructure&lt;/code&gt; (PKI), which may involve many roles and polices. The purpose of a PKI is to facilitate the secure electronic transmission. I will discuss it later in this blog.&lt;/p&gt;
+
+&lt;h2 id=&quot;secure-transmission&quot;&gt;Secure transmission&lt;/h2&gt;
+&lt;p&gt;Let’s try to build a secure communication system. Say our old friends, Alice and Bob, are sending messages to each other.&lt;/p&gt;
+
+&lt;h3 id=&quot;integrity&quot;&gt;Integrity&lt;/h3&gt;
+&lt;p&gt;First, we need to consider the &lt;code class=&quot;highlighter-rouge&quot;&gt;integrity&lt;/code&gt;, which means the message is complete and not modified by a man-in-the-middle.&lt;/p&gt;
+
+&lt;p&gt;Here we make use of the public-key cryptography. A &lt;code class=&quot;highlighter-rouge&quot;&gt;digest&lt;/code&gt; of the message is calculated on the sender side, and Bob encrypts it with his &lt;code class=&quot;highlighter-rouge&quot;&gt;secret key&lt;/code&gt;. The encrypted digest is also called the &lt;code class=&quot;highlighter-rouge&quot;&gt;digital signature&lt;/code&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A digital signature is a mathematical scheme for demonstrating the authenticity of digital messages or documents.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Since the secret key is only known to Bob, only he can make this encrypted digest. This “signature” can prove his identity and it is undeniable.&lt;/p&gt;
+
+&lt;p&gt;After that, Bob sends both the message and the encrypted digest. Alice again calculates the digest using the same algorithm, and decrypts the encrypted digest with Bob’s &lt;code class=&quot;highlighter-rouge&quot;&gt;public key&lt;/code&gt;. If the two digests are the same, Alice will know that the message is complete.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/1212/3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;privacy&quot;&gt;Privacy&lt;/h3&gt;
+&lt;p&gt;Alice and Bod do not want their messages to be read by others. Note that messages are sent from both sides, and there is always a public key in the public-key cryptosystem. A possible solution is to use two sets of keys, so there are two public keys and two secret keys, which may be somewhat inconvenient.&lt;/p&gt;
+
+&lt;p&gt;In this case, we can use the symmetric encryption instead. Another reason is that asymmetric encryption is time-consuming, so if we want to encrypt the whole message, the symmetric one is a more efficient choice.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/1212/4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;session key&lt;/code&gt; in this picture should be kept secret, so how can the sever and the client generate the same key respectively and, at the same time, secretly? You’ll see that later.&lt;/p&gt;
+
+&lt;h3 id=&quot;unforgeability&quot;&gt;Unforgeability&lt;/h3&gt;
+&lt;p&gt;In a public-key cryptosystem, where does the public key come from? What if someone else, such as Tom, tells Alice that he is Bob, and gives Alice his own public key, he can then deceive Alice in the name of Bob.&lt;/p&gt;
+
+&lt;p&gt;We need a third-party authority here, called the &lt;code class=&quot;highlighter-rouge&quot;&gt;certificate authority&lt;/code&gt; (CA). Bob first registers himself to the CA with his public key, and he will receive a &lt;code class=&quot;highlighter-rouge&quot;&gt;digital certificate&lt;/code&gt;. When Alice asks for Bob’s public key, Bob gives her the certificate. Alice validates it and gets the real public key.&lt;/p&gt;
+
+&lt;p&gt;So, how can Alice validate the digital certificate? Again, the public-key cryptography.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/1212/5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, with the public-key encryption algorithm and the CA, we have built a draft &lt;code class=&quot;highlighter-rouge&quot;&gt;public key infrastructure&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;session-key&quot;&gt;Session key&lt;/h3&gt;
+&lt;p&gt;There is still one problem left. In the “privacy” section, a symmetric session key is used to encrypt the message. Where is it from?&lt;/p&gt;
+
+&lt;p&gt;With current structure, we can easily generate it. After retrieving Bob’s public key, Alice can safely communicate with Bob, and during the first several conversations, they discuss a session key for all subsequent communications. After that every message is encrypted by the session key so no one else can eavesdrop on or tamper with it.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/1212/6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;ssltls&quot;&gt;SSL/TLS&lt;/h2&gt;
+&lt;p&gt;Where is SSL/TLS? In fact, we have just discussed the three main characteristics of it. The SSL/TLS ensures:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Integrity&lt;/li&gt;
+  &lt;li&gt;Privacy&lt;/li&gt;
+  &lt;li&gt;Unforgeability&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The picture in the “session key” section is the &lt;code class=&quot;highlighter-rouge&quot;&gt;handshaking phase&lt;/code&gt; of SSL/TLS, where Bob is the server, and Alice is the client.&lt;/p&gt;
+
+&lt;p&gt;In some cases, the server may also request client certificate to verify its identity, such as in a bank system.&lt;/p&gt;
+
+&lt;p&gt;Now that we know how SSL/TLS works, let’s look back at the description.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;SSL&lt;/code&gt; stands for &lt;code class=&quot;highlighter-rouge&quot;&gt;Secure Socket Layer&lt;/code&gt;. It’s a cryptographic protocol that provides communications security over a computer network, and after standardization, it has a new name – &lt;code class=&quot;highlighter-rouge&quot;&gt;SSL&lt;/code&gt;, which means &lt;code class=&quot;highlighter-rouge&quot;&gt;Transport Layer Security&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+&lt;p&gt;We always need secure transmission, but the underlying Internet is not secure. Luckily, we have SSL/TLS. It protects messages from being forged, eavesdroped on, or tampered with.&lt;/p&gt;
+
+&lt;p&gt;First, the sender cannot deny his signature after encrypting the message with his own secret key &lt;code class=&quot;highlighter-rouge&quot;&gt;(undeniability)&lt;/code&gt;. Second, the receiver can verify the signature with the sender’s public key. Since no one else knows the secret key, digital signature cannot be forged &lt;code class=&quot;highlighter-rouge&quot;&gt;(authenticity)&lt;/code&gt;, and at the same time, messages cannot be eavesdroped on &lt;code class=&quot;highlighter-rouge&quot;&gt;(privacy)&lt;/code&gt; or tampered with &lt;code class=&quot;highlighter-rouge&quot;&gt;(integrity)&lt;/code&gt;.&lt;/p&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="web" /><summary type="html">Overview If you are familiar with the Internet, you’ll know that the underlying TCP/IP protocol stack is not a secure one. We need to do something on top of it to ensure secure transmission, and SSL/TLS is a common but powerful solution.</summary></entry><entry><title type="html">Dynamic Programming and Knapsack Problems</title><link href="http://cuih.xyz/2017/10/09/Dynamic-Programming-and-Knapsack-Problems.html" rel="alternate" type="text/html" title="Dynamic Programming and Knapsack Problems" /><published>2017-10-09T23:30:00-05:00</published><updated>2017-10-09T23:30:00-05:00</updated><id>http://cuih.xyz/2017/10/09/Dynamic%20Programming%20and%20Knapsack%20Problems</id><content type="html" xml:base="http://cuih.xyz/2017/10/09/Dynamic-Programming-and-Knapsack-Problems.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Dynamic Programming (DP)&lt;/code&gt; is very common in sloving problems. Many people tend to think that it is difficult, but actually, if you understand the principles, it can be easy to use. In this blog, I will give a brief introduction to DP and analyze with maybe the most typical DP problem, the &lt;code class=&quot;highlighter-rouge&quot;&gt;knapsack problem (s)&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;an-example&quot;&gt;An example&lt;/h2&gt;

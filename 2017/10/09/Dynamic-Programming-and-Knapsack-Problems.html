@@ -193,7 +193,7 @@
 
   <p>Output: 4</p>
 
-  <p>Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3 1s, which are “10,”0001”,”1”,”0”</p>
+  <p>Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3 1s, which are “10”, “0001”, “1”, “0”.</p>
 </blockquote>
 
 <p>The main difference is that now the <code class="highlighter-rouge">knapsack</code> has two restrictions, i.e., <code class="highlighter-rouge">1</code>s and <code class="highlighter-rouge">0</code>s, but the principle never changes. Similar to the rolling array 0/1 knapsack solution, we use a two-dimension array to remember the states, and try to include every string, from the back to front (to avoid using one string more than once):</p>

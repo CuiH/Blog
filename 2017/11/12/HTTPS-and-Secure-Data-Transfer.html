@@ -51,12 +51,12 @@
 <h3 id="symmetric-encryption">Symmetric encryption</h3>
 <p>A symmetric encryption uses exactly <code class="highlighter-rouge">one</code> key to encrypt and decrypt the message, so this key should be always kept secret.</p>
 
-<p><img src="/assets/images/1212/1.png" alt="" /></p>
+<p><img src="/assets/images/1112/1.png" alt="" /></p>
 
 <h3 id="asymmetric-encryption">Asymmetric encryption</h3>
 <p>In contrast to the symmetric encryption, an asymmetric encryption has <code class="highlighter-rouge">two</code> different keys. Messages are encrypted by one key and decrypted with another. In most cases, one of the keys is released to the public, called the <code class="highlighter-rouge">public key</code>, while the other one is the <code class="highlighter-rouge">secret key</code>. Such a system is known as the <code class="highlighter-rouge">public-key cryptography</code>.</p>
 
-<p><img src="/assets/images/1212/2.png" alt="" /></p>
+<p><img src="/assets/images/1112/2.png" alt="" /></p>
 
 <h3 id="public-key-infrastructure">Public key infrastructure</h3>
 <p>Based on asymmetric encryption, we can build a <code class="highlighter-rouge">public key infrastructure</code> (PKI), which may involve many roles and polices. The purpose of a PKI is to facilitate the secure electronic transmission. I will discuss it later in this blog.</p>
@@ -77,14 +77,14 @@
 
 <p>After that, Bob sends both the message and the encrypted digest. Alice again calculates the digest using the same algorithm, and decrypts the encrypted digest with Bob’s <code class="highlighter-rouge">public key</code>. If the two digests are the same, Alice will know that the message is complete.</p>
 
-<p><img src="/assets/images/1212/3.png" alt="" /></p>
+<p><img src="/assets/images/1112/3.png" alt="" /></p>
 
 <h3 id="privacy">Privacy</h3>
 <p>Alice and Bod do not want their messages to be read by others. Note that messages are sent from both sides, and there is always a public key in the public-key cryptosystem. A possible solution is to use two sets of keys, so there are two public keys and two secret keys, which may be somewhat inconvenient.</p>
 
 <p>In this case, we can use the symmetric encryption instead. Another reason is that asymmetric encryption is time-consuming, so if we want to encrypt the whole message, the symmetric one is a more efficient choice.</p>
 
-<p><img src="/assets/images/1212/4.png" alt="" /></p>
+<p><img src="/assets/images/1112/4.png" alt="" /></p>
 
 <p>The <code class="highlighter-rouge">session key</code> in this picture should be kept secret, so how can the sever and the client generate the same key respectively and, at the same time, secretly? You’ll see that later.</p>
 
@@ -95,7 +95,7 @@
 
 <p>So, how can Alice validate the digital certificate? Again, the public-key cryptography.</p>
 
-<p><img src="/assets/images/1212/5.png" alt="" /></p>
+<p><img src="/assets/images/1112/5.png" alt="" /></p>
 
 <p>Now, with the public-key encryption algorithm and the CA, we have built a draft <code class="highlighter-rouge">public key infrastructure</code>.</p>
 
@@ -104,7 +104,7 @@
 
 <p>With current structure, we can easily generate it. After retrieving Bob’s public key, Alice can safely communicate with Bob, and during the first several conversations, they discuss a session key for all subsequent communications. After that every message is encrypted by the session key so no one else can eavesdrop on or tamper with it.</p>
 
-<p><img src="/assets/images/1212/6.png" alt="" /></p>
+<p><img src="/assets/images/1112/6.png" alt="" /></p>
 
 <h2 id="ssltls">SSL/TLS</h2>
 <p>Where is SSL/TLS? In fact, we have just discussed the three main characteristics of it. The SSL/TLS ensures:</p>

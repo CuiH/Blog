@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.0">Jekyll</generator><link href="http://cuih.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="http://cuih.xyz/" rel="alternate" type="text/html" /><updated>2017-12-13T01:01:39-06:00</updated><id>http://cuih.xyz/</id><title type="html">Life is a Struggle</title><subtitle>Life is a struggle.</subtitle><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><entry><title type="html">SSL/TLS and Secure Transmission</title><link href="http://cuih.xyz/2017/11/12/HTTPS-and-Secure-Data-Transfer.html" rel="alternate" type="text/html" title="SSL/TLS and Secure Transmission" /><published>2017-11-12T21:14:22-06:00</published><updated>2017-11-12T21:14:22-06:00</updated><id>http://cuih.xyz/2017/11/12/HTTPS%20and%20Secure%20Data%20Transfer</id><content type="html" xml:base="http://cuih.xyz/2017/11/12/HTTPS-and-Secure-Data-Transfer.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.0">Jekyll</generator><link href="http://cuih.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="http://cuih.xyz/" rel="alternate" type="text/html" /><updated>2017-12-13T01:02:12-06:00</updated><id>http://cuih.xyz/</id><title type="html">Life is a Struggle</title><subtitle>Life is a struggle.</subtitle><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><entry><title type="html">SSL/TLS and Secure Transmission</title><link href="http://cuih.xyz/2017/11/12/HTTPS-and-Secure-Data-Transfer.html" rel="alternate" type="text/html" title="SSL/TLS and Secure Transmission" /><published>2017-11-12T21:14:22-06:00</published><updated>2017-11-12T21:14:22-06:00</updated><id>http://cuih.xyz/2017/11/12/HTTPS%20and%20Secure%20Data%20Transfer</id><content type="html" xml:base="http://cuih.xyz/2017/11/12/HTTPS-and-Secure-Data-Transfer.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;If you are familiar with the Internet, you’ll know that the underlying &lt;code class=&quot;highlighter-rouge&quot;&gt;TCP/IP&lt;/code&gt; protocol stack is not a secure one. We need to do something on top of it to ensure secure transmission, and &lt;code class=&quot;highlighter-rouge&quot;&gt;SSL/TLS&lt;/code&gt; is a common but powerful solution.&lt;/p&gt;
 
 &lt;h2 id=&quot;encryption-and-pki&quot;&gt;Encryption and PKI&lt;/h2&gt;
@@ -9,12 +9,12 @@
 &lt;h3 id=&quot;symmetric-encryption&quot;&gt;Symmetric encryption&lt;/h3&gt;
 &lt;p&gt;A symmetric encryption uses exactly &lt;code class=&quot;highlighter-rouge&quot;&gt;one&lt;/code&gt; key to encrypt and decrypt the message, so this key should be always kept secret.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/1212/1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/1112/1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;asymmetric-encryption&quot;&gt;Asymmetric encryption&lt;/h3&gt;
 &lt;p&gt;In contrast to the symmetric encryption, an asymmetric encryption has &lt;code class=&quot;highlighter-rouge&quot;&gt;two&lt;/code&gt; different keys. Messages are encrypted by one key and decrypted with another. In most cases, one of the keys is released to the public, called the &lt;code class=&quot;highlighter-rouge&quot;&gt;public key&lt;/code&gt;, while the other one is the &lt;code class=&quot;highlighter-rouge&quot;&gt;secret key&lt;/code&gt;. Such a system is known as the &lt;code class=&quot;highlighter-rouge&quot;&gt;public-key cryptography&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/1212/2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/1112/2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;public-key-infrastructure&quot;&gt;Public key infrastructure&lt;/h3&gt;
 &lt;p&gt;Based on asymmetric encryption, we can build a &lt;code class=&quot;highlighter-rouge&quot;&gt;public key infrastructure&lt;/code&gt; (PKI), which may involve many roles and polices. The purpose of a PKI is to facilitate the secure electronic transmission. I will discuss it later in this blog.&lt;/p&gt;
@@ -35,14 +35,14 @@
 
 &lt;p&gt;After that, Bob sends both the message and the encrypted digest. Alice again calculates the digest using the same algorithm, and decrypts the encrypted digest with Bob’s &lt;code class=&quot;highlighter-rouge&quot;&gt;public key&lt;/code&gt;. If the two digests are the same, Alice will know that the message is complete.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/1212/3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/1112/3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;privacy&quot;&gt;Privacy&lt;/h3&gt;
 &lt;p&gt;Alice and Bod do not want their messages to be read by others. Note that messages are sent from both sides, and there is always a public key in the public-key cryptosystem. A possible solution is to use two sets of keys, so there are two public keys and two secret keys, which may be somewhat inconvenient.&lt;/p&gt;
 
 &lt;p&gt;In this case, we can use the symmetric encryption instead. Another reason is that asymmetric encryption is time-consuming, so if we want to encrypt the whole message, the symmetric one is a more efficient choice.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/1212/4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/1112/4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;session key&lt;/code&gt; in this picture should be kept secret, so how can the sever and the client generate the same key respectively and, at the same time, secretly? You’ll see that later.&lt;/p&gt;
 
@@ -53,7 +53,7 @@
 
 &lt;p&gt;So, how can Alice validate the digital certificate? Again, the public-key cryptography.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/1212/5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/1112/5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now, with the public-key encryption algorithm and the CA, we have built a draft &lt;code class=&quot;highlighter-rouge&quot;&gt;public key infrastructure&lt;/code&gt;.&lt;/p&gt;
 
@@ -62,7 +62,7 @@
 
 &lt;p&gt;With current structure, we can easily generate it. After retrieving Bob’s public key, Alice can safely communicate with Bob, and during the first several conversations, they discuss a session key for all subsequent communications. After that every message is encrypted by the session key so no one else can eavesdrop on or tamper with it.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/1212/6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/1112/6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;ssltls&quot;&gt;SSL/TLS&lt;/h2&gt;
 &lt;p&gt;Where is SSL/TLS? In fact, we have just discussed the three main characteristics of it. The SSL/TLS ensures:&lt;/p&gt;

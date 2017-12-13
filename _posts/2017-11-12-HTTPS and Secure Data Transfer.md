@@ -83,7 +83,7 @@ In some cases, the server may also request client certificate to verify its iden
 
 Now that we know how SSL/TLS works, let's look back at the description.
 
-> `SSL` stands for `Secure Socket Layer`. It's a cryptographic protocol that provides communications security over a computer network, and after standardization, it has a new name -- `SSL`, which means `Transport Layer Security`.
+> `SSL` is the abbreviation of `Secure Socket Layer`. It's a cryptographic protocol that provides communications security over a computer network, and after standardization, it has a new name -- `SSL`, which means `Transport Layer Security`.
 
 ## Summary
 We always need secure transmission, but the underlying Internet is not secure. Luckily, we have SSL/TLS. It protects messages from being forged, eavesdroped on, or tampered with. 

@@ -161,7 +161,7 @@ There is an example on LeetCode, `#474 Ones and Zeroes`:
 > 
 > Output: 4
 > 
-> Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3 1s, which are “10,”0001”,”1”,”0”
+> Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3 1s, which are "10", "0001", "1", "0".
 
 The main difference is that now the `knapsack` has two restrictions, i.e., `1`s and `0`s, but the principle never changes. Similar to the rolling array 0/1 knapsack solution, we use a two-dimension array to remember the states, and try to include every string, from the back to front (to avoid using one string more than once):
 

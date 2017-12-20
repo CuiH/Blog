@@ -1,4 +1,391 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.0">Jekyll</generator><link href="http://cuih.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="http://cuih.xyz/" rel="alternate" type="text/html" /><updated>2017-12-13T01:06:22-06:00</updated><id>http://cuih.xyz/</id><title type="html">Life is a Struggle</title><subtitle>Life is a struggle.</subtitle><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><entry><title type="html">SSL/TLS and Secure Transmission</title><link href="http://cuih.xyz/2017/11/12/HTTPS-and-Secure-Data-Transfer.html" rel="alternate" type="text/html" title="SSL/TLS and Secure Transmission" /><published>2017-11-12T21:14:22-06:00</published><updated>2017-11-12T21:14:22-06:00</updated><id>http://cuih.xyz/2017/11/12/HTTPS%20and%20Secure%20Data%20Transfer</id><content type="html" xml:base="http://cuih.xyz/2017/11/12/HTTPS-and-Secure-Data-Transfer.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.0">Jekyll</generator><link href="http://cuih.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="http://cuih.xyz/" rel="alternate" type="text/html" /><updated>2017-12-20T00:19:00-06:00</updated><id>http://cuih.xyz/</id><title type="html">Life is a Struggle</title><subtitle>Life is a struggle.</subtitle><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><entry><title type="html">How to Block/Stop a Thread in Java</title><link href="http://cuih.xyz/2017/12/18/How-to-Block-or-Stop-a-Java-Thread.html" rel="alternate" type="text/html" title="How to Block/Stop a Thread in Java" /><published>2017-12-18T22:18:21-06:00</published><updated>2017-12-18T22:18:21-06:00</updated><id>http://cuih.xyz/2017/12/18/How%20to%20Block%20or%20Stop%20a%20Java%20Thread</id><content type="html" xml:base="http://cuih.xyz/2017/12/18/How-to-Block-or-Stop-a-Java-Thread.html">&lt;h2 id=&quot;thread-states&quot;&gt;Thread states&lt;/h2&gt;
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;state transition&lt;/code&gt; of threads in Java is the fundamental of today’s topic. Basically, there are six possible states:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;NEW: a thread is created, but not started.&lt;/li&gt;
+  &lt;li&gt;RUNNABLE: a thread that is eligible to run. There may be many &lt;code class=&quot;highlighter-rouge&quot;&gt;RUNNABLE&lt;/code&gt; threads, but only one of them can occupy the CPU at a given time.&lt;/li&gt;
+  &lt;li&gt;BLOCKED: a thread that is blocked and waiting for a monitor lock to enter a synchronized block/method.&lt;/li&gt;
+  &lt;li&gt;WAITING: a thread that is waiting for another thread to perform a particular action.&lt;/li&gt;
+  &lt;li&gt;TIMED_WAITING: similar to the &lt;code class=&quot;highlighter-rouge&quot;&gt;WAITING&lt;/code&gt; state. A &lt;code class=&quot;highlighter-rouge&quot;&gt;TIMED_WAITING&lt;/code&gt; thread waits for another thread with a specified waiting time.&lt;/li&gt;
+  &lt;li&gt;TERMINATED: a thread that has completed execution.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;sleep&quot;&gt;sleep()&lt;/h2&gt;
+&lt;p&gt;A simple way to affect the execution of a thread is to invoke the &lt;code class=&quot;highlighter-rouge&quot;&gt;Thread.sleep()&lt;/code&gt;. This is a &lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt; method that sleeps the &lt;code class=&quot;highlighter-rouge&quot;&gt;currently running&lt;/code&gt; thread. This method can be called when a thread runs too fast or the program wants other threads to have the chance to execute. There are some facts:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The parameter &lt;code class=&quot;highlighter-rouge&quot;&gt;millis&lt;/code&gt; of &lt;code class=&quot;highlighter-rouge&quot;&gt;Thread.sleep()&lt;/code&gt;` only guarantees the minimum sleeping time.&lt;/li&gt;
+  &lt;li&gt;When a thread wakes up from sleeping, its state changes from &lt;code class=&quot;highlighter-rouge&quot;&gt;TIMED_WAITING&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;RUNNABLE&lt;/code&gt;. Then, it waits for the scheduling of the scheduler.&lt;/li&gt;
+  &lt;li&gt;When a thread is sleeping, it will not release any lock that it holds.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As for the last point, let’s see an example.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Resource&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SleepTest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Resource&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resource&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Resource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;: start of t1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+            &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;resource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+            &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;: end of t1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;: start of t2&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+            &lt;span class=&quot;c1&quot;&gt;// make sure t1 acquires the lock first&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+            &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;resource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+            &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;: end of t2&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;t1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;t2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;/*
+Outputs:
+Tue Dec 19 00:47:46 CST 2017: start of t1
+Tue Dec 19 00:47:46 CST 2017: start of t2
+Tue Dec 19 00:47:49 CST 2017: end of t2
+Tue Dec 19 00:47:49 CST 2017: end of t1
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;When &lt;code class=&quot;highlighter-rouge&quot;&gt;t1&lt;/code&gt; is sleeping, it does not release the &lt;code class=&quot;highlighter-rouge&quot;&gt;resource&lt;/code&gt;, so &lt;code class=&quot;highlighter-rouge&quot;&gt;t2&lt;/code&gt; will not finish until &lt;code class=&quot;highlighter-rouge&quot;&gt;t1&lt;/code&gt; wakes up and releases the &lt;code class=&quot;highlighter-rouge&quot;&gt;resource&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;yield&quot;&gt;yield()&lt;/h2&gt;
+&lt;p&gt;If a thread has finished all works in one round, the program can give a hint to the scheduler that other threads can occupy the CPU. &lt;code class=&quot;highlighter-rouge&quot;&gt;Thread.yield()&lt;/code&gt; is a &lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt; method that &lt;code class=&quot;highlighter-rouge&quot;&gt;suggests&lt;/code&gt; the scheduler other threads with the &lt;code class=&quot;highlighter-rouge&quot;&gt;same priority&lt;/code&gt; can now be executed. Note that for &lt;code class=&quot;highlighter-rouge&quot;&gt;Thread.yield()&lt;/code&gt;,&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;It is only a suggestion, that it will not guarantee the yield of a thread.&lt;/li&gt;
+  &lt;li&gt;It will not change the status of a thread.&lt;/li&gt;
+  &lt;li&gt;It does not have any synchronization semantic, which means it will not release any lock that it holds.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;join&quot;&gt;join()&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;join()&lt;/code&gt; is a non-static method in class Thread that &lt;code class=&quot;highlighter-rouge&quot;&gt;appends&lt;/code&gt; current thread to the end of another thread. When a thread invokes &lt;code class=&quot;highlighter-rouge&quot;&gt;t.join()&lt;/code&gt; on another thread &lt;code class=&quot;highlighter-rouge&quot;&gt;t&lt;/code&gt;, the first thread will be &lt;code class=&quot;highlighter-rouge&quot;&gt;suspended&lt;/code&gt; until the second thread completes. Let’s see an example:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;JoinTest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;: start of t1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+            &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+            &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;: end of t1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;: start of t2&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+            &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;t1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+            &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;: end of t2&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;t1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;t2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;/*
+Outputs:
+Tue Dec 19 15:38:07 CST 2017: start of t2
+Tue Dec 19 15:38:07 CST 2017: start of t1
+Tue Dec 19 15:38:10 CST 2017: end of t1
+Tue Dec 19 15:38:10 CST 2017: end of t2
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;t2&lt;/code&gt; joins &lt;code class=&quot;highlighter-rouge&quot;&gt;t1&lt;/code&gt; so &lt;code class=&quot;highlighter-rouge&quot;&gt;t2&lt;/code&gt; will not complete until &lt;code class=&quot;highlighter-rouge&quot;&gt;t1&lt;/code&gt; completes. Note that:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;An overloaded version of &lt;code class=&quot;highlighter-rouge&quot;&gt;join()&lt;/code&gt; accepts a &lt;code class=&quot;highlighter-rouge&quot;&gt;maximum waiting time&lt;/code&gt;, so a waiting thread will also be awakened when the waiting time exceeds the limit.&lt;/li&gt;
+  &lt;li&gt;The call of &lt;code class=&quot;highlighter-rouge&quot;&gt;join()&lt;/code&gt; will not cause the release of any lock.&lt;/li&gt;
+  &lt;li&gt;After Java SE5, there’s a better choice – &lt;code class=&quot;highlighter-rouge&quot;&gt;CyclicBarrier&lt;/code&gt;, which is a substitute for &lt;code class=&quot;highlighter-rouge&quot;&gt;join()&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;wait-and-notify&quot;&gt;wait() and notify()&lt;/h2&gt;
+&lt;p&gt;There’s another mechanism that supports multi-thread interactions. &lt;code class=&quot;highlighter-rouge&quot;&gt;wait()&lt;/code&gt; enables a thread to wait for the change of a certain condition. When &lt;code class=&quot;highlighter-rouge&quot;&gt;wait()&lt;/code&gt; is called on an &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;resource&quot;&lt;/code&gt;, the current thread will be suspended until the method &lt;code class=&quot;highlighter-rouge&quot;&gt;notify()&lt;/code&gt; is called on the same &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;resource&quot;&lt;/code&gt;. &lt;code class=&quot;highlighter-rouge&quot;&gt;wait()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;notify()&lt;/code&gt; are methods declared in class &lt;code class=&quot;highlighter-rouge&quot;&gt;Object&lt;/code&gt;, which enables a thread to wait for any &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;resource&quot;&lt;/code&gt;. Note that:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;An overloaded version of &lt;code class=&quot;highlighter-rouge&quot;&gt;wait()&lt;/code&gt; accepts a &lt;code class=&quot;highlighter-rouge&quot;&gt;maximum waiting time&lt;/code&gt;, so a waiting thread will also be awakened when the waiting time exceeds the limit.&lt;/li&gt;
+  &lt;li&gt;If more than one thread is waiting for a &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;resource&quot;&lt;/code&gt;, that &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;resource&quot;&lt;/code&gt; can invoke the method &lt;code class=&quot;highlighter-rouge&quot;&gt;notifyAll()&lt;/code&gt; to notify all waiting threads.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;wait()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;notify()&lt;/code&gt; can only be invoked inside a synchronized block/method.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;wait()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;notify()&lt;/code&gt; can only be invoked on an object if current thread holds the lock of that object.&lt;/li&gt;
+  &lt;li&gt;After the invocation of &lt;code class=&quot;highlighter-rouge&quot;&gt;wait()&lt;/code&gt;, the status of current thread becomes &lt;code class=&quot;highlighter-rouge&quot;&gt;WAITING&lt;/code&gt; and that exact object lock will be &lt;code class=&quot;highlighter-rouge&quot;&gt;released&lt;/code&gt; (current thread may still hold locks from other objcets).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The last three points are of the most importance. Different from &lt;code class=&quot;highlighter-rouge&quot;&gt;Thread.sleep()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Thread.yield()&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;wait()&lt;/code&gt; will release the objcet lock, but this makes sense. The invocation of &lt;code class=&quot;highlighter-rouge&quot;&gt;wait()&lt;/code&gt; on an object means current thread has finished its work with this object and it’s now waiting for something to happen on that object, so current thread needs to release this object lock to enable other threads to interact with this object. Let’s see an example:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Resource&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WaitTest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;Resource&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resource&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Resource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;: start of t1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+            &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;resource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;resource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;wait&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+            &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;: end of t1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;: start of t2&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+            &lt;span class=&quot;c1&quot;&gt;// make sure t1 acquires the lock first&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+            &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;resource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+                &lt;span class=&quot;n&quot;&gt;resource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;notify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+            &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;: end of t2&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;t1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;t2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;/*
+Outputs:
+Tue Dec 19 17:58:14 CST 2017: start of t1
+Tue Dec 19 17:58:14 CST 2017: start of t2
+Tue Dec 19 17:58:17 CST 2017: end of t1
+Tue Dec 19 17:58:17 CST 2017: end of t2
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;t1&lt;/code&gt; waits for &lt;code class=&quot;highlighter-rouge&quot;&gt;t2&lt;/code&gt; to finish its part with the &lt;code class=&quot;highlighter-rouge&quot;&gt;resource&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;When &lt;code class=&quot;highlighter-rouge&quot;&gt;notify()&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;notifyAll()&lt;/code&gt; is called, the status of the threads that are waiting on this object will change from &lt;code class=&quot;highlighter-rouge&quot;&gt;WAITING&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;BLOCKED&lt;/code&gt;, and they will then compete for the object lock. If one thread reacquires the lock after the notifying thread releases the lock, its status will become &lt;code class=&quot;highlighter-rouge&quot;&gt;RUNNABLE&lt;/code&gt;. Therefore, &lt;code class=&quot;highlighter-rouge&quot;&gt;notify()&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;notifyAll()&lt;/code&gt; will &lt;code class=&quot;highlighter-rouge&quot;&gt;not&lt;/code&gt; cause the release of the lock.&lt;/p&gt;
+
+&lt;h2 id=&quot;suspend-and-resume-deprecated&quot;&gt;suspend() and resume() (deprecated)&lt;/h2&gt;
+&lt;p&gt;Sometimes we may want to stop a thread for a while. Previously, there are a pair of methods &lt;code class=&quot;highlighter-rouge&quot;&gt;suspend() and resume()&lt;/code&gt; declared in class &lt;code class=&quot;highlighter-rouge&quot;&gt;Thread&lt;/code&gt;, but as explained in the &lt;code class=&quot;highlighter-rouge&quot;&gt;Javadoc&lt;/code&gt;, they are &lt;code class=&quot;highlighter-rouge&quot;&gt;inherently deadlock-prone&lt;/code&gt; and thus &lt;code class=&quot;highlighter-rouge&quot;&gt;deprecated&lt;/code&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;If the target thread holds a lock on the monitor protecting a critical system resource when it is suspended, no thread can access this resource until the target thread is resumed. If the thread that would resume the target thread attempts to lock this monitor prior to calling &lt;code class=&quot;highlighter-rouge&quot;&gt;resume&lt;/code&gt;, deadlock results.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;A suspended thread will &lt;code class=&quot;highlighter-rouge&quot;&gt;not&lt;/code&gt; release any lock it holds, so the above words are easy to understand.&lt;/p&gt;
+
+&lt;h2 id=&quot;stop-deprecated&quot;&gt;stop() (deprecated)&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;stop()&lt;/code&gt; is also &lt;code class=&quot;highlighter-rouge&quot;&gt;deprecated&lt;/code&gt; due to &lt;code class=&quot;highlighter-rouge&quot;&gt;inherently unsafe&lt;/code&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Stopping a thread with Thread.stop() causes it to unlock all of the monitors that it has locked (as a natural consequence of the unchecked &lt;code class=&quot;highlighter-rouge&quot;&gt;ThreadDeath&lt;/code&gt; exception propagating up the stack). If any of the objects previously protected by these monitors were in an inconsistent state, the damaged objects become visible to other threads, potentially resulting in arbitrary behavior.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This may not be easy to understand. Let’s see an example:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;StopTest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Runnable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;();&lt;/span&gt;
+
+            &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+            &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;nextInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;stop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;Vector&lt;/code&gt; here is a &lt;code class=&quot;highlighter-rouge&quot;&gt;thread-safe&lt;/code&gt; container in Java, which means this container is always in a consistent status. In fact, &lt;code class=&quot;highlighter-rouge&quot;&gt;Vector&lt;/code&gt; is protected by &lt;code class=&quot;highlighter-rouge&quot;&gt;synchronization&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;E&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;modCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;ensureCapacityHelper&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;elementCount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;elementData&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;elementCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now if we &lt;code class=&quot;highlighter-rouge&quot;&gt;stop&lt;/code&gt; a thread that is interacting with a vector, the target thread will immediately release the lock that protects this vector, and thus other threads can read from or write to this vector &lt;code class=&quot;highlighter-rouge&quot;&gt;inconsistently&lt;/code&gt;. For instance, if the &lt;code class=&quot;highlighter-rouge&quot;&gt;elementCount&lt;/code&gt; has been increased by one and the thread is stopped before the actual data is witten to the array, another thread that tries to read the last element may acquire the vector lock and get a non-existent value.&lt;/p&gt;
+
+&lt;h2 id=&quot;status-flag&quot;&gt;Status flag&lt;/h2&gt;
+&lt;p&gt;How to stop a thread then? A simple way is to use a boolean variable as a flag:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FlagTest&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;volatile&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;canceled&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;cancel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;canceled&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;: start&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;canceled&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// do something&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;: running&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+            &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;: end&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;FlagTest&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FlagTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;cancel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;/*
+Outputs:
+Tue Dec 19 22:34:03 CST 2017: start
+Tue Dec 19 22:34:03 CST 2017: running
+Tue Dec 19 22:34:04 CST 2017: running
+Tue Dec 19 22:34:05 CST 2017: running
+Tue Dec 19 22:34:06 CST 2017: running
+Tue Dec 19 22:34:07 CST 2017: running
+Tue Dec 19 22:34:08 CST 2017: end
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Every round, the thread will check the boolean flag &lt;code class=&quot;highlighter-rouge&quot;&gt;canceled&lt;/code&gt; to decide whether to break the cycle or not. Note that &lt;code class=&quot;highlighter-rouge&quot;&gt;canceled&lt;/code&gt; is a &lt;code class=&quot;highlighter-rouge&quot;&gt;volatile&lt;/code&gt; variable, which ensures that operations on this variable are thread-safe in this case.&lt;/p&gt;
+
+&lt;h2 id=&quot;interrupt&quot;&gt;interrupt()&lt;/h2&gt;
+&lt;p&gt;The above method can stop a thread at the beginning of a certain round of cycle, but we may also want to stop a &lt;code class=&quot;highlighter-rouge&quot;&gt;WAITING&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;BLOCKED&lt;/code&gt; thread. In previous examples, methods like &lt;code class=&quot;highlighter-rouge&quot;&gt;Thread.sleep()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Object.wait()&lt;/code&gt; may throw exceptions called &lt;code class=&quot;highlighter-rouge&quot;&gt;InterruptedException&lt;/code&gt;. This can help us stop such threads.&lt;/p&gt;
+
+&lt;p&gt;As you can imagine, interrupting a &lt;code class=&quot;highlighter-rouge&quot;&gt;WAITING&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;BLOCKED&lt;/code&gt; thread is more complicate than stopping a thread after it finishes one round of cycle. You’ll need to deal with the &lt;code class=&quot;highlighter-rouge&quot;&gt;aftermaths&lt;/code&gt; such as &lt;code class=&quot;highlighter-rouge&quot;&gt;tidying up&lt;/code&gt; the resources, which is similar to handling an exception in a &lt;code class=&quot;highlighter-rouge&quot;&gt;try-catch&lt;/code&gt; block.&lt;/p&gt;
+
+&lt;p&gt;The method &lt;code class=&quot;highlighter-rouge&quot;&gt;interrupt()&lt;/code&gt; in class &lt;code class=&quot;highlighter-rouge&quot;&gt;Thread&lt;/code&gt; enables us to stop a thread by setting an interrupt flag, while another static method &lt;code class=&quot;highlighter-rouge&quot;&gt;Thread.interrupted()&lt;/code&gt; resets the flag. If an interrupt happens on a &lt;code class=&quot;highlighter-rouge&quot;&gt;WAITING&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;BLOCKED&lt;/code&gt; thread, an &lt;code class=&quot;highlighter-rouge&quot;&gt;InterruptedException&lt;/code&gt; will be thrown, and at the same time, the interrupt flag will be reset. Let’s see an example:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;InterruptTest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;: start&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+            &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;interrupted&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;c1&quot;&gt;// do something&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;: running&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+                &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;: interrupted when sleeping&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+                    &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;currentThread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;interrupt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+            &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;: end&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;interrupt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;/*
+Outputs:
+Tue Dec 19 23:56:54 CST 2017: start
+Tue Dec 19 23:56:54 CST 2017: running
+Tue Dec 19 23:56:55 CST 2017: running
+Tue Dec 19 23:56:56 CST 2017: running
+Tue Dec 19 23:56:57 CST 2017: running
+Tue Dec 19 23:56:58 CST 2017: running
+Tue Dec 19 23:56:59 CST 2017: interrupted when sleeping
+Tue Dec 19 23:56:59 CST 2017: end
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We can now call the &lt;code class=&quot;highlighter-rouge&quot;&gt;Thread.interrupted()&lt;/code&gt; method to check whether current thread has been interrupted. Note that when an &lt;code class=&quot;highlighter-rouge&quot;&gt;InterruptedException&lt;/code&gt; is thrown, the interrupt flag will be reset, so we need to set the flag again to break the cycle in the &lt;code class=&quot;highlighter-rouge&quot;&gt;catch&lt;/code&gt; block.&lt;/p&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;concurrent programming&lt;/code&gt; in Java is a very complex and important topic. Today I only introduced the tip of the iceberg, but if you want to be a proficient java programmer, you must familiar youself with the concurrent programming.&lt;/p&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="java" /><summary type="html">Thread states The state transition of threads in Java is the fundamental of today’s topic. Basically, there are six possible states:</summary></entry><entry><title type="html">SSL/TLS and Secure Transmission</title><link href="http://cuih.xyz/2017/11/12/HTTPS-and-Secure-Data-Transfer.html" rel="alternate" type="text/html" title="SSL/TLS and Secure Transmission" /><published>2017-11-12T21:14:22-06:00</published><updated>2017-11-12T21:14:22-06:00</updated><id>http://cuih.xyz/2017/11/12/HTTPS%20and%20Secure%20Data%20Transfer</id><content type="html" xml:base="http://cuih.xyz/2017/11/12/HTTPS-and-Secure-Data-Transfer.html">&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;If you are familiar with the Internet, you’ll know that the underlying &lt;code class=&quot;highlighter-rouge&quot;&gt;TCP/IP&lt;/code&gt; protocol stack is not a secure one. We need to do something on top of it to ensure secure transmission, and &lt;code class=&quot;highlighter-rouge&quot;&gt;SSL/TLS&lt;/code&gt; is a common but powerful solution.&lt;/p&gt;
 
 &lt;h2 id=&quot;encryption-and-pki&quot;&gt;Encryption and PKI&lt;/h2&gt;
@@ -1809,7 +2196,7 @@ Only constant memory is allowed.&lt;/p&gt;
 
 &lt;p&gt;Note that at &lt;code class=&quot;highlighter-rouge&quot;&gt;[a]&lt;/code&gt;, a &lt;code class=&quot;highlighter-rouge&quot;&gt;volatile&lt;/code&gt; keyword is added to &lt;code class=&quot;highlighter-rouge&quot;&gt;ourInstance&lt;/code&gt;. What we need to know here is that &lt;code class=&quot;highlighter-rouge&quot;&gt;volatile&lt;/code&gt; prevents JVM from &lt;code class=&quot;highlighter-rouge&quot;&gt;reordering instructions&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Finally, we have developed a thread-safe singleton pattern class with high-performance.&lt;/p&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="design-pattern" /><summary type="html">Definition In some cases, we want a certain class to have only one instance, such as the Printer class and the ThreadPool class in Java. This design pattern is called the Singleton Pattern:</summary></entry><entry><title type="html">Java Memory Model</title><link href="http://cuih.xyz/2017/06/28/Java-Memory-Model.html" rel="alternate" type="text/html" title="Java Memory Model" /><published>2017-06-28T23:00:00-05:00</published><updated>2017-06-28T23:00:00-05:00</updated><id>http://cuih.xyz/2017/06/28/Java%20Memory%20Model</id><content type="html" xml:base="http://cuih.xyz/2017/06/28/Java-Memory-Model.html">&lt;h2 id=&quot;what-is-java-virtual-machine-jvm&quot;&gt;What is Java Virtual Machine (JVM)?&lt;/h2&gt;
+&lt;p&gt;Finally, we have developed a thread-safe singleton pattern class with high performance.&lt;/p&gt;</content><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><category term="design-pattern" /><summary type="html">Definition In some cases, we want a certain class to have only one instance, such as the Printer class and the ThreadPool class in Java. This design pattern is called the Singleton Pattern:</summary></entry><entry><title type="html">Java Memory Model</title><link href="http://cuih.xyz/2017/06/28/Java-Memory-Model.html" rel="alternate" type="text/html" title="Java Memory Model" /><published>2017-06-28T23:00:00-05:00</published><updated>2017-06-28T23:00:00-05:00</updated><id>http://cuih.xyz/2017/06/28/Java%20Memory%20Model</id><content type="html" xml:base="http://cuih.xyz/2017/06/28/Java-Memory-Model.html">&lt;h2 id=&quot;what-is-java-virtual-machine-jvm&quot;&gt;What is Java Virtual Machine (JVM)?&lt;/h2&gt;
 &lt;p&gt;One of the most important characteristics of Java is that it is &lt;code class=&quot;highlighter-rouge&quot;&gt;platform-independent&lt;/code&gt;, which is fulfilled by the &lt;code class=&quot;highlighter-rouge&quot;&gt;JVM&lt;/code&gt;. JVM has its own instruction sets and registers, so java codes can ignore the implementation of the underlying operating system, and only need to generate bytecodes that JVM can read. When running, JVM will first convert the bytecode to native machine code of the host platform and then execute.&lt;/p&gt;
 
 &lt;h2 id=&quot;the-structure-of-jvm&quot;&gt;The structure of JVM&lt;/h2&gt;

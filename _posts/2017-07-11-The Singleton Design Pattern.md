@@ -157,4 +157,4 @@ public class SimpleSingleton {
 
 Note that at `[a]`, a `volatile` keyword is added to `ourInstance`. What we need to know here is that `volatile` prevents JVM from `reordering instructions`.
 
-Finally, we have developed a thread-safe singleton pattern class with high-performance.
+Finally, we have developed a thread-safe singleton pattern class with high performance.

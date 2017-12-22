@@ -29,8 +29,6 @@ nav:
     url:            "/tags"
   - name:           "works"
     url:            "/works"
-  - name:           "resume"
-    url:            "http://resume.cuih.xyz"
 
 
 # Sass

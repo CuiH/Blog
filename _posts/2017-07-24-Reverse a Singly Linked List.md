@@ -3,7 +3,7 @@ layout:      post
 title:       "Reverse a Singly Linked List"
 date:        2017-07-24 23:30:00 -0500
 tags:        algorithm
-description: "Summing up four ways to reverse a singly linked list."
+description: "Four ways to reverse a singly linked list."
 ---
 
 ## Overview

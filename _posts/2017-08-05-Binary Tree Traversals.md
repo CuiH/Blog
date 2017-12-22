@@ -3,7 +3,7 @@ layout:      post
 title:       "Binary Tree Traversals"
 date:        2017-08-05 00:30:00 -0500
 tags:        algorithm
-description: "Introducing various ways to traverse a binary tree."
+description: "Various ways to traverse a binary tree."
 ---
 
 ## Overview

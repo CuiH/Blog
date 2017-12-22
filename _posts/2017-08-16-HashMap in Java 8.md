@@ -3,7 +3,7 @@ layout:      post
 title:       "HashMap in Java 8"
 date:        2017-08-16 21:00:00 -0500
 tags:        java
-description: "Analyzing the source code of HashMap in JDK 1.8, and comparing it with the previous implementation."
+description: "Analyzing the source code of HashMap in JDK 1.8, and comparing it with the previous version."
 ---
 
 ## Overview

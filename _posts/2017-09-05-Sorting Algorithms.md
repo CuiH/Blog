@@ -3,7 +3,7 @@ layout:      post
 title:       "Sorting Algorithms"
 date:        2017-09-05 23:00:00 -0500
 tags:        algorithm
-description: "Introducing the principles and implementations of seven commonly seen sorting algorithms."
+description: "The principles and implementations of seven commonly seen sorting algorithms."
 ---
 
 ## Overview

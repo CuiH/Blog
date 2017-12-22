@@ -3,7 +3,7 @@ layout:      post
 title:       "The Singleton Design Pattern"
 date:        2017-07-11 23:00:00 -0500
 tags:        design-pattern
-description: "Different methods of creating a singleton pattern class, and ways to create a thread-safe one with high performance."
+description: "Different Java implementations of singleton design pattern, including a thread-safe one with high performance."
 ---
 
 ## Definition

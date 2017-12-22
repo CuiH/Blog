@@ -3,7 +3,7 @@ layout:      post
 title:       "How to Block/Stop a Thread in Java"
 date:        2017-12-18 23:18:21 -0500
 tags:        java
-description: "Ways to affect the execution of a Java thread."
+description: "Several ways to affect the execution of a Java thread."
 ---
 
 ## Thread states

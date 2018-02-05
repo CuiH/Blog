@@ -34,16 +34,16 @@ There are three typical implementations of hash, including `static hash`, `exten
 ### Static hash
 This is the simplest hash. Suppose we have N buckets, and for any input, we use hash function `h` to calculate its index, and then insert it to that bucket. If that bucket is full, we use `overflow chains`:
 
-![](/assets/images/0910/0-0.png)
+![](/assets/images/170816/0-0.png)
 
 ### Extendable hash
 Searching in a overflow chain has linear time complexity. To avoid this, we can duplicate the number of buckets before a chain is created, and redistribute all data items. However, the cost is high to access all data, so extendable hash maintains a `category` of all bucktes. When inserting data to a full bucket, the original bucket splits, and the category duplicates (this is only a simple example, not including the concepts of `global depth` and `local depth`):
 
 1. The original data:
-![](/assets/images/0910/1-0.png)
+![](/assets/images/170816/1-0.png)
 
 2. Insert `9`. The category will be duplicated.
-![](/assets/images/0910/1-1.png)
+![](/assets/images/170816/1-1.png)
 
 ## hashCode() and equals()
 By here, everyone should know that if the hash values of two data items are the same, their actual values can be different. As we know, there are two methods, `hashCode()` and `equals()`, defined in class `Object`. HashMap use them to judge whether a key exists in the map, and which `bucket` should it be put into: when searching for a value, Java invokes `hashCode()` first to get the hash value of the key, and then finds the target bucket, invoking `equals()` of every data item inside the bucket to find the target data item.
@@ -148,7 +148,7 @@ static int indexFor(int h, int length) {
 
 We know that the efficiency of mod operation is low, while `bitwise operation` is much more efficient. Due to the size of buckets, which is alway `a power of 2`, we can simply do a `bitwise AND` operation between the input and `the number of buckets minus one`. The result is the same as a mod operation, but it runs faster. In JDK 1.8, this function is deleted, and instead this line of code will be executed whenever an index is needed.
 
-## Method put()
+### Method put()
 ```java
 public V put(K key, V value) {
     return putVal(hash(key), key, value, false, true);
@@ -400,11 +400,11 @@ After the split, data in the original bucket will be splited into two different 
 
 When judging which bucket a Node belongs to, there's a trick. As we mentioned before, we can calculate the index by `hash % size of the array`. Since the size is always `a power of two`, the `last n bits` of the hash value decide its index. For example, say we have two Nodes a, b:
 
-![](/assets/images/0910/2-1.png)
+![](/assets/images/170816/2-1.png)
 
 Now the size of the expanded array is `2 ^ (n +1)`. The last `n` bits of all nodes in this array are the same, so the `n + 1`th Node counting from the back will decide its new index, whether to move to another bucket, or remain in the previous one. Therefore, we can simply do an bitwise AND operation on the hash value and the the original size of the array, that is, `2 ^ n`. If the result is not `0`, we know that this Node should be moved to a new bucket.
 
-![](/assets/images/0910/2-2.png)
+![](/assets/images/170816/2-2.png)
 
 After spliting the list, one of them will be linked to a new bucket:
 
@@ -421,7 +421,7 @@ if (hiTail != null) {
 
 Since the size of the array is two times as the original one, the new index can be decided by `old position + oldCap`:
 
-![](/assets/images/0910/2-3.png)
+![](/assets/images/170816/2-3.png)
 
 In JDK 1.7, the index for every node will be recalculated after expansion. JDK 1.8 made some optimizations to increase the efficiency.
 

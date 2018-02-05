@@ -122,22 +122,22 @@ The key point of Quick Sort is `"Divide and Conquer"`, that is, divide big probl
 Generally, we choose the first element of the interval as the base element. Here's an example:
 
 1. The original array:
-![](/assets/images/0913/1-0.png)
+![](/assets/images/170905/1-0.png)
 
 2. Select the first element as base element. Maintain two pointers `i` and `j`, pointing to the head and tail of the array respectively.
-![](/assets/images/0913/1-1.png)
+![](/assets/images/170905/1-1.png)
 
 3. Move `j` to the left, to find the `first` element that is `smaller` than the base element. Extract it and fill it to the location that `i` points to.
-![](/assets/images/0913/1-2.png)
+![](/assets/images/170905/1-2.png)
 
 4. Move `i` to the right, to find the `first` element that is `bigger` than the base element. Extract it and fill it to the location that `j` points to.
-![](/assets/images/0913/1-3.png)
+![](/assets/images/170905/1-3.png)
 
 5. Repeat process #3 to #4, until `i` meets `j`.
-![](/assets/images/0913/1-4.png)
+![](/assets/images/170905/1-4.png)
 
 6. Put the base element at the position that `i` (or `j`) points to.
-![](/assets/images/0913/1-6.png)
+![](/assets/images/170905/1-6.png)
 
 *Attention: in process #3, it must start from the `rightmost` element.
 
@@ -168,7 +168,7 @@ public void quickSort(int[] arr, int start, int end) {
 
 As for an array with length `n`, suppose every time the base element divides the array into two parts of equal length, then:
 
-![](/assets/images/0913/1-l.png)
+![](/assets/images/170905/1-l.png)
 
 All `logn` rounds are needed, and each round the whole array will be accessed, so the average time complexity is `O(nlogn)`. Since the sorting is done in-place, and no extra space is used, the space complexity is `O(1)`. In addition, obviously, due to the swap, Quick Sort is `unstable`.
 
@@ -256,11 +256,11 @@ Since we are sorting in ascending order, I will introduce the `Minimum Heap`:
 ### Storing in an array
 As I mentioned above, heap is a `complete binary tree`, so we can use some tricks to store a heap in an array, and easily access nodes by indices. For example, if we have the following heap:
 
-![](/assets/images/0913/2-0.png)
+![](/assets/images/170905/2-0.png)
 
 Put every node into an array according to its `level-traversal` order:
 
-![](/assets/images/0913/2-1.png)
+![](/assets/images/170905/2-1.png)
 
 You will find that for every node indexed `i`, the index of its left child is `2 * i + 1`, the index of the right child is `2 * i + 2`, and the index of its parent is `(i - 1) / 2`.
 
@@ -268,13 +268,13 @@ You will find that for every node indexed `i`, the index of its left child is `2
 As for the heap above, if we want to insert `2` into it:
 
 1. Put the new element at the end of the array.
-![](/assets/images/0913/2-2.png)
+![](/assets/images/170905/2-2.png)
 
 2. `"Adjust upward"`, that is, compare it with the parent node. If it is smaller than its parent, swap them.
-![](/assets/images/0913/2-3.png)
+![](/assets/images/170905/2-3.png)
 
 3. Repeat process #2, until current node is bigger than the parent node, or it reaches the root.
-![](/assets/images/0913/2-4.png)
+![](/assets/images/170905/2-4.png)
 
 The code for `"adjust upward"`:
 
@@ -296,13 +296,13 @@ private void fixUp(int index) {
 Becuase of the characteristics of the heap, deletion can only be done on the top element. After a deletion, we move the last element of the heap to the top, and `"adjust downward"`. Again the previous example:
 
 1. Extract the top element `1`, and move the last element `8` to the top.
-![](/assets/images/0913/2-5.png)
+![](/assets/images/170905/2-5.png)
 
 2. `"Adjust downward"`, that is, compare it with all children. If either children is smaller than it, swap them.
-![](/assets/images/0913/2-6.png)
+![](/assets/images/170905/2-6.png)
 
 3. Repeat process #2, until no child is smaller than current node, or it reaches a leaf.
-![](/assets/images/0913/2-7.png)
+![](/assets/images/170905/2-7.png)
 
 The code for `"adjust downward"`:
 
@@ -328,16 +328,16 @@ private void fixDown(int index, int end) {
 For a given array, say our example, `5 8 1 5 2 4 7 9 8`, the processes to transform it into a heap is as follows:
 
 1. The initial data.
-![](/assets/images/0913/2-8.png)
+![](/assets/images/170905/2-8.png)
 
 2. Start from `the last node other than the leaves`, adjust downward. Since the last two not-leaf nodes are currently minimum heaps, they will not be adjusted.
-![](/assets/images/0913/2-9.png)
+![](/assets/images/170905/2-9.png)
 
 3. Adjust the subtree rooted by the last but two node, and it triggers one swap.
-![](/assets/images/0913/2-10.png)
+![](/assets/images/170905/2-10.png)
 
 4. Adjust the subtree rooted by the root (the whole tree), and it triggers two swaps.
-![](/assets/images/0913/2-11.png)
+![](/assets/images/170905/2-11.png)
 
 The code is as follows:
 

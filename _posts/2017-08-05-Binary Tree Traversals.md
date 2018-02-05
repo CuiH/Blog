@@ -21,7 +21,7 @@ public class TreeNode {
 
 If there's no special statement, we'll use this tree in our examples:
 
-![](/assets/images/0907/0-0.png)
+![](/assets/images/170805/0-0.png)
 
 ## Recursive travesals
 This may be the simplest algorithm of traversing, so I just post the code here:
@@ -117,7 +117,7 @@ public List<Integer> inorderWithStack(TreeNode root) {
 ### Postorder traversal
 This could be a little bit complicate. The point is, we should ensure that the parent node is not outputed until all of his children are traversed. A common method is to remember the last outputed node. Here are three possible ideas.
 
-a) Just like the previous solution:
+#### a) Just like the previous solution:
 
 Similar to the preorder and inorder traversal code above. The difference is we record the last outputed node, and before popping the stack, we check whether both children of the top node in the stack have been traversed (or, is `null`), by comparing them with the recorded node:
 
@@ -153,7 +153,7 @@ public List<Integer> postorderWithStack1(TreeNode root) {
 }
 ```
 
-b) Another method:
+#### b) Another method:
 
 1. Push the current node (root) into the stack.
 2. Get the top node of the stack. If its children are all `null`, or have been traversed (that is, one of them is the last outputed node), pop it and outout it; otherwise push its `right` child into the stack (if it is not `null`), and then its `left` node (if it is not `null`).
@@ -190,7 +190,7 @@ public List<Integer> postorderWithStack2(TreeNode root) {
 }
 ```
 
-c) Using two stacks
+#### c) Using two stacks
 
 This method is somewhat interesting. We know that the sequence of postorder traversal is `left -> right -> mid`. What if we traverse by `mid -> right -> left` and then reverse the result? We can do this with two stacks, traversing with one stack, and outputing the result to another stack, and finally popping nodes from the second stack one by one to get the postorder traversal:
 
@@ -262,40 +262,40 @@ The ingenuity of this algorithm is that we utilize the empty space `inside` the 
 As for our example, a detailed description is:
 
 1. The original tree.
-![](/assets/images/0907/T-0.png)
+![](/assets/images/170805/T-0.png)
 
 2. Find the predecessor and change its right child, and then traverse the left subtree of current node.
-![](/assets/images/0907/T-1.png)
+![](/assets/images/170805/T-1.png)
 
 3. The same as above.
-![](/assets/images/0907/T-2.png)
+![](/assets/images/170805/T-2.png)
 
 4. The left child is `null`, so output current node.
-![](/assets/images/0907/T-3.png)
+![](/assets/images/170805/T-3.png)
 
 5. Traverse the right subtree, and come back to the parent.
-![](/assets/images/0907/T-4.png)
+![](/assets/images/170805/T-4.png)
 
 6. The right child of the predecessor is self, so revert it and output current node. Traverse the right subtree.
-![](/assets/images/0907/T-5.png)
+![](/assets/images/170805/T-5.png)
 
 7. Handle the predecessor, and traverse the left subtree.
-![](/assets/images/0907/T-6.png)
+![](/assets/images/170805/T-6.png)
 
 8. The left child is null, so output current node. Traverse the right subtree, and come back to the parent.
-![](/assets/images/0907/T-7.png)
+![](/assets/images/170805/T-7.png)
 
 9. The right child of the predecessor is self, so revert it and output current node. Traverse the right subtree and come back to the parent.
-![](/assets/images/0907/T-8.png)
+![](/assets/images/170805/T-8.png)
 
 10. The right child of the predecessor is self, so revert it and output current node. Traverse the right subtree.
-![](/assets/images/0907/T-9.png)
+![](/assets/images/170805/T-9.png)
 
 11. The left child is `null`, so output current node, and traverse the right subtree.
-![](/assets/images/0907/T-10.png)
+![](/assets/images/170805/T-10.png)
 
 12. The same as above. Finsh the traversal.
-![](/assets/images/0907/T-11.png)
+![](/assets/images/170805/T-11.png)
 
 Here's the code:
 

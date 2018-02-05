@@ -11,7 +11,7 @@ author:
   email:            hcui1995@gmail.com
 
 copyright:
-  year:             2017
+  year:             2018
   name:             CuiH
 
 description: Life is a struggle.
@@ -39,8 +39,6 @@ sass:
 
 # build
 markdown: kramdown
-
-# permalink: /:title
 
 plugins:
   - jekyll-feed

@@ -5,7 +5,7 @@ title: About
 
 Hi, this is Hao Cui. Nice to meet you.
 
-I'm now pursuing my master's degree of Computer Science at [Rice University](http://www.rice.edu/). I got my bachelor's degree at [Sun Yat-sen University](http://www.sysu.edu.cn/), China, majoring in Software Engineering.
+I'm now pursuing my master's degree of Software Engineering at [Carnegie Mellon University](https://www.cmu.edu/). I got my bachelor's degree at [Sun Yat-sen University](http://www.sysu.edu.cn/), China, majoring in Software Engineering.
 
 My main focus is software development. I have participated in as well as led many software projects, including web apps, android apps and 2D games. You can see them [here](/works). I can skillfully use Java, JavaScript/HTML/CSS, C++, Python and frameworks like Angular, Node.js, Spring and Django. Among them, Java is my favorite.
 

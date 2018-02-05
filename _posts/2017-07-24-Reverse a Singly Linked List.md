@@ -57,19 +57,19 @@ Obviously, the biggest problem of this solution is that it consumes too much `sp
 This is another easy solution. What we should do is to move every node from the original list to the head of the new list. Let's see the example of `1 -> 2 -> 3 -> 4 -> 5 -> null`:
 
 1. Initialization: `newHead` points to `null`, `head` points to the head of the original list.
-![](/assets/images/0905/3-0.png)
+![](/assets/images/170724/3-0.png)
 
 2. Enter the loop: `temp` points to the next node of `head`; set `head.next` to `newHead`.
-![](/assets/images/0905/3-1.png)
+![](/assets/images/170724/3-1.png)
 
 3. Move forward: `newHead` points to `head`; `head` points to `temp`.
-![](/assets/images/0905/3-2.png)
+![](/assets/images/170724/3-2.png)
 
 4. Begin the next loop.
-![](/assets/images/0905/3-3.png)
+![](/assets/images/170724/3-3.png)
 
 5. Loop until `head` points to `null`. Now `newHead` points to the head of the reversed list.
-![](/assets/images/0905/3-4.png)
+![](/assets/images/170724/3-4.png)
 
 The code is here:
 
@@ -97,19 +97,19 @@ public Node reverseSinglyLinkedList3(Node head) {
 We need to construct a `helper node` in this case, and link it to the head of the original list. Then we keep inserting the `next node of the original list` after the `helper node`, until the next node of the original list is `null`. Now the `next node of the helper node` is the head of the reversed list. The algorithm is like:
 
 1. Initialization: construct the helper node `newHead`, and link it to the head of the original list.
-![](/assets/images/0905/4-0.png)
+![](/assets/images/170724/4-0.png)
 
 2. Enter the loop: `temp` points to the next node of `head`.
-![](/assets/images/0905/4-1.png)
+![](/assets/images/170724/4-1.png)
 
 3. Insertion: set `head.next` to the next node of `temp`; set `temp.next` to the next node of `newHead`; set `newHead.next` to `temp`. Now we have inserted the next node of `head` to the position right after the `newHead`.
-![](/assets/images/0905/4-2.png)
+![](/assets/images/170724/4-2.png)
 
 4. Begin the next loop, and handle like process #2 and process #3.
-![](/assets/images/0905/4-3.png)
+![](/assets/images/170724/4-3.png)
 
 5. Loop until the next node of `head` is `null`. Now the next node of `newHead` is the head of the reversed list.
-![](/assets/images/0905/4-4.png)
+![](/assets/images/170724/4-4.png)
 
 The key point of this algorithm is: `newHead` and `head` always point to the same node, and move the node after the `head` to the next position of `newHead`. The code is as follows:
 

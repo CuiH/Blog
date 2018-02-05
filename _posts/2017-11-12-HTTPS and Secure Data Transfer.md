@@ -17,12 +17,12 @@ Secure transmission is always about encryption. There are two different encrypti
 ### Symmetric encryption
 A symmetric encryption uses exactly `one` key to encrypt and decrypt the message, so this key should be always kept secret.
 
-![](/assets/images/1112/1.png)
+![](/assets/images/171112/1.png)
 
 ### Asymmetric encryption
 In contrast to the symmetric encryption, an asymmetric encryption has `two` different keys. Messages are encrypted by one key and decrypted with another. In most cases, one of the keys is released to the public, called the `public key`, while the other one is the `secret key`. Such a system is known as the `public-key cryptography`.
 
-![](/assets/images/1112/2.png)
+![](/assets/images/171112/2.png)
 
 ### Public key infrastructure
 Based on asymmetric encryption, we can build a `public key infrastructure` (PKI), which may involve many roles and polices. The purpose of a PKI is to facilitate the secure electronic transmission. I will discuss it later in this blog.
@@ -41,14 +41,14 @@ Since the secret key is only known to Bob, only he can make this encrypted diges
 
 After that, Bob sends both the message and the encrypted digest. Alice again calculates the digest using the same algorithm, and decrypts the encrypted digest with Bob’s `public key`. If the two digests are the same, Alice will know that the message is complete.
 
-![](/assets/images/1112/3.png)
+![](/assets/images/171112/3.png)
 
 ### Privacy
 Alice and Bod do not want their messages to be read by others. Note that messages are sent from both sides, and there is always a public key in the public-key cryptosystem. A possible solution is to use two sets of keys, so there are two public keys and two secret keys, which may be somewhat inconvenient. 
 
 In this case, we can use the symmetric encryption instead. Another reason is that asymmetric encryption is time-consuming, so if we want to encrypt the whole message, the symmetric one is a more efficient choice.
 
-![](/assets/images/1112/4.png)
+![](/assets/images/171112/4.png)
 
 The `session key` in this picture should be kept secret, so how can the sever and the client generate the same key respectively and, at the same time, secretly? You'll see that later.
 
@@ -59,7 +59,7 @@ We need a third-party authority here, called the `certificate authority` (CA). B
 
 So, how can Alice validate the digital certificate? Again, the public-key cryptography.
 
-![](/assets/images/1112/5.png)
+![](/assets/images/171112/5.png)
 
 Now, with the public-key encryption algorithm and the CA, we have built a draft `public key infrastructure`.
 
@@ -68,7 +68,7 @@ There is still one problem left. In the "privacy" section, a symmetric session k
 
 With current structure, we can easily generate it. After retrieving Bob’s public key, Alice can safely communicate with Bob, and during the first several conversations, they discuss a session key for all subsequent communications. After that every message is encrypted by the session key so no one else can eavesdrop on or tamper with it.
 
-![](/assets/images/1112/6.png)
+![](/assets/images/171112/6.png)
 
 ## SSL/TLS
 Where is SSL/TLS? In fact, we have just discussed the three main characteristics of it. The SSL/TLS ensures:

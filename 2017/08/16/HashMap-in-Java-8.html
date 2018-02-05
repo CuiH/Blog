@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
 	<title>HashMap in Java 8</title>
 
 	<!-- CSS -->
-	<link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+	<link rel="stylesheet" href="/assets/css/main.css" type="text/css" />
 
 	<!-- Font -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="http://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet" type="text/css" />
 </head>
+
 
 <body>
 	<div class="content-container">
@@ -67,7 +69,7 @@ Mo Tang: 233332333
 <h3 id="static-hash">Static hash</h3>
 <p>This is the simplest hash. Suppose we have N buckets, and for any input, we use hash function <code class="highlighter-rouge">h</code> to calculate its index, and then insert it to that bucket. If that bucket is full, we use <code class="highlighter-rouge">overflow chains</code>:</p>
 
-<p><img src="/assets/images/0910/0-0.png" alt="" /></p>
+<p><img src="/assets/images/170816/0-0.png" alt="" /></p>
 
 <h3 id="extendable-hash">Extendable hash</h3>
 <p>Searching in a overflow chain has linear time complexity. To avoid this, we can duplicate the number of buckets before a chain is created, and redistribute all data items. However, the cost is high to access all data, so extendable hash maintains a <code class="highlighter-rouge">category</code> of all bucktes. When inserting data to a full bucket, the original bucket splits, and the category duplicates (this is only a simple example, not including the concepts of <code class="highlighter-rouge">global depth</code> and <code class="highlighter-rouge">local depth</code>):</p>
@@ -75,11 +77,11 @@ Mo Tang: 233332333
 <ol>
   <li>
     <p>The original data:
-<img src="/assets/images/0910/1-0.png" alt="" /></p>
+<img src="/assets/images/170816/1-0.png" alt="" /></p>
   </li>
   <li>
     <p>Insert <code class="highlighter-rouge">9</code>. The category will be duplicated.
-<img src="/assets/images/0910/1-1.png" alt="" /></p>
+<img src="/assets/images/170816/1-1.png" alt="" /></p>
   </li>
 </ol>
 
@@ -180,7 +182,7 @@ Mo Tang: 233332333
 
 <p>We know that the efficiency of mod operation is low, while <code class="highlighter-rouge">bitwise operation</code> is much more efficient. Due to the size of buckets, which is alway <code class="highlighter-rouge">a power of 2</code>, we can simply do a <code class="highlighter-rouge">bitwise AND</code> operation between the input and <code class="highlighter-rouge">the number of buckets minus one</code>. The result is the same as a mod operation, but it runs faster. In JDK 1.8, this function is deleted, and instead this line of code will be executed whenever an index is needed.</p>
 
-<h2 id="method-put">Method put()</h2>
+<h3 id="method-put">Method put()</h3>
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">V</span> <span class="nf">put</span><span class="o">(</span><span class="n">K</span> <span class="n">key</span><span class="o">,</span> <span class="n">V</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">return</span> <span class="nf">putVal</span><span class="o">(</span><span class="n">hash</span><span class="o">(</span><span class="n">key</span><span class="o">),</span> <span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
 <span class="o">}</span>
@@ -419,11 +421,11 @@ Mo Tang: 233332333
 
 <p>When judging which bucket a Node belongs to, there’s a trick. As we mentioned before, we can calculate the index by <code class="highlighter-rouge">hash % size of the array</code>. Since the size is always <code class="highlighter-rouge">a power of two</code>, the <code class="highlighter-rouge">last n bits</code> of the hash value decide its index. For example, say we have two Nodes a, b:</p>
 
-<p><img src="/assets/images/0910/2-1.png" alt="" /></p>
+<p><img src="/assets/images/170816/2-1.png" alt="" /></p>
 
 <p>Now the size of the expanded array is <code class="highlighter-rouge">2 ^ (n +1)</code>. The last <code class="highlighter-rouge">n</code> bits of all nodes in this array are the same, so the <code class="highlighter-rouge">n + 1</code>th Node counting from the back will decide its new index, whether to move to another bucket, or remain in the previous one. Therefore, we can simply do an bitwise AND operation on the hash value and the the original size of the array, that is, <code class="highlighter-rouge">2 ^ n</code>. If the result is not <code class="highlighter-rouge">0</code>, we know that this Node should be moved to a new bucket.</p>
 
-<p><img src="/assets/images/0910/2-2.png" alt="" /></p>
+<p><img src="/assets/images/170816/2-2.png" alt="" /></p>
 
 <p>After spliting the list, one of them will be linked to a new bucket:</p>
 
@@ -439,7 +441,7 @@ Mo Tang: 233332333
 
 <p>Since the size of the array is two times as the original one, the new index can be decided by <code class="highlighter-rouge">old position + oldCap</code>:</p>
 
-<p><img src="/assets/images/0910/2-3.png" alt="" /></p>
+<p><img src="/assets/images/170816/2-3.png" alt="" /></p>
 
 <p>In JDK 1.7, the index for every node will be recalculated after expansion. JDK 1.8 made some optimizations to increase the efficiency.</p>
 
@@ -475,12 +477,11 @@ Mo Tang: 233332333
 <h2 id="summary">Summary</h2>
 <p>Hash is a very important function, which is widely applied in the field of Computer Science. We always use <code class="highlighter-rouge">HashMap</code>, but if we understand the underlying principles of its implementation, we can make better use of it. Besides, reading the source code is always an interesting process.</p>
 
-	
 </div>
 
 		
 		<div class="footer">
-	<hr />
+	<hr/>
 	<div class="footer-link">
 		
 		<a href="https://www.facebook.com/none"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -499,13 +500,11 @@ Mo Tang: 233332333
 		
 
 		
-
-		
 		<a href="mailto:hcui1995@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
 		
 	</div>
 
-	© 2017 CuiH. All rights reserved.
+	© 2018 CuiH. All rights reserved.
 </div>
 
 	</div>

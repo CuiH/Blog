@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.0">Jekyll</generator><link href="http://cuih.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="http://cuih.xyz/" rel="alternate" type="text/html" /><updated>2018-02-02T22:48:59-08:00</updated><id>http://cuih.xyz/</id><title type="html">Life is a Struggle</title><subtitle>Life is a struggle.</subtitle><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><entry><title type="html">How to Block/Stop a Thread in Java</title><link href="http://cuih.xyz/2017/12/18/How-to-Block-or-Stop-a-Java-Thread.html" rel="alternate" type="text/html" title="How to Block/Stop a Thread in Java" /><published>2017-12-18T20:18:21-08:00</published><updated>2017-12-18T20:18:21-08:00</updated><id>http://cuih.xyz/2017/12/18/How%20to%20Block%20or%20Stop%20a%20Java%20Thread</id><content type="html" xml:base="http://cuih.xyz/2017/12/18/How-to-Block-or-Stop-a-Java-Thread.html">&lt;h2 id=&quot;thread-states&quot;&gt;Thread states&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.0">Jekyll</generator><link href="http://cuih.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="http://cuih.xyz/" rel="alternate" type="text/html" /><updated>2018-02-04T17:42:48-08:00</updated><id>http://cuih.xyz/</id><title type="html">Life is a Struggle</title><subtitle>Life is a struggle.</subtitle><author><name>{&quot;facebook&quot;=&gt;&quot;none&quot;, &quot;twitter&quot;=&gt;&quot;dontsay_lazy&quot;, &quot;github&quot;=&gt;&quot;CuiH&quot;, &quot;linkedin&quot;=&gt;&quot;hao-cui-3ab90214b&quot;, &quot;email&quot;=&gt;&quot;hcui1995@gmail.com&quot;}</name><email>hcui1995@gmail.com</email></author><entry><title type="html">How to Block/Stop a Thread in Java</title><link href="http://cuih.xyz/2017/12/18/How-to-Block-or-Stop-a-Java-Thread.html" rel="alternate" type="text/html" title="How to Block/Stop a Thread in Java" /><published>2017-12-18T20:18:21-08:00</published><updated>2017-12-18T20:18:21-08:00</updated><id>http://cuih.xyz/2017/12/18/How%20to%20Block%20or%20Stop%20a%20Java%20Thread</id><content type="html" xml:base="http://cuih.xyz/2017/12/18/How-to-Block-or-Stop-a-Java-Thread.html">&lt;h2 id=&quot;thread-states&quot;&gt;Thread states&lt;/h2&gt;
 &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;state transition&lt;/code&gt; of threads in Java is the fundamental of today’s topic. Basically, there are six possible states:&lt;/p&gt;
 
 &lt;ul&gt;
@@ -396,12 +396,12 @@ Tue Dec 19 23:56:59 CST 2017: end
 &lt;h3 id=&quot;symmetric-encryption&quot;&gt;Symmetric encryption&lt;/h3&gt;
 &lt;p&gt;A symmetric encryption uses exactly &lt;code class=&quot;highlighter-rouge&quot;&gt;one&lt;/code&gt; key to encrypt and decrypt the message, so this key should be always kept secret.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/1112/1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/171112/1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;asymmetric-encryption&quot;&gt;Asymmetric encryption&lt;/h3&gt;
 &lt;p&gt;In contrast to the symmetric encryption, an asymmetric encryption has &lt;code class=&quot;highlighter-rouge&quot;&gt;two&lt;/code&gt; different keys. Messages are encrypted by one key and decrypted with another. In most cases, one of the keys is released to the public, called the &lt;code class=&quot;highlighter-rouge&quot;&gt;public key&lt;/code&gt;, while the other one is the &lt;code class=&quot;highlighter-rouge&quot;&gt;secret key&lt;/code&gt;. Such a system is known as the &lt;code class=&quot;highlighter-rouge&quot;&gt;public-key cryptography&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/1112/2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/171112/2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;public-key-infrastructure&quot;&gt;Public key infrastructure&lt;/h3&gt;
 &lt;p&gt;Based on asymmetric encryption, we can build a &lt;code class=&quot;highlighter-rouge&quot;&gt;public key infrastructure&lt;/code&gt; (PKI), which may involve many roles and polices. The purpose of a PKI is to facilitate the secure electronic transmission. I will discuss it later in this blog.&lt;/p&gt;
@@ -422,14 +422,14 @@ Tue Dec 19 23:56:59 CST 2017: end
 
 &lt;p&gt;After that, Bob sends both the message and the encrypted digest. Alice again calculates the digest using the same algorithm, and decrypts the encrypted digest with Bob’s &lt;code class=&quot;highlighter-rouge&quot;&gt;public key&lt;/code&gt;. If the two digests are the same, Alice will know that the message is complete.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/1112/3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/171112/3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;privacy&quot;&gt;Privacy&lt;/h3&gt;
 &lt;p&gt;Alice and Bod do not want their messages to be read by others. Note that messages are sent from both sides, and there is always a public key in the public-key cryptosystem. A possible solution is to use two sets of keys, so there are two public keys and two secret keys, which may be somewhat inconvenient.&lt;/p&gt;
 
 &lt;p&gt;In this case, we can use the symmetric encryption instead. Another reason is that asymmetric encryption is time-consuming, so if we want to encrypt the whole message, the symmetric one is a more efficient choice.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/1112/4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/171112/4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;session key&lt;/code&gt; in this picture should be kept secret, so how can the sever and the client generate the same key respectively and, at the same time, secretly? You’ll see that later.&lt;/p&gt;
 
@@ -440,7 +440,7 @@ Tue Dec 19 23:56:59 CST 2017: end
 
 &lt;p&gt;So, how can Alice validate the digital certificate? Again, the public-key cryptography.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/1112/5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/171112/5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now, with the public-key encryption algorithm and the CA, we have built a draft &lt;code class=&quot;highlighter-rouge&quot;&gt;public key infrastructure&lt;/code&gt;.&lt;/p&gt;
 
@@ -449,7 +449,7 @@ Tue Dec 19 23:56:59 CST 2017: end
 
 &lt;p&gt;With current structure, we can easily generate it. After retrieving Bob’s public key, Alice can safely communicate with Bob, and during the first several conversations, they discuss a session key for all subsequent communications. After that every message is encrypted by the session key so no one else can eavesdrop on or tamper with it.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/1112/6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/171112/6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;ssltls&quot;&gt;SSL/TLS&lt;/h2&gt;
 &lt;p&gt;Where is SSL/TLS? In fact, we have just discussed the three main characteristics of it. The SSL/TLS ensures:&lt;/p&gt;
@@ -772,27 +772,27 @@ Tue Dec 19 23:56:59 CST 2017: end
 &lt;ol&gt;
   &lt;li&gt;
     &lt;p&gt;The original array:
-&lt;img src=&quot;/assets/images/0913/1-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170905/1-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Select the first element as base element. Maintain two pointers &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt;, pointing to the head and tail of the array respectively.
-&lt;img src=&quot;/assets/images/0913/1-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170905/1-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Move &lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt; to the left, to find the &lt;code class=&quot;highlighter-rouge&quot;&gt;first&lt;/code&gt; element that is &lt;code class=&quot;highlighter-rouge&quot;&gt;smaller&lt;/code&gt; than the base element. Extract it and fill it to the location that &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt; points to.
-&lt;img src=&quot;/assets/images/0913/1-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170905/1-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Move &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt; to the right, to find the &lt;code class=&quot;highlighter-rouge&quot;&gt;first&lt;/code&gt; element that is &lt;code class=&quot;highlighter-rouge&quot;&gt;bigger&lt;/code&gt; than the base element. Extract it and fill it to the location that &lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt; points to.
-&lt;img src=&quot;/assets/images/0913/1-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170905/1-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Repeat process #3 to #4, until &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt; meets &lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt;.
-&lt;img src=&quot;/assets/images/0913/1-4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170905/1-4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Put the base element at the position that &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt; (or &lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt;) points to.
-&lt;img src=&quot;/assets/images/0913/1-6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170905/1-6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
@@ -824,7 +824,7 @@ Tue Dec 19 23:56:59 CST 2017: end
 
 &lt;p&gt;As for an array with length &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt;, suppose every time the base element divides the array into two parts of equal length, then:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/0913/1-l.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/170905/1-l.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;All &lt;code class=&quot;highlighter-rouge&quot;&gt;logn&lt;/code&gt; rounds are needed, and each round the whole array will be accessed, so the average time complexity is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(nlogn)&lt;/code&gt;. Since the sorting is done in-place, and no extra space is used, the space complexity is &lt;code class=&quot;highlighter-rouge&quot;&gt;O(1)&lt;/code&gt;. In addition, obviously, due to the swap, Quick Sort is &lt;code class=&quot;highlighter-rouge&quot;&gt;unstable&lt;/code&gt;.&lt;/p&gt;
 
@@ -914,11 +914,11 @@ Tue Dec 19 23:56:59 CST 2017: end
 &lt;h3 id=&quot;storing-in-an-array&quot;&gt;Storing in an array&lt;/h3&gt;
 &lt;p&gt;As I mentioned above, heap is a &lt;code class=&quot;highlighter-rouge&quot;&gt;complete binary tree&lt;/code&gt;, so we can use some tricks to store a heap in an array, and easily access nodes by indices. For example, if we have the following heap:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/0913/2-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/170905/2-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Put every node into an array according to its &lt;code class=&quot;highlighter-rouge&quot;&gt;level-traversal&lt;/code&gt; order:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/0913/2-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/170905/2-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;You will find that for every node indexed &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt;, the index of its left child is &lt;code class=&quot;highlighter-rouge&quot;&gt;2 * i + 1&lt;/code&gt;, the index of the right child is &lt;code class=&quot;highlighter-rouge&quot;&gt;2 * i + 2&lt;/code&gt;, and the index of its parent is &lt;code class=&quot;highlighter-rouge&quot;&gt;(i - 1) / 2&lt;/code&gt;.&lt;/p&gt;
 
@@ -928,15 +928,15 @@ Tue Dec 19 23:56:59 CST 2017: end
 &lt;ol&gt;
   &lt;li&gt;
     &lt;p&gt;Put the new element at the end of the array.
-&lt;img src=&quot;/assets/images/0913/2-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170905/2-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Adjust upward&quot;&lt;/code&gt;, that is, compare it with the parent node. If it is smaller than its parent, swap them.
-&lt;img src=&quot;/assets/images/0913/2-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170905/2-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Repeat process #2, until current node is bigger than the parent node, or it reaches the root.
-&lt;img src=&quot;/assets/images/0913/2-4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170905/2-4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
@@ -961,15 +961,15 @@ Tue Dec 19 23:56:59 CST 2017: end
 &lt;ol&gt;
   &lt;li&gt;
     &lt;p&gt;Extract the top element &lt;code class=&quot;highlighter-rouge&quot;&gt;1&lt;/code&gt;, and move the last element &lt;code class=&quot;highlighter-rouge&quot;&gt;8&lt;/code&gt; to the top.
-&lt;img src=&quot;/assets/images/0913/2-5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170905/2-5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Adjust downward&quot;&lt;/code&gt;, that is, compare it with all children. If either children is smaller than it, swap them.
-&lt;img src=&quot;/assets/images/0913/2-6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170905/2-6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Repeat process #2, until no child is smaller than current node, or it reaches a leaf.
-&lt;img src=&quot;/assets/images/0913/2-7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170905/2-7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
@@ -998,19 +998,19 @@ Tue Dec 19 23:56:59 CST 2017: end
 &lt;ol&gt;
   &lt;li&gt;
     &lt;p&gt;The initial data.
-&lt;img src=&quot;/assets/images/0913/2-8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170905/2-8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Start from &lt;code class=&quot;highlighter-rouge&quot;&gt;the last node other than the leaves&lt;/code&gt;, adjust downward. Since the last two not-leaf nodes are currently minimum heaps, they will not be adjusted.
-&lt;img src=&quot;/assets/images/0913/2-9.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170905/2-9.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Adjust the subtree rooted by the last but two node, and it triggers one swap.
-&lt;img src=&quot;/assets/images/0913/2-10.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170905/2-10.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Adjust the subtree rooted by the root (the whole tree), and it triggers two swaps.
-&lt;img src=&quot;/assets/images/0913/2-11.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170905/2-11.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
@@ -1073,7 +1073,7 @@ Mo Tang: 233332333
 &lt;h3 id=&quot;static-hash&quot;&gt;Static hash&lt;/h3&gt;
 &lt;p&gt;This is the simplest hash. Suppose we have N buckets, and for any input, we use hash function &lt;code class=&quot;highlighter-rouge&quot;&gt;h&lt;/code&gt; to calculate its index, and then insert it to that bucket. If that bucket is full, we use &lt;code class=&quot;highlighter-rouge&quot;&gt;overflow chains&lt;/code&gt;:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/0910/0-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/170816/0-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;extendable-hash&quot;&gt;Extendable hash&lt;/h3&gt;
 &lt;p&gt;Searching in a overflow chain has linear time complexity. To avoid this, we can duplicate the number of buckets before a chain is created, and redistribute all data items. However, the cost is high to access all data, so extendable hash maintains a &lt;code class=&quot;highlighter-rouge&quot;&gt;category&lt;/code&gt; of all bucktes. When inserting data to a full bucket, the original bucket splits, and the category duplicates (this is only a simple example, not including the concepts of &lt;code class=&quot;highlighter-rouge&quot;&gt;global depth&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;local depth&lt;/code&gt;):&lt;/p&gt;
@@ -1081,11 +1081,11 @@ Mo Tang: 233332333
 &lt;ol&gt;
   &lt;li&gt;
     &lt;p&gt;The original data:
-&lt;img src=&quot;/assets/images/0910/1-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170816/1-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Insert &lt;code class=&quot;highlighter-rouge&quot;&gt;9&lt;/code&gt;. The category will be duplicated.
-&lt;img src=&quot;/assets/images/0910/1-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170816/1-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
@@ -1186,7 +1186,7 @@ Mo Tang: 233332333
 
 &lt;p&gt;We know that the efficiency of mod operation is low, while &lt;code class=&quot;highlighter-rouge&quot;&gt;bitwise operation&lt;/code&gt; is much more efficient. Due to the size of buckets, which is alway &lt;code class=&quot;highlighter-rouge&quot;&gt;a power of 2&lt;/code&gt;, we can simply do a &lt;code class=&quot;highlighter-rouge&quot;&gt;bitwise AND&lt;/code&gt; operation between the input and &lt;code class=&quot;highlighter-rouge&quot;&gt;the number of buckets minus one&lt;/code&gt;. The result is the same as a mod operation, but it runs faster. In JDK 1.8, this function is deleted, and instead this line of code will be executed whenever an index is needed.&lt;/p&gt;
 
-&lt;h2 id=&quot;method-put&quot;&gt;Method put()&lt;/h2&gt;
+&lt;h3 id=&quot;method-put&quot;&gt;Method put()&lt;/h3&gt;
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;V&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;K&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;V&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;putVal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hash&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
@@ -1425,11 +1425,11 @@ Mo Tang: 233332333
 
 &lt;p&gt;When judging which bucket a Node belongs to, there’s a trick. As we mentioned before, we can calculate the index by &lt;code class=&quot;highlighter-rouge&quot;&gt;hash % size of the array&lt;/code&gt;. Since the size is always &lt;code class=&quot;highlighter-rouge&quot;&gt;a power of two&lt;/code&gt;, the &lt;code class=&quot;highlighter-rouge&quot;&gt;last n bits&lt;/code&gt; of the hash value decide its index. For example, say we have two Nodes a, b:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/0910/2-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/170816/2-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now the size of the expanded array is &lt;code class=&quot;highlighter-rouge&quot;&gt;2 ^ (n +1)&lt;/code&gt;. The last &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt; bits of all nodes in this array are the same, so the &lt;code class=&quot;highlighter-rouge&quot;&gt;n + 1&lt;/code&gt;th Node counting from the back will decide its new index, whether to move to another bucket, or remain in the previous one. Therefore, we can simply do an bitwise AND operation on the hash value and the the original size of the array, that is, &lt;code class=&quot;highlighter-rouge&quot;&gt;2 ^ n&lt;/code&gt;. If the result is not &lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt;, we know that this Node should be moved to a new bucket.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/0910/2-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/170816/2-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;After spliting the list, one of them will be linked to a new bucket:&lt;/p&gt;
 
@@ -1445,7 +1445,7 @@ Mo Tang: 233332333
 
 &lt;p&gt;Since the size of the array is two times as the original one, the new index can be decided by &lt;code class=&quot;highlighter-rouge&quot;&gt;old position + oldCap&lt;/code&gt;:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/0910/2-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/170816/2-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;In JDK 1.7, the index for every node will be recalculated after expansion. JDK 1.8 made some optimizations to increase the efficiency.&lt;/p&gt;
 
@@ -1493,7 +1493,7 @@ Mo Tang: 233332333
 
 &lt;p&gt;If there’s no special statement, we’ll use this tree in our examples:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/0907/0-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/170805/0-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;recursive-travesals&quot;&gt;Recursive travesals&lt;/h2&gt;
 &lt;p&gt;This may be the simplest algorithm of traversing, so I just post the code here:&lt;/p&gt;
@@ -1588,7 +1588,7 @@ Mo Tang: 233332333
 &lt;h3 id=&quot;postorder-traversal&quot;&gt;Postorder traversal&lt;/h3&gt;
 &lt;p&gt;This could be a little bit complicate. The point is, we should ensure that the parent node is not outputed until all of his children are traversed. A common method is to remember the last outputed node. Here are three possible ideas.&lt;/p&gt;
 
-&lt;p&gt;a) Just like the previous solution:&lt;/p&gt;
+&lt;h4 id=&quot;a-just-like-the-previous-solution&quot;&gt;a) Just like the previous solution:&lt;/h4&gt;
 
 &lt;p&gt;Similar to the preorder and inorder traversal code above. The difference is we record the last outputed node, and before popping the stack, we check whether both children of the top node in the stack have been traversed (or, is &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;), by comparing them with the recorded node:&lt;/p&gt;
 
@@ -1623,7 +1623,7 @@ Mo Tang: 233332333
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;b) Another method:&lt;/p&gt;
+&lt;h4 id=&quot;b-another-method&quot;&gt;b) Another method:&lt;/h4&gt;
 
 &lt;ol&gt;
   &lt;li&gt;Push the current node (root) into the stack.&lt;/li&gt;
@@ -1661,7 +1661,7 @@ Mo Tang: 233332333
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;c) Using two stacks&lt;/p&gt;
+&lt;h4 id=&quot;c-using-two-stacks&quot;&gt;c) Using two stacks&lt;/h4&gt;
 
 &lt;p&gt;This method is somewhat interesting. We know that the sequence of postorder traversal is &lt;code class=&quot;highlighter-rouge&quot;&gt;left -&amp;gt; right -&amp;gt; mid&lt;/code&gt;. What if we traverse by &lt;code class=&quot;highlighter-rouge&quot;&gt;mid -&amp;gt; right -&amp;gt; left&lt;/code&gt; and then reverse the result? We can do this with two stacks, traversing with one stack, and outputing the result to another stack, and finally popping nodes from the second stack one by one to get the postorder traversal:&lt;/p&gt;
 
@@ -1737,51 +1737,51 @@ Such method is called the &lt;code class=&quot;highlighter-rouge&quot;&gt;Morris
 &lt;ol&gt;
   &lt;li&gt;
     &lt;p&gt;The original tree.
-&lt;img src=&quot;/assets/images/0907/T-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170805/T-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Find the predecessor and change its right child, and then traverse the left subtree of current node.
-&lt;img src=&quot;/assets/images/0907/T-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170805/T-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;The same as above.
-&lt;img src=&quot;/assets/images/0907/T-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170805/T-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;The left child is &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, so output current node.
-&lt;img src=&quot;/assets/images/0907/T-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170805/T-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Traverse the right subtree, and come back to the parent.
-&lt;img src=&quot;/assets/images/0907/T-4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170805/T-4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;The right child of the predecessor is self, so revert it and output current node. Traverse the right subtree.
-&lt;img src=&quot;/assets/images/0907/T-5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170805/T-5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Handle the predecessor, and traverse the left subtree.
-&lt;img src=&quot;/assets/images/0907/T-6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170805/T-6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;The left child is null, so output current node. Traverse the right subtree, and come back to the parent.
-&lt;img src=&quot;/assets/images/0907/T-7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170805/T-7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;The right child of the predecessor is self, so revert it and output current node. Traverse the right subtree and come back to the parent.
-&lt;img src=&quot;/assets/images/0907/T-8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170805/T-8.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;The right child of the predecessor is self, so revert it and output current node. Traverse the right subtree.
-&lt;img src=&quot;/assets/images/0907/T-9.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170805/T-9.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;The left child is &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, so output current node, and traverse the right subtree.
-&lt;img src=&quot;/assets/images/0907/T-10.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170805/T-10.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;The same as above. Finsh the traversal.
-&lt;img src=&quot;/assets/images/0907/T-11.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170805/T-11.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
@@ -1865,23 +1865,23 @@ Such method is called the &lt;code class=&quot;highlighter-rouge&quot;&gt;Morris
 &lt;ol&gt;
   &lt;li&gt;
     &lt;p&gt;Initialization: &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt; points to &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; points to the head of the original list.
-&lt;img src=&quot;/assets/images/0905/3-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170724/3-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Enter the loop: &lt;code class=&quot;highlighter-rouge&quot;&gt;temp&lt;/code&gt; points to the next node of &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt;; set &lt;code class=&quot;highlighter-rouge&quot;&gt;head.next&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt;.
-&lt;img src=&quot;/assets/images/0905/3-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170724/3-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Move forward: &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt; points to &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt;; &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; points to &lt;code class=&quot;highlighter-rouge&quot;&gt;temp&lt;/code&gt;.
-&lt;img src=&quot;/assets/images/0905/3-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170724/3-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Begin the next loop.
-&lt;img src=&quot;/assets/images/0905/3-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170724/3-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Loop until &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; points to &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;. Now &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt; points to the head of the reversed list.
-&lt;img src=&quot;/assets/images/0905/3-4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170724/3-4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
@@ -1912,23 +1912,23 @@ Such method is called the &lt;code class=&quot;highlighter-rouge&quot;&gt;Morris
 &lt;ol&gt;
   &lt;li&gt;
     &lt;p&gt;Initialization: construct the helper node &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt;, and link it to the head of the original list.
-&lt;img src=&quot;/assets/images/0905/4-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170724/4-0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Enter the loop: &lt;code class=&quot;highlighter-rouge&quot;&gt;temp&lt;/code&gt; points to the next node of &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt;.
-&lt;img src=&quot;/assets/images/0905/4-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170724/4-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Insertion: set &lt;code class=&quot;highlighter-rouge&quot;&gt;head.next&lt;/code&gt; to the next node of &lt;code class=&quot;highlighter-rouge&quot;&gt;temp&lt;/code&gt;; set &lt;code class=&quot;highlighter-rouge&quot;&gt;temp.next&lt;/code&gt; to the next node of &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt;; set &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead.next&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;temp&lt;/code&gt;. Now we have inserted the next node of &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; to the position right after the &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt;.
-&lt;img src=&quot;/assets/images/0905/4-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170724/4-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Begin the next loop, and handle like process #2 and process #3.
-&lt;img src=&quot;/assets/images/0905/4-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170724/4-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Loop until the next node of &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; is &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;. Now the next node of &lt;code class=&quot;highlighter-rouge&quot;&gt;newHead&lt;/code&gt; is the head of the reversed list.
-&lt;img src=&quot;/assets/images/0905/4-4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/assets/images/170724/4-4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 

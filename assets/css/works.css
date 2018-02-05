@@ -1,15 +1,20 @@
-#slider-1, #slider-3 {
-	width: 45%;
-}
-
-#slider-2 {
-	width: 70%;
-}
-
-#slider-4, #slider-5, #slider-6 {
-	width: 85%;
-}
-
 p a {
 	color: #1b6ec2 !important;
 }
+
+img {
+	margin: 0;
+}
+
+.swiper-1 {
+	width: 45%;
+}
+
+.swiper-2 {
+	width: 70%;
+}
+
+.swiper-3 {
+	width: 85%;
+}
+

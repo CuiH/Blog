@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
 	<title>Sorting Algorithms</title>
 
 	<!-- CSS -->
-	<link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+	<link rel="stylesheet" href="/assets/css/main.css" type="text/css" />
 
 	<!-- Font -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="http://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet" type="text/css" />
 </head>
+
 
 <body>
 	<div class="content-container">
@@ -161,27 +163,27 @@
 <ol>
   <li>
     <p>The original array:
-<img src="/assets/images/0913/1-0.png" alt="" /></p>
+<img src="/assets/images/170905/1-0.png" alt="" /></p>
   </li>
   <li>
     <p>Select the first element as base element. Maintain two pointers <code class="highlighter-rouge">i</code> and <code class="highlighter-rouge">j</code>, pointing to the head and tail of the array respectively.
-<img src="/assets/images/0913/1-1.png" alt="" /></p>
+<img src="/assets/images/170905/1-1.png" alt="" /></p>
   </li>
   <li>
     <p>Move <code class="highlighter-rouge">j</code> to the left, to find the <code class="highlighter-rouge">first</code> element that is <code class="highlighter-rouge">smaller</code> than the base element. Extract it and fill it to the location that <code class="highlighter-rouge">i</code> points to.
-<img src="/assets/images/0913/1-2.png" alt="" /></p>
+<img src="/assets/images/170905/1-2.png" alt="" /></p>
   </li>
   <li>
     <p>Move <code class="highlighter-rouge">i</code> to the right, to find the <code class="highlighter-rouge">first</code> element that is <code class="highlighter-rouge">bigger</code> than the base element. Extract it and fill it to the location that <code class="highlighter-rouge">j</code> points to.
-<img src="/assets/images/0913/1-3.png" alt="" /></p>
+<img src="/assets/images/170905/1-3.png" alt="" /></p>
   </li>
   <li>
     <p>Repeat process #3 to #4, until <code class="highlighter-rouge">i</code> meets <code class="highlighter-rouge">j</code>.
-<img src="/assets/images/0913/1-4.png" alt="" /></p>
+<img src="/assets/images/170905/1-4.png" alt="" /></p>
   </li>
   <li>
     <p>Put the base element at the position that <code class="highlighter-rouge">i</code> (or <code class="highlighter-rouge">j</code>) points to.
-<img src="/assets/images/0913/1-6.png" alt="" /></p>
+<img src="/assets/images/170905/1-6.png" alt="" /></p>
   </li>
 </ol>
 
@@ -213,7 +215,7 @@
 
 <p>As for an array with length <code class="highlighter-rouge">n</code>, suppose every time the base element divides the array into two parts of equal length, then:</p>
 
-<p><img src="/assets/images/0913/1-l.png" alt="" /></p>
+<p><img src="/assets/images/170905/1-l.png" alt="" /></p>
 
 <p>All <code class="highlighter-rouge">logn</code> rounds are needed, and each round the whole array will be accessed, so the average time complexity is <code class="highlighter-rouge">O(nlogn)</code>. Since the sorting is done in-place, and no extra space is used, the space complexity is <code class="highlighter-rouge">O(1)</code>. In addition, obviously, due to the swap, Quick Sort is <code class="highlighter-rouge">unstable</code>.</p>
 
@@ -303,11 +305,11 @@
 <h3 id="storing-in-an-array">Storing in an array</h3>
 <p>As I mentioned above, heap is a <code class="highlighter-rouge">complete binary tree</code>, so we can use some tricks to store a heap in an array, and easily access nodes by indices. For example, if we have the following heap:</p>
 
-<p><img src="/assets/images/0913/2-0.png" alt="" /></p>
+<p><img src="/assets/images/170905/2-0.png" alt="" /></p>
 
 <p>Put every node into an array according to its <code class="highlighter-rouge">level-traversal</code> order:</p>
 
-<p><img src="/assets/images/0913/2-1.png" alt="" /></p>
+<p><img src="/assets/images/170905/2-1.png" alt="" /></p>
 
 <p>You will find that for every node indexed <code class="highlighter-rouge">i</code>, the index of its left child is <code class="highlighter-rouge">2 * i + 1</code>, the index of the right child is <code class="highlighter-rouge">2 * i + 2</code>, and the index of its parent is <code class="highlighter-rouge">(i - 1) / 2</code>.</p>
 
@@ -317,15 +319,15 @@
 <ol>
   <li>
     <p>Put the new element at the end of the array.
-<img src="/assets/images/0913/2-2.png" alt="" /></p>
+<img src="/assets/images/170905/2-2.png" alt="" /></p>
   </li>
   <li>
     <p><code class="highlighter-rouge">"Adjust upward"</code>, that is, compare it with the parent node. If it is smaller than its parent, swap them.
-<img src="/assets/images/0913/2-3.png" alt="" /></p>
+<img src="/assets/images/170905/2-3.png" alt="" /></p>
   </li>
   <li>
     <p>Repeat process #2, until current node is bigger than the parent node, or it reaches the root.
-<img src="/assets/images/0913/2-4.png" alt="" /></p>
+<img src="/assets/images/170905/2-4.png" alt="" /></p>
   </li>
 </ol>
 
@@ -350,15 +352,15 @@
 <ol>
   <li>
     <p>Extract the top element <code class="highlighter-rouge">1</code>, and move the last element <code class="highlighter-rouge">8</code> to the top.
-<img src="/assets/images/0913/2-5.png" alt="" /></p>
+<img src="/assets/images/170905/2-5.png" alt="" /></p>
   </li>
   <li>
     <p><code class="highlighter-rouge">"Adjust downward"</code>, that is, compare it with all children. If either children is smaller than it, swap them.
-<img src="/assets/images/0913/2-6.png" alt="" /></p>
+<img src="/assets/images/170905/2-6.png" alt="" /></p>
   </li>
   <li>
     <p>Repeat process #2, until no child is smaller than current node, or it reaches a leaf.
-<img src="/assets/images/0913/2-7.png" alt="" /></p>
+<img src="/assets/images/170905/2-7.png" alt="" /></p>
   </li>
 </ol>
 
@@ -387,19 +389,19 @@
 <ol>
   <li>
     <p>The initial data.
-<img src="/assets/images/0913/2-8.png" alt="" /></p>
+<img src="/assets/images/170905/2-8.png" alt="" /></p>
   </li>
   <li>
     <p>Start from <code class="highlighter-rouge">the last node other than the leaves</code>, adjust downward. Since the last two not-leaf nodes are currently minimum heaps, they will not be adjusted.
-<img src="/assets/images/0913/2-9.png" alt="" /></p>
+<img src="/assets/images/170905/2-9.png" alt="" /></p>
   </li>
   <li>
     <p>Adjust the subtree rooted by the last but two node, and it triggers one swap.
-<img src="/assets/images/0913/2-10.png" alt="" /></p>
+<img src="/assets/images/170905/2-10.png" alt="" /></p>
   </li>
   <li>
     <p>Adjust the subtree rooted by the root (the whole tree), and it triggers two swaps.
-<img src="/assets/images/0913/2-11.png" alt="" /></p>
+<img src="/assets/images/170905/2-11.png" alt="" /></p>
   </li>
 </ol>
 
@@ -437,12 +439,11 @@
 <h2 id="summary">Summary</h2>
 <p>There are so many sorting algorithms. Although we seldom have the chance to implement them personally, having a understanding of the their principles is always benefical.</p>
 
-	
 </div>
 
 		
 		<div class="footer">
-	<hr />
+	<hr/>
 	<div class="footer-link">
 		
 		<a href="https://www.facebook.com/none"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -461,13 +462,11 @@
 		
 
 		
-
-		
 		<a href="mailto:hcui1995@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
 		
 	</div>
 
-	© 2017 CuiH. All rights reserved.
+	© 2018 CuiH. All rights reserved.
 </div>
 
 	</div>

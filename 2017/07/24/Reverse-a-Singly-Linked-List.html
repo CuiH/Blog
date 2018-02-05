@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
 	<title>Reverse a Singly Linked List</title>
 
 	<!-- CSS -->
-	<link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+	<link rel="stylesheet" href="/assets/css/main.css" type="text/css" />
 
 	<!-- Font -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="http://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet" type="text/css" />
 </head>
+
 
 <body>
 	<div class="content-container">
@@ -91,23 +93,23 @@
 <ol>
   <li>
     <p>Initialization: <code class="highlighter-rouge">newHead</code> points to <code class="highlighter-rouge">null</code>, <code class="highlighter-rouge">head</code> points to the head of the original list.
-<img src="/assets/images/0905/3-0.png" alt="" /></p>
+<img src="/assets/images/170724/3-0.png" alt="" /></p>
   </li>
   <li>
     <p>Enter the loop: <code class="highlighter-rouge">temp</code> points to the next node of <code class="highlighter-rouge">head</code>; set <code class="highlighter-rouge">head.next</code> to <code class="highlighter-rouge">newHead</code>.
-<img src="/assets/images/0905/3-1.png" alt="" /></p>
+<img src="/assets/images/170724/3-1.png" alt="" /></p>
   </li>
   <li>
     <p>Move forward: <code class="highlighter-rouge">newHead</code> points to <code class="highlighter-rouge">head</code>; <code class="highlighter-rouge">head</code> points to <code class="highlighter-rouge">temp</code>.
-<img src="/assets/images/0905/3-2.png" alt="" /></p>
+<img src="/assets/images/170724/3-2.png" alt="" /></p>
   </li>
   <li>
     <p>Begin the next loop.
-<img src="/assets/images/0905/3-3.png" alt="" /></p>
+<img src="/assets/images/170724/3-3.png" alt="" /></p>
   </li>
   <li>
     <p>Loop until <code class="highlighter-rouge">head</code> points to <code class="highlighter-rouge">null</code>. Now <code class="highlighter-rouge">newHead</code> points to the head of the reversed list.
-<img src="/assets/images/0905/3-4.png" alt="" /></p>
+<img src="/assets/images/170724/3-4.png" alt="" /></p>
   </li>
 </ol>
 
@@ -138,23 +140,23 @@
 <ol>
   <li>
     <p>Initialization: construct the helper node <code class="highlighter-rouge">newHead</code>, and link it to the head of the original list.
-<img src="/assets/images/0905/4-0.png" alt="" /></p>
+<img src="/assets/images/170724/4-0.png" alt="" /></p>
   </li>
   <li>
     <p>Enter the loop: <code class="highlighter-rouge">temp</code> points to the next node of <code class="highlighter-rouge">head</code>.
-<img src="/assets/images/0905/4-1.png" alt="" /></p>
+<img src="/assets/images/170724/4-1.png" alt="" /></p>
   </li>
   <li>
     <p>Insertion: set <code class="highlighter-rouge">head.next</code> to the next node of <code class="highlighter-rouge">temp</code>; set <code class="highlighter-rouge">temp.next</code> to the next node of <code class="highlighter-rouge">newHead</code>; set <code class="highlighter-rouge">newHead.next</code> to <code class="highlighter-rouge">temp</code>. Now we have inserted the next node of <code class="highlighter-rouge">head</code> to the position right after the <code class="highlighter-rouge">newHead</code>.
-<img src="/assets/images/0905/4-2.png" alt="" /></p>
+<img src="/assets/images/170724/4-2.png" alt="" /></p>
   </li>
   <li>
     <p>Begin the next loop, and handle like process #2 and process #3.
-<img src="/assets/images/0905/4-3.png" alt="" /></p>
+<img src="/assets/images/170724/4-3.png" alt="" /></p>
   </li>
   <li>
     <p>Loop until the next node of <code class="highlighter-rouge">head</code> is <code class="highlighter-rouge">null</code>. Now the next node of <code class="highlighter-rouge">newHead</code> is the head of the reversed list.
-<img src="/assets/images/0905/4-4.png" alt="" /></p>
+<img src="/assets/images/170724/4-4.png" alt="" /></p>
   </li>
 </ol>
 
@@ -270,12 +272,11 @@ Only constant memory is allowed.</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-	
 </div>
 
 		
 		<div class="footer">
-	<hr />
+	<hr/>
 	<div class="footer-link">
 		
 		<a href="https://www.facebook.com/none"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -294,13 +295,11 @@ Only constant memory is allowed.</p>
 		
 
 		
-
-		
 		<a href="mailto:hcui1995@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
 		
 	</div>
 
-	© 2017 CuiH. All rights reserved.
+	© 2018 CuiH. All rights reserved.
 </div>
 
 	</div>

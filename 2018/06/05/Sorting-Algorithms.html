@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>Sorting Algorithms</title>
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="/assets/css/main.css" type="text/css" />
+
+	<!-- Font -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="http://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet" type="text/css" />
+</head>
+
+
+<body>
+	<div class="content-container">
+		<header>
+	<div class="header-small">
+		<a href="http://cuih.xyz">Life is a Struggle</a>
+	</div>
+</header>
+
+<div class="post">
+	<div class="post-title">Sorting Algorithms</div>
+	<span class="post-date">
+		<time>05 Jun 2018</time>
+	</span>
+	<div class="post-tag">
+		<ul>
+			
+			<li>
+				<a href="http://cuih.xyz/tags#algorithm">
+					<span>algorithm</span>
+				</a>
+			</li>
+			
+			
+		</ul>
+	</div>
+
+	<h2 id="overview">Overview</h2>
+<p>When processing data, sorting algorithms are always used. Although most languages encapsulate those algorithms as libraries that can be easily invoked, understanding the principles of such algorithms can help us make better use of them.</p>
+
+<p>If there’s no special statement, in this blog we sort data in ascending order, and the initial data set is:</p>
+
+<blockquote>
+  <p>5 8 1 5 2 4 7 9 8</p>
+</blockquote>
+
+<h2 id="bubble-sort">Bubble sort</h2>
+<p>This is usually the first sorting algorithm for new programmers:</p>
+
+<ol>
+  <li>In each round, keep comparing every two neighbouring elements, and if the first one is greater, <code class="highlighter-rouge">swap</code> the two elements.</li>
+  <li>After one round, the last element in the array is the greatest one among the unsorted sequence.</li>
+  <li>Narrow down the unsorted sequence to exclude the last element (because it is at the right position).</li>
+  <li>Repeat process #1 to #3, until there’s only one element in the unsorted sequence.</li>
+</ol>
+
+<p>If you understand the principle of this algorithm, you’ll know why it is called the <code class="highlighter-rouge">Bubble Sort</code>: after each round, the bigger elements <code class="highlighter-rouge">sink down</code> to the end of the array, and smaller ones <code class="highlighter-rouge">bubble up</code> to the front, until all elements are at their right positions. The code is as follows:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">bubbleSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">])</span> <span class="o">{</span>
+                <span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+                <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+                <span class="n">arr</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">t</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="k">return</span> <span class="n">arr</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The reason why it is regarded as an entry-level algorithm is that it is very simple, and at the same time, this algorithm is not efficient. Obviously, due to the <code class="highlighter-rouge">double loop</code>, the average time complexity of Bubble Sort is <code class="highlighter-rouge">O(n ^ 2)</code>. If the data set is extremely large, the speed of this algorithm is unacceptable. However, on the other hand, this algorithm has two advantages: it can be done within the original array, so the space complexity is <code class="highlighter-rouge">O(1)</code>, and it is a <code class="highlighter-rouge">stable</code> algorithm, which means:</p>
+
+<blockquote>
+  <p>The order of the equal elements in the original array remains the same after the sort.</p>
+</blockquote>
+
+<h2 id="select-sort">Select sort</h2>
+<p>Also a entry-level sorting algorithm. The thinking is simple: each round find the smallest element in the unsorted sequence, and swap it with the first element in the sequence, and narrow down the unsorted sequence until only one element remains. The code is as follows:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">selectSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">currMinIndex</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="n">currMinIndex</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">[</span><span class="n">currMinIndex</span><span class="o">])</span> <span class="n">currMinIndex</span> <span class="o">=</span> <span class="n">j</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+        <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">currMinIndex</span><span class="o">];</span>
+        <span class="n">arr</span><span class="o">[</span><span class="n">currMinIndex</span><span class="o">]</span> <span class="o">=</span> <span class="n">t</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="k">return</span> <span class="n">arr</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Similar to the Bubble Sort, the time complexity of <code class="highlighter-rouge">Select Sort</code> is <code class="highlighter-rouge">O(n ^ 2)</code>, and the space complexity is <code class="highlighter-rouge">O(1)</code>, but it is <code class="highlighter-rouge">unstable</code>, because each swap will possibly change the order of equal elements.</p>
+
+<h2 id="insert-sort">Insert sort</h2>
+<p>As the name suggests, we maintain a sorted sequence, and insert every element from the unsorted sequence to its right position in the sorted sequence. We can do this in-place: when handling the element indexed <code class="highlighter-rouge">i</code>, the first <code class="highlighter-rouge">i - 1</code> elements are sorted, so after inserting the <code class="highlighter-rouge">i</code>th element, move each element behind it by one place. The code is as follows:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">insertSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span><span class="o">--)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">])</span> <span class="k">break</span><span class="o">;</span>
+
+            <span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+            <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+            <span class="n">arr</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">t</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="k">return</span> <span class="n">arr</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The time complexity of <code class="highlighter-rouge">Insert Sort</code> is still <code class="highlighter-rouge">O(n ^ 2)</code>, and the space complexity also remains <code class="highlighter-rouge">O(1)</code>.</p>
+
+<h2 id="bucket-sort">Bucket sort</h2>
+<p>This algorithm is somewhat magical, because its time complexity is <code class="highlighter-rouge">O(n)</code>! Let’s see the implementation first:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">bucketSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">bucket</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">10</span><span class="o">];</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="nl">num:</span> <span class="n">arr</span><span class="o">)</span>
+        <span class="n">bucket</span><span class="o">[</span><span class="n">num</span><span class="o">]++;</span>
+
+    <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">bucket</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">bucket</span><span class="o">[</span><span class="n">i</span><span class="o">];</span> <span class="n">j</span><span class="o">++)</span>
+            <span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">++]</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+
+    <span class="k">return</span> <span class="n">arr</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>In fact, it’s fairly simple. It just calculates the frequency of every element in the original array and save the results in another array, and then traverse the extra array to get the sorted sequence.</p>
+
+<p>You may realize that though this algorithm has a low time complexity, its space complexity is high, which is <code class="highlighter-rouge">O(K)</code>. <code class="highlighter-rouge">K</code> is greatest element in the original array. Therefore, this is a typical <code class="highlighter-rouge">space-for-time</code> algorithm. If the distribution of data is even, it can be very efficient; but for messy data, the space consumption of this algorithm is horrible. In brief, <code class="highlighter-rouge">Bucket Sort</code> can only be applied to some special cases.</p>
+
+<h2 id="quick-sort">Quick sort</h2>
+<p>If <code class="highlighter-rouge">Bubble Sort</code>, <code class="highlighter-rouge">Select Sort</code> and <code class="highlighter-rouge">Insert Sort</code> belong to the same level, we are moving to another level, starting with <code class="highlighter-rouge">Quick Sort</code>.</p>
+
+<p>The key point of Quick Sort is <code class="highlighter-rouge">"Divide and Conquer"</code>, that is, divide big problem into small ones, and when all small problems are handled, the big one is therefore handled. Let’s see the description of the algorithm:</p>
+
+<ol>
+  <li>Select one element from the array as <code class="highlighter-rouge">base element</code>.</li>
+  <li>Move all elements that are smaller than the base element to its left, and all bigger ones on the right.</li>
+  <li>Repeat process #1 to #3 until there is only one element in the interval.</li>
+</ol>
+
+<p>Generally, we choose the first element of the interval as the base element. Here’s an example:</p>
+
+<ol>
+  <li>
+    <p>The original array:
+<img src="/assets/images/180605/1-0.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Select the first element as base element. Maintain two pointers <code class="highlighter-rouge">i</code> and <code class="highlighter-rouge">j</code>, pointing to the head and tail of the array respectively.
+<img src="/assets/images/180605/1-1.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Move <code class="highlighter-rouge">j</code> to the left, to find the <code class="highlighter-rouge">first</code> element that is <code class="highlighter-rouge">smaller</code> than the base element. Extract it and fill it to the location that <code class="highlighter-rouge">i</code> points to.
+<img src="/assets/images/180605/1-2.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Move <code class="highlighter-rouge">i</code> to the right, to find the <code class="highlighter-rouge">first</code> element that is <code class="highlighter-rouge">bigger</code> than the base element. Extract it and fill it to the location that <code class="highlighter-rouge">j</code> points to.
+<img src="/assets/images/180605/1-3.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Repeat process #3 to #4, until <code class="highlighter-rouge">i</code> meets <code class="highlighter-rouge">j</code>.
+<img src="/assets/images/180605/1-4.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Put the base element at the position that <code class="highlighter-rouge">i</code> (or <code class="highlighter-rouge">j</code>) points to.
+<img src="/assets/images/180605/1-6.png" alt="" /></p>
+  </li>
+</ol>
+
+<p>*Attention: in process #3, it must start from the <code class="highlighter-rouge">rightmost</code> element.</p>
+
+<p>The code is as follows:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">quickSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">start</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">start</span> <span class="o">&gt;=</span> <span class="n">end</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+
+    <span class="kt">int</span> <span class="n">base</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">start</span><span class="o">];</span>
+
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">end</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span> <span class="o">&amp;&amp;</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&gt;=</span> <span class="n">base</span><span class="o">)</span> <span class="n">j</span><span class="o">--;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="o">)</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">++]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+
+        <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span> <span class="o">&amp;&amp;</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">base</span><span class="o">)</span> <span class="n">i</span><span class="o">++;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="o">)</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">--]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+    <span class="o">}</span>
+
+    <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">base</span><span class="o">;</span>
+
+    <span class="n">quickSort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">start</span><span class="o">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="n">quickSort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">end</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>As for an array with length <code class="highlighter-rouge">n</code>, suppose every time the base element divides the array into two parts of equal length, then:</p>
+
+<p><img src="/assets/images/180605/1-l.png" alt="" /></p>
+
+<p>All <code class="highlighter-rouge">logn</code> rounds are needed, and each round the whole array will be accessed, so the average time complexity is <code class="highlighter-rouge">O(nlogn)</code>. Since the sorting is done in-place, and no extra space is used, the space complexity is <code class="highlighter-rouge">O(1)</code>. In addition, obviously, due to the swap, Quick Sort is <code class="highlighter-rouge">unstable</code>.</p>
+
+<h2 id="merge-sort">Merge Sort</h2>
+<p>First, if we have two sorted array, how to merge them into one sorted array? I believe you know the answer: keep comparing the first elements of the two array, and each time extract the smaller one to the result array, until one of the array becomes empty. Finally append the not-empty array to the end of the result array:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">merge</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr1</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">arr2</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">arr1</span><span class="o">.</span><span class="na">length</span> <span class="o">+</span> <span class="n">arr2</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
+
+    <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr1</span><span class="o">.</span><span class="na">length</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">arr2</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">arr1</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">arr2</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="n">res</span><span class="o">[</span><span class="n">c</span><span class="o">++]</span> <span class="o">=</span> <span class="n">arr1</span><span class="o">[</span><span class="n">i</span><span class="o">++];</span>
+        <span class="k">else</span> <span class="n">res</span><span class="o">[</span><span class="n">c</span><span class="o">++]</span> <span class="o">=</span> <span class="n">arr2</span><span class="o">[</span><span class="n">j</span><span class="o">++];</span>
+    <span class="o">}</span>
+
+    <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr1</span><span class="o">.</span><span class="na">length</span><span class="o">)</span>
+        <span class="n">res</span><span class="o">[</span><span class="n">c</span><span class="o">++]</span> <span class="o">=</span> <span class="n">arr1</span><span class="o">[</span><span class="n">i</span><span class="o">++];</span>
+
+    <span class="k">while</span> <span class="o">(</span><span class="n">j</span> <span class="o">&lt;</span> <span class="n">arr2</span><span class="o">.</span><span class="na">length</span><span class="o">)</span>
+        <span class="n">res</span><span class="o">[</span><span class="n">c</span><span class="o">++]</span> <span class="o">=</span> <span class="n">arr2</span><span class="o">[</span><span class="n">j</span><span class="o">++];</span>
+
+    <span class="k">return</span> <span class="n">res</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Based on this code, with <code class="highlighter-rouge">"Divide and Conquer"</code>, we can realize the <code class="highlighter-rouge">Merge Sort</code>:</p>
+
+<ol>
+  <li>Divide the array into two parts, and do Merge Sort on them respectively.</li>
+  <li>Merge the two sorted result array.</li>
+  <li>Repeat process #1 to #3, until there’s only one element in the interval.</li>
+</ol>
+
+<p>Improve the above code a little bit, and we have the implementation:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">mergeSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">start</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">start</span> <span class="o">&gt;=</span> <span class="n">end</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+
+    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="o">(</span><span class="n">start</span> <span class="o">+</span> <span class="n">end</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+    
+    <span class="n">mergeSort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">start</span><span class="o">,</span> <span class="n">m</span><span class="o">);</span>
+    <span class="n">mergeSort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">end</span><span class="o">);</span>
+
+    <span class="n">merge</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">start</span><span class="o">,</span> <span class="n">m</span><span class="o">,</span> <span class="n">end</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">merge</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">s</span><span class="o">,</span> <span class="kt">int</span> <span class="n">m</span><span class="o">,</span> <span class="kt">int</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">e</span> <span class="o">-</span> <span class="n">s</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+
+    <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">s</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">m</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="n">res</span><span class="o">[</span><span class="n">c</span><span class="o">++]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">++];</span>
+        <span class="k">else</span> <span class="n">res</span><span class="o">[</span><span class="n">c</span><span class="o">++]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">++];</span>
+    <span class="o">}</span>
+
+    <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="o">)</span>
+        <span class="n">res</span><span class="o">[</span><span class="n">c</span><span class="o">++]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">++];</span>
+
+    <span class="k">while</span> <span class="o">(</span><span class="n">j</span> <span class="o">&lt;=</span> <span class="n">e</span><span class="o">)</span>
+        <span class="n">res</span><span class="o">[</span><span class="n">c</span><span class="o">++]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">++];</span>
+
+    <span class="k">for</span> <span class="o">(</span><span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">res</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">c</span><span class="o">++)</span>
+        <span class="n">arr</span><span class="o">[</span><span class="n">s</span> <span class="o">+</span> <span class="n">c</span><span class="o">]</span> <span class="o">=</span> <span class="n">res</span><span class="o">[</span><span class="n">c</span><span class="o">];</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Similar to the Quick Sort, the time complexity of Merge Sort is <code class="highlighter-rouge">O(nlongn)</code>, but in the process of merging, we need at most one auxiliary array with the same lengh as the original array, so the space complexity is <code class="highlighter-rouge">O(n)</code>. Besides, if we guarantee that every time the head elements of the two array are equal, element from the first array is selected, Merge Sort can be <code class="highlighter-rouge">stable</code>.</p>
+
+<h2 id="heap-sort">Heap sort</h2>
+<p><code class="highlighter-rouge">Heap Sort</code> uses a special data structure – <code class="highlighter-rouge">heap</code>, and its implementation is somewhat more complicate than the previous algorithms. Let’s begin with <code class="highlighter-rouge">Heap</code>.</p>
+
+<h3 id="heap">Heap</h3>
+<p>Since we are sorting in ascending order, I will introduce the <code class="highlighter-rouge">Minimum Heap</code>:</p>
+
+<ol>
+  <li>A minimum heap is a <code class="highlighter-rouge">complete binary tree</code>.</li>
+  <li>The parent node is always smaller than (or equal to) its children.</li>
+  <li>Children are also minimum heaps.</li>
+</ol>
+
+<h3 id="storing-in-an-array">Storing in an array</h3>
+<p>As I mentioned above, heap is a <code class="highlighter-rouge">complete binary tree</code>, so we can use some tricks to store a heap in an array, and easily access nodes by indices. For example, if we have the following heap:</p>
+
+<p><img src="/assets/images/180605/2-0.png" alt="" /></p>
+
+<p>Put every node into an array according to its <code class="highlighter-rouge">level-traversal</code> order:</p>
+
+<p><img src="/assets/images/180605/2-1.png" alt="" /></p>
+
+<p>You will find that for every node indexed <code class="highlighter-rouge">i</code>, the index of its left child is <code class="highlighter-rouge">2 * i + 1</code>, the index of the right child is <code class="highlighter-rouge">2 * i + 2</code>, and the index of its parent is <code class="highlighter-rouge">(i - 1) / 2</code>.</p>
+
+<h3 id="insertion">Insertion</h3>
+<p>As for the heap above, if we want to insert <code class="highlighter-rouge">2</code> into it:</p>
+
+<ol>
+  <li>
+    <p>Put the new element at the end of the array.
+<img src="/assets/images/180605/2-2.png" alt="" /></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">"Adjust upward"</code>, that is, compare it with the parent node. If it is smaller than its parent, swap them.
+<img src="/assets/images/180605/2-3.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Repeat process #2, until current node is bigger than the parent node, or it reaches the root.
+<img src="/assets/images/180605/2-4.png" alt="" /></p>
+  </li>
+</ol>
+
+<p>The code for <code class="highlighter-rouge">"adjust upward"</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">fixUp</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">currVal</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
+    <span class="kt">int</span> <span class="n">parentIndex</span> <span class="o">=</span> <span class="o">(</span><span class="n">index</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">parentIndex</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">index</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">arr</span><span class="o">[</span><span class="n">parentIndex</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">currVal</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">parentIndex</span><span class="o">];</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">parentIndex</span><span class="o">;</span>
+        <span class="n">parentIndex</span> <span class="o">=</span> <span class="o">(</span><span class="n">index</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">currVal</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="deletion">Deletion</h3>
+<p>Becuase of the characteristics of the heap, deletion can only be done on the top element. After a deletion, we move the last element of the heap to the top, and <code class="highlighter-rouge">"adjust downward"</code>. Again the previous example:</p>
+
+<ol>
+  <li>
+    <p>Extract the top element <code class="highlighter-rouge">1</code>, and move the last element <code class="highlighter-rouge">8</code> to the top.
+<img src="/assets/images/180605/2-5.png" alt="" /></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">"Adjust downward"</code>, that is, compare it with all children. If either children is smaller than it, swap them.
+<img src="/assets/images/180605/2-6.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Repeat process #2, until no child is smaller than current node, or it reaches a leaf.
+<img src="/assets/images/180605/2-7.png" alt="" /></p>
+  </li>
+</ol>
+
+<p>The code for <code class="highlighter-rouge">"adjust downward"</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">fixDown</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">currVal</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
+    <span class="kt">int</span> <span class="n">minChildIndex</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">minChildIndex</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">minChildIndex</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">end</span> <span class="o">&amp;&amp;</span> <span class="n">arr</span><span class="o">[</span><span class="n">minChildIndex</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">[</span><span class="n">minChildIndex</span><span class="o">])</span> <span class="n">minChildIndex</span><span class="o">++;</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">minChildIndex</span><span class="o">]</span> <span class="o">&gt;=</span> <span class="n">currVal</span><span class="o">)</span> <span class="k">break</span><span class="o">;</span>
+
+        <span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">minChildIndex</span><span class="o">];</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">minChildIndex</span><span class="o">;</span>
+        <span class="n">minChildIndex</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">currVal</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="initialization">Initialization</h3>
+<p>For a given array, say our example, <code class="highlighter-rouge">5 8 1 5 2 4 7 9 8</code>, the processes to transform it into a heap is as follows:</p>
+
+<ol>
+  <li>
+    <p>The initial data.
+<img src="/assets/images/180605/2-8.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Start from <code class="highlighter-rouge">the last node other than the leaves</code>, adjust downward. Since the last two not-leaf nodes are currently minimum heaps, they will not be adjusted.
+<img src="/assets/images/180605/2-9.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Adjust the subtree rooted by the last but two node, and it triggers one swap.
+<img src="/assets/images/180605/2-10.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Adjust the subtree rooted by the root (the whole tree), and it triggers two swaps.
+<img src="/assets/images/180605/2-11.png" alt="" /></p>
+  </li>
+</ol>
+
+<p>The code is as follows:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">(</span><span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="o">(</span><span class="n">end</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+        <span class="n">fixDown</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">end</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="heap-sort-1">Heap sort</h3>
+<p>After introducing the heap, we can finally come to the Heap Sort. Simply, we just <code class="highlighter-rouge">heapify</code> (initialize) the array, and keep extracting the top element, moving the last element to the top, and <code class="highlighter-rouge">adjusting downward</code> from the top. The code is as follows:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">sort</span><span class="o">(</span><span class="kt">int</span> <span class="n">len</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">init</span><span class="o">(</span><span class="n">len</span><span class="o">);</span>
+
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">len</span><span class="o">];</span>
+    <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">len</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">--)</span> <span class="o">{</span>
+        <span class="n">res</span><span class="o">[</span><span class="n">c</span><span class="o">++]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+
+        <span class="n">arr</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span>
+        <span class="n">fixDown</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="k">return</span> <span class="n">res</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="analysis">Analysis</h3>
+<p>Heap Sort utilizes <code class="highlighter-rouge">complete binary tree</code>, so no matter what type of data we have, the time complexity of Heap Sort is <code class="highlighter-rouge">O(nlogn)</code>, and the space complexity is <code class="highlighter-rouge">O(1)</code>. Besides, due to the swap, Heap sort is <code class="highlighter-rouge">unstable</code>.</p>
+
+<h2 id="summary">Summary</h2>
+<p>There are so many sorting algorithms. Although we seldom have the chance to implement them personally, having a understanding of the their principles is always benefical.</p>
+
+</div>
+
+		
+		<div class="footer">
+	<hr/>
+	<div class="footer-link">
+		
+		<a href="https://www.facebook.com/none"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+		
+
+		
+		<a href="https://twitter.com/dontsay_lazy"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+		
+
+		
+		<a href="https://github.com/CuiH"><i class="fa fa-github" aria-hidden="true"></i></a>
+		
+
+		
+		<a href="https://www.linkedin.com/in/hao-cui-3ab90214b"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+		
+
+		
+		<a href="mailto:hcui1995@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+		
+	</div>
+
+	© 2018 CuiH. All rights reserved.
+</div>
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>A Bug Caused by MySQL Triggers</title>
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="/assets/css/main.css" type="text/css" />
+
+	<!-- Font -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="http://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet" type="text/css" />
+</head>
+
+
+<body>
+	<div class="content-container">
+		<header>
+	<div class="header-small">
+		<a href="http://cuih.xyz">Life is a Struggle</a>
+	</div>
+</header>
+
+<div class="post">
+	<div class="post-title">A Bug Caused by MySQL Triggers</div>
+	<span class="post-date">
+		<time>18 Jul 2018</time>
+	</span>
+	<div class="post-tag">
+		<ul>
+			
+			<li>
+				<a href="http://cuih.xyz/tags#web">
+					<span>web</span>
+				</a>
+			</li>
+			
+			
+			<li>
+				<a href="http://cuih.xyz/tags#mysql">
+					<span>mysql</span>
+				</a>
+			</li>
+			
+			
+		</ul>
+	</div>
+
+	<h2 id="background">Background</h2>
+<p>Last month, I joined <a href="https://iotex.io">IoTeX</a> as a software engineering intern. The technology stack they are using is React + Koa, which I am very familiar with, so they assigned me a big task – implementing the point system, just after I joined.</p>
+
+<p>Due to the confidentiality agreements, I can’t disclose too many details, but I still want to give a brief introduction to this system.</p>
+
+<h2 id="point-system">Point system</h2>
+<p>Every IoTeX user in our system has an account, which stores his basic information like ETH address. Now, we want to add a new <code class="highlighter-rouge">point</code> attribute to each user’s account, with which we’ll be able to give some rewards to them in future event. On one hand, these points can be redeemed to IoTeX tokens, and currently IoTeX token is available in many online exchanges, which means we’ll attract more users to participate in our events and thus our community will become more active. On the other hand, we must be careful with the design of this point system, since it involves real money.</p>
+
+<p>Transferring tokens to user’s ETH address is another team’s task. For our web team, we’ll first verify the user has enough points when he makes a redemption request, and then forward this request to the API provided by the other team. At the same time, we’ll decrease the corresponding points from the user’s account.</p>
+
+<p>Actually, what we do is decreasing the points right after we receive and verify the request. Users can check the status of each of his redemption, and the status of a new request is <code class="highlighter-rouge">redeeming</code>. After the user receives his IoTeX tokens, we’ll then update the status to <code class="highlighter-rouge">finished</code>; if it fails, the points will be given back to the user, and the status of this redemption becomes <code class="highlighter-rouge">failed</code>.</p>
+
+<h2 id="accident">Accident</h2>
+<p>In the first week after this system is launched, everything works fine, and we found no security threat. However, this Tuesday, I got a message from my mentor at midnight:</p>
+
+<blockquote>
+  <p>Our system is hacked.</p>
+</blockquote>
+
+<p>I was really scared when I went to work in the next morning. Mentor told me that he found some user accounts tried to redeem a large number of tokens, but when he looked up their point records, they didn’t have adequate points, so he disabled this feature temporarily and tried to figure out what went wrong. Nevertheless, he didn’t find the issue.</p>
+
+<h2 id="analyses">Analyses</h2>
+<p>First, we thought this could be a <code class="highlighter-rouge">SQL injection</code> attack, but according to my previous experience, the DB connector we are using will escape reserved words if we use placeholder <code class="highlighter-rouge">?</code> in SQL statements. We did some experiments and it turned out that this possibility should be ruled out.</p>
+
+<p>Then we doubted whether he hacked into our database directlt and inserted those redemption records. If so, this could be very serious, but we immediately realized that this is not possible, since there’s a unique key restriction in our database that one user can only make one redemption every day, and this attacker didn’t bypass this rule. After looking up the logs, we found this user created many accounts in a short time, and each account only submitted one successful redemption request. Actually, this was why he caught our eyes: in our system if someone tries to redeem a large number of tokens, admins must agree manually first. This attacker might feel too troublesome to create so many accounts, so he redeemed a large number of tokens in one single redemption, and finally got caught. If he was not that greedy and only redeem small amounts occasionally, maybe he’ll never be found. His greediness led to his failure.</p>
+
+<p>Of course, I have no sympathy for him, but we still want to thank him, for letting us find this bug in the early stage, so we may avoid bigger future losses.</p>
+
+<p>Back to the debugging. If it was not injection and he didn’t hack into our database, how did he make it?</p>
+
+<h2 id="discovery">Discovery</h2>
+<p>We thought maybe our checking logics in the code went wrong, but after all team members went through the whole flow, we found nothing.</p>
+
+<p>The security of our system relies on MySQL triggers, and here I need to point out that we are not storing a specific number indicating the points a user owns. Instead, we store point records and sum up all the records if we want to know how many points a user has.</p>
+
+<p>We were helpless and suddenly the manager asked: what will happen if a user tries to redeem when he has no point records?</p>
+
+<p>I didn’t realize the uniqueness of this action, but when I made a trial, something amazing happened: a user can redeem any number of tokens if he has no history point records!</p>
+
+<p>Finally, we found the bug, but why? The problem lies on these statements in the MySQL trigger:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SET</span> <span class="o">@</span><span class="n">v</span> <span class="o">=</span> <span class="p">(</span><span class="k">SELECT</span> <span class="k">SUM</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">points</span> <span class="k">WHERE</span> <span class="n">user_id</span> <span class="o">=</span> <span class="n">xx</span><span class="p">);</span>
+<span class="n">IF</span> <span class="o">@</span><span class="n">v</span> <span class="o">&lt;</span> <span class="k">NEW</span><span class="p">.</span><span class="n">redeem_amount</span> <span class="k">THEN</span>
+    <span class="o">#</span> <span class="n">error</span> <span class="n">handling</span>
+</code></pre></div></div>
+
+<p>For security, I am not posting the real code.</p>
+
+<p>Here we first query all point records of the user to get his total points, and then check whether he has enough points to redeem. If not, we will reject this request.</p>
+
+<h2 id="null">NULL</h2>
+<p>Before giving the answer, I’d like to show some more examples: what are the results of the following expressions in MySQL?</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">NULL</span> <span class="o">&lt;</span> <span class="mi">5</span>
+<span class="k">NULL</span> <span class="o">&gt;</span> <span class="mi">5</span>
+<span class="k">NULL</span> <span class="o">=</span> <span class="mi">5</span>
+</code></pre></div></div>
+
+<p>The answers are all <code class="highlighter-rouge">NULL</code>. If we compare <code class="highlighter-rouge">NULL</code> with and any other values, the result is always <code class="highlighter-rouge">NULL</code>. Even:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">NULL</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">&lt;</span> <span class="mi">5</span>
+</code></pre></div></div>
+
+<p>This also gives you <code class="highlighter-rouge">NULL</code>. If there’s a <code class="highlighter-rouge">NULL</code> in the expression, the result will always be <code class="highlighter-rouge">NULL</code>.</p>
+
+<p>Let’s go back to the triggers in our database. If a new user, who has no point records, tries to make a redemption, we’ll get a <code class="highlighter-rouge">NULL</code> as his total points, and in the next <code class="highlighter-rouge">IF</code> statement, the result is <code class="highlighter-rouge">NULL</code> since there’s a <code class="highlighter-rouge">NULL</code> in the expression. <code class="highlighter-rouge">IF NULL</code> is equal to <code class="highlighter-rouge">IF false</code>, so it bypasses the validation and this request will not be rejected.</p>
+
+<h2 id="reflection">Reflection</h2>
+<p>We all felt relieved. At the same time, we are aware of the importance of security, especially for handling <code class="highlighter-rouge">corner cases</code>. Attackers are always there, trying to find bugs from your product.</p>
+
+<p>All in all, there will never have a application with no bug. Before a product is released, we must make thorough testing, and after the release, we must have some ways to detect unusual behaviors. If this time the attacker is not that greedy, we may have greater losses.</p>
+
+</div>
+
+		
+		<div class="footer">
+	<hr/>
+	<div class="footer-link">
+		
+		<a href="https://www.facebook.com/none"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+		
+
+		
+		<a href="https://twitter.com/dontsay_lazy"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+		
+
+		
+		<a href="https://github.com/CuiH"><i class="fa fa-github" aria-hidden="true"></i></a>
+		
+
+		
+		<a href="https://www.linkedin.com/in/hao-cui-3ab90214b"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+		
+
+		
+		<a href="mailto:hcui1995@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+		
+	</div>
+
+	© 2018 CuiH. All rights reserved.
+</div>
+
+	</div>
+</body>
+</html>

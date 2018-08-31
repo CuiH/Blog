@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>How to Block/Stop a Thread in Java</title>
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="/assets/css/main.css" type="text/css" />
+
+	<!-- Font -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="http://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet" type="text/css" />
+</head>
+
+
+<body>
+	<div class="content-container">
+		<header>
+	<div class="header-small">
+		<a href="http://cuih.xyz">Life is a Struggle</a>
+	</div>
+</header>
+
+<div class="post">
+	<div class="post-title">How to Block/Stop a Thread in Java</div>
+	<span class="post-date">
+		<time>26 Apr 2018</time>
+	</span>
+	<div class="post-tag">
+		<ul>
+			
+			<li>
+				<a href="http://cuih.xyz/tags#java">
+					<span>java</span>
+				</a>
+			</li>
+			
+			
+		</ul>
+	</div>
+
+	<h2 id="thread-states">Thread states</h2>
+<p>The <code class="highlighter-rouge">state transition</code> of threads in Java is the fundamental of today’s topic. Basically, there are six possible states:</p>
+
+<ul>
+  <li>NEW: a thread is created, but not started.</li>
+  <li>RUNNABLE: a thread that is eligible to run. There may be many <code class="highlighter-rouge">RUNNABLE</code> threads, but only one of them can occupy the CPU at a given time.</li>
+  <li>BLOCKED: a thread that is blocked and waiting for a monitor lock to enter a synchronized block/method.</li>
+  <li>WAITING: a thread that is waiting for another thread to perform a particular action.</li>
+  <li>TIMED_WAITING: similar to the <code class="highlighter-rouge">WAITING</code> state. A <code class="highlighter-rouge">TIMED_WAITING</code> thread waits for another thread with a specified waiting time.</li>
+  <li>TERMINATED: a thread that has completed execution.</li>
+</ul>
+
+<h2 id="sleep">sleep()</h2>
+<p>A simple way to affect the execution of a thread is to invoke the <code class="highlighter-rouge">Thread.sleep()</code>. This is a <code class="highlighter-rouge">static</code> method that sleeps the <code class="highlighter-rouge">currently running</code> thread. This method can be called when a thread runs too fast or the program wants other threads to have the chance to execute. There are some facts:</p>
+
+<ul>
+  <li>The parameter <code class="highlighter-rouge">millis</code> of <code class="highlighter-rouge">Thread.sleep()</code>` only guarantees the minimum sleeping time.</li>
+  <li>When a thread wakes up from sleeping, its state changes from <code class="highlighter-rouge">TIMED_WAITING</code> to <code class="highlighter-rouge">RUNNABLE</code>. Then, it waits for the scheduling of the scheduler.</li>
+  <li>When a thread is sleeping, it will not release any lock that it holds.</li>
+</ul>
+
+<p>As for the last point, let’s see an example.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Resource</span> <span class="o">{</span> <span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SleepTest</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Resource</span> <span class="n">resource</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Resource</span><span class="o">();</span>
+
+        <span class="n">Thread</span> <span class="n">t1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">": start of t1"</span><span class="o">);</span>
+
+            <span class="kd">synchronized</span> <span class="o">(</span><span class="n">resource</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">3000</span><span class="o">);</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">": end of t1"</span><span class="o">);</span>
+        <span class="o">});</span>
+
+        <span class="n">Thread</span> <span class="n">t2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">": start of t2"</span><span class="o">);</span>
+
+            <span class="c1">// make sure t1 acquires the lock first</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+
+            <span class="kd">synchronized</span> <span class="o">(</span><span class="n">resource</span><span class="o">)</span> <span class="o">{</span> <span class="o">}</span>
+
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">": end of t2"</span><span class="o">);</span>
+        <span class="o">});</span>
+
+        <span class="n">t1</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="n">t2</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+
+<span class="cm">/*
+Outputs:
+Tue Dec 19 00:47:46 CST 2017: start of t1
+Tue Dec 19 00:47:46 CST 2017: start of t2
+Tue Dec 19 00:47:49 CST 2017: end of t2
+Tue Dec 19 00:47:49 CST 2017: end of t1
+*/</span>
+</code></pre></div></div>
+
+<p>When <code class="highlighter-rouge">t1</code> is sleeping, it does not release the <code class="highlighter-rouge">resource</code>, so <code class="highlighter-rouge">t2</code> will not finish until <code class="highlighter-rouge">t1</code> wakes up and releases the <code class="highlighter-rouge">resource</code>.</p>
+
+<h2 id="yield">yield()</h2>
+<p>If a thread has finished all works in one round, the program can give a hint to the scheduler that other threads can occupy the CPU. <code class="highlighter-rouge">Thread.yield()</code> is a <code class="highlighter-rouge">static</code> method that <code class="highlighter-rouge">suggests</code> the scheduler other threads with the <code class="highlighter-rouge">same priority</code> can now be executed. Note that for <code class="highlighter-rouge">Thread.yield()</code>,</p>
+
+<ul>
+  <li>It is only a suggestion, that it will not guarantee the yield of a thread.</li>
+  <li>It will not change the status of a thread.</li>
+  <li>It does not have any synchronization semantic, which means it will not release any lock that it holds.</li>
+</ul>
+
+<h2 id="join">join()</h2>
+<p><code class="highlighter-rouge">join()</code> is a non-static method in class Thread that <code class="highlighter-rouge">appends</code> current thread to the end of another thread. When a thread invokes <code class="highlighter-rouge">t.join()</code> on another thread <code class="highlighter-rouge">t</code>, the first thread will be <code class="highlighter-rouge">suspended</code> until the second thread completes. Let’s see an example:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">JoinTest</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="n">Thread</span> <span class="n">t1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">": start of t1"</span><span class="o">);</span>
+
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">3000</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">": end of t1"</span><span class="o">);</span>
+        <span class="o">});</span>
+
+        <span class="n">Thread</span> <span class="n">t2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">": start of t2"</span><span class="o">);</span>
+
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">t1</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">": end of t2"</span><span class="o">);</span>
+        <span class="o">});</span>
+
+        <span class="n">t1</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="n">t2</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+
+<span class="cm">/*
+Outputs:
+Tue Dec 19 15:38:07 CST 2017: start of t2
+Tue Dec 19 15:38:07 CST 2017: start of t1
+Tue Dec 19 15:38:10 CST 2017: end of t1
+Tue Dec 19 15:38:10 CST 2017: end of t2
+*/</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">t2</code> joins <code class="highlighter-rouge">t1</code> so <code class="highlighter-rouge">t2</code> will not complete until <code class="highlighter-rouge">t1</code> completes. Note that:</p>
+
+<ul>
+  <li>An overloaded version of <code class="highlighter-rouge">join()</code> accepts a <code class="highlighter-rouge">maximum waiting time</code>, so a waiting thread will also be awakened when the waiting time exceeds the limit.</li>
+  <li>The call of <code class="highlighter-rouge">join()</code> will not cause the release of any lock.</li>
+  <li>After Java SE5, there’s a better choice – <code class="highlighter-rouge">CyclicBarrier</code>, which is a substitute for <code class="highlighter-rouge">join()</code>.</li>
+</ul>
+
+<h2 id="wait-and-notify">wait() and notify()</h2>
+<p>There’s another mechanism that supports multi-thread interactions. <code class="highlighter-rouge">wait()</code> enables a thread to wait for the change of a certain condition. When <code class="highlighter-rouge">wait()</code> is called on an <code class="highlighter-rouge">"resource"</code>, the current thread will be suspended until the method <code class="highlighter-rouge">notify()</code> is called on the same <code class="highlighter-rouge">"resource"</code>. <code class="highlighter-rouge">wait()</code> and <code class="highlighter-rouge">notify()</code> are methods declared in class <code class="highlighter-rouge">Object</code>, which enables a thread to wait for any <code class="highlighter-rouge">"resource"</code>. Note that:</p>
+
+<ul>
+  <li>An overloaded version of <code class="highlighter-rouge">wait()</code> accepts a <code class="highlighter-rouge">maximum waiting time</code>, so a waiting thread will also be awakened when the waiting time exceeds the limit.</li>
+  <li>If more than one thread is waiting for a <code class="highlighter-rouge">"resource"</code>, that <code class="highlighter-rouge">"resource"</code> can invoke the method <code class="highlighter-rouge">notifyAll()</code> to notify all waiting threads.</li>
+  <li><code class="highlighter-rouge">wait()</code> and <code class="highlighter-rouge">notify()</code> can only be invoked inside a synchronized block/method.</li>
+  <li><code class="highlighter-rouge">wait()</code> and <code class="highlighter-rouge">notify()</code> can only be invoked on an object if current thread holds the lock of that object.</li>
+  <li>After the invocation of <code class="highlighter-rouge">wait()</code>, the status of current thread becomes <code class="highlighter-rouge">WAITING</code> and that exact object lock will be <code class="highlighter-rouge">released</code> (current thread may still hold locks from other objcets).</li>
+</ul>
+
+<p>The last three points are of the most importance. Different from <code class="highlighter-rouge">Thread.sleep()</code> and <code class="highlighter-rouge">Thread.yield()</code>, <code class="highlighter-rouge">wait()</code> will release the objcet lock, but this makes sense. The invocation of <code class="highlighter-rouge">wait()</code> on an object means current thread has finished its work with this object and it’s now waiting for something to happen on that object, so current thread needs to release this object lock to enable other threads to interact with this object. Let’s see an example:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Resource</span> <span class="o">{</span> <span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WaitTest</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="n">Resource</span> <span class="n">resource</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Resource</span><span class="o">();</span>
+
+        <span class="n">Thread</span> <span class="n">t1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">": start of t1"</span><span class="o">);</span>
+
+            <span class="kd">synchronized</span> <span class="o">(</span><span class="n">resource</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="n">resource</span><span class="o">.</span><span class="na">wait</span><span class="o">();</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">": end of t1"</span><span class="o">);</span>
+        <span class="o">});</span>
+
+        <span class="n">Thread</span> <span class="n">t2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">": start of t2"</span><span class="o">);</span>
+
+            <span class="c1">// make sure t1 acquires the lock first</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+
+            <span class="kd">synchronized</span> <span class="o">(</span><span class="n">resource</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">3000</span><span class="o">);</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+
+                <span class="n">resource</span><span class="o">.</span><span class="na">notify</span><span class="o">();</span>
+            <span class="o">}</span>
+
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">": end of t2"</span><span class="o">);</span>
+        <span class="o">});</span>
+
+        <span class="n">t1</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="n">t2</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+
+<span class="cm">/*
+Outputs:
+Tue Dec 19 17:58:14 CST 2017: start of t1
+Tue Dec 19 17:58:14 CST 2017: start of t2
+Tue Dec 19 17:58:17 CST 2017: end of t1
+Tue Dec 19 17:58:17 CST 2017: end of t2
+*/</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">t1</code> waits for <code class="highlighter-rouge">t2</code> to finish its part with the <code class="highlighter-rouge">resource</code>.</p>
+
+<p>When <code class="highlighter-rouge">notify()</code> or <code class="highlighter-rouge">notifyAll()</code> is called, the status of the threads that are waiting on this object will change from <code class="highlighter-rouge">WAITING</code> to <code class="highlighter-rouge">BLOCKED</code>, and they will then compete for the object lock. If one thread reacquires the lock after the notifying thread releases the lock, its status will become <code class="highlighter-rouge">RUNNABLE</code>. Therefore, <code class="highlighter-rouge">notify()</code> or <code class="highlighter-rouge">notifyAll()</code> will <code class="highlighter-rouge">not</code> cause the release of the lock.</p>
+
+<h2 id="suspend-and-resume-deprecated">suspend() and resume() (deprecated)</h2>
+<p>Sometimes we may want to stop a thread for a while. Previously, there are a pair of methods <code class="highlighter-rouge">suspend() and resume()</code> declared in class <code class="highlighter-rouge">Thread</code>, but as explained in the <code class="highlighter-rouge">Javadoc</code>, they are <code class="highlighter-rouge">inherently deadlock-prone</code> and thus <code class="highlighter-rouge">deprecated</code>:</p>
+
+<blockquote>
+  <p>If the target thread holds a lock on the monitor protecting a critical system resource when it is suspended, no thread can access this resource until the target thread is resumed. If the thread that would resume the target thread attempts to lock this monitor prior to calling <code class="highlighter-rouge">resume</code>, deadlock results.</p>
+</blockquote>
+
+<p>A suspended thread will <code class="highlighter-rouge">not</code> release any lock it holds, so the above words are easy to understand.</p>
+
+<h2 id="stop-deprecated">stop() (deprecated)</h2>
+<p><code class="highlighter-rouge">stop()</code> is also <code class="highlighter-rouge">deprecated</code> due to <code class="highlighter-rouge">inherently unsafe</code>:</p>
+
+<blockquote>
+  <p>Stopping a thread with Thread.stop() causes it to unlock all of the monitors that it has locked (as a natural consequence of the unchecked <code class="highlighter-rouge">ThreadDeath</code> exception propagating up the stack). If any of the objects previously protected by these monitors were in an inconsistent state, the damaged objects become visible to other threads, potentially resulting in arbitrary behavior.</p>
+</blockquote>
+
+<p>This may not be easy to understand. Let’s see an example:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StopTest</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Thread</span> <span class="n">t</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+            <span class="kd">private</span> <span class="n">Vector</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">vector</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Vector</span><span class="o">&lt;&gt;();</span>
+
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+                <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="o">().</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+                    <span class="n">vector</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">num</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">2000</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">stop</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">Vector</code> here is a <code class="highlighter-rouge">thread-safe</code> container in Java, which means this container is always in a consistent status. In fact, <code class="highlighter-rouge">Vector</code> is protected by <code class="highlighter-rouge">synchronization</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">boolean</span> <span class="nf">add</span><span class="o">(</span><span class="n">E</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">modCount</span><span class="o">++;</span>
+        <span class="n">ensureCapacityHelper</span><span class="o">(</span><span class="n">elementCount</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+        <span class="n">elementData</span><span class="o">[</span><span class="n">elementCount</span><span class="o">++]</span> <span class="o">=</span> <span class="n">e</span><span class="o">;</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<p>Now if we <code class="highlighter-rouge">stop</code> a thread that is interacting with a vector, the target thread will immediately release the lock that protects this vector, and thus other threads can read from or write to this vector <code class="highlighter-rouge">inconsistently</code>. For instance, if the <code class="highlighter-rouge">elementCount</code> has been increased by one and the thread is stopped before the actual data is witten to the array, another thread that tries to read the last element may acquire the vector lock and get a non-existent value.</p>
+
+<h2 id="status-flag">Status flag</h2>
+<p>How to stop a thread then? A simple way is to use a boolean variable as a flag:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FlagTest</span> <span class="kd">extends</span> <span class="n">Thread</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">volatile</span> <span class="kt">boolean</span> <span class="n">canceled</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">cancel</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">canceled</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">": start"</span><span class="o">);</span>
+
+        <span class="k">while</span> <span class="o">(!</span><span class="n">canceled</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// do something</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">": running"</span><span class="o">);</span>
+
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">": end"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+        <span class="n">FlagTest</span> <span class="n">f</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FlagTest</span><span class="o">();</span>
+
+        <span class="n">f</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">5000</span><span class="o">);</span>
+        <span class="n">f</span><span class="o">.</span><span class="na">cancel</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+
+<span class="cm">/*
+Outputs:
+Tue Dec 19 22:34:03 CST 2017: start
+Tue Dec 19 22:34:03 CST 2017: running
+Tue Dec 19 22:34:04 CST 2017: running
+Tue Dec 19 22:34:05 CST 2017: running
+Tue Dec 19 22:34:06 CST 2017: running
+Tue Dec 19 22:34:07 CST 2017: running
+Tue Dec 19 22:34:08 CST 2017: end
+*/</span>
+</code></pre></div></div>
+
+<p>Every round, the thread will check the boolean flag <code class="highlighter-rouge">canceled</code> to decide whether to break the cycle or not. Note that <code class="highlighter-rouge">canceled</code> is a <code class="highlighter-rouge">volatile</code> variable, which ensures that operations on this variable are thread-safe in this case.</p>
+
+<h2 id="interrupt">interrupt()</h2>
+<p>The above method can stop a thread at the beginning of a certain round of cycle, but we may also want to stop a <code class="highlighter-rouge">WAITING</code> or <code class="highlighter-rouge">BLOCKED</code> thread. In previous examples, methods like <code class="highlighter-rouge">Thread.sleep()</code> and <code class="highlighter-rouge">Object.wait()</code> may throw exceptions called <code class="highlighter-rouge">InterruptedException</code>. This can help us stop such threads.</p>
+
+<p>As you can imagine, interrupting a <code class="highlighter-rouge">WAITING</code> or <code class="highlighter-rouge">BLOCKED</code> thread is more complicate than stopping a thread after it finishes one round of cycle. You’ll need to deal with the <code class="highlighter-rouge">aftermaths</code> such as <code class="highlighter-rouge">tidying up</code> the resources, which is similar to handling an exception in a <code class="highlighter-rouge">try-catch</code> block.</p>
+
+<p>The method <code class="highlighter-rouge">interrupt()</code> in class <code class="highlighter-rouge">Thread</code> enables us to stop a thread by setting an interrupt flag, while another static method <code class="highlighter-rouge">Thread.interrupted()</code> resets the flag. If an interrupt happens on a <code class="highlighter-rouge">WAITING</code> or <code class="highlighter-rouge">BLOCKED</code> thread, an <code class="highlighter-rouge">InterruptedException</code> will be thrown, and at the same time, the interrupt flag will be reset. Let’s see an example:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">InterruptTest</span> <span class="o">{</span>
+    
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Thread</span> <span class="n">t</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">": start"</span><span class="o">);</span>
+
+            <span class="k">while</span> <span class="o">(!</span><span class="n">Thread</span><span class="o">.</span><span class="na">interrupted</span><span class="o">())</span> <span class="o">{</span>
+                <span class="c1">// do something</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">": running"</span><span class="o">);</span>
+
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">": interrupted when sleeping"</span><span class="o">);</span>
+
+                    <span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">interrupt</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">": end"</span><span class="o">);</span>
+        <span class="o">});</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">5000</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="n">t</span><span class="o">.</span><span class="na">interrupt</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+
+<span class="cm">/*
+Outputs:
+Tue Dec 19 23:56:54 CST 2017: start
+Tue Dec 19 23:56:54 CST 2017: running
+Tue Dec 19 23:56:55 CST 2017: running
+Tue Dec 19 23:56:56 CST 2017: running
+Tue Dec 19 23:56:57 CST 2017: running
+Tue Dec 19 23:56:58 CST 2017: running
+Tue Dec 19 23:56:59 CST 2017: interrupted when sleeping
+Tue Dec 19 23:56:59 CST 2017: end
+*/</span>
+</code></pre></div></div>
+
+<p>We can now call the <code class="highlighter-rouge">Thread.interrupted()</code> method to check whether current thread has been interrupted. Note that when an <code class="highlighter-rouge">InterruptedException</code> is thrown, the interrupt flag will be reset, so we need to set the flag again to break the cycle in the <code class="highlighter-rouge">catch</code> block.</p>
+
+<h2 id="summary">Summary</h2>
+<p>The <code class="highlighter-rouge">concurrent programming</code> in Java is a very complex and important topic. Today I only introduced the tip of the iceberg, but if you want to be a proficient java programmer, you must familiar youself with the concurrent programming.</p>
+
+</div>
+
+		
+		<div class="footer">
+	<hr/>
+	<div class="footer-link">
+		
+		<a href="https://www.facebook.com/none"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+		
+
+		
+		<a href="https://twitter.com/dontsay_lazy"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+		
+
+		
+		<a href="https://github.com/CuiH"><i class="fa fa-github" aria-hidden="true"></i></a>
+		
+
+		
+		<a href="https://www.linkedin.com/in/hao-cui-3ab90214b"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+		
+
+		
+		<a href="mailto:hcui1995@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+		
+	</div>
+
+	© 2018 CuiH. All rights reserved.
+</div>
+
+	</div>
+</body>
+</html>

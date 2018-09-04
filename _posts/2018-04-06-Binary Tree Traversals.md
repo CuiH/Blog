@@ -1,7 +1,7 @@
 ---
 layout:      post
 title:       "Binary Tree Traversals"
-date:        2018-04-06 00:30:00 -0500
+date:        2018-04-06 00:30:00 -0700
 tags:        algorithm
 description: "Various ways to traverse a binary tree."
 ---

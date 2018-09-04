@@ -1,7 +1,7 @@
 ---
 layout:      post
 title:       "Java Memory Model"
-date:        2018-01-28 23:00:00 -0500
+date:        2018-01-28 23:00:00 -0700
 tags:        java
 description: "The stack memory and heap memory in JVM."
 ---

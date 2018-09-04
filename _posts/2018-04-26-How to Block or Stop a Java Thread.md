@@ -1,7 +1,7 @@
 ---
 layout:      post
 title:       "How to Block/Stop a Thread in Java"
-date:        2018-04-26 23:18:21 -0500
+date:        2018-04-26 23:18:21 -0700
 tags:        java
 description: "Several ways to affect the execution of a Java thread."
 ---

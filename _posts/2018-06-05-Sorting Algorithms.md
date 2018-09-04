@@ -1,7 +1,7 @@
 ---
 layout:      post
 title:       "Sorting Algorithms"
-date:        2018-06-05 23:00:00 -0500
+date:        2018-06-05 23:00:00 -0700
 tags:        algorithm
 description: "The principles and implementations of seven commonly seen sorting algorithms."
 ---

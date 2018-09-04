@@ -1,7 +1,7 @@
 ---
 layout:      post
 title:       "A Bug Caused by MySQL Triggers"
-date:        2018-07-18 22:28:22 -0500
+date:        2018-07-18 22:28:22 -0700
 tags:        web mysql
 description: "Something you may not know about the MySQL syntax."
 ---

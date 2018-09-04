@@ -1,7 +1,7 @@
 ---
 layout:      post
 title:       "Dynamic Programming and Knapsack Problems"
-date:        2018-06-24 23:30:00 -0500
+date:        2018-06-24 23:30:00 -0700
 tags:        algorithm
 description: "The introduction to dynamic programming and three typical knapsack problems."
 ---

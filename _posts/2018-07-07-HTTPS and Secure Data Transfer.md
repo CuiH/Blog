@@ -1,7 +1,7 @@
 ---
 layout:      post
 title:       "SSL/TLS and Secure Transmission"
-date:        2018-07-07 22:14:22 -0500
+date:        2018-07-07 22:14:22 -0700
 tags:        web
 description: "How to send messages securely under an insecure network."
 ---

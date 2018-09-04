@@ -1,7 +1,7 @@
 ---
 layout:      post
 title:       "The Singleton Design Pattern"
-date:        2018-02-08 23:00:00 -0500
+date:        2018-02-08 23:00:00 -0700
 tags:        design-pattern
 description: "Different Java implementations of singleton design pattern, including a thread-safe one with high performance."
 ---

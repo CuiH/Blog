@@ -1,7 +1,7 @@
 ---
 layout:      post
 title:       "HashMap in Java 8"
-date:        2018-05-22 21:00:00 -0500
+date:        2018-05-22 21:00:00 -0700
 tags:        java
 description: "Analyzing the source code of HashMap in JDK 1.8, and comparing it with the previous version."
 ---

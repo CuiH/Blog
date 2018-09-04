@@ -27,8 +27,6 @@ nav:
     url:            "/archive"
   - name:           "tags"
     url:            "/tags"
-  - name:           "works"
-    url:            "/works"
 
 
 # Sass

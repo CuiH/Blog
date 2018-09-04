@@ -1,7 +1,7 @@
 ---
 layout:      post
 title:       "Reverse a Singly Linked List"
-date:        2018-03-17 23:30:00 -0500
+date:        2018-03-17 23:30:00 -0700
 tags:        algorithm
 description: "Four ways to reverse a singly linked list."
 ---

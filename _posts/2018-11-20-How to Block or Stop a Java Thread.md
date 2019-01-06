@@ -1,12 +1,13 @@
 ---
 layout:      post
 title:       "How to Block/Stop a Thread in Java"
-date:        2018-04-26 23:18:21 -0700
+date:        2018-11-20 23:18:21 -0700
 tags:        java
 description: "Several ways to affect the execution of a Java thread."
 ---
 
 ## Thread states
+
 The `state transition` of threads in Java is the fundamental of today's topic. Basically, there are six possible states:
 
 * NEW: a thread is created, but not started.
@@ -17,6 +18,7 @@ The `state transition` of threads in Java is the fundamental of today's topic. B
 * TERMINATED: a thread that has completed execution.
 
 ## sleep()
+
 A simple way to affect the execution of a thread is to invoke the `Thread.sleep()`. This is a `static` method that sleeps the `currently running` thread. This method can be called when a thread runs too fast or the program wants other threads to have the chance to execute. There are some facts:
 
 * The parameter `millis` of `Thread.sleep()`` only guarantees the minimum sleeping time.
@@ -80,6 +82,7 @@ Tue Dec 19 00:47:49 CST 2017: end of t1
 When `t1` is sleeping, it does not release the `resource`, so `t2` will not finish until `t1` wakes up and releases the `resource`.
 
 ## yield()
+
 If a thread has finished all works in one round, the program can give a hint to the scheduler that other threads can occupy the CPU. `Thread.yield()` is a `static` method that `suggests` the scheduler other threads with the `same priority` can now be executed. Note that for `Thread.yield()`,
 
 * It is only a suggestion, that it will not guarantee the yield of a thread.
@@ -87,6 +90,7 @@ If a thread has finished all works in one round, the program can give a hint to 
 * It does not have any synchronization semantic, which means it will not release any lock that it holds.
 
 ## join()
+
 `join()` is a non-static method in class Thread that `appends` current thread to the end of another thread. When a thread invokes `t.join()` on another thread `t`, the first thread will be `suspended` until the second thread completes. Let's see an example:
 
 ``` java
@@ -140,6 +144,7 @@ Tue Dec 19 15:38:10 CST 2017: end of t2
 * After Java SE5, there's a better choice -- `CyclicBarrier`, which is a substitute for `join()`.
 
 ## wait() and notify()
+
 There's another mechanism that supports multi-thread interactions. `wait()` enables a thread to wait for the change of a certain condition. When `wait()` is called on an `"resource"`, the current thread will be suspended until the method `notify()` is called on the same `"resource"`. `wait()` and `notify()` are methods declared in class `Object`, which enables a thread to wait for any `"resource"`. Note that:
 
 * An overloaded version of `wait()` accepts a `maximum waiting time`, so a waiting thread will also be awakened when the waiting time exceeds the limit.
@@ -216,6 +221,7 @@ Tue Dec 19 17:58:17 CST 2017: end of t2
 When `notify()` or `notifyAll()` is called, the status of the threads that are waiting on this object will change from `WAITING` to `BLOCKED`, and they will then compete for the object lock. If one thread reacquires the lock after the notifying thread releases the lock, its status will become `RUNNABLE`. Therefore, `notify()` or `notifyAll()` will `not` cause the release of the lock. 
 
 ## suspend() and resume() (deprecated)
+
 Sometimes we may want to stop a thread for a while. Previously, there are a pair of methods `suspend() and resume()` declared in class `Thread`, but as explained in the `Javadoc`, they are `inherently deadlock-prone` and thus `deprecated`:
 
 > If the target thread holds a lock on the monitor protecting a critical system resource when it is suspended, no thread can access this resource until the target thread is resumed. If the thread that would resume the target thread attempts to lock this monitor prior to calling `resume`, deadlock results.
@@ -223,6 +229,7 @@ Sometimes we may want to stop a thread for a while. Previously, there are a pair
 A suspended thread will `not` release any lock it holds, so the above words are easy to understand.
 
 ## stop() (deprecated)
+
 `stop()` is also `deprecated` due to `inherently unsafe`:
 
 > Stopping a thread with Thread.stop() causes it to unlock all of the monitors that it has locked (as a natural consequence of the unchecked `ThreadDeath` exception propagating up the stack). If any of the objects previously protected by these monitors were in an inconsistent state, the damaged objects become visible to other threads, potentially resulting in arbitrary behavior.
@@ -273,6 +280,7 @@ public synchronized boolean add(E e) {
 Now if we `stop` a thread that is interacting with a vector, the target thread will immediately release the lock that protects this vector, and thus other threads can read from or write to this vector `inconsistently`. For instance, if the `elementCount` has been increased by one and the thread is stopped before the actual data is witten to the array, another thread that tries to read the last element may acquire the vector lock and get a non-existent value. 
 
 ## Status flag
+
 How to stop a thread then? A simple way is to use a boolean variable as a flag:
 
 ``` java
@@ -328,6 +336,7 @@ Tue Dec 19 22:34:08 CST 2017: end
 Every round, the thread will check the boolean flag `canceled` to decide whether to break the cycle or not. Note that `canceled` is a `volatile` variable, which ensures that operations on this variable are thread-safe in this case.
 
 ## interrupt()
+
 The above method can stop a thread at the beginning of a certain round of cycle, but we may also want to stop a `WAITING` or `BLOCKED` thread. In previous examples, methods like `Thread.sleep()` and `Object.wait()` may throw exceptions called `InterruptedException`. This can help us stop such threads.
 
 As you can imagine, interrupting a `WAITING` or `BLOCKED` thread is more complicate than stopping a thread after it finishes one round of cycle. You'll need to deal with the `aftermaths` such as `tidying up` the resources, which is similar to handling an exception in a `try-catch` block.
@@ -386,4 +395,5 @@ Tue Dec 19 23:56:59 CST 2017: end
 We can now call the `Thread.interrupted()` method to check whether current thread has been interrupted. Note that when an `InterruptedException` is thrown, the interrupt flag will be reset, so we need to set the flag again to break the cycle in the `catch` block.
 
 ## Summary
+
 The `concurrent programming` in Java is a very complex and important topic. Today I only introduced the tip of the iceberg, but if you want to be a proficient java programmer, you must familiar youself with the concurrent programming.

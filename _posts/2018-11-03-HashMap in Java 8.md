@@ -1,15 +1,17 @@
 ---
 layout:      post
 title:       "HashMap in Java 8"
-date:        2018-05-22 21:00:00 -0700
+date:        2018-11-03 21:00:00 -0700
 tags:        java
 description: "Analyzing the source code of HashMap in JDK 1.8, and comparing it with the previous version."
 ---
 
 ## Overview
+
 In `JDK 1.8`, the `HashMap` was optimized and implemented differently from the previous version. Some new data structures are added to improve the performance, but the overall design idea is still the same.
 
 ## Hash
+
 First, we start with `hash`. Say we have a large amount of data pairs, such as a phone book:
 
 ```
@@ -29,23 +31,29 @@ As we know, we can access any item from an array by index within `O(1)` time, so
 The essence of hash is a `mapping function`, compressing inputs into fixed-length outputs, which is popular in cryptology. In our case, we `hash` keys to array indices, so we can access values within constant time.
 
 ## The implementation of hash
+
 There are three typical implementations of hash, including `static hash`, `extendable hash` and `linear hash`. To have a better understanding of HashMap, I will use examples in `DBMS` to introduce the first two.
 
 ### Static hash
+
 This is the simplest hash. Suppose we have N buckets, and for any input, we use hash function `h` to calculate its index, and then insert it to that bucket. If that bucket is full, we use `overflow chains`:
 
-![](/assets/images/180522/0-0.png)
+![](/assets/images/181103/0-0.png)
 
 ### Extendable hash
+
 Searching in a overflow chain has linear time complexity. To avoid this, we can duplicate the number of buckets before a chain is created, and redistribute all data items. However, the cost is high to access all data, so extendable hash maintains a `category` of all bucktes. When inserting data to a full bucket, the original bucket splits, and the category duplicates (this is only a simple example, not including the concepts of `global depth` and `local depth`):
 
 1. The original data:
-![](/assets/images/180522/1-0.png)
+
+![](/assets/images/181103/1-0.png)
 
 2. Insert `9`. The category will be duplicated.
-![](/assets/images/180522/1-1.png)
+
+![](/assets/images/181103/1-1.png)
 
 ## hashCode() and equals()
+
 By here, everyone should know that if the hash values of two data items are the same, their actual values can be different. As we know, there are two methods, `hashCode()` and `equals()`, defined in class `Object`. HashMap use them to judge whether a key exists in the map, and which `bucket` should it be put into: when searching for a value, Java invokes `hashCode()` first to get the hash value of the key, and then finds the target bucket, invoking `equals()` of every data item inside the bucket to find the target data item.
 
 Note that we can override these two methods to implement our own concept of `equality`. For example, for class `Person`:
@@ -95,6 +103,7 @@ System.out.println(contact.size());     // 1
 ```
 
 ## HashMap in Java
+
 The implementation of HashMap in Java is similar to `the combination of static hash and extendable hash`. Before JDK 1.8, HashMap was stored by `array + linked list`, Keys were mapped to indices of an array, and a doubly linked list was used to implement every bucket. When searching, JDK first found the bucket by hash value, and then traversed the list to get the target data item.
 
 The results of a hash function may collide, which means two different data items could be mapped to the same bucket. It is easy to conclude that if we don't take `data skews` into consideration, for a certain amount of data, the probability of collision depends on the performance of the hash function as well as the number of buckets. Java has done well in the `degree of hash`, so how to possibly avoid collisions without wasting spaces? The answer is to use a `dynamic exdentable data structure`. The initial number of buckets is small, but as we add more data items, the array will be extended after reaching a threshold.
@@ -104,6 +113,7 @@ In JDK 1.8, an important optimization is, if there are too many data items insid
 To sum up, the HashMap in Java 8 is implemented by `array + linkedlist + red-black tree`.
 
 ### Important members
+
 Some important members in class HashMap:
 
 ```java
@@ -127,6 +137,7 @@ static final int TREEIFY_THRESHOLD = 8;
 Note that the number of buckets in HashMap is always `a power of 2`. You will see the convenience brought by this later.
 
 ### Method hash()
+
 ```java
 static final int hash(Object key) {
     int h;
@@ -149,6 +160,7 @@ static int indexFor(int h, int length) {
 We know that the efficiency of mod operation is low, while `bitwise operation` is much more efficient. Due to the size of buckets, which is alway `a power of 2`, we can simply do a `bitwise AND` operation between the input and `the number of buckets minus one`. The result is the same as a mod operation, but it runs faster. In JDK 1.8, this function is deleted, and instead this line of code will be executed whenever an index is needed.
 
 ### Method put()
+
 ```java
 public V put(K key, V value) {
     return putVal(hash(key), key, value, false, true);
@@ -274,6 +286,7 @@ afterNodeInsertion(evict);
 They are not used in HashMap, but will be implemented in `LinkedHashMap`.
 
 ### Method resize()
+
 ```java
 final Node<K,V>[] resize() {
     Node<K,V>[] oldTab = table;
@@ -400,11 +413,11 @@ After the split, data in the original bucket will be splited into two different 
 
 When judging which bucket a Node belongs to, there's a trick. As we mentioned before, we can calculate the index by `hash % size of the array`. Since the size is always `a power of two`, the `last n bits` of the hash value decide its index. For example, say we have two Nodes a, b:
 
-![](/assets/images/180522/2-1.png)
+![](/assets/images/181103/2-1.png)
 
 Now the size of the expanded array is `2 ^ (n +1)`. The last `n` bits of all nodes in this array are the same, so the `n + 1`th Node counting from the back will decide its new index, whether to move to another bucket, or remain in the previous one. Therefore, we can simply do an bitwise AND operation on the hash value and the the original size of the array, that is, `2 ^ n`. If the result is not `0`, we know that this Node should be moved to a new bucket.
 
-![](/assets/images/180522/2-2.png)
+![](/assets/images/181103/2-2.png)
 
 After spliting the list, one of them will be linked to a new bucket:
 
@@ -421,11 +434,12 @@ if (hiTail != null) {
 
 Since the size of the array is two times as the original one, the new index can be decided by `old position + oldCap`:
 
-![](/assets/images/180522/2-3.png)
+![](/assets/images/181103/2-3.png)
 
 In JDK 1.7, the index for every node will be recalculated after expansion. JDK 1.8 made some optimizations to increase the efficiency.
 
 ### Method get()
+
 After all the analysis above, the implementation of `get()` can be easy to understand, so I will not introduce it. Here's the source code:
 
 ```java
@@ -456,4 +470,5 @@ final Node<K,V> getNode(int hash, Object key) {
 ```
 
 ## Summary
+
 Hash is a very important function, which is widely applied in the field of Computer Science. We always use `HashMap`, but if we understand the underlying principles of its implementation, we can make better use of it. Besides, reading the source code is always an interesting process.

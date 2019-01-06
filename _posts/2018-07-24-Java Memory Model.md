@@ -1,15 +1,17 @@
 ---
 layout:      post
 title:       "Java Memory Model"
-date:        2018-01-28 23:00:00 -0700
+date:        2018-07-24 23:11:20 -0700
 tags:        java
 description: "The stack memory and heap memory in JVM."
 ---
 
 ## What is Java Virtual Machine (JVM)?
+
 One of the most important characteristics of Java is that it is `platform-independent`, which is fulfilled by the `JVM`. JVM has its own instruction sets and registers, so java codes can ignore the implementation of the underlying operating system, and only need to generate bytecodes that JVM can read. When running, JVM will first convert the bytecode to native machine code of the host platform and then execute.
 
 ## The structure of JVM
+
 The memory of JVM consists mainly of the following areas:
 
 * Method area: storing information of the loaded classes, along with those `static` variables. It is the `permanent generation` in `garbage collection (GC)`, and is `thread-sharing`.
@@ -20,12 +22,14 @@ The memory of JVM consists mainly of the following areas:
 * Heap: the largest area that JVM memory controls, 'thread-sharing'. All memory of objects that are created by `new` operations are allocated here (including instances of objects and arrays). It is the main active area of `GC`.
 
 ## The memory allocation in Java
+
 In general, Java treats basic data types and objects differently in memory allocation:
 
 * Basic data types: including byte, short, int, long, float, double, boolean, char. When declaring these variables in methods, JVM will directly allocate spaces for them in `thread stack`. If a variable is beyond its scope, it space will be released.
 * Objects created by `new` operations (including arrays): Their spaces will be allocated in `heap`,  and a `reference to the address` will be created in stack if needed. If an object is not referenced by any variable, its space won't be realeased immediately, but will be collected by GC at a `certain` time (decided by many factors).
 
 ## Stack memory, heap memory and parameter passing
+
 Different from C++, there's no `pointer` in Java. Objecets are created in heap, while programs are executed in stack, so we are operating the `reference to object` all the time. For example, let's see the following code:
 
 ```java
@@ -82,6 +86,7 @@ In JVM, stack can be read or written much faster than heap, so for basic data ty
 *Attention: If you use Java's `wrapper class` such as `Integer`, or arrays of basic data types such as `int[]`, the result will be the same as the first example. You may find the main difference is: whether it is created by a `new` operation.
 
 ## A special data type: String
+
 You should notice that the eight basic data types mentioned above do not include `String`, but you don't need to `new` a String, why? Let's see an example:
 
 ```java

@@ -1,12 +1,13 @@
 ---
 layout:      post
 title:       "Reverse a Singly Linked List"
-date:        2018-03-17 23:30:00 -0700
+date:        2018-09-02 19:30:01 -0700
 tags:        algorithm
 description: "Four ways to reverse a singly linked list."
 ---
 
 ## Overview
+
 There are four common ways to reverse a singly linked list. I will introduce them one by one. The class `Node` is defined as follows:
 
 ```java
@@ -23,6 +24,7 @@ public class Node {
 ```
 
 ## With the help of an array
+
 If we traverse the linked list and store every node in a `ramdomly accessible` data structure, such as an `array`, we can then traverse the array reversely and construct the reversed linked list. Here's the code:
 
 ```java
@@ -54,22 +56,28 @@ public Node reverseSinglyLinkedList1(Node head) {
 Obviously, the biggest problem of this solution is that it consumes too much `space`, because we need to construct a data structure with the same length as the original linked list.
 
 ## Continuously moving nodes from the original list to the head of the new list
+
 This is another easy solution. What we should do is to move every node from the original list to the head of the new list. Let's see the example of `1 -> 2 -> 3 -> 4 -> 5 -> null`:
 
 1. Initialization: `newHead` points to `null`, `head` points to the head of the original list.
-![](/assets/images/180317/3-0.png)
+
+![](/assets/images/180902/3-0.png)
 
 2. Enter the loop: `temp` points to the next node of `head`; set `head.next` to `newHead`.
-![](/assets/images/180317/3-1.png)
+
+![](/assets/images/180902/3-1.png)
 
 3. Move forward: `newHead` points to `head`; `head` points to `temp`.
-![](/assets/images/180317/3-2.png)
+
+![](/assets/images/180902/3-2.png)
 
 4. Begin the next loop.
-![](/assets/images/180317/3-3.png)
+
+![](/assets/images/180902/3-3.png)
 
 5. Loop until `head` points to `null`. Now `newHead` points to the head of the reversed list.
-![](/assets/images/180317/3-4.png)
+
+![](/assets/images/180902/3-4.png)
 
 The code is here:
 
@@ -94,22 +102,28 @@ public Node reverseSinglyLinkedList3(Node head) {
 ```
 
 ## Continuously inserting the next node of the head of the original list after the head of the new list
+
 We need to construct a `helper node` in this case, and link it to the head of the original list. Then we keep inserting the `next node of the original list` after the `helper node`, until the next node of the original list is `null`. Now the `next node of the helper node` is the head of the reversed list. The algorithm is like:
 
 1. Initialization: construct the helper node `newHead`, and link it to the head of the original list.
-![](/assets/images/180317/4-0.png)
+
+![](/assets/images/180902/4-0.png)
 
 2. Enter the loop: `temp` points to the next node of `head`.
-![](/assets/images/180317/4-1.png)
+
+![](/assets/images/180902/4-1.png)
 
 3. Insertion: set `head.next` to the next node of `temp`; set `temp.next` to the next node of `newHead`; set `newHead.next` to `temp`. Now we have inserted the next node of `head` to the position right after the `newHead`.
-![](/assets/images/180317/4-2.png)
+
+![](/assets/images/180902/4-2.png)
 
 4. Begin the next loop, and handle like process #2 and process #3.
-![](/assets/images/180317/4-3.png)
+
+![](/assets/images/180902/4-3.png)
 
 5. Loop until the next node of `head` is `null`. Now the next node of `newHead` is the head of the reversed list.
-![](/assets/images/180317/4-4.png)
+
+![](/assets/images/180902/4-4.png)
 
 The key point of this algorithm is: `newHead` and `head` always point to the same node, and move the node after the `head` to the next position of `newHead`. The code is as follows:
 
@@ -135,6 +149,7 @@ public Node reverseSinglyLinkedList4(Node head) {
 ```
 
 ## Recursion
+
 We can also reverse a linked list with recursion, the advantage of which is the short code, but maybe it's not that simple to understand.
 
 The thinking is:
@@ -172,6 +187,7 @@ private Node reverseRecursively(Node head) {
 ```
 
 ## An example on Leetcode
+
 There are many peoblems regarding linked lists on `Leetcode`. Here I choose the `#25 Reverse Nodes in k-Group`:
 
 > Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.

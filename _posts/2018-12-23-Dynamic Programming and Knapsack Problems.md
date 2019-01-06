@@ -1,15 +1,17 @@
 ---
 layout:      post
 title:       "Dynamic Programming and Knapsack Problems"
-date:        2018-06-24 23:30:00 -0700
+date:        2018-12-23 22:19:05 -0700
 tags:        algorithm
 description: "The introduction to dynamic programming and three typical knapsack problems."
 ---
 
 ## Overview
+
 `Dynamic Programming (DP)` is very common in sloving problems. Many people tend to think that it is difficult, but actually, if you understand the principles, it can be easy to use. In this blog, I will give a brief introduction to DP and analyze with maybe the most typical DP problem, the `knapsack problem (s)`.
 
 ## An example
+
 Let's see a problem on Leetcode first, `#322 Coin Change`:
 
 > You are given coins of different denominations and a total amount of money amount. Write a function to compute the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.
@@ -27,6 +29,7 @@ Let's see a problem on Leetcode first, `#322 Coin Change`:
 At the first sight, a brute-force solution is quite straight-forward, that is, try every possible combinations and find the optimal one. So why don't we start with that?
 
 ### The easiest recursive solution
+
 It sounds good to handle this problem with recursion, and the code is rather simple:
 
 ```java
@@ -48,6 +51,7 @@ public int coinChangeWithRecursion(int[] coins, int amount) {
 However, obviously, this may cause a TLE, because the code does many duplicate works. For example, if we have coins `[1, 2, 3]`, and the target amount is `20`. When we reach amount `1 + 2 + 2 (= 5)` and `2 + 3 (= 5)`, the rest of the code will do the same job, that try to find the minimum coins to make up `(20 - 5 =) 15`. As the target amount becomes larger, there will be exponentially more duplicate calculations. So, how to improve?
 
 ### Recursion with memorization
+
 As we have analyzed the drawback of the recursive solution, an intuitive improvement is to memorize every minCount (amount) we have already calculated:
 
 ```java
@@ -81,6 +85,7 @@ public int coinChangeWithRecursionAndMemorization(int[] coins, int amount) {
 This solution can pass the online judge, but we still need to invoke this method many times. Can we get the result with only one invocation? Maybe we can use an array.
 
 ### A better solution -- DP
+
 Since we'll always calculate from big `amount` to small `amount`, why don't we start from small `amount` and remember the results, so big `amount` can directly make use of them:
 
 ```java
@@ -103,6 +108,7 @@ public int coinChangeWithDP(int[] coins, int amount) {
 This is the so-called `DP`.
 
 ## The simplest knapsack problem
+
 Now that we have learnt what `DP` is, we can move to perhaps the most typical DP problem, the `knapsack problem`. Actually, there are many variations, so we will begin with the simplest one, the `0/1 knapsack problem`.
 
 > Suppose there are many objects with different weights and values, and you have a knapsack of limited capacity, how to fill in the knapsack to achieve the greatest total value?
@@ -138,6 +144,7 @@ for i = [0 ... n)
 ```
 
 ## The complete knapsack problem
+
 It is similar to the 0/1 knapsack, but this time, we can use an item multiple times. It's simple! As I mentioned above, we start from the back to avoid counting one item more than once, so for a `complete knapsack`, we just simply start from the beginning:
 
 ```
@@ -147,6 +154,7 @@ for i = [0 ... n)
 ```
 
 ## The multidimensional knapsack problem
+
 There is an example on LeetCode, `#474 Ones and Zeroes`:
 
 > In the computer world, use restricted resource you have to generate maximum benefit is what we always want to pursue.
@@ -186,4 +194,5 @@ public int findMaxForm(String[] strs, int m, int n) {
 ```
 
 ## Summary
+
 DP is a very powerful tool, but to know whether a problem can be solved with DP, and how to derive the state transition equation, you need to do many exercises.

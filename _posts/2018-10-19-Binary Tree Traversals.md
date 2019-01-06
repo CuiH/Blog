@@ -1,12 +1,13 @@
 ---
 layout:      post
 title:       "Binary Tree Traversals"
-date:        2018-04-06 00:30:00 -0700
+date:        2018-10-19 00:30:11 -0700
 tags:        algorithm
 description: "Various ways to traverse a binary tree."
 ---
 
 ## Overview
+
 The `binary tree` is a very classical data structure, and we have various ways to perform preorder, inorder and postorder traversals on it. The class `TreeNode` used in this blog is defined as follows:
 
 ```java
@@ -21,9 +22,10 @@ public class TreeNode {
 
 If there's no special statement, we'll use this tree in our examples:
 
-![](/assets/images/180406/0-0.png)
+![](/assets/images/181019/0-0.png)
 
 ## Recursive travesals
+
 This may be the simplest algorithm of traversing, so I just post the code here:
 
 ```java
@@ -57,9 +59,11 @@ public void postorderWithRecursion(TreeNode root, List<Integer> res) {
 ```
 
 ## Traversing with a stack
+
 The key point of traversing a binary tree is how to go back to the parent node and traverse another child after we have traversed one child. Here we can use a `stack` to record visited nodes, and its `fitst-in-first-out` feature will perfectly help us go back to the parent after the traversing a subtree.
 
 ### Preorder traversal
+
 1. As for the current node, traverse along the `left child`, and keep outputing and pushing to the stack, until current node points to `null`.
 2. Pop the top node from the stack, and its `right child` will become the current node.
 3. Repeat process #1 and #2, until current node points to `null` and the stack is empty.
@@ -89,6 +93,7 @@ public List<Integer> preorderWithStack(TreeNode root) {
 ```
 
 ### Inorder traversal
+
 The thinking is similar to the preorder one, but this time we output at the time of popping (from stack). Here's the code:
 
 ```java
@@ -115,6 +120,7 @@ public List<Integer> inorderWithStack(TreeNode root) {
 ```
 
 ### Postorder traversal
+
 This could be a little bit complicate. The point is, we should ensure that the parent node is not outputed until all of his children are traversed. A common method is to remember the last outputed node. Here are three possible ideas.
 
 #### a) Just like the previous solution:
@@ -220,6 +226,7 @@ public List<Integer> postorderWithTwoStacks(TreeNode root) {
 ```
 
 ## Level Traversal
+
 In some cases, we want to traverse a binary tree level by level. Obviously, using `queue` is a good choice. It's simple so I only post the code here:
 
 ```java
@@ -244,6 +251,7 @@ public List<Integer> levelTraversal(TreeNode root) {
 ```
 
 ## Morris Traversal
+
 The average space complexity of all of the algorithms above, except the recursive ones and the two-stack solution, is `O(logn)`. Is there any binary tree traversal algorithm that consumes only `O(1)` space? The answer is "yes".
 Such method is called the `Morris Traversal`. Here is the description of the `inorder` one：
 
@@ -262,40 +270,52 @@ The ingenuity of this algorithm is that we utilize the empty space `inside` the 
 As for our example, a detailed description is:
 
 1. The original tree.
-![](/assets/images/180406/T-0.png)
+
+![](/assets/images/181019/T-0.png)
 
 2. Find the predecessor and change its right child, and then traverse the left subtree of current node.
-![](/assets/images/180406/T-1.png)
+
+![](/assets/images/181019/T-1.png)
 
 3. The same as above.
-![](/assets/images/180406/T-2.png)
+
+![](/assets/images/181019/T-2.png)
 
 4. The left child is `null`, so output current node.
-![](/assets/images/180406/T-3.png)
+
+![](/assets/images/181019/T-3.png)
 
 5. Traverse the right subtree, and come back to the parent.
-![](/assets/images/180406/T-4.png)
+
+![](/assets/images/181019/T-4.png)
 
 6. The right child of the predecessor is self, so revert it and output current node. Traverse the right subtree.
-![](/assets/images/180406/T-5.png)
+
+![](/assets/images/181019/T-5.png)
 
 7. Handle the predecessor, and traverse the left subtree.
-![](/assets/images/180406/T-6.png)
+
+![](/assets/images/181019/T-6.png)
 
 8. The left child is null, so output current node. Traverse the right subtree, and come back to the parent.
-![](/assets/images/180406/T-7.png)
+
+![](/assets/images/181019/T-7.png)
 
 9. The right child of the predecessor is self, so revert it and output current node. Traverse the right subtree and come back to the parent.
-![](/assets/images/180406/T-8.png)
+
+![](/assets/images/181019/T-8.png)
 
 10. The right child of the predecessor is self, so revert it and output current node. Traverse the right subtree.
-![](/assets/images/180406/T-9.png)
+
+![](/assets/images/181019/T-9.png)
 
 11. The left child is `null`, so output current node, and traverse the right subtree.
-![](/assets/images/180406/T-10.png)
+
+![](/assets/images/181019/T-10.png)
 
 12. The same as above. Finsh the traversal.
-![](/assets/images/180406/T-11.png)
+
+![](/assets/images/181019/T-11.png)
 
 Here's the code:
 

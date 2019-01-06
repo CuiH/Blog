@@ -20,14 +20,14 @@
 	<div class="content-container">
 		<header>
 	<div class="header-small">
-		<a href="http://cuih.xyz">Life is a Struggle</a>
+		<a href="http://cuih.xyz">La vie est drôle</a>
 	</div>
 </header>
 
 <div class="post">
 	<div class="post-title">Binary Tree Traversals</div>
 	<span class="post-date">
-		<time>06 Apr 2018</time>
+		<time>19 Oct 2018</time>
 	</span>
 	<div class="post-tag">
 		<ul>
@@ -43,6 +43,7 @@
 	</div>
 
 	<h2 id="overview">Overview</h2>
+
 <p>The <code class="highlighter-rouge">binary tree</code> is a very classical data structure, and we have various ways to perform preorder, inorder and postorder traversals on it. The class <code class="highlighter-rouge">TreeNode</code> used in this blog is defined as follows:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TreeNode</span> <span class="o">{</span>
@@ -56,9 +57,10 @@
 
 <p>If there’s no special statement, we’ll use this tree in our examples:</p>
 
-<p><img src="/assets/images/180406/0-0.png" alt="" /></p>
+<p><img src="/assets/images/181019/0-0.png" alt="" /></p>
 
 <h2 id="recursive-travesals">Recursive travesals</h2>
+
 <p>This may be the simplest algorithm of traversing, so I just post the code here:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">preorderWithRecursion</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">res</span><span class="o">)</span> <span class="o">{</span>
@@ -91,9 +93,11 @@
 </code></pre></div></div>
 
 <h2 id="traversing-with-a-stack">Traversing with a stack</h2>
+
 <p>The key point of traversing a binary tree is how to go back to the parent node and traverse another child after we have traversed one child. Here we can use a <code class="highlighter-rouge">stack</code> to record visited nodes, and its <code class="highlighter-rouge">fitst-in-first-out</code> feature will perfectly help us go back to the parent after the traversing a subtree.</p>
 
 <h3 id="preorder-traversal">Preorder traversal</h3>
+
 <ol>
   <li>As for the current node, traverse along the <code class="highlighter-rouge">left child</code>, and keep outputing and pushing to the stack, until current node points to <code class="highlighter-rouge">null</code>.</li>
   <li>Pop the top node from the stack, and its <code class="highlighter-rouge">right child</code> will become the current node.</li>
@@ -124,6 +128,7 @@
 </code></pre></div></div>
 
 <h3 id="inorder-traversal">Inorder traversal</h3>
+
 <p>The thinking is similar to the preorder one, but this time we output at the time of popping (from stack). Here’s the code:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">inorderWithStack</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="o">)</span> <span class="o">{</span>
@@ -149,6 +154,7 @@
 </code></pre></div></div>
 
 <h3 id="postorder-traversal">Postorder traversal</h3>
+
 <p>This could be a little bit complicate. The point is, we should ensure that the parent node is not outputed until all of his children are traversed. A common method is to remember the last outputed node. Here are three possible ideas.</p>
 
 <h4 id="a-just-like-the-previous-solution">a) Just like the previous solution:</h4>
@@ -253,6 +259,7 @@
 </code></pre></div></div>
 
 <h2 id="level-traversal">Level Traversal</h2>
+
 <p>In some cases, we want to traverse a binary tree level by level. Obviously, using <code class="highlighter-rouge">queue</code> is a good choice. It’s simple so I only post the code here:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">levelTraversal</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="o">)</span> <span class="o">{</span>
@@ -276,6 +283,7 @@
 </code></pre></div></div>
 
 <h2 id="morris-traversal">Morris Traversal</h2>
+
 <p>The average space complexity of all of the algorithms above, except the recursive ones and the two-stack solution, is <code class="highlighter-rouge">O(logn)</code>. Is there any binary tree traversal algorithm that consumes only <code class="highlighter-rouge">O(1)</code> space? The answer is “yes”.
 Such method is called the <code class="highlighter-rouge">Morris Traversal</code>. Here is the description of the <code class="highlighter-rouge">inorder</code> one：</p>
 
@@ -298,55 +306,76 @@ Such method is called the <code class="highlighter-rouge">Morris Traversal</code
 <p>As for our example, a detailed description is:</p>
 
 <ol>
-  <li>
-    <p>The original tree.
-<img src="/assets/images/180406/T-0.png" alt="" /></p>
-  </li>
-  <li>
-    <p>Find the predecessor and change its right child, and then traverse the left subtree of current node.
-<img src="/assets/images/180406/T-1.png" alt="" /></p>
-  </li>
-  <li>
-    <p>The same as above.
-<img src="/assets/images/180406/T-2.png" alt="" /></p>
-  </li>
-  <li>
-    <p>The left child is <code class="highlighter-rouge">null</code>, so output current node.
-<img src="/assets/images/180406/T-3.png" alt="" /></p>
-  </li>
-  <li>
-    <p>Traverse the right subtree, and come back to the parent.
-<img src="/assets/images/180406/T-4.png" alt="" /></p>
-  </li>
-  <li>
-    <p>The right child of the predecessor is self, so revert it and output current node. Traverse the right subtree.
-<img src="/assets/images/180406/T-5.png" alt="" /></p>
-  </li>
-  <li>
-    <p>Handle the predecessor, and traverse the left subtree.
-<img src="/assets/images/180406/T-6.png" alt="" /></p>
-  </li>
-  <li>
-    <p>The left child is null, so output current node. Traverse the right subtree, and come back to the parent.
-<img src="/assets/images/180406/T-7.png" alt="" /></p>
-  </li>
-  <li>
-    <p>The right child of the predecessor is self, so revert it and output current node. Traverse the right subtree and come back to the parent.
-<img src="/assets/images/180406/T-8.png" alt="" /></p>
-  </li>
-  <li>
-    <p>The right child of the predecessor is self, so revert it and output current node. Traverse the right subtree.
-<img src="/assets/images/180406/T-9.png" alt="" /></p>
-  </li>
-  <li>
-    <p>The left child is <code class="highlighter-rouge">null</code>, so output current node, and traverse the right subtree.
-<img src="/assets/images/180406/T-10.png" alt="" /></p>
-  </li>
-  <li>
-    <p>The same as above. Finsh the traversal.
-<img src="/assets/images/180406/T-11.png" alt="" /></p>
-  </li>
+  <li>The original tree.</li>
 </ol>
+
+<p><img src="/assets/images/181019/T-0.png" alt="" /></p>
+
+<ol>
+  <li>Find the predecessor and change its right child, and then traverse the left subtree of current node.</li>
+</ol>
+
+<p><img src="/assets/images/181019/T-1.png" alt="" /></p>
+
+<ol>
+  <li>The same as above.</li>
+</ol>
+
+<p><img src="/assets/images/181019/T-2.png" alt="" /></p>
+
+<ol>
+  <li>The left child is <code class="highlighter-rouge">null</code>, so output current node.</li>
+</ol>
+
+<p><img src="/assets/images/181019/T-3.png" alt="" /></p>
+
+<ol>
+  <li>Traverse the right subtree, and come back to the parent.</li>
+</ol>
+
+<p><img src="/assets/images/181019/T-4.png" alt="" /></p>
+
+<ol>
+  <li>The right child of the predecessor is self, so revert it and output current node. Traverse the right subtree.</li>
+</ol>
+
+<p><img src="/assets/images/181019/T-5.png" alt="" /></p>
+
+<ol>
+  <li>Handle the predecessor, and traverse the left subtree.</li>
+</ol>
+
+<p><img src="/assets/images/181019/T-6.png" alt="" /></p>
+
+<ol>
+  <li>The left child is null, so output current node. Traverse the right subtree, and come back to the parent.</li>
+</ol>
+
+<p><img src="/assets/images/181019/T-7.png" alt="" /></p>
+
+<ol>
+  <li>The right child of the predecessor is self, so revert it and output current node. Traverse the right subtree and come back to the parent.</li>
+</ol>
+
+<p><img src="/assets/images/181019/T-8.png" alt="" /></p>
+
+<ol>
+  <li>The right child of the predecessor is self, so revert it and output current node. Traverse the right subtree.</li>
+</ol>
+
+<p><img src="/assets/images/181019/T-9.png" alt="" /></p>
+
+<ol>
+  <li>The left child is <code class="highlighter-rouge">null</code>, so output current node, and traverse the right subtree.</li>
+</ol>
+
+<p><img src="/assets/images/181019/T-10.png" alt="" /></p>
+
+<ol>
+  <li>The same as above. Finsh the traversal.</li>
+</ol>
+
+<p><img src="/assets/images/181019/T-11.png" alt="" /></p>
 
 <p>Here’s the code:</p>
 
@@ -406,7 +435,7 @@ Such method is called the <code class="highlighter-rouge">Morris Traversal</code
 		
 	</div>
 
-	© 2018 CuiH. All rights reserved.
+	© 2019 CuiH. All rights reserved.
 </div>
 
 	</div>

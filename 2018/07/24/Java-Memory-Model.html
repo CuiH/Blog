@@ -20,14 +20,14 @@
 	<div class="content-container">
 		<header>
 	<div class="header-small">
-		<a href="http://cuih.xyz">Life is a Struggle</a>
+		<a href="http://cuih.xyz">La vie est drôle</a>
 	</div>
 </header>
 
 <div class="post">
 	<div class="post-title">Java Memory Model</div>
 	<span class="post-date">
-		<time>28 Jan 2018</time>
+		<time>24 Jul 2018</time>
 	</span>
 	<div class="post-tag">
 		<ul>
@@ -43,9 +43,11 @@
 	</div>
 
 	<h2 id="what-is-java-virtual-machine-jvm">What is Java Virtual Machine (JVM)?</h2>
+
 <p>One of the most important characteristics of Java is that it is <code class="highlighter-rouge">platform-independent</code>, which is fulfilled by the <code class="highlighter-rouge">JVM</code>. JVM has its own instruction sets and registers, so java codes can ignore the implementation of the underlying operating system, and only need to generate bytecodes that JVM can read. When running, JVM will first convert the bytecode to native machine code of the host platform and then execute.</p>
 
 <h2 id="the-structure-of-jvm">The structure of JVM</h2>
+
 <p>The memory of JVM consists mainly of the following areas:</p>
 
 <ul>
@@ -58,6 +60,7 @@
 </ul>
 
 <h2 id="the-memory-allocation-in-java">The memory allocation in Java</h2>
+
 <p>In general, Java treats basic data types and objects differently in memory allocation:</p>
 
 <ul>
@@ -66,6 +69,7 @@
 </ul>
 
 <h2 id="stack-memory-heap-memory-and-parameter-passing">Stack memory, heap memory and parameter passing</h2>
+
 <p>Different from C++, there’s no <code class="highlighter-rouge">pointer</code> in Java. Objecets are created in heap, while programs are executed in stack, so we are operating the <code class="highlighter-rouge">reference to object</code> all the time. For example, let’s see the following code:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">A</span> <span class="o">{</span>
@@ -120,6 +124,7 @@
 <p>*Attention: If you use Java’s <code class="highlighter-rouge">wrapper class</code> such as <code class="highlighter-rouge">Integer</code>, or arrays of basic data types such as <code class="highlighter-rouge">int[]</code>, the result will be the same as the first example. You may find the main difference is: whether it is created by a <code class="highlighter-rouge">new</code> operation.</p>
 
 <h2 id="a-special-data-type-string">A special data type: String</h2>
+
 <p>You should notice that the eight basic data types mentioned above do not include <code class="highlighter-rouge">String</code>, but you don’t need to <code class="highlighter-rouge">new</code> a String, why? Let’s see an example:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">String</span> <span class="n">a</span> <span class="o">=</span> <span class="s">"test"</span><span class="o">;</span>
@@ -203,7 +208,7 @@
 		
 	</div>
 
-	© 2018 CuiH. All rights reserved.
+	© 2019 CuiH. All rights reserved.
 </div>
 
 	</div>

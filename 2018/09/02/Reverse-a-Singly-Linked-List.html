@@ -20,14 +20,14 @@
 	<div class="content-container">
 		<header>
 	<div class="header-small">
-		<a href="http://cuih.xyz">Life is a Struggle</a>
+		<a href="http://cuih.xyz">La vie est drôle</a>
 	</div>
 </header>
 
 <div class="post">
 	<div class="post-title">Reverse a Singly Linked List</div>
 	<span class="post-date">
-		<time>17 Mar 2018</time>
+		<time>02 Sep 2018</time>
 	</span>
 	<div class="post-tag">
 		<ul>
@@ -43,6 +43,7 @@
 	</div>
 
 	<h2 id="overview">Overview</h2>
+
 <p>There are four common ways to reverse a singly linked list. I will introduce them one by one. The class <code class="highlighter-rouge">Node</code> is defined as follows:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Node</span> <span class="o">{</span>
@@ -58,6 +59,7 @@
 </code></pre></div></div>
 
 <h2 id="with-the-help-of-an-array">With the help of an array</h2>
+
 <p>If we traverse the linked list and store every node in a <code class="highlighter-rouge">ramdomly accessible</code> data structure, such as an <code class="highlighter-rouge">array</code>, we can then traverse the array reversely and construct the reversed linked list. Here’s the code:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">Node</span> <span class="nf">reverseSinglyLinkedList1</span><span class="o">(</span><span class="n">Node</span> <span class="n">head</span><span class="o">)</span> <span class="o">{</span>
@@ -88,30 +90,38 @@
 <p>Obviously, the biggest problem of this solution is that it consumes too much <code class="highlighter-rouge">space</code>, because we need to construct a data structure with the same length as the original linked list.</p>
 
 <h2 id="continuously-moving-nodes-from-the-original-list-to-the-head-of-the-new-list">Continuously moving nodes from the original list to the head of the new list</h2>
+
 <p>This is another easy solution. What we should do is to move every node from the original list to the head of the new list. Let’s see the example of <code class="highlighter-rouge">1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; null</code>:</p>
 
 <ol>
-  <li>
-    <p>Initialization: <code class="highlighter-rouge">newHead</code> points to <code class="highlighter-rouge">null</code>, <code class="highlighter-rouge">head</code> points to the head of the original list.
-<img src="/assets/images/180317/3-0.png" alt="" /></p>
-  </li>
-  <li>
-    <p>Enter the loop: <code class="highlighter-rouge">temp</code> points to the next node of <code class="highlighter-rouge">head</code>; set <code class="highlighter-rouge">head.next</code> to <code class="highlighter-rouge">newHead</code>.
-<img src="/assets/images/180317/3-1.png" alt="" /></p>
-  </li>
-  <li>
-    <p>Move forward: <code class="highlighter-rouge">newHead</code> points to <code class="highlighter-rouge">head</code>; <code class="highlighter-rouge">head</code> points to <code class="highlighter-rouge">temp</code>.
-<img src="/assets/images/180317/3-2.png" alt="" /></p>
-  </li>
-  <li>
-    <p>Begin the next loop.
-<img src="/assets/images/180317/3-3.png" alt="" /></p>
-  </li>
-  <li>
-    <p>Loop until <code class="highlighter-rouge">head</code> points to <code class="highlighter-rouge">null</code>. Now <code class="highlighter-rouge">newHead</code> points to the head of the reversed list.
-<img src="/assets/images/180317/3-4.png" alt="" /></p>
-  </li>
+  <li>Initialization: <code class="highlighter-rouge">newHead</code> points to <code class="highlighter-rouge">null</code>, <code class="highlighter-rouge">head</code> points to the head of the original list.</li>
 </ol>
+
+<p><img src="/assets/images/180902/3-0.png" alt="" /></p>
+
+<ol>
+  <li>Enter the loop: <code class="highlighter-rouge">temp</code> points to the next node of <code class="highlighter-rouge">head</code>; set <code class="highlighter-rouge">head.next</code> to <code class="highlighter-rouge">newHead</code>.</li>
+</ol>
+
+<p><img src="/assets/images/180902/3-1.png" alt="" /></p>
+
+<ol>
+  <li>Move forward: <code class="highlighter-rouge">newHead</code> points to <code class="highlighter-rouge">head</code>; <code class="highlighter-rouge">head</code> points to <code class="highlighter-rouge">temp</code>.</li>
+</ol>
+
+<p><img src="/assets/images/180902/3-2.png" alt="" /></p>
+
+<ol>
+  <li>Begin the next loop.</li>
+</ol>
+
+<p><img src="/assets/images/180902/3-3.png" alt="" /></p>
+
+<ol>
+  <li>Loop until <code class="highlighter-rouge">head</code> points to <code class="highlighter-rouge">null</code>. Now <code class="highlighter-rouge">newHead</code> points to the head of the reversed list.</li>
+</ol>
+
+<p><img src="/assets/images/180902/3-4.png" alt="" /></p>
 
 <p>The code is here:</p>
 
@@ -135,30 +145,38 @@
 </code></pre></div></div>
 
 <h2 id="continuously-inserting-the-next-node-of-the-head-of-the-original-list-after-the-head-of-the-new-list">Continuously inserting the next node of the head of the original list after the head of the new list</h2>
+
 <p>We need to construct a <code class="highlighter-rouge">helper node</code> in this case, and link it to the head of the original list. Then we keep inserting the <code class="highlighter-rouge">next node of the original list</code> after the <code class="highlighter-rouge">helper node</code>, until the next node of the original list is <code class="highlighter-rouge">null</code>. Now the <code class="highlighter-rouge">next node of the helper node</code> is the head of the reversed list. The algorithm is like:</p>
 
 <ol>
-  <li>
-    <p>Initialization: construct the helper node <code class="highlighter-rouge">newHead</code>, and link it to the head of the original list.
-<img src="/assets/images/180317/4-0.png" alt="" /></p>
-  </li>
-  <li>
-    <p>Enter the loop: <code class="highlighter-rouge">temp</code> points to the next node of <code class="highlighter-rouge">head</code>.
-<img src="/assets/images/180317/4-1.png" alt="" /></p>
-  </li>
-  <li>
-    <p>Insertion: set <code class="highlighter-rouge">head.next</code> to the next node of <code class="highlighter-rouge">temp</code>; set <code class="highlighter-rouge">temp.next</code> to the next node of <code class="highlighter-rouge">newHead</code>; set <code class="highlighter-rouge">newHead.next</code> to <code class="highlighter-rouge">temp</code>. Now we have inserted the next node of <code class="highlighter-rouge">head</code> to the position right after the <code class="highlighter-rouge">newHead</code>.
-<img src="/assets/images/180317/4-2.png" alt="" /></p>
-  </li>
-  <li>
-    <p>Begin the next loop, and handle like process #2 and process #3.
-<img src="/assets/images/180317/4-3.png" alt="" /></p>
-  </li>
-  <li>
-    <p>Loop until the next node of <code class="highlighter-rouge">head</code> is <code class="highlighter-rouge">null</code>. Now the next node of <code class="highlighter-rouge">newHead</code> is the head of the reversed list.
-<img src="/assets/images/180317/4-4.png" alt="" /></p>
-  </li>
+  <li>Initialization: construct the helper node <code class="highlighter-rouge">newHead</code>, and link it to the head of the original list.</li>
 </ol>
+
+<p><img src="/assets/images/180902/4-0.png" alt="" /></p>
+
+<ol>
+  <li>Enter the loop: <code class="highlighter-rouge">temp</code> points to the next node of <code class="highlighter-rouge">head</code>.</li>
+</ol>
+
+<p><img src="/assets/images/180902/4-1.png" alt="" /></p>
+
+<ol>
+  <li>Insertion: set <code class="highlighter-rouge">head.next</code> to the next node of <code class="highlighter-rouge">temp</code>; set <code class="highlighter-rouge">temp.next</code> to the next node of <code class="highlighter-rouge">newHead</code>; set <code class="highlighter-rouge">newHead.next</code> to <code class="highlighter-rouge">temp</code>. Now we have inserted the next node of <code class="highlighter-rouge">head</code> to the position right after the <code class="highlighter-rouge">newHead</code>.</li>
+</ol>
+
+<p><img src="/assets/images/180902/4-2.png" alt="" /></p>
+
+<ol>
+  <li>Begin the next loop, and handle like process #2 and process #3.</li>
+</ol>
+
+<p><img src="/assets/images/180902/4-3.png" alt="" /></p>
+
+<ol>
+  <li>Loop until the next node of <code class="highlighter-rouge">head</code> is <code class="highlighter-rouge">null</code>. Now the next node of <code class="highlighter-rouge">newHead</code> is the head of the reversed list.</li>
+</ol>
+
+<p><img src="/assets/images/180902/4-4.png" alt="" /></p>
 
 <p>The key point of this algorithm is: <code class="highlighter-rouge">newHead</code> and <code class="highlighter-rouge">head</code> always point to the same node, and move the node after the <code class="highlighter-rouge">head</code> to the next position of <code class="highlighter-rouge">newHead</code>. The code is as follows:</p>
 
@@ -183,6 +201,7 @@
 </code></pre></div></div>
 
 <h2 id="recursion">Recursion</h2>
+
 <p>We can also reverse a linked list with recursion, the advantage of which is the short code, but maybe it’s not that simple to understand.</p>
 
 <p>The thinking is:</p>
@@ -221,6 +240,7 @@
 </code></pre></div></div>
 
 <h2 id="an-example-on-leetcode">An example on Leetcode</h2>
+
 <p>There are many peoblems regarding linked lists on <code class="highlighter-rouge">Leetcode</code>. Here I choose the <code class="highlighter-rouge">#25 Reverse Nodes in k-Group</code>:</p>
 
 <blockquote>
@@ -299,7 +319,7 @@ Only constant memory is allowed.</p>
 		
 	</div>
 
-	© 2018 CuiH. All rights reserved.
+	© 2019 CuiH. All rights reserved.
 </div>
 
 	</div>

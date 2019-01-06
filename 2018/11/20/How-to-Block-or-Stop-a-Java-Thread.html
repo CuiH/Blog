@@ -20,14 +20,14 @@
 	<div class="content-container">
 		<header>
 	<div class="header-small">
-		<a href="http://cuih.xyz">Life is a Struggle</a>
+		<a href="http://cuih.xyz">La vie est drôle</a>
 	</div>
 </header>
 
 <div class="post">
 	<div class="post-title">How to Block/Stop a Thread in Java</div>
 	<span class="post-date">
-		<time>26 Apr 2018</time>
+		<time>20 Nov 2018</time>
 	</span>
 	<div class="post-tag">
 		<ul>
@@ -43,6 +43,7 @@
 	</div>
 
 	<h2 id="thread-states">Thread states</h2>
+
 <p>The <code class="highlighter-rouge">state transition</code> of threads in Java is the fundamental of today’s topic. Basically, there are six possible states:</p>
 
 <ul>
@@ -55,6 +56,7 @@
 </ul>
 
 <h2 id="sleep">sleep()</h2>
+
 <p>A simple way to affect the execution of a thread is to invoke the <code class="highlighter-rouge">Thread.sleep()</code>. This is a <code class="highlighter-rouge">static</code> method that sleeps the <code class="highlighter-rouge">currently running</code> thread. This method can be called when a thread runs too fast or the program wants other threads to have the chance to execute. There are some facts:</p>
 
 <ul>
@@ -119,6 +121,7 @@ Tue Dec 19 00:47:49 CST 2017: end of t1
 <p>When <code class="highlighter-rouge">t1</code> is sleeping, it does not release the <code class="highlighter-rouge">resource</code>, so <code class="highlighter-rouge">t2</code> will not finish until <code class="highlighter-rouge">t1</code> wakes up and releases the <code class="highlighter-rouge">resource</code>.</p>
 
 <h2 id="yield">yield()</h2>
+
 <p>If a thread has finished all works in one round, the program can give a hint to the scheduler that other threads can occupy the CPU. <code class="highlighter-rouge">Thread.yield()</code> is a <code class="highlighter-rouge">static</code> method that <code class="highlighter-rouge">suggests</code> the scheduler other threads with the <code class="highlighter-rouge">same priority</code> can now be executed. Note that for <code class="highlighter-rouge">Thread.yield()</code>,</p>
 
 <ul>
@@ -128,6 +131,7 @@ Tue Dec 19 00:47:49 CST 2017: end of t1
 </ul>
 
 <h2 id="join">join()</h2>
+
 <p><code class="highlighter-rouge">join()</code> is a non-static method in class Thread that <code class="highlighter-rouge">appends</code> current thread to the end of another thread. When a thread invokes <code class="highlighter-rouge">t.join()</code> on another thread <code class="highlighter-rouge">t</code>, the first thread will be <code class="highlighter-rouge">suspended</code> until the second thread completes. Let’s see an example:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">JoinTest</span> <span class="o">{</span>
@@ -182,6 +186,7 @@ Tue Dec 19 15:38:10 CST 2017: end of t2
 </ul>
 
 <h2 id="wait-and-notify">wait() and notify()</h2>
+
 <p>There’s another mechanism that supports multi-thread interactions. <code class="highlighter-rouge">wait()</code> enables a thread to wait for the change of a certain condition. When <code class="highlighter-rouge">wait()</code> is called on an <code class="highlighter-rouge">"resource"</code>, the current thread will be suspended until the method <code class="highlighter-rouge">notify()</code> is called on the same <code class="highlighter-rouge">"resource"</code>. <code class="highlighter-rouge">wait()</code> and <code class="highlighter-rouge">notify()</code> are methods declared in class <code class="highlighter-rouge">Object</code>, which enables a thread to wait for any <code class="highlighter-rouge">"resource"</code>. Note that:</p>
 
 <ul>
@@ -259,6 +264,7 @@ Tue Dec 19 17:58:17 CST 2017: end of t2
 <p>When <code class="highlighter-rouge">notify()</code> or <code class="highlighter-rouge">notifyAll()</code> is called, the status of the threads that are waiting on this object will change from <code class="highlighter-rouge">WAITING</code> to <code class="highlighter-rouge">BLOCKED</code>, and they will then compete for the object lock. If one thread reacquires the lock after the notifying thread releases the lock, its status will become <code class="highlighter-rouge">RUNNABLE</code>. Therefore, <code class="highlighter-rouge">notify()</code> or <code class="highlighter-rouge">notifyAll()</code> will <code class="highlighter-rouge">not</code> cause the release of the lock.</p>
 
 <h2 id="suspend-and-resume-deprecated">suspend() and resume() (deprecated)</h2>
+
 <p>Sometimes we may want to stop a thread for a while. Previously, there are a pair of methods <code class="highlighter-rouge">suspend() and resume()</code> declared in class <code class="highlighter-rouge">Thread</code>, but as explained in the <code class="highlighter-rouge">Javadoc</code>, they are <code class="highlighter-rouge">inherently deadlock-prone</code> and thus <code class="highlighter-rouge">deprecated</code>:</p>
 
 <blockquote>
@@ -268,6 +274,7 @@ Tue Dec 19 17:58:17 CST 2017: end of t2
 <p>A suspended thread will <code class="highlighter-rouge">not</code> release any lock it holds, so the above words are easy to understand.</p>
 
 <h2 id="stop-deprecated">stop() (deprecated)</h2>
+
 <p><code class="highlighter-rouge">stop()</code> is also <code class="highlighter-rouge">deprecated</code> due to <code class="highlighter-rouge">inherently unsafe</code>:</p>
 
 <blockquote>
@@ -318,6 +325,7 @@ Tue Dec 19 17:58:17 CST 2017: end of t2
 <p>Now if we <code class="highlighter-rouge">stop</code> a thread that is interacting with a vector, the target thread will immediately release the lock that protects this vector, and thus other threads can read from or write to this vector <code class="highlighter-rouge">inconsistently</code>. For instance, if the <code class="highlighter-rouge">elementCount</code> has been increased by one and the thread is stopped before the actual data is witten to the array, another thread that tries to read the last element may acquire the vector lock and get a non-existent value.</p>
 
 <h2 id="status-flag">Status flag</h2>
+
 <p>How to stop a thread then? A simple way is to use a boolean variable as a flag:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FlagTest</span> <span class="kd">extends</span> <span class="n">Thread</span> <span class="o">{</span>
@@ -372,6 +380,7 @@ Tue Dec 19 22:34:08 CST 2017: end
 <p>Every round, the thread will check the boolean flag <code class="highlighter-rouge">canceled</code> to decide whether to break the cycle or not. Note that <code class="highlighter-rouge">canceled</code> is a <code class="highlighter-rouge">volatile</code> variable, which ensures that operations on this variable are thread-safe in this case.</p>
 
 <h2 id="interrupt">interrupt()</h2>
+
 <p>The above method can stop a thread at the beginning of a certain round of cycle, but we may also want to stop a <code class="highlighter-rouge">WAITING</code> or <code class="highlighter-rouge">BLOCKED</code> thread. In previous examples, methods like <code class="highlighter-rouge">Thread.sleep()</code> and <code class="highlighter-rouge">Object.wait()</code> may throw exceptions called <code class="highlighter-rouge">InterruptedException</code>. This can help us stop such threads.</p>
 
 <p>As you can imagine, interrupting a <code class="highlighter-rouge">WAITING</code> or <code class="highlighter-rouge">BLOCKED</code> thread is more complicate than stopping a thread after it finishes one round of cycle. You’ll need to deal with the <code class="highlighter-rouge">aftermaths</code> such as <code class="highlighter-rouge">tidying up</code> the resources, which is similar to handling an exception in a <code class="highlighter-rouge">try-catch</code> block.</p>
@@ -429,6 +438,7 @@ Tue Dec 19 23:56:59 CST 2017: end
 <p>We can now call the <code class="highlighter-rouge">Thread.interrupted()</code> method to check whether current thread has been interrupted. Note that when an <code class="highlighter-rouge">InterruptedException</code> is thrown, the interrupt flag will be reset, so we need to set the flag again to break the cycle in the <code class="highlighter-rouge">catch</code> block.</p>
 
 <h2 id="summary">Summary</h2>
+
 <p>The <code class="highlighter-rouge">concurrent programming</code> in Java is a very complex and important topic. Today I only introduced the tip of the iceberg, but if you want to be a proficient java programmer, you must familiar youself with the concurrent programming.</p>
 
 </div>
@@ -458,7 +468,7 @@ Tue Dec 19 23:56:59 CST 2017: end
 		
 	</div>
 
-	© 2018 CuiH. All rights reserved.
+	© 2019 CuiH. All rights reserved.
 </div>
 
 	</div>

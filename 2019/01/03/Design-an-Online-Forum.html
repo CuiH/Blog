@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>Design an Online Forum</title>
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="/assets/css/main.css" type="text/css" />
+
+	<!-- Font -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="http://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet" type="text/css" />
+</head>
+
+
+<body>
+	<div class="content-container">
+		<header>
+	<div class="header-small">
+		<a href="http://cuih.xyz">La vie est drôle</a>
+	</div>
+</header>
+
+<div class="post">
+	<div class="post-title">Design an Online Forum</div>
+	<span class="post-date">
+		<time>03 Jan 2019</time>
+	</span>
+	<div class="post-tag">
+		<ul>
+			
+			<li>
+				<a href="http://cuih.xyz/tags#design">
+					<span>design</span>
+				</a>
+			</li>
+			
+			
+			<li>
+				<a href="http://cuih.xyz/tags#web">
+					<span>web</span>
+				</a>
+			</li>
+			
+			
+		</ul>
+	</div>
+
+	<h2 id="introduction">Introduction</h2>
+
+<p>In this article, let’s try to model an online forum with the following requirements:</p>
+
+<ol>
+  <li>There will be sub-forums formed in a tree-like multi-level structure.</li>
+  <li>Each forum will have owner and administrators. Different role have differernt privileges.</li>
+  <li>Under each forum, all threads from that forum as well as all its sub-forums will be displayed.</li>
+</ol>
+
+<h2 id="the-schema-design">The schema design</h2>
+
+<p>For <code class="highlighter-rouge">req. #1</code>, you may first come up with the same idea of storing a tree: each forum will know its direct parent and maybe also its children:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+-------------------------+
+| id: integer             |
+| name: string            |
+| parent_id: integer      |
+| children_ids: [integer] |
++-------------------------+
+</code></pre></div></div>
+
+<p>However, this cannot resolve the <code class="highlighter-rouge">req. #3</code>. With this structure, finding all threads from all sub-forums of a forum will be really hard. Maybe we can store the parent-child relationships in the cache, but this is way too complex.</p>
+
+<p>Then, inspired by the linux file system, maybe we can add a <code class="highlighter-rouge">path</code> field to the <code class="highlighter-rouge">forum</code> schema. Definitely, there must be a <code class="highlighter-rouge">root</code> forum in this structure, and all other forums will be its children.</p>
+
+<p>Another issue is, what will the path consist of? The names? Please notice that the name of a forum can be changed, so using names in paths will cause great burden when updating the name of a high-level forum. Here we have to use a <code class="highlighter-rouge">global id</code> for the paths.</p>
+
+<p>The root forum will have path <code class="highlighter-rouge">/</code>, and its direct children may be <code class="highlighter-rouge">/1/</code>, <code class="highlighter-rouge">/2/</code> and so on. If we create a new sub-forum based on a forum with path <code class="highlighter-rouge">/x/</code>, the path of the new forum will be <code class="highlighter-rouge">/x/id++</code>:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>new path = parent_path + '/' + (global_id++) + '/'
+</code></pre></div></div>
+
+<p><img src="/assets/images/190103/1.png" alt="" /></p>
+
+<p>Now, if we also add this <code class="highlighter-rouge">path</code> field to the <code class="highlighter-rouge">thread</code> schema, retrieving threads from all sub-forums will be as simple as searching by prefix. For instance, in forum <code class="highlighter-rouge">Film</code>, the query for getting all its threads will be getting threads with prefix <code class="highlighter-rouge">/1/</code> for the <code class="highlighter-rouge">path</code> field.</p>
+
+<p>Note that the ending slash <code class="highlighter-rouge">/</code> in each <code class="highlighter-rouge">path</code> cannot be omitted. Before reading the next section, please take a moment to think about the reason.</p>
+
+<h2 id="the-ending-slash">The ending slash</h2>
+
+<p>The ending slash in the <code class="highlighter-rouge">path</code> is not graceful, but it is important. It protects us from a potential bug.</p>
+
+<p>If we remove the ending slash from the paths, when the number of forums is less than 10, everything will be fine, but the forum with path <code class="highlighter-rouge">/10</code> will become a nightmare. The query for retrieving threads of forum <code class="highlighter-rouge">/1</code> will also give us threads from this from <code class="highlighter-rouge">/10</code>, because <code class="highlighter-rouge">/10</code> has the prefix <code class="highlighter-rouge">/1</code>, but it is not a child of forum <code class="highlighter-rouge">/1</code>!</p>
+
+<p>The ending slash should not be omitted.</p>
+
+<h2 id="access-control">Access control</h2>
+
+<p>Now we have addressed the <code class="highlighter-rouge">req. #1</code> and <code class="highlighter-rouge">req. #3</code>. How about the access control?</p>
+
+<p>In fact, with the current design, we can easily implement an access control module. For each forum, we maintain the <code class="highlighter-rouge">path</code> field, which gives us the parent-child relationship of a given forum. We can exploit this to define the accessibility of a user to a forum.</p>
+
+<p>In the <code class="highlighter-rouge">user</code> schema, an <code class="highlighter-rouge">admined_paths</code> is added, storing the paths of forums that he is an admin of. Here some obvious facts that could be inferred:</p>
+
+<ol>
+  <li>The admin of a forum can create new sub-forums; otherwise only the root admin can create new forums.</li>
+  <li>The admin of a forum will have owner access to all sub-forums of that forum.</li>
+  <li>No need to store the <code class="highlighter-rouge">owned_paths</code> in the <code class="highlighter-rouge">user</code> schema, because if someone is the owner of a forum, he must be the admin of one of the parent forums of that forum.</li>
+  <li>A user cannot be an admin of a forum if he is the owner/admin of any of its parents.</li>
+</ol>
+
+<p>If we want to know whether someone has admin access to a forum, we can easily go through his <code class="highlighter-rouge">admined_paths</code> to see whether any of the paths is the same as or is the parent of the path of that forum. Similarly, to see whether he has owner access to a forum, we will give positive answer only when any of his paths is the parent of that forum.</p>
+
+<p>For example, user <code class="highlighter-rouge">A</code> admins <code class="highlighter-rouge">/1/2/</code>, he will have admin access to <code class="highlighter-rouge">/1/2/</code> and <code class="highlighter-rouge">/1/2/4/</code>, but he will only have owner access to <code class="highlighter-rouge">/1/2/4/</code>.</p>
+
+<p>Everything works well!</p>
+
+<h2 id="revocations">Revocations</h2>
+
+<p>We only discussed the grant of privileges, that is, adding a path to the <code class="highlighter-rouge">admined_paths</code> of a user. What if we want to revoke one of his paths? That could be a design issue, which has no correct answer. One problem is, if someone created a new sub-forum and he is then removed from the admin list of the parent forum, should he still be able to manage the forum he created? That’s beyond the scope of this article so I won’t go further with this topic.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>The design of a big system involves many considerations. Today I just gave a brief example of the modeling of an online forum. That’s not a complete solution but hope it could help someone to some extend.</p>
+
+</div>
+
+		
+		<div class="footer">
+	<hr/>
+	<div class="footer-link">
+		
+		<a href="https://www.facebook.com/none"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+		
+
+		
+		<a href="https://twitter.com/dontsay_lazy"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+		
+
+		
+		<a href="https://github.com/CuiH"><i class="fa fa-github" aria-hidden="true"></i></a>
+		
+
+		
+		<a href="https://www.linkedin.com/in/hao-cui-3ab90214b"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+		
+
+		
+		<a href="mailto:hcui1995@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+		
+	</div>
+
+	© 2019 CuiH. All rights reserved.
+</div>
+
+	</div>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125119994-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-125119994-1');
+	</script>
+</body>
+</html>

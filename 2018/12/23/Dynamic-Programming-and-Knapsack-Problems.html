@@ -20,14 +20,14 @@
 	<div class="content-container">
 		<header>
 	<div class="header-small">
-		<a href="http://cuih.xyz">Life is a Struggle</a>
+		<a href="http://cuih.xyz">La vie est drôle</a>
 	</div>
 </header>
 
 <div class="post">
 	<div class="post-title">Dynamic Programming and Knapsack Problems</div>
 	<span class="post-date">
-		<time>24 Jun 2018</time>
+		<time>23 Dec 2018</time>
 	</span>
 	<div class="post-tag">
 		<ul>
@@ -43,9 +43,11 @@
 	</div>
 
 	<h2 id="overview">Overview</h2>
+
 <p><code class="highlighter-rouge">Dynamic Programming (DP)</code> is very common in sloving problems. Many people tend to think that it is difficult, but actually, if you understand the principles, it can be easy to use. In this blog, I will give a brief introduction to DP and analyze with maybe the most typical DP problem, the <code class="highlighter-rouge">knapsack problem (s)</code>.</p>
 
 <h2 id="an-example">An example</h2>
+
 <p>Let’s see a problem on Leetcode first, <code class="highlighter-rouge">#322 Coin Change</code>:</p>
 
 <blockquote>
@@ -65,6 +67,7 @@
 <p>At the first sight, a brute-force solution is quite straight-forward, that is, try every possible combinations and find the optimal one. So why don’t we start with that?</p>
 
 <h3 id="the-easiest-recursive-solution">The easiest recursive solution</h3>
+
 <p>It sounds good to handle this problem with recursion, and the code is rather simple:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">coinChangeWithRecursion</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">coins</span><span class="o">,</span> <span class="kt">int</span> <span class="n">amount</span><span class="o">)</span> <span class="o">{</span>
@@ -85,6 +88,7 @@
 <p>However, obviously, this may cause a TLE, because the code does many duplicate works. For example, if we have coins <code class="highlighter-rouge">[1, 2, 3]</code>, and the target amount is <code class="highlighter-rouge">20</code>. When we reach amount <code class="highlighter-rouge">1 + 2 + 2 (= 5)</code> and <code class="highlighter-rouge">2 + 3 (= 5)</code>, the rest of the code will do the same job, that try to find the minimum coins to make up <code class="highlighter-rouge">(20 - 5 =) 15</code>. As the target amount becomes larger, there will be exponentially more duplicate calculations. So, how to improve?</p>
 
 <h3 id="recursion-with-memorization">Recursion with memorization</h3>
+
 <p>As we have analyzed the drawback of the recursive solution, an intuitive improvement is to memorize every minCount (amount) we have already calculated:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">memo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
@@ -117,6 +121,7 @@
 <p>This solution can pass the online judge, but we still need to invoke this method many times. Can we get the result with only one invocation? Maybe we can use an array.</p>
 
 <h3 id="a-better-solution--dp">A better solution – DP</h3>
+
 <p>Since we’ll always calculate from big <code class="highlighter-rouge">amount</code> to small <code class="highlighter-rouge">amount</code>, why don’t we start from small <code class="highlighter-rouge">amount</code> and remember the results, so big <code class="highlighter-rouge">amount</code> can directly make use of them:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">coinChangeWithDP</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">coins</span><span class="o">,</span> <span class="kt">int</span> <span class="n">amount</span><span class="o">)</span> <span class="o">{</span>
@@ -138,6 +143,7 @@
 <p>This is the so-called <code class="highlighter-rouge">DP</code>.</p>
 
 <h2 id="the-simplest-knapsack-problem">The simplest knapsack problem</h2>
+
 <p>Now that we have learnt what <code class="highlighter-rouge">DP</code> is, we can move to perhaps the most typical DP problem, the <code class="highlighter-rouge">knapsack problem</code>. Actually, there are many variations, so we will begin with the simplest one, the <code class="highlighter-rouge">0/1 knapsack problem</code>.</p>
 
 <blockquote>
@@ -172,6 +178,7 @@
 </code></pre></div></div>
 
 <h2 id="the-complete-knapsack-problem">The complete knapsack problem</h2>
+
 <p>It is similar to the 0/1 knapsack, but this time, we can use an item multiple times. It’s simple! As I mentioned above, we start from the back to avoid counting one item more than once, so for a <code class="highlighter-rouge">complete knapsack</code>, we just simply start from the beginning:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for i = [0 ... n)
@@ -180,6 +187,7 @@
 </code></pre></div></div>
 
 <h2 id="the-multidimensional-knapsack-problem">The multidimensional knapsack problem</h2>
+
 <p>There is an example on LeetCode, <code class="highlighter-rouge">#474 Ones and Zeroes</code>:</p>
 
 <blockquote>
@@ -220,6 +228,7 @@
 </code></pre></div></div>
 
 <h2 id="summary">Summary</h2>
+
 <p>DP is a very powerful tool, but to know whether a problem can be solved with DP, and how to derive the state transition equation, you need to do many exercises.</p>
 
 </div>
@@ -249,7 +258,7 @@
 		
 	</div>
 
-	© 2018 CuiH. All rights reserved.
+	© 2019 CuiH. All rights reserved.
 </div>
 
 	</div>

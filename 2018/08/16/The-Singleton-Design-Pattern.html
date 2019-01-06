@@ -20,14 +20,14 @@
 	<div class="content-container">
 		<header>
 	<div class="header-small">
-		<a href="http://cuih.xyz">Life is a Struggle</a>
+		<a href="http://cuih.xyz">La vie est drôle</a>
 	</div>
 </header>
 
 <div class="post">
 	<div class="post-title">The Singleton Design Pattern</div>
 	<span class="post-date">
-		<time>08 Feb 2018</time>
+		<time>16 Aug 2018</time>
 	</span>
 	<div class="post-tag">
 		<ul>
@@ -43,6 +43,7 @@
 	</div>
 
 	<h2 id="definition">Definition</h2>
+
 <p>In some cases, we want a certain class to have only one instance, such as the <code class="highlighter-rouge">Printer</code> class and the <code class="highlighter-rouge">ThreadPool</code> class in Java. This design pattern is called the <code class="highlighter-rouge">Singleton Pattern</code>:</p>
 
 <blockquote>
@@ -50,6 +51,7 @@
 </blockquote>
 
 <h2 id="the-simplest-singleton-pattern">The simplest singleton pattern</h2>
+
 <p>Let’s answer an interesting question first: can a <code class="highlighter-rouge">constructor</code> be decorated as <code class="highlighter-rouge">private</code> in Java?</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test</span> <span class="o">{</span>
@@ -94,6 +96,7 @@
 <p>It seems that we have perfectly addressed the problem! However, if you are familiar with the <code class="highlighter-rouge">class loading mechanism</code> in Java, you’ll know that <code class="highlighter-rouge">class-level static statements</code> are executed once the class is loaded. If, unfortunately, the initialization process is time-consuming, and the instance of this class is never used after creation, this will be very wasteful.</p>
 
 <h2 id="eager-loading--lazy-loading">Eager loading &amp; Lazy loading</h2>
+
 <p>The method above is called the <code class="highlighter-rouge">Eager Loading</code>:</p>
 
 <blockquote>
@@ -125,6 +128,7 @@
 </blockquote>
 
 <h2 id="thread-safe-considerations">Thread-safe considerations</h2>
+
 <p>Although the lazing loading looks good, it has a fatal problem: it is not thread-safe. If we have the following invocation sequence, two different instances will be created:</p>
 
 <ol>
@@ -147,6 +151,7 @@
 <p>In fact, after analyzing this code, we will find that synchronization is only necessary at the first invocation, when the instance is not yet created. If we need to access this method many times, all synchronizations are meaningless except the the first one.</p>
 
 <h2 id="double-checked-locking">Double-checked locking</h2>
+
 <p>To achieve thread-safe, and in the meantime address the performance issue, some people suggested a more complicated solution:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">synchronized</span>  <span class="n">SimpleSingleton</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
@@ -165,6 +170,7 @@
 <p>Since only the instance creation statement needs to be locked, we use a <code class="highlighter-rouge">synchronized block</code> instead of synchronized method. Also, to avoid the problem we met in lazing loading, <code class="highlighter-rouge">ourInstance</code> is checked a second time inside the synchronized block before we really create a instance. As only one thread can access the synchronized block at the same time, only one instance will be created.</p>
 
 <h2 id="the-problem-brought-by-the-jvm">The problem brought by the JVM</h2>
+
 <p>The double-checked locking seems to be perfect, but regrettably, it will not work in some cases. The problem is that the JVM allows the compiler to <code class="highlighter-rouge">reorder instructions</code>, which cannot guarantee the <code class="highlighter-rouge">orderliness</code>. This may involve deeper analysis, and I don’t want to discuss further in this blog, so I just give the conclusion:</p>
 
 <blockquote>
@@ -225,7 +231,7 @@
 		
 	</div>
 
-	© 2018 CuiH. All rights reserved.
+	© 2019 CuiH. All rights reserved.
 </div>
 
 	</div>
